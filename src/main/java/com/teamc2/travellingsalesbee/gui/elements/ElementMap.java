@@ -23,7 +23,7 @@ public class ElementMap implements Element {
    	//GET METHODS
    
     public getCellType(ElementCell cell) {
-    	//Return it's type
+    	return cell.getType();
     }
     
     public ArrayList<ElementCell> getCellsOfType() {
