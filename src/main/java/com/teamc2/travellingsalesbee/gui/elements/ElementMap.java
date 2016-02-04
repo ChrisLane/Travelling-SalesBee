@@ -31,6 +31,10 @@ public class ElementMap implements Element {
 		return null;
 	}
 
+	public ArrayList<ElementCell> getCells() {
+		return cells;
+	}
+
 	//SET METHODS
 
 	/**
