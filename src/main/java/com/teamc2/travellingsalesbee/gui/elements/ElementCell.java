@@ -39,7 +39,7 @@ public class ElementCell extends Point2D implements Element{
     	} else if(CELL_TYPE == 2) {
     		return "Flower";
     	} else {
-    		return "Error";
+    		return "Error, please enter 0, 1 or 2";
     	}
     }
     
