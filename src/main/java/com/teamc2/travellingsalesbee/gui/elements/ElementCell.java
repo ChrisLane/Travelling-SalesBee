@@ -14,7 +14,7 @@ public class ElementCell extends Point2D implements Element{
      * @param x the x coordinate of the point
      * @param y the y coordinate of the point
      */
-    public ElementCell(double x, double y, int type) {
+    public ElementCell(int x, int y, int type) {
         super(x, y);
         this.x = x; //x position of object
         this.y = y; //y position of object
@@ -23,32 +23,18 @@ public class ElementCell extends Point2D implements Element{
     }
     
     //GET METHODS
-    public int getLoc() {
-    	return (x, y);
-    }
-    
-    public int getType() {
-    	return CELL_TYPE; //We could change this to return a string later on
-    }
-    
+
     public String getType() {
-    	if(CELL_TYPE == 0) {
-    		return "Empty Cell";
-    	} else if(CELL_TYPE == 1) {
-    		return "Hive";
-    	} else if(CELL_TYPE == 2) {
-    		return "Flower";
-    	} else {
-    		return "Error, please enter 0, 1 or 2";
-    	}
+        switch (CELL_TYPE) {
+            case 0: return "Empty Cell";
+            case 1: return "Hive";
+            case 2: return "Flower";
+            default: return "Error, please enter 0, 1 or 2";
+        }
     }
     
-    public getX() {
-    	return this.x;
-    }
-    
-    public getImage() {
-    	return this.y;
+    public String getImage() {
+    	return "";
     }
     
     //SET METHODS
