@@ -4,13 +4,13 @@ import javafx.geometry.Point2D;
 
 public class ElementCell extends Point2D implements Element {
 
-	public static final int EMPTY = 0;
-	public static final int HIVE = 1;
-	public static final int FLOWER = 2;
+	public static final int EMPTY 	= 0;
+	public static final int HIVE 	= 1;
+	public static final int FLOWER 	= 2;
 
-	private int cellType = EMPTY; // Empty cell
-	private int x; //x position of Cell
-	private int y; //y position of Cell
+	private int type = EMPTY; 		// Empty cell
+	private int x; 					// x position of Cell
+	private int y; 					// y position of Cell
 
 	/**
 	 * Creates a new instance of {@code Point2D}.
@@ -20,21 +20,28 @@ public class ElementCell extends Point2D implements Element {
 	 */
 	public ElementCell(int x, int y, int type) {
 		super(x, y);
-		this.x = x; //x position of object
-		this.y = y; //y position of object
-
-		cellType = type; //type of object (see above for types)
+		this.x = x;
+		this.y = y;
+		this.type = type;
 	}
 
 	//GET METHODS
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
 
 	public String getType() {
-		switch (cellType) {
-			case 0:
+		switch (type) {
+			case EMPTY:
 				return "Empty Cell";
-			case 1:
+			case HIVE:
 				return "Hive";
-			case 2:
+			case FLOWER:
 				return "Flower";
 			default:
 				return "Error, please enter 0, 1 or 2";
@@ -59,7 +66,7 @@ public class ElementCell extends Point2D implements Element {
 		this.y = y;
 	}
 
-	public void setType(int cellType) {
-		this.cellType = cellType;
+	public void setType(int type) {
+		this.type = type;
 	}
 }
