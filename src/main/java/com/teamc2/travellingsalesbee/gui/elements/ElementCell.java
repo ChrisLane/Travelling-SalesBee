@@ -54,4 +54,8 @@ public class ElementCell extends Point2D implements Element {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 }
