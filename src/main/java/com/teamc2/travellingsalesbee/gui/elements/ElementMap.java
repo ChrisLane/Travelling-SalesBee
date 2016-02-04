@@ -1,4 +1,4 @@
-package main.java.com.teamc2.travellingsalesbee.gui.elements;
+package com.teamc2.travellingsalesbee.gui.elements;
 
 import java.util.ArrayList;
 
@@ -22,8 +22,8 @@ public class ElementMap implements Element {
     
    	//GET METHODS
    
-    public int getCellType(ElementCell cell) {
-    	return cell.getTypeInt();
+    public getCellType(ElementCell cell) {
+    	return cell.getType();
     }
     
     public ArrayList<ElementCell> getCellsOfType() {
@@ -36,8 +36,8 @@ public class ElementMap implements Element {
     /**
      * Adds a new cell to the grid map at x, y
      */
-    public void newCell(double x, double y, int type) {
-    	ElementCell nCell = new ElementCell(x, y, type);
+    public void newCell(int x, int y) {
+    	ElementCell nCell = new ElementCell();
     	cells.add(nCell);
         // TODO: Implement 'addCell' method
     }
