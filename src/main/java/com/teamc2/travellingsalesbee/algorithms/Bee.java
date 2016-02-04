@@ -1,4 +1,4 @@
-package main.java.com.teamc2.travellingsalesbee.algorithms;
+package com.teamc2.travellingsalesbee.algorithms;
 
 public class Bee {
 }
