@@ -46,7 +46,7 @@ public class ElementMap implements Element {
 	 * Sets the speed for the bees to move at
 	 */
 	public void setSpeed(int speed) {
-		// TODO: Implement 'setSpeed'
+		// TODO: Implement 'setSpeed' method
 	}
 
 	/**
