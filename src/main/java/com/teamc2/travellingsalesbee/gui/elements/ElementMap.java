@@ -22,7 +22,7 @@ public class ElementMap implements Element {
 
 	//GET METHODS
 
-	public getCellType(ElementCell cell) {
+	public String getCellType(ElementCell cell) {
 		return cell.getType();
 	}
 
@@ -36,8 +36,8 @@ public class ElementMap implements Element {
 	/**
 	 * Adds a new cell to the grid map at x, y
 	 */
-	public void newCell(int x, int y) {
-		ElementCell nCell = new ElementCell();
+	public void newCell(int x, int y, int type) {
+		ElementCell nCell = new ElementCell(x, y, type);
 		cells.add(nCell);
 		// TODO: Implement 'addCell' method
 	}
