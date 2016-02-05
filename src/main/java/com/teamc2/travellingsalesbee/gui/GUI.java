@@ -1,9 +1,9 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import com.teamc2.travellingsalesbee.gui.elements.ElementBeeTable;
-import com.teamc2.travellingsalesbee.gui.elements.ElementMap;
-import com.teamc2.travellingsalesbee.gui.elements.ElementSettings;
-import com.teamc2.travellingsalesbee.gui.elements.ElementToolbox;
+import com.teamc2.travellingsalesbee.gui.elements.BeeTable;
+import com.teamc2.travellingsalesbee.gui.elements.Map;
+import com.teamc2.travellingsalesbee.gui.elements.Settings;
+import com.teamc2.travellingsalesbee.gui.elements.Toolbox;
 
 public class GUI {
 	public GUI() {
@@ -11,9 +11,9 @@ public class GUI {
 	}
 
 	public void initialise() {
-		ElementMap map = new ElementMap(10, 10);
-		ElementSettings settings = new ElementSettings(map);
-		ElementBeeTable beeTable = new ElementBeeTable(map);
-		ElementToolbox toolbox = new ElementToolbox();
+		Map map = new Map(10, 10);
+		Settings settings = new Settings(map);
+		BeeTable beeTable = new BeeTable(map);
+		Toolbox toolbox = new Toolbox();
 	}
 }

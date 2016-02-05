@@ -7,7 +7,7 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
 import java.util.ArrayList;
 
-public class ElementMap implements Element {
+public class Map {
 
 	private int width; //Width of map
 	private int height; //Height of map
@@ -24,7 +24,7 @@ public class ElementMap implements Element {
 	 * @param width
 	 * @param height
 	 */
-	public ElementMap(int width, int height) {
+	public Map(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}

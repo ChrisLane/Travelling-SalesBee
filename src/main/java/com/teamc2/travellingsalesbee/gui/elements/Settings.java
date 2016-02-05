@@ -1,9 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-public class ElementSettings implements Element {
-	private ElementMap gridMap;
+public class Settings {
+	private Map gridMap;
 
-	public ElementSettings(ElementMap gridMap) {
+	public Settings(Map gridMap) {
 		this.gridMap = gridMap;
 	}
 

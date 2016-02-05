@@ -1,9 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-public class ElementBeeTable implements Element {
-	private ElementMap map;
+public class BeeTable {
+	private Map map;
 
-	public ElementBeeTable(ElementMap map) {
+	public BeeTable(Map map) {
 		this.map = map;
 	}
 
