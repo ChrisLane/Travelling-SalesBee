@@ -79,6 +79,10 @@ public class Map {
 	 * Reset the current map
 	 */
 	public void resetMap() {
-		// TODO: Implement 'resetMap' method
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[0].length; j++) {
+				clearCell(i,j);
+			}
+		}
 	}
 }
