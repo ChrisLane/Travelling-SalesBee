@@ -26,14 +26,6 @@ public class ElementCell extends Point2D implements Element {
 	}
 
 	//GET METHODS
-	
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
-	}
 
 	public String getType() {
 		switch (type) {
