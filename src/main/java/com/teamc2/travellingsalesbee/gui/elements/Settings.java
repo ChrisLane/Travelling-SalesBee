@@ -12,6 +12,6 @@ public class Settings {
 	}
 
 	public void resetMap() {
-		gridMap.resetMap();
+		gridMap.setMap();
 	}
 }
