@@ -1,5 +1,10 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellEmpty;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
+
 import java.util.ArrayList;
 
 public class ElementMap implements Element {
@@ -7,7 +12,11 @@ public class ElementMap implements Element {
 	private int width; //Width of map
 	private int height; //Height of map
 	private int speed; //Speed of bees
-	private ElementCell[][] cells; //Will store our ElementCells
+	private Cell[][] cells; //Will store our ElementCells
+
+	private static final String EMPTY = Cell.EMPTY;
+	private static final String HIVE = Cell.Hive;
+	private static final String FLOWER = Cell.FLOWER;
 
 	/**
 	 * Create a new map
@@ -22,16 +31,16 @@ public class ElementMap implements Element {
 
 	//GET METHODS
 
-	public String getCellType(ElementCell cell) {
+	public String getCellType(Cell cell) {
 		return cell.getType();
 	}
 
-	public ArrayList<ElementCell> getCellsOfType() {
+	public ArrayList<Cell> getCellsOfType() {
 		// TODO: Implement 'getCellsOfType' method
 		return null;
 	}
 
-	public ElementCell getCell(int x, int y) {
+	public Cell getCell(int x, int y) {
 		return cells[x][y];
 	}
 
@@ -40,18 +49,23 @@ public class ElementMap implements Element {
 	/**
 	 * Adds a new cell to the grid map at x, y
 	 */
-	public void setCell(int x, int y, int type) {
-		if (type != ElementCell.EMPTY) {
-			ElementCell cell = new ElementCell(x, y, type);
-			cells[x][y] = cell;
-		} else {
-			cells[x][y] = null;
+	public void setCell(int x, int y, String type) {
+		switch (type) {
+			case EMPTY:
+				cells[x][y] = new CellEmpty();
+				break;
+			case HIVE:
+				cells[x][y] = new CellHive();
+				break;
+			case FLOWER:
+				cells[x][y] = new CellFlower();
+				break;
 		}
 	}
 
 
 	public void clearCell(int x, int y) {
-		setCell(x, y, ElementCell.EMPTY);
+		setCell(x, y, EMPTY);
 	}
 
 	/**
