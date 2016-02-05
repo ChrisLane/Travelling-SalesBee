@@ -7,7 +7,7 @@ public class ElementMap implements Element {
 	private int width; //Width of map
 	private int height; //Height of map
 	private int speed; //Speed of bees
-	private ArrayList<ElementCell> cells; //Will store our ElementCells
+	private ElementCell[][] cells; //Will store our ElementCells
 
 	/**
 	 * Create a new map
@@ -31,8 +31,8 @@ public class ElementMap implements Element {
 		return null;
 	}
 
-	public ArrayList<ElementCell> getCells() {
-		return cells;
+	public ElementCell getCell(int x, int y) {
+		return cells[x][y];
 	}
 
 	//SET METHODS
@@ -40,10 +40,18 @@ public class ElementMap implements Element {
 	/**
 	 * Adds a new cell to the grid map at x, y
 	 */
-	public void newCell(int x, int y, int type) {
-		ElementCell nCell = new ElementCell(x, y, type);
-		cells.add(nCell);
-		// TODO: Implement 'addCell' method
+	public void setCell(int x, int y, int type) {
+		if (type != ElementCell.EMPTY) {
+			ElementCell cell = new ElementCell(x, y, type);
+			cells[x][y] = cell;
+		} else {
+			cells[x][y] = null;
+		}
+	}
+
+
+	public void clearCell(int x, int y) {
+		setCell(x, y, ElementCell.EMPTY);
 	}
 
 	/**
