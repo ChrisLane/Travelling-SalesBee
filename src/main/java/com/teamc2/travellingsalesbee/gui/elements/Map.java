@@ -36,9 +36,16 @@ public class Map {
 		return cell.getType();
 	}
 
-	public ArrayList<Cell> getCellsOfType() {
-		// TODO: Implement 'getCellsOfType' method
-		return null;
+	public ArrayList<Cell> getCellsOfType(String type) {
+		ArrayList<Cell> cellsOfType = new ArrayList<Cell>();
+		for (int i=0;i<this.width;i++){
+			for (int j=0;j<this.height;j++){
+				if (getCellType(cells[i][j])==type){
+					cellsOfType.add(cells[i][j]);
+				}
+			}
+		}
+		return cellsOfType;
 	}
 
 	public Cell getCell(int x, int y) {
@@ -80,8 +87,8 @@ public class Map {
 	 * Reset the current map
 	 */
 	public void setMap() {
-		for (int i = 0; i < cells.length; i++) {
-			for (int j = 0; j < cells[0].length; j++) {
+		for (int i = 0; i < this.width; i++) {
+			for (int j = 0; j < this.height; j++) {
 				clearCell(i,j);
 			}
 		}

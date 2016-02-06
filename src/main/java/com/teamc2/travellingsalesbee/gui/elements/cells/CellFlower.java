@@ -8,6 +8,7 @@ public class CellFlower implements Cell {
 
 	@Override
 	public String getImage() {
+		//return flower image location here
 		return null;
 	}
 }
