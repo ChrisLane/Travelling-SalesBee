@@ -8,4 +8,8 @@ public interface Cell {
 	String getType();
 
 	String getImage();
+	
+	int getX();
+	
+	int getY();
 }

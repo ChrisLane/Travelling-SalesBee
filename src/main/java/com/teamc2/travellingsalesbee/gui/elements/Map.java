@@ -60,13 +60,13 @@ public class Map {
 	public void setCell(int x, int y, String type) {
 		switch (type) {
 			case EMPTY:
-				cells[x][y] = new CellEmpty();
+				cells[x][y] = new CellEmpty(x,y);
 				break;
 			case HIVE:
-				cells[x][y] = new CellHive();
+				cells[x][y] = new CellHive(x,y);
 				break;
 			case FLOWER:
-				cells[x][y] = new CellFlower();
+				cells[x][y] = new CellFlower(x,y);
 				break;
 		}
 	}
