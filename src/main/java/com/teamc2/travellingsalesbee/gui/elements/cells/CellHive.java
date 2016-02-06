@@ -8,6 +8,7 @@ public class CellHive implements Cell {
 
 	@Override
 	public String getImage() {
+		//return hive image location here
 		return null;
 	}
 }
