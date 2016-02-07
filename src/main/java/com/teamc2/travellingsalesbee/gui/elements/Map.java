@@ -38,7 +38,7 @@ public class Map {
 	}
 
 	public ArrayList<Cell> getCellsOfType(String type) {
-		ArrayList<Cell> cellsOfType = new ArrayList<Cell>();
+		ArrayList<Cell> cellsOfType = new ArrayList<>();
 		for (int i=0;i<this.width;i++){
 			for (int j=0;j<this.height;j++){
 				if (getCellType(cells[i][j]).equals(type)){
