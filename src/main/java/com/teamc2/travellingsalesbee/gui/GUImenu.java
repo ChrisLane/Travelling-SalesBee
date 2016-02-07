@@ -30,6 +30,12 @@ public class GUImenu extends JPanel
 	}
 
 	public static void main(String[] args) throws InterruptedException {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		JFrame frame = new JFrame("Travelling SalesBee");
 		frame.setSize(800, 800);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
