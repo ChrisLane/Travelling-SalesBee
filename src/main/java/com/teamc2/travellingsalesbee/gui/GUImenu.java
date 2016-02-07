@@ -32,7 +32,7 @@ public class GUImenu extends JPanel
 	public static void main(String[] args) throws InterruptedException {
 		JFrame frame = new JFrame("Travelling SalesBee");
 		frame.setSize(800, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		GUImenu gui = new GUImenu();
 		gui.run();
