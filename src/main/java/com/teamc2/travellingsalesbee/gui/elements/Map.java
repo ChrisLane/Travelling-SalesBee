@@ -27,6 +27,7 @@ public class Map {
 	public Map(int width, int height) {
 		this.width = width;
 		this.height = height;
+		cells = new Cell[width][height];
 		setMap();
 	}
 
@@ -87,7 +88,7 @@ public class Map {
 	 * Reset the current map
 	 */
 	public void setMap() {
-		for (int i = 0; i < this.width; i++) {
+		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < this.height; j++) {
 				clearCell(i,j);
 			}
