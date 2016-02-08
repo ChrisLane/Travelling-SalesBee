@@ -1,14 +1,10 @@
 package com.teamc2.travellingsalesbee;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 
