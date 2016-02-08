@@ -14,9 +14,6 @@ public class GUImenu extends JPanel
 
 	public void run()
 	{
-		System.out.println(System.getProperty("user.dir"));
-
-		setLayout(new BorderLayout());
 		try {
 			img = ImageIO.read(new File("target/classes/CartoonBees.jpg"));
 		} catch (IOException e) {
@@ -42,9 +39,9 @@ public class GUImenu extends JPanel
 
 		GUImenu gui = new GUImenu();
 		gui.run();
-		gui.repaint();
 
 		frame.add(gui);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 }
