@@ -16,6 +16,10 @@ import javax.swing.border.EmptyBorder;
 
 public class TSB extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private int width = 50;
 	private int height = 50;
