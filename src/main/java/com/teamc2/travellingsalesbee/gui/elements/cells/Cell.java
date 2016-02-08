@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 public interface Cell {
 
-	enum CellType {EMPTY, FLOWER, HIVE};
-
 	CellType getType();
 
 	BufferedImage getImage();
+
+	enum CellType {EMPTY, FLOWER, HIVE}
 }

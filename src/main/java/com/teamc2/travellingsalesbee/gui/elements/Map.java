@@ -11,14 +11,13 @@ import java.util.ArrayList;
 
 public class Map extends JPanel {
 
+	private static final CellType EMPTY = CellType.EMPTY;
+	private static final CellType HIVE = CellType.HIVE;
+	private static final CellType FLOWER = CellType.FLOWER;
 	private int width; //Width of map
 	private int height; //Height of map
 	private int speed; //Speed of bees
 	private Cell[][] cells; //Will store our ElementCells
-
-	private static final CellType EMPTY = CellType.EMPTY;
-	private static final CellType HIVE = CellType.HIVE;
-	private static final CellType FLOWER = CellType.FLOWER;
 
 	/**
 	 * Create a new map
