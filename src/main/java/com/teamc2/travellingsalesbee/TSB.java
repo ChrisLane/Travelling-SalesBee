@@ -1,29 +1,18 @@
 package com.teamc2.travellingsalesbee;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.MouseInfo;
-import java.awt.Point;
-
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 public class TSB extends JFrame {
 
@@ -100,6 +89,10 @@ public class TSB extends JFrame {
 		
 		JButton btnNewFlower = new JButton("New Flower");
 		
+		CellDrag newCell = new CellDrag("test", 50, 50);
+		newCell.setBounds(0, 150, width, height);
+		panel_toolbox.add(newCell);
+		System.out.println(panel_gridmap.getX());
 		
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
