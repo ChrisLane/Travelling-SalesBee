@@ -37,9 +37,7 @@ public class CostMatrix {
 				if (i == j) {
 					matrix[i][j] = 0;
 				} else {
-					double xDifference = Math.abs(flowers.get(i).getX() - flowers.get(j).getX());
-					double yDifference = Math.abs(flowers.get(i).getY() - flowers.get(j).getY());
-					matrix[i][j] = Math.sqrt((xDifference) * (xDifference) + (yDifference) * (yDifference));
+					matrix[i][j] = flowers.get(i).distance(flowers.get(j));
 				}
 			}
 		}
