@@ -27,7 +27,7 @@ public class CostMatrix {
 	private void setCostMatrix() {
 		ArrayList<CellFlower> flowers = map.getFlowers();
 		int totalFlowers = flowers.size();
-		double[][] matrix = new double[totalFlowers][totalFlowers];
+		double[][] costMatrix = new double[totalFlowers][totalFlowers];
 
 		//Loop to cycle through each of the flower nodes and calculate distance to each of
 		//the other flower nodes
@@ -35,14 +35,14 @@ public class CostMatrix {
 		for (int i = 0; i < totalFlowers; i++) {
 			for (int j = 0; j < totalFlowers; j++) {
 				if (i == j) {
-					matrix[i][j] = 0;
+					costMatrix[i][j] = 0;
 				} else {
-					matrix[i][j] = flowers.get(i).distance(flowers.get(j));
+					costMatrix[i][j] = flowers.get(i).distance(flowers.get(j));
 				}
 			}
 		}
 
-		this.costMatrix = matrix;
+		this.costMatrix = costMatrix;
 	}
 
 	/**
@@ -51,6 +51,6 @@ public class CostMatrix {
 	 * @return costMatrix. The costMatrix of the instantiated map.
 	 */
 	public double[][] getCostMatrix() {
-		return this.costMatrix;
+		return costMatrix;
 	}
 }

@@ -24,7 +24,7 @@ public class GuiMenu extends JPanel
 
 	public void paint(Graphics g)
 	{
-		g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 	}
 
 	public static void main(String[] args) throws InterruptedException {
