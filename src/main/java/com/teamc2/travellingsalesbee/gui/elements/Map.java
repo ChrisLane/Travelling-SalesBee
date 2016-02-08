@@ -35,6 +35,11 @@ public class Map extends JPanel {
 	}
 
 	//GET METHODS
+
+	public Cell[][] getCells() {
+		return cells;
+	}
+
 	public ArrayList<CellFlower> getFlowers() {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < this.width; i++) {
