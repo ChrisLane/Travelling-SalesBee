@@ -42,8 +42,8 @@ public class Map extends JPanel {
 
 	public ArrayList<CellFlower> getFlowers() {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
-		for (int i = 0; i < this.width; i++) {
-			for (int j = 0; j < this.height; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				if (cells[i][j].getType().equals(CellType.FLOWER)) {
 					flowers.add((CellFlower) cells[i][j]);
 				}
@@ -91,8 +91,8 @@ public class Map extends JPanel {
 	 * Reset the current map
 	 */
 	public void setMap() {
-		for (int i = 0; i < this.width; i++) {
-			for (int j = 0; j < this.height; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				clearCell(i, j);
 			}
 		}
