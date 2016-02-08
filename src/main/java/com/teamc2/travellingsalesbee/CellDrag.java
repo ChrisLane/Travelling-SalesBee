@@ -75,8 +75,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		System.out.println(MouseInfo.getPointerInfo().getLocation());
 		CellDrag droppedBtn = new CellDrag("draggable",width,height);
 		
-		int x = (int) panel.getMousePosition().getX();
-		int y = (int) panel.getMousePosition().getY();
+		int x = (int) panel.getMousePosition().getX() - (width/2);
+		int y = (int) panel.getMousePosition().getY() - (height/2);
 		
 		//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
 		droppedBtn.setBounds(x, y, width, height);
