@@ -9,23 +9,8 @@ import java.io.IOException;
 
 // main GUI class that will load the menu
 // will replace GUI (which is currently being used by Melvyn to test main visualiser GUI)
-public class GuiMenu extends JPanel
-{
+public class GuiMenu extends JPanel {
 	private BufferedImage image;
-
-	public void run()
-	{
-		try {
-			image = ImageIO.read(new File("target/classes/CartoonBees.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void paint(Graphics g)
-	{
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-	}
 
 	public static void main(String[] args) throws InterruptedException {
 		try {
@@ -44,5 +29,17 @@ public class GuiMenu extends JPanel
 		frame.add(gui);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+
+	public void run() {
+		try {
+			image = ImageIO.read(new File("target/classes/CartoonBees.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void paint(Graphics g) {
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 	}
 }
