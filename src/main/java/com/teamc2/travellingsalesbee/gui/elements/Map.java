@@ -15,7 +15,7 @@ public class Map {
 	private Cell[][] cells; //Will store our ElementCells
 
 	private static final String EMPTY = Cell.EMPTY;
-	private static final String HIVE = Cell.Hive;
+	private static final String HIVE = Cell.HIVE;
 	private static final String FLOWER = Cell.FLOWER;
 
 	/**
