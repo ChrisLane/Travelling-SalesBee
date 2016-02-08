@@ -3,19 +3,13 @@ package com.teamc2.travellingsalesbee;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
-import javax.swing.JToolBar;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import java.awt.GridLayout;
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
-import javax.swing.JTextArea;
 
 public class TSB extends JFrame {
 
@@ -39,7 +33,7 @@ public class TSB extends JFrame {
 	 * Create the frame.
 	 */
 	public TSB() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 489);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
