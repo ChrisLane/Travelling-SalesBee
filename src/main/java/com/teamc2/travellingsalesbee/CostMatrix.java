@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.teamc2.travellingsalesbee.gui.elements.Map;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 
 public class CostMatrix {
 
@@ -12,7 +13,7 @@ public class CostMatrix {
 	
 	/**
 	 * Method to create object of CostMatrix
-	 * @param gridmap. The gridmap for which to create a cost matrix on.
+	 * @param gridmap The gridmap for which to create a cost matrix on.
 	 */
 	public CostMatrix(Map gridmap){
 		this.gridmap=gridmap;
@@ -25,7 +26,7 @@ public class CostMatrix {
 	 */
 	@SuppressWarnings("null")
 	private void setCostMatrix(){
-		ArrayList<Cell> flowers = gridmap.getCellsOfType("FLOWER");
+		ArrayList<CellFlower> flowers = gridmap.getFlowers();
 		double[][] matrix = null;
 		
 		//Loop to cycle through each of the flower nodes and calculate distance to each of
