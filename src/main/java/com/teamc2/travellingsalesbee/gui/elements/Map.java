@@ -42,7 +42,7 @@ public class Map {
 		ArrayList<Cell> cellsOfType = new ArrayList<Cell>();
 		for (int i=0;i<this.width;i++){
 			for (int j=0;j<this.height;j++){
-				if (getCellType(cells[i][j])==type){
+				if (getCellType(cells[i][j]).equals(type)){
 					cellsOfType.add(cells[i][j]);
 				}
 			}
