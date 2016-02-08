@@ -24,16 +24,16 @@ public class CostMatrix {
 	/**
 	 * Method to put the path costs of the given grid map into a matrix
 	 */
-	@SuppressWarnings("null")
 	private void setCostMatrix() {
 		ArrayList<CellFlower> flowers = map.getFlowers();
-		double[][] matrix = null;
+		int totalFlowers = flowers.size();
+		double[][] matrix = new double[totalFlowers][totalFlowers];
 
 		//Loop to cycle through each of the flower nodes and calculate distance to each of
 		//the other flower nodes
 		//	Distance is calculated using Euclidean distance and stored as a double for more accuracy
-		for (int i = 0; i < flowers.size(); i++) {
-			for (int j = 0; j < flowers.size(); j++) {
+		for (int i = 0; i < totalFlowers; i++) {
+			for (int j = 0; j < totalFlowers; j++) {
 				if (i == j) {
 					matrix[i][j] = 0;
 				} else {
