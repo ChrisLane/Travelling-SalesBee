@@ -95,31 +95,29 @@ public class TSB extends JFrame {
 		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
 		
 		JButton btnNewFlower = new JButton("New Flower");
-		btnNewFlower.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					//Gets the flower image
-					BufferedImage btnIcon = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-					btnIcon = ImageIO.read(new File("target/classes/icons/Flower.png"));
-					
-					//New button instance
-					JButton newBtnInst = new JButton(new ImageIcon(btnIcon));
-					
-					//Get the mouse position
-					Point mousePos = MouseInfo.getPointerInfo().getLocation();
-					System.out.println(mousePos);
-					
-					newBtnInst.setBounds(150, 150, 50, 50);
-					
-					panel_gridmap.add(newBtnInst);
-					panel_gridmap.revalidate();
-					panel_gridmap.validate();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+		btnNewFlower.addActionListener(e -> {
+			try {
+				//Gets the flower image
+				BufferedImage btnIcon = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+				btnIcon = ImageIO.read(new File("target/classes/icons/Flower.png"));
+
+				//New button instance
+				JButton newBtnInst = new JButton(new ImageIcon(btnIcon));
+
+				//Get the mouse position
+				Point mousePos = MouseInfo.getPointerInfo().getLocation();
+				System.out.println(mousePos);
+
+				newBtnInst.setBounds(150, 150, 50, 50);
+
+				panel_gridmap.add(newBtnInst);
+				panel_gridmap.revalidate();
+				panel_gridmap.validate();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+
 		});
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
