@@ -20,7 +20,7 @@ public class CellFlower extends Point2D implements Cell {
 	public BufferedImage getImage() {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("target/classes/icons/FLOWER.png"));
+			image = ImageIO.read(new File("target/classes/icons/Flower.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
