@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.gui.elements.cells;
 import com.sun.javafx.geom.Point2D;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
