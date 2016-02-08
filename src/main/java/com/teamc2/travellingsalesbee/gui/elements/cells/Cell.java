@@ -1,5 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
+import java.awt.image.BufferedImage;
+
 public interface Cell {
 	
 	String EMPTY = "Empty";
@@ -8,6 +10,5 @@ public interface Cell {
 
 	String getType();
 
-	String getImage();
-
+	BufferedImage getImage();
 }
