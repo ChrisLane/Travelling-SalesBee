@@ -6,9 +6,10 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.CellEmpty;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class Map {
+public class Map extends JPanel {
 
 	private int width; //Width of map
 	private int height; //Height of map
