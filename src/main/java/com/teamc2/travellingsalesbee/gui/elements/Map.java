@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell.CellType;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellEmpty;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
@@ -14,9 +15,9 @@ public class Map {
 	private int speed; //Speed of bees
 	private Cell[][] cells; //Will store our ElementCells
 
-	private static final String EMPTY = Cell.EMPTY;
-	private static final String HIVE = Cell.HIVE;
-	private static final String FLOWER = Cell.FLOWER;
+	private static final CellType EMPTY = CellType.EMPTY;
+	private static final CellType HIVE = CellType.HIVE;
+	private static final CellType FLOWER = CellType.FLOWER;
 
 	/**
 	 * Create a new map
@@ -37,7 +38,7 @@ public class Map {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < this.width; i++) {
 			for (int j = 0; j < this.height; j++) {
-				if (cells[i][j].getType().equals(Cell.FLOWER)) {
+				if (cells[i][j].getType().equals(CellType.FLOWER)) {
 					flowers.add((CellFlower) cells[i][j]);
 				}
 			}
@@ -54,7 +55,7 @@ public class Map {
 	/**
 	 * Adds a new cell to the grid map at x, y
 	 */
-	public void setCell(int x, int y, String type) {
+	public void setCell(int x, int y, CellType type) {
 		switch (type) {
 			case EMPTY:
 				cells[x][y] = new CellEmpty(x, y);
