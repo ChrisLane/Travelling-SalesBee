@@ -3,17 +3,29 @@ package com.teamc2.travellingsalesbee;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class TSB extends JFrame {
 
 	private JPanel contentPane;
+	private int width = 50;
+	private int height = 50;
 
 	/**
 	 * Launch the application.
@@ -81,16 +93,47 @@ public class TSB extends JFrame {
 		txtrDragElementsOnto.setWrapStyleWord(true);
 		txtrDragElementsOnto.setLineWrap(true);
 		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
+		
+		JButton btnNewFlower = new JButton("New Flower");
+		btnNewFlower.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//Gets the flower image
+					BufferedImage btnIcon = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+					btnIcon = ImageIO.read(new File("target/classes/icons/Flower.png"));
+					
+					//New button instance
+					JButton newBtnInst = new JButton(new ImageIcon(btnIcon));
+					
+					//Get the mouse position
+					Point mousePos = MouseInfo.getPointerInfo().getLocation();
+					System.out.println(mousePos);
+					
+					newBtnInst.setBounds(150, 150, 50, 50);
+					
+					panel_gridmap.add(newBtnInst);
+					panel_gridmap.revalidate();
+					panel_gridmap.validate();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
 			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
 				.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+				.addComponent(btnNewFlower, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 		);
 		gl_panel_toolbox.setVerticalGroup(
 			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_toolbox.createSequentialGroup()
 					.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(237, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewFlower)
+					.addContainerGap(330, Short.MAX_VALUE))
 		);
 		panel_toolbox.setLayout(gl_panel_toolbox);
 		contentPane.setLayout(gl_contentPane);
