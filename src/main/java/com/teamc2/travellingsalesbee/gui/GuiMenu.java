@@ -33,7 +33,7 @@ public class GuiMenu extends JPanel {
 
 	public void run() {
 		try {
-			image = ImageIO.read(new File("target/classes/CartoonBees.jpg"));
+			image = ImageIO.read(new File("target/classes/backgrounds/CartoonBees.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
