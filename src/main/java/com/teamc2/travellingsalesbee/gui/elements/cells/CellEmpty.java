@@ -1,5 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
+import java.awt.Point;
+
 import com.sun.javafx.geom.Point2D;
 
 import java.awt.image.BufferedImage;

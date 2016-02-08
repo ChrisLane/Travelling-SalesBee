@@ -89,7 +89,8 @@ public class TSB extends JFrame {
 		
 		JButton btnNewFlower = new JButton("New Flower");
 		
-		CellDrag newCell = new CellDrag("test", 50, 50);
+		CellDrag newCell = new CellDrag("test", width, height);
+		newCell.setPanel(panel_gridmap);
 		newCell.setBounds(0, 150, width, height);
 		panel_toolbox.add(newCell);
 		System.out.println(panel_gridmap.getX());
