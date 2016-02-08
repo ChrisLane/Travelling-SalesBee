@@ -5,6 +5,12 @@ import java.awt.EventQueue;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 
@@ -12,6 +18,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -91,30 +99,8 @@ public class TSB extends JFrame {
 		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
 		
 		JButton btnNewFlower = new JButton("New Flower");
-		btnNewFlower.addActionListener(e -> {
-			try {
-				//Gets the flower image
-				BufferedImage btnIcon = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-				btnIcon = ImageIO.read(new File("target/classes/icons/Flower.png"));
-
-				//New button instance
-				JButton newBtnInst = new JButton(new ImageIcon(btnIcon));
-
-				//Get the mouse position
-				Point mousePos = MouseInfo.getPointerInfo().getLocation();
-				System.out.println(mousePos);
-
-				newBtnInst.setBounds(150, 150, 50, 50);
-
-				panel_gridmap.add(newBtnInst);
-				panel_gridmap.revalidate();
-				panel_gridmap.validate();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-		});
+		
+		
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
 			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
