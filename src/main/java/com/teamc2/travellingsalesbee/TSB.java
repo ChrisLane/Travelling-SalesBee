@@ -91,7 +91,7 @@ public class TSB extends JFrame {
 		
 		CellDrag newCell = new CellDrag("test", width, height);
 		newCell.setPanel(panel_gridmap);
-		newCell.setBounds(0, 150, width, height);
+		newCell.setBounds(0, 150, width, height);		
 		panel_toolbox.add(newCell);
 		System.out.println(panel_gridmap.getX());
 		
