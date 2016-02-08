@@ -3,12 +3,10 @@ package com.teamc2.travellingsalesbee.gui.elements.cells;
 import java.awt.image.BufferedImage;
 
 public interface Cell {
-	
-	String EMPTY = "Empty";
-	String FLOWER = "Flower";
-	String HIVE = "Hive";
 
-	String getType();
+	enum CellType {EMPTY, FLOWER, HIVE};
+
+	CellType getType();
 
 	BufferedImage getImage();
 }
