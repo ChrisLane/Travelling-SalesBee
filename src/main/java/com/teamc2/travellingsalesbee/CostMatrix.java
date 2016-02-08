@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 public class CostMatrix {
 
-	private Map gridmap;
+	private Map map;
 	private double[][] costMatrix;
 
 	/**
 	 * Method to create object of CostMatrix
 	 *
-	 * @param gridmap The gridmap for which to create a cost matrix on.
+	 * @param map The map for which to create a cost matrix on.
 	 */
-	public CostMatrix(Map gridmap) {
-		this.gridmap = gridmap;
+	public CostMatrix(Map map) {
+		this.map = map;
 		setCostMatrix();
 	}
 
@@ -26,7 +26,7 @@ public class CostMatrix {
 	 */
 	@SuppressWarnings("null")
 	private void setCostMatrix() {
-		ArrayList<CellFlower> flowers = gridmap.getFlowers();
+		ArrayList<CellFlower> flowers = map.getFlowers();
 		double[][] matrix = null;
 
 		//Loop to cycle through each of the flower nodes and calculate distance to each of
@@ -46,9 +46,9 @@ public class CostMatrix {
 	}
 
 	/**
-	 * Method to return the costMatrix of a given gridmap
+	 * Method to return the costMatrix of a given map
 	 *
-	 * @return costMatrix. The costMatrix of the instantiated gridmap.
+	 * @return costMatrix. The costMatrix of the instantiated map.
 	 */
 	public double[][] getCostMatrix() {
 		return this.costMatrix;
