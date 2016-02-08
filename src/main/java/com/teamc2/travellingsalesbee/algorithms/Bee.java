@@ -1,10 +1,10 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
 import com.sun.javafx.geom.Point2D;
-import java.util.ArrayList;
-
 import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.*;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
+
+import java.util.ArrayList;
 
 public class Bee {
 
@@ -14,7 +14,7 @@ public class Bee {
 	private Map map; //
 
 	public Bee(int hiveX, int hiveY, int experiments, Map map) {
-		this.hive = getHiveCell(hiveX,hiveY);
+		this.hive = getHiveCell(hiveX, hiveY);
 		bestPath = new ArrayList<>();
 		bestCost = Integer.MAX_VALUE;
 		this.map = map; //
@@ -33,8 +33,8 @@ public class Bee {
 		while (true) {
 			while (true) {
 				int bestDistance = Integer.MAX_VALUE;
-				Point2D bestCell = beeCell; 
-				for(int i=0; i<flowers.size(); i++) {
+				Point2D bestCell = beeCell;
+				for (int i = 0; i < flowers.size(); i++) {
 					Point2D currentCell = flowers.get(i);
 					if (!visited.contains(currentCell)) {
 						int currentDistance = (int) currentCell.distance(beeCell);
