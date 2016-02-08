@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee;
 
-import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -75,8 +74,12 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		System.out.println("Dropped");
 		System.out.println(MouseInfo.getPointerInfo().getLocation());
 		CellDrag droppedBtn = new CellDrag("draggable",width,height);
-		//Need to amend the X/Y here for offset
-		droppedBtn.setBounds((int) MouseInfo.getPointerInfo().getLocation().getX(), (int) MouseInfo.getPointerInfo().getLocation().getY(), width, height);
+		
+		int x = (int) panel.getMousePosition().getX();
+		int y = (int) panel.getMousePosition().getY();
+		
+		//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
+		droppedBtn.setBounds(x, y, width, height);
 		droppedBtn.setPanel(panel);
 		panel.add(droppedBtn);
 		panel.revalidate();
@@ -89,7 +92,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	public void dragEnter(DragSourceDragEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("Drag Entered");
-		
 	}
 
 	@Override
