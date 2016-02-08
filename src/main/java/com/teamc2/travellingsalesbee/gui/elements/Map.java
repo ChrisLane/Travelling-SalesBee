@@ -36,9 +36,9 @@ public class Map {
 
 	public ArrayList<Cell> getCellsOfType(String type) {
 		ArrayList<Cell> cellsOfType = new ArrayList<Cell>();
-		for (int i=0;i<this.width;i++){
-			for (int j=0;j<this.height;j++){
-				if (cells[i][j].getType().equals(type)){
+		for (int i = 0; i < this.width; i++) {
+			for (int j = 0; j < this.height; j++) {
+				if (cells[i][j].getType().equals(type)) {
 					cellsOfType.add(cells[i][j]);
 				}
 			}
@@ -48,9 +48,9 @@ public class Map {
 
 	public ArrayList<CellFlower> getFlowers() {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
-		for (int i=0;i<this.width;i++){
-			for (int j=0;j<this.height;j++){
-				if (cells[i][j].getType().equals(Cell.FLOWER)){
+		for (int i = 0; i < this.width; i++) {
+			for (int j = 0; j < this.height; j++) {
+				if (cells[i][j].getType().equals(Cell.FLOWER)) {
 					flowers.add((CellFlower) cells[i][j]);
 				}
 			}
@@ -70,13 +70,13 @@ public class Map {
 	public void setCell(int x, int y, String type) {
 		switch (type) {
 			case EMPTY:
-				cells[x][y] = new CellEmpty(x,y);
+				cells[x][y] = new CellEmpty(x, y);
 				break;
 			case HIVE:
-				cells[x][y] = new CellHive(x,y);
+				cells[x][y] = new CellHive(x, y);
 				break;
 			case FLOWER:
-				cells[x][y] = new CellFlower(x,y);
+				cells[x][y] = new CellFlower(x, y);
 				break;
 		}
 	}
@@ -99,7 +99,7 @@ public class Map {
 	public void setMap() {
 		for (int i = 0; i < this.width; i++) {
 			for (int j = 0; j < this.height; j++) {
-				clearCell(i,j);
+				clearCell(i, j);
 			}
 		}
 	}
