@@ -52,11 +52,6 @@ public class Bee {
 		setNewBest(path, cost);
 	}
 
-	private Point2D getHiveCell(int hiveX, int hiveY) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private void experimentalRun() {
 		ArrayList<Cell> path = new ArrayList<>();
 		ArrayList<Cell> visited = new ArrayList<>();
@@ -80,5 +75,4 @@ public class Bee {
 			bestCost = newCost;
 		}
 	}
-
 }
