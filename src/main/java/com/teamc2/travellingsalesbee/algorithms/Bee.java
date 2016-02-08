@@ -2,55 +2,54 @@ package com.teamc2.travellingsalesbee.algorithms;
 
 import com.sun.javafx.geom.Point2D;
 import com.teamc2.travellingsalesbee.gui.elements.Map;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
 import java.util.ArrayList;
 
 public class Bee {
 
-	private Point2D hive;
-	private ArrayList<CellFlower> bestPath;
-	private int bestCost;
-	private Map map; //
+	private Cell hive;
+	private ArrayList<Cell> bestPath = new ArrayList<>();
+	private int bestCost = Integer.MAX_VALUE;
+	private Map map;
 
-	public Bee(int hiveX, int hiveY, int experiments, Map map) {
-		this.hive = getHiveCell(hiveX, hiveY);
-		bestPath = new ArrayList<>();
-		bestCost = Integer.MAX_VALUE;
-		this.map = map; //
+	public Bee(int hiveX, int hiveY, int experiments, Map map, CellHive hive) {
+		this.map = map;
+		this.hive = hive;
+
 		naiveRun();
 		experimentalRuns(experiments);
 	}
 
 	public void naiveRun() {
-		ArrayList<Point2D> path = new ArrayList<>();
-		ArrayList<Point2D> visited = new ArrayList<>();
-		int cost = 0;
-		Point2D beeCell = hive;
-		visited.add(beeCell);
-		// implement cost matrix at later date
+		ArrayList<Cell> path = new ArrayList<>();
 		ArrayList<CellFlower> flowers = map.getFlowers();
-		while (true) {
-			while (true) {
-				int bestDistance = Integer.MAX_VALUE;
-				Point2D bestCell = beeCell;
-				for (int i = 0; i < flowers.size(); i++) {
-					Point2D currentCell = flowers.get(i);
-					if (!visited.contains(currentCell)) {
-						int currentDistance = (int) currentCell.distance(beeCell);
-						if (currentDistance < bestDistance) {
-							bestCell = currentCell;
-							bestDistance = currentDistance;
-						}
-					}
+		int cost = 0;
+
+		path.add(hive);
+
+		// Loop over flowers missing from path
+		while (!flowers.isEmpty()) {
+			float bestDistance = Float.MAX_VALUE;
+			Cell closest = null;
+
+			// Find the closest flower to the previous
+			for (CellFlower flower : flowers) {
+				float distance = flower.distance((Point2D) path.get(path.size() - 1));
+				if (distance < bestDistance) {
+					closest = flower;
+					bestDistance = distance;
 				}
-				beeCell = bestCell;
-				cost += bestDistance;
-				visited.add(beeCell);
 			}
+
+			cost += bestDistance;
+			path.add(closest);
+			flowers.remove(closest);
 		}
-		// TODO
-		// setNewBest(path, cost);
+
+		setNewBest(path, cost);
 	}
 
 	private Point2D getHiveCell(int hiveX, int hiveY) {
@@ -59,8 +58,8 @@ public class Bee {
 	}
 
 	private void experimentalRun() {
-		ArrayList<CellFlower> path = new ArrayList<>();
-		ArrayList<CellFlower> visited = new ArrayList<>();
+		ArrayList<Cell> path = new ArrayList<>();
+		ArrayList<Cell> visited = new ArrayList<>();
 		int cost = 0;
 
 
@@ -75,7 +74,7 @@ public class Bee {
 		}
 	}
 
-	public void setNewBest(ArrayList<CellFlower> path, int newCost) {
+	public void setNewBest(ArrayList<Cell> path, int newCost) {
 		if (newCost < bestCost) {
 			bestPath = path;
 			bestCost = newCost;
