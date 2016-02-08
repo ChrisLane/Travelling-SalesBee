@@ -1,6 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-public class BeeTable {
+import javax.swing.*;
+
+public class BeeTable extends JPanel {
 	private Map map;
 
 	public BeeTable(Map map) {
