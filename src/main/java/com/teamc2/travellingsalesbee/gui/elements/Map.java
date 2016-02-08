@@ -33,19 +33,6 @@ public class Map {
 	}
 
 	//GET METHODS
-
-	public ArrayList<Cell> getCellsOfType(String type) {
-		ArrayList<Cell> cellsOfType = new ArrayList<Cell>();
-		for (int i = 0; i < this.width; i++) {
-			for (int j = 0; j < this.height; j++) {
-				if (cells[i][j].getType().equals(type)) {
-					cellsOfType.add(cells[i][j]);
-				}
-			}
-		}
-		return cellsOfType;
-	}
-
 	public ArrayList<CellFlower> getFlowers() {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < this.width; i++) {
