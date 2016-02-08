@@ -1,14 +1,14 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
-import java.awt.Point;
+import com.sun.javafx.geom.Point2D;
 
 @SuppressWarnings("serial")
-public class CellHive extends Point implements Cell {
-	
-	public CellHive(int x, int y){
-		super(x,y);
+public class CellHive extends Point2D implements Cell {
+
+	public CellHive(int x, int y) {
+		super(x, y);
 	}
-	
+
 	public String getType() {
 		return Cell.HIVE;
 	}
