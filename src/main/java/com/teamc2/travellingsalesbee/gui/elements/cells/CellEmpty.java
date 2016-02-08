@@ -2,6 +2,8 @@ package com.teamc2.travellingsalesbee.gui.elements.cells;
 
 import com.sun.javafx.geom.Point2D;
 
+import java.awt.image.BufferedImage;
+
 @SuppressWarnings("serial")
 public class CellEmpty extends Point2D implements Cell {
 
@@ -13,7 +15,7 @@ public class CellEmpty extends Point2D implements Cell {
 		return Cell.EMPTY;
 	}
 
-	public String getImage() {
+	public BufferedImage getImage() {
 		return null;
 	}
 
