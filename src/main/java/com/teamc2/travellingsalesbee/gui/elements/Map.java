@@ -50,6 +50,18 @@ public class Map {
 		return cellsOfType;
 	}
 
+	public ArrayList<CellFlower> getFlowers() {
+		ArrayList<CellFlower> flowers = new ArrayList<>();
+		for (int i=0;i<this.width;i++){
+			for (int j=0;j<this.height;j++){
+				if (cells[i][j].getType().equals(Cell.FLOWER)){
+					flowers.add((CellFlower) cells[i][j]);
+				}
+			}
+		}
+		return flowers;
+	}
+
 	public Cell getCell(int x, int y) {
 		return cells[x][y];
 	}
