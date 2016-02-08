@@ -82,6 +82,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		droppedBtn.setBounds(x, y, width, height);
 		droppedBtn.setPanel(panel);
 		panel.add(droppedBtn);
+		panel.remove(this);
 		panel.revalidate();
 		validate();
 		panel.repaint();
