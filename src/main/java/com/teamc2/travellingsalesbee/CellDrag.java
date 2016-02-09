@@ -92,6 +92,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			repaint();
 		}catch(NullPointerException e){
 			//Deletion for when the cell is dragged off the gridmap panel
+			this.setEnabled(false);
 			panel.remove(this);
 			panel.revalidate();
 			panel.repaint();
