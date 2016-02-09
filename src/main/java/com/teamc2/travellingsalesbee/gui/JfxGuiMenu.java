@@ -38,7 +38,7 @@ public class JfxGuiMenu extends Application
 		border.setId("main");
 
 		Scene scene = new Scene(border, 800, 800);
-		File file = new File("target/classes/menu.css");
+		File file = new File("target/classes/stylesheets/menu.css");
 		try {
 			URL url = file.toURI().toURL();
 			scene.getStylesheets().add(url.toExternalForm());
