@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -21,11 +22,21 @@ public class JfxGuiMenu extends Application
 	{
 		BorderPane border = new BorderPane();
 		border.setId("main");
-		border.setPrefHeight(500);
 
-		Button testButton = new Button("Test Button");
+		VBox vBox = new VBox();
+		Button testButton = new Button("Simulation");
 		testButton.setId("button");
-		border.setCenter(testButton);
+		testButton.setMinSize(150, 60);
+
+		Button testButton2 = new Button("Documentation");
+		testButton2.setId("button2");
+		testButton2.setMinSize(150, 60);
+
+		vBox.getChildren().addAll(testButton, testButton2);
+		vBox.setAlignment(Pos.CENTER);
+		vBox.setSpacing(20);
+
+		border.setCenter(vBox);
 
 		Scene scene = new Scene(border, 800, 800);
 		File file = new File("target/classes/stylesheets/menu.css");
