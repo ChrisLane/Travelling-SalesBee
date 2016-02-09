@@ -33,7 +33,7 @@ public class Bee {
 		// Loop over flowers missing from path
 		while (!flowers.isEmpty()) {
 			float bestDistance = Float.MAX_VALUE;
-			Cell closest = null;
+			CellFlower closest = null;
 
 			// Find the closest flower to the previous
 			for (CellFlower flower : flowers) {
