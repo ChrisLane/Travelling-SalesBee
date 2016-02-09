@@ -2,9 +2,14 @@ package com.teamc2.travellingsalesbee;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -93,10 +98,23 @@ public class TSB extends JFrame {
 		
 		JButton btnNewFlower = new JButton("New Flower");
 		
-		CellDrag newCell = new CellDrag("test", width, height);
-		newCell.setPanel(panel_gridmap);
-		newCell.setBounds(0, 150, width, height);		
-		panel_toolbox.add(newCell);
+		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
+		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
+		try {
+		    Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
+		    Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
+		    
+		    flowerToolCell.setIcon(new ImageIcon(flowerImg));
+		    hiveToolCell.setIcon(new ImageIcon(hiveImg));
+		    
+		  } catch (IOException ex) {
+		  }
+		flowerToolCell.setPanel(panel_gridmap);
+		flowerToolCell.setBounds(0, 150, width, height);		
+		hiveToolCell.setPanel(panel_gridmap);
+		hiveToolCell.setBounds(0, 155+height, width, height);
+		panel_toolbox.add(flowerToolCell);
+		panel_toolbox.add(hiveToolCell);
 		System.out.println(panel_gridmap.getX());
 		
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
