@@ -68,25 +68,35 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		
 	}
 
+	/**
+	 * Method to place a draggable cell in the gridmap
+	 * @param arg0. The Drag event initiated by the user dragging a CellDrag button.
+	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("Dropped");
-		System.out.println(MouseInfo.getPointerInfo().getLocation());
-		CellDrag droppedBtn = new CellDrag("draggable",width,height);
+		try{
+			CellDrag droppedBtn = new CellDrag("draggable",width,height);
+			
+			int x = (int) panel.getMousePosition().getX() - (width/2);
+			int y = (int) panel.getMousePosition().getY() - (height/2);
+			
+			//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
+			droppedBtn.setBounds(x, y, width, height);
+			droppedBtn.setPanel(panel);
+			panel.add(droppedBtn);
+			panel.remove(this);
+			panel.revalidate();
+			validate();
+			panel.repaint();
+			repaint();
+		}catch(NullPointerException e){
+			//Deletion for when the cell is dragged off the gridmap panel
+			panel.remove(this);
+			panel.revalidate();
+			panel.repaint();
+		}
 		
-		int x = (int) panel.getMousePosition().getX() - (width/2);
-		int y = (int) panel.getMousePosition().getY() - (height/2);
-		
-		//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
-		droppedBtn.setBounds(x, y, width, height);
-		droppedBtn.setPanel(panel);
-		panel.add(droppedBtn);
-		panel.remove(this);
-		panel.revalidate();
-		validate();
-		panel.repaint();
-		repaint();
 	}
 
 	@Override
