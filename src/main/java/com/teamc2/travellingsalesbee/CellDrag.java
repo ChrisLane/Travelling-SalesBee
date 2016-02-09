@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee;
 
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -12,8 +13,11 @@ import java.awt.dnd.DragSourceDragEvent;
 import java.awt.dnd.DragSourceDropEvent;
 import java.awt.dnd.DragSourceEvent;
 import java.awt.dnd.DragSourceListener;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -27,14 +31,16 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private int width;
 	private int height;
 	private JPanel panel;
+	private String type;
 	
-	public CellDrag(String name, int width, int height) {
+	public CellDrag(String name, int width, int height, String type) {
 		super(name);
 		this.width = width;
 		this.height = height;
+		this.type = type;
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDrag(getText(), height, height);
+				return new CellDrag(getText(), width, height, type);
 			}
 		};
 		
@@ -64,7 +70,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
 		// TODO Auto-generated method stub
 		System.out.println("Drag Gesture Recognised");
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDrag("Test", height, height), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDrag("", width, height, type), this);
 		
 	}
 
@@ -76,7 +82,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 		// TODO Auto-generated method stub
 		try{
-			CellDrag droppedBtn = new CellDrag("draggable",width,height);
+			CellDrag droppedBtn = new CellDrag("",width,height,type);
+			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			
 			int x = (int) panel.getMousePosition().getX() - (width/2);
 			int y = (int) panel.getMousePosition().getY() - (height/2);
@@ -90,7 +97,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			validate();
 			panel.repaint();
 			repaint();
-		}catch(NullPointerException e){
+		}catch(NullPointerException | IOException e){
 			//Deletion for when the cell is dragged off the gridmap panel
 			this.setEnabled(false);
 			panel.remove(this);
@@ -128,6 +135,19 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	
 	public void setPanel(JPanel panel){
 		this.panel=panel;
+	}
+	
+	public Image getImage(String type) throws IOException{
+		String filepath;
+		switch (type){
+		case "FLOWER":	filepath = "target/classes/icons/Flower.png";
+						break;
+		case "HIVE":	filepath = "target/classes/icons/Hive.png";
+						break;
+		default: filepath = "";
+		}
+		Image img = ImageIO.read(new File(filepath));
+		return img;
 	}
 
 }
