@@ -1,0 +1,37 @@
+#main {
+    -fx-background-image: url("../backgrounds/CartoonBees.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+/* http://fxexperience.com/2011/12/styling-fx-buttons-with-css/ */
+#button {
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12px;
+    -fx-padding: 10 20 10 20;
+}
+
+#button:pressed {
+    -fx-background-color:
+            #2337ab,
+            linear-gradient(#38424b 0%, #651e0f 20%, #be0065 100%),
+            linear-gradient(#801521, #802d31),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-effect: dropshadow( three-pass-box , rgba(158, 10, 18, 0.6), 5, 0.0 , 0 , 1 );
+    -fx-padding: 10 20 10 20;
+}
+
+#button Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+}
