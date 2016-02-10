@@ -1,8 +1,12 @@
 package com.teamc2.travellingsalesbee;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,7 +65,7 @@ public class TSB extends JFrame {
 		panel_settings.setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel_gridmap = new JPanel();
-		panel_gridmap.setBackground(new Color(0, 204, 51));
+		panel_gridmap.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -80,27 +84,11 @@ public class TSB extends JFrame {
 					.addComponent(panel_settings, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
 				.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
-		/*
-		int widthCount = 0;
-		int heightCount = 0;
-		boolean checker = false;	
-		ArrayList<JPanel> grid = new ArrayList<JPanel>();
-		while (widthCount < 500){
-			
-			while (heightCount < 500){
-				JPanel cell = new JPanel();
-				cell.setBounds(widthCount, heightCount, width, height);
-				if (checker){cell.setBackground(Color.blue);}
-				checker = !checker;
-				panel_gridmap.add(cell);
-				grid.add(cell);
-				heightCount = heightCount + height;
-			}
-			System.out.print(widthCount);
-			heightCount = 0;
-			widthCount = widthCount + width;
-		}
-		**/
+		
+		
+		panel_gridmap = genGrid(panel_gridmap);
+		
+
 		
 		panel_settings.setLayout(null);
 		
@@ -109,9 +97,10 @@ public class TSB extends JFrame {
 		panel_settings.add(lblSettingsBoxWe);
 		panel_gridmap.setLayout(null);
 		
-		JLabel lblWeNeedTo = new JLabel("We need to pick a background image for this");
-		lblWeNeedTo.setBounds(121, 34, 287, 14);
-		panel_gridmap.add(lblWeNeedTo);
+
+		
+		
+		
 		
 		JTextArea txtrDragElementsOnto = new JTextArea();
 		txtrDragElementsOnto.setEditable(false);
@@ -160,5 +149,38 @@ public class TSB extends JFrame {
 		);
 		panel_toolbox.setLayout(gl_panel_toolbox);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	public JPanel genGrid(JPanel panel_gridmap){
+		int widthCount = 0;
+		int heightCount = 0;
+		
+		while (widthCount < 5000){
+		
+		
+				@SuppressWarnings("serial")
+				GridLine gridLine = new GridLine(widthCount,0,widthCount, Integer.MAX_VALUE);
+				gridLine.setBackground(Color.black);
+				gridLine.setBounds(widthCount, 0, 3, Integer.MAX_VALUE);
+				panel_gridmap.add(gridLine);
+				
+			
+			
+			widthCount = widthCount + width;
+		}
+		
+		while (heightCount < 5000){
+			
+			
+		@SuppressWarnings("serial")
+		GridLine gridLine = new GridLine(0,Integer.MAX_VALUE,heightCount,heightCount);
+		gridLine.setBackground(Color.black);
+		gridLine.setBounds(0, heightCount, Integer.MAX_VALUE, 3);
+		panel_gridmap.add(gridLine);
+
+
+		heightCount = heightCount + height;
+	}
+		return panel_gridmap;
 	}
 }
