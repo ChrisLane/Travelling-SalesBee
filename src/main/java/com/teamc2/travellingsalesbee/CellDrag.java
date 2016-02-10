@@ -85,8 +85,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			CellDrag droppedBtn = new CellDrag("",width,height,type);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			
-			int x = (int) panel.getMousePosition().getX() - (width/2);
-			int y = (int) panel.getMousePosition().getY() - (height/2);
+			int x =  (int) Math.round((panel.getMousePosition().getX() - (width/2))/width)*width;
+			int y = (int) Math.round((panel.getMousePosition().getY() - (height/2))/height)*height;
 			
 			//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);
@@ -147,7 +147,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		default: filepath = "";
 		}
 		Image img = ImageIO.read(new File(filepath));
-		return img;
+		Image scaledImg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
+		return scaledImg;
 	}
 
 }
