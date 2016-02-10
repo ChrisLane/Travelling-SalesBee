@@ -108,7 +108,7 @@ public class TSB extends JFrame {
 		txtrDragElementsOnto.setLineWrap(true);
 		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
 		
-		JButton btnNewFlower = new JButton("New Flower");
+		
 		
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
@@ -137,14 +137,12 @@ public class TSB extends JFrame {
 		gl_panel_toolbox.setHorizontalGroup(
 			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
 				.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-				.addComponent(btnNewFlower, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 		);
 		gl_panel_toolbox.setVerticalGroup(
 			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_toolbox.createSequentialGroup()
 					.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewFlower)
 					.addContainerGap(330, Short.MAX_VALUE))
 		);
 		panel_toolbox.setLayout(gl_panel_toolbox);
