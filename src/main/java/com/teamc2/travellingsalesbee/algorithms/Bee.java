@@ -53,7 +53,7 @@ public class Bee {
 		setPath(newPath, cost);
 	}
 
-	private void experimentalRun() {
+	private void experimentalRunChris() {
 		ArrayList<Cell> testPath = new ArrayList<>();
 
 		int flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
@@ -73,6 +73,34 @@ public class Bee {
 		if (testCost < cost) {
 			setPath(testPath, testCost);
 		}
+	}
+	
+	private void experimentalRunTodd() {
+		ArrayList<Cell> newPath = new ArrayList<>();
+		ArrayList<CellFlower> flowers = map.getFlowers();
+		int cost = 0;
+
+		newPath.add(hive);
+
+		// Loop over flowers missing from path
+		while (!flowers.isEmpty()) {
+			float distance = Float.MAX_VALUE;
+			int flowerPos;
+			CellFlower flower = null;
+			
+			while(distance == Float.MAX_VALUE || distance == 0) {
+				flowerPos = ThreadLocalRandom.current().nextInt(1, flowers.size());
+				flower = flowers.get(flowerPos);
+				
+				distance = flower.distance((Point2D) newPath.get(newPath.size() - 1));
+			}
+
+			cost += distance;
+			newPath.add(flower);
+			flowers.remove(flower);
+		}
+
+		setPath(newPath, cost);
 	}
 
 	public int getPathCost() {
