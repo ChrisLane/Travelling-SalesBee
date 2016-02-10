@@ -7,15 +7,16 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Bee {
 
 	private Cell hive;
-	private ArrayList<Cell> bestPath = new ArrayList<>();
-	private int bestCost = Integer.MAX_VALUE;
+	private ArrayList<Cell> path = new ArrayList<>();
+	private int cost = Integer.MAX_VALUE;
 	private Map map;
 
-	public Bee(int hiveX, int hiveY, int experiments, Map map, CellHive hive) {
+	public Bee(Map map, CellHive hive, int experiments) {
 		this.map = map;
 		this.hive = hive;
 
@@ -24,11 +25,11 @@ public class Bee {
 	}
 
 	public void naiveRun() {
-		ArrayList<Cell> path = new ArrayList<>();
+		ArrayList<Cell> newPath = new ArrayList<>();
 		ArrayList<CellFlower> flowers = map.getFlowers();
 		int cost = 0;
 
-		path.add(hive);
+		newPath.add(hive);
 
 		// Loop over flowers missing from path
 		while (!flowers.isEmpty()) {
@@ -37,7 +38,7 @@ public class Bee {
 
 			// Find the closest flower to the previous
 			for (CellFlower flower : flowers) {
-				float distance = flower.distance((Point2D) path.get(path.size() - 1));
+				float distance = flower.distance((Point2D) newPath.get(newPath.size() - 1));
 				if (distance < bestDistance) {
 					closest = flower;
 					bestDistance = distance;
@@ -45,21 +46,51 @@ public class Bee {
 			}
 
 			cost += bestDistance;
-			path.add(closest);
+			newPath.add(closest);
 			flowers.remove(closest);
 		}
 
-		setNewBest(path, cost);
+		setPath(newPath, cost);
 	}
 
 	private void experimentalRun() {
-		ArrayList<Cell> path = new ArrayList<>();
-		ArrayList<Cell> visited = new ArrayList<>();
+		ArrayList<Cell> testPath = new ArrayList<>();
+
+		int flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+		int flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+
+		if (flowerPos1 != flowerPos2) {
+			Cell flower1 = testPath.get(flowerPos1);
+			Cell flower2 = testPath.get(flowerPos2);
+
+			testPath.set(flowerPos1, flower2);
+			testPath.set(flowerPos2, flower1);
+		} else {
+			experimentalRun();
+		}
+
+		int testCost = calculatePathCost(testPath);
+		if (testCost < cost) {
+			setPath(testPath, testCost);
+		}
+	}
+
+	public int getPathCost() {
+		return cost;
+	}
+
+	public int calculatePathCost(ArrayList<Cell> path) {
 		int cost = 0;
+		for (int i = 0; i < path.size(); i++) {
+			if (i + 1 < path.size()) {
+				CellFlower flower1 = (CellFlower) path.get(i);
+				CellFlower flower2 = (CellFlower) path.get(i + 1);
 
+				cost += flower1.distance(flower2);
+			}
+		}
 
-		// TODO
-		setNewBest(path, cost);
+		return cost;
 	}
 
 	public void experimentalRuns(int experiments) {
@@ -69,10 +100,8 @@ public class Bee {
 		}
 	}
 
-	public void setNewBest(ArrayList<Cell> path, int newCost) {
-		if (newCost < bestCost) {
-			bestPath = path;
-			bestCost = newCost;
-		}
+	public void setPath(ArrayList<Cell> path, int cost) {
+		this.path = path;
+		this.cost = cost;
 	}
 }
