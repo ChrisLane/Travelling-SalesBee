@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
@@ -79,6 +80,28 @@ public class TSB extends JFrame {
 					.addComponent(panel_settings, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
 				.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
+		/*
+		int widthCount = 0;
+		int heightCount = 0;
+		boolean checker = false;	
+		ArrayList<JPanel> grid = new ArrayList<JPanel>();
+		while (widthCount < 500){
+			
+			while (heightCount < 500){
+				JPanel cell = new JPanel();
+				cell.setBounds(widthCount, heightCount, width, height);
+				if (checker){cell.setBackground(Color.blue);}
+				checker = !checker;
+				panel_gridmap.add(cell);
+				grid.add(cell);
+				heightCount = heightCount + height;
+			}
+			System.out.print(widthCount);
+			heightCount = 0;
+			widthCount = widthCount + width;
+		}
+		**/
+		
 		panel_settings.setLayout(null);
 		
 		JLabel lblSettingsBoxWe = new JLabel("Settings box, we also need to choose a background image for this");
@@ -102,10 +125,14 @@ public class TSB extends JFrame {
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
 		try {
 		    Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
-		    Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
+		    Image scaledFlowerImg = flowerImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 		    
-		    flowerToolCell.setIcon(new ImageIcon(flowerImg));
-		    hiveToolCell.setIcon(new ImageIcon(hiveImg));
+		    Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
+		    Image scaledHiveImg = hiveImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
+
+		    
+		    flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
+		    hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
 		    
 		  } catch (IOException ex) {
 		  }
