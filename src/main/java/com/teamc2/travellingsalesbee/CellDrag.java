@@ -68,7 +68,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 					try {
 						img = new ImageIcon(getImage(type));
 	        			setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
-
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -116,10 +115,25 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				}
 				CellDrag droppedBtn = new CellDrag("",width,height,type);
 				droppedBtn.setIcon(new ImageIcon(getImage(type)));
+				droppedBtn.addChangeListener(new ChangeListener() {
+		            @Override
+		            public void stateChanged(ChangeEvent evt) {
+		                if (getModel().isPressed()) {
+		                    System.out.println("PRESS GRID");
+		                    ImageIcon img;
+							try {
+								img = new ImageIcon(getImage(type));
+			        			setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+		                } 
+		            }
+		        });
 				
 				int x =  (int) Math.round((panel.getMousePosition().getX() - (width/2))/width)*width;
 				int y = (int) Math.round((panel.getMousePosition().getY() - (height/2))/height)*height;
-				
+				cellFull(panel,x,y);
 				//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
 				droppedBtn.setBounds(x, y, width, height);
 				droppedBtn.setPanel(panel);
@@ -199,6 +213,17 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		    }
 		}
 		return false;
+	}
+	
+	private void cellFull(JPanel panel, int x, int y){
+		for (Component c : panel.getComponents()) {
+		    if (c instanceof CellDrag) { 
+		       if (c.isEnabled()&&((CellDrag) c).getBounds().x==x&&c.getBounds().y==y){
+		    	   panel.remove(c);
+		    	   c.setEnabled(false);
+		       }
+		    }
+		}
 	}
 	
 	private String getType(){
