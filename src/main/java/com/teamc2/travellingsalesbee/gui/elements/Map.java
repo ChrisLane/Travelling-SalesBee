@@ -18,6 +18,7 @@ public class Map extends JPanel {
 	private int height; //Height of map
 	private int speed; //Speed of bees
 	private Cell[][] cells; //Will store our ElementCells
+	private CellHive hive;
 
 	/**
 	 * Create a new map
@@ -66,7 +67,9 @@ public class Map extends JPanel {
 				cells[x][y] = new CellEmpty(x, y);
 				break;
 			case HIVE:
-				cells[x][y] = new CellHive(x, y);
+				CellHive hive = new CellHive(x, y);
+				cells[x][y] = hive;
+				this.hive = hive;
 				break;
 			case FLOWER:
 				cells[x][y] = new CellFlower(x, y);
@@ -95,5 +98,9 @@ public class Map extends JPanel {
 				clearCell(i, j);
 			}
 		}
+	}
+
+	public CellHive getHive() {
+		return hive;
 	}
 }
