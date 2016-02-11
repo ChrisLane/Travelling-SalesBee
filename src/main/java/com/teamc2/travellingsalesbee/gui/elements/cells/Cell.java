@@ -1,12 +1,17 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-public interface Cell {
+public class Cell extends Point2D.Double {
 
-	CellType getType();
-
-	BufferedImage getImage();
-
-	enum CellType {EMPTY, FLOWER, HIVE}
+	enum CellType {EMPTY, FLOWER, HIVE};
+	
+	public Cell(double x, double y) {
+		super(x, y);
+	}
+	
+	public BufferedImage getImage() {
+		return null;
+	}
 }

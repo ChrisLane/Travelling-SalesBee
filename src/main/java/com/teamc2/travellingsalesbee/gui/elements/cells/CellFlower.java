@@ -7,9 +7,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CellFlower extends Point2D implements Cell {
+public class CellFlower extends Cell {
 
-	public CellFlower(int x, int y) {
+	public CellFlower(double x, double y) {
 		super(x, y);
 	}
 
@@ -17,6 +17,7 @@ public class CellFlower extends Point2D implements Cell {
 		return CellType.FLOWER;
 	}
 
+	@Override
 	public BufferedImage getImage() {
 		BufferedImage image = null;
 		try {
