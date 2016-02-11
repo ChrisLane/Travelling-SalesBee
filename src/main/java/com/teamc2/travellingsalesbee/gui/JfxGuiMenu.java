@@ -22,9 +22,44 @@ public class JfxGuiMenu extends Application {
 	}
 
 	public void start(Stage stage) {
+		// create the border pane
 		BorderPane border = new BorderPane();
 		border.setId("main");
 
+		// add the buttons to the pane
+		VBox buttonVBox = createButtonVBox();
+		border.setCenter(buttonVBox);
+
+		// create the scene
+		Scene scene = createScene(border);
+
+		// stage-ify!
+		stage.setScene(scene);
+		stage.setTitle("Travelling Salesbee");
+		stage.setMinHeight(appHeight);
+		stage.setMaxHeight(appHeight);
+		stage.setMinWidth(appWidth);
+		stage.setMaxWidth(appWidth);
+		stage.show();
+	}
+
+	protected Scene createScene(BorderPane border)
+	{
+		Scene scene = new Scene(border, appWidth, appHeight);
+		File file = new File("target/classes/stylesheets/menu.css");
+		try {
+			URL url = file.toURI().toURL();
+			scene.getStylesheets().add(url.toExternalForm());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		return scene;
+	}
+
+	protected VBox createButtonVBox()
+	{
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
@@ -37,24 +72,7 @@ public class JfxGuiMenu extends Application {
 		vBox.setPadding(new Insets(150, 0, 0, 0));
 		vBox.setSpacing(30);
 
-		border.setCenter(vBox);
-
-		Scene scene = new Scene(border, appWidth, appHeight);
-		File file = new File("target/classes/stylesheets/menu.css");
-		try {
-			URL url = file.toURI().toURL();
-			scene.getStylesheets().add(url.toExternalForm());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		stage.setScene(scene);
-		stage.setTitle("Travelling Salesbee");
-		stage.setMinHeight(appHeight);
-		stage.setMaxHeight(appHeight);
-		stage.setMinWidth(appWidth);
-		stage.setMaxWidth(appWidth);
-		stage.show();
+		return vBox;
 	}
 
 	protected Button createButton(String title)
