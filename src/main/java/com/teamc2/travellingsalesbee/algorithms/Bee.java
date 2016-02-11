@@ -49,7 +49,9 @@ public class Bee {
 			newPath.add(closest);
 			flowers.remove(closest);
 		}
-
+		float distance = ((Point2D) hive).distance((Point2D) newPath.get(newPath.size() - 1));
+		cost += distance;
+		newPath.add(hive);
 		setPath(newPath, cost);
 	}
 
@@ -99,7 +101,9 @@ public class Bee {
 			newPath.add(flower);
 			flowers.remove(flower);
 		}
-
+		float distance = ((Point2D) hive).distance((Point2D) newPath.get(newPath.size() - 1));
+		cost += distance;
+		newPath.add(hive);
 		setPath(newPath, cost);
 	}
 
