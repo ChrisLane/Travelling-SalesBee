@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -20,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.TransferHandler;
 
 @SuppressWarnings("serial")
@@ -78,29 +80,30 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
-		try{
-			CellDrag droppedBtn = new CellDrag("",width,height,type);
-			droppedBtn.setIcon(new ImageIcon(getImage(type)));
-			
-			int x =  (int) Math.round((panel.getMousePosition().getX() - (width/2))/width)*width;
-			int y = (int) Math.round((panel.getMousePosition().getY() - (height/2))/height)*height;
-			
-			//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
-			droppedBtn.setBounds(x, y, width, height);
-			droppedBtn.setPanel(panel);
-			panel.add(droppedBtn);
-			panel.remove(this);
-			panel.revalidate();
-			validate();
-			panel.repaint();
-		}catch(NullPointerException | IOException e){
-			//Deletion for when the cell is dragged off the gridmap panel
-			this.setEnabled(false);
-			panel.remove(this);
-			panel.revalidate();
-			panel.repaint();
-		}
-		
+		if (!hiveExists(panel)||type!="HIVE"){
+			try{
+				CellDrag droppedBtn = new CellDrag("",width,height,type);
+				droppedBtn.setIcon(new ImageIcon(getImage(type)));
+				
+				int x =  (int) Math.round((panel.getMousePosition().getX() - (width/2))/width)*width;
+				int y = (int) Math.round((panel.getMousePosition().getY() - (height/2))/height)*height;
+				
+				//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
+				droppedBtn.setBounds(x, y, width, height);
+				droppedBtn.setPanel(panel);
+				panel.add(droppedBtn);
+				panel.remove(this);
+				panel.revalidate();
+				validate();
+				panel.repaint();
+			}catch(NullPointerException | IOException e){
+				//Deletion for when the cell is dragged off the gridmap panel
+				this.setEnabled(false);
+				panel.remove(this);
+				panel.revalidate();
+				panel.repaint();
+			}
+		}	
 	}
 
 	@Override
@@ -141,6 +144,21 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		Image img = ImageIO.read(new File(filepath));
 		Image scaledImg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImg;
+	}
+	
+	private boolean hiveExists(JPanel panel){
+		for (Component c : panel.getComponents()) {
+		    if (c instanceof CellDrag) { 
+		       if (c.isEnabled()&&((CellDrag) c).getType()=="HIVE"){
+		    	   return true;
+		       }
+		    }
+		}
+		return false;
+	}
+	
+	private String getType(){
+		return this.type;
 	}
 
 }
