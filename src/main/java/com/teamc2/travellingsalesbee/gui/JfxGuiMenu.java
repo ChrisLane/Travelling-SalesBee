@@ -13,14 +13,33 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Creates the main GUI menu for navigation.
+ */
 public class JfxGuiMenu extends Application {
+	/**
+	 * Fixed width of the window/application.
+	 */
 	protected final int appWidth = 700;
+
+	/**
+	 * Fixed height of the window/application.
+	 */
 	protected final int appHeight = 768;
 
+	/**
+	 * Main method.
+	 *
+	 * @param args Program arguments.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void start(Stage stage) {
 		// create the border pane
 		BorderPane border = new BorderPane();
@@ -43,9 +62,15 @@ public class JfxGuiMenu extends Application {
 		stage.show();
 	}
 
-	protected Scene createScene(BorderPane border)
+	/**
+	 * Create the scene to be used by the application.
+	 *
+	 * @param borderPane The BorderPane to initialise the Scene with.
+	 * @return 			 The created scene.
+	 */
+	protected Scene createScene(BorderPane borderPane)
 	{
-		Scene scene = new Scene(border, appWidth, appHeight);
+		Scene scene = new Scene(borderPane, appWidth, appHeight);
 		File file = new File("target/classes/stylesheets/menu.css");
 		try {
 			URL url = file.toURI().toURL();
@@ -58,6 +83,11 @@ public class JfxGuiMenu extends Application {
 		return scene;
 	}
 
+	/**
+	 * Create a VBox and its buttons.
+	 *
+	 * @return The newly created VBox.
+	 */
 	protected VBox createButtonVBox()
 	{
 		VBox vBox = new VBox();
@@ -75,6 +105,12 @@ public class JfxGuiMenu extends Application {
 		return vBox;
 	}
 
+	/**
+	 * Create a button for use in the application.
+	 *
+	 * @param title The button text.
+	 * @return      The newly created button.
+	 */
 	protected Button createButton(String title)
 	{
 		Button button = new Button(title);
