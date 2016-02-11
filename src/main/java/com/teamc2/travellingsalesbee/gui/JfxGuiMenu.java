@@ -59,6 +59,10 @@ public class JfxGuiMenu extends Application
 		}
 		stage.setScene(scene);
 		stage.setTitle("Travelling Salesbee");
+		stage.setMinHeight(768);
+		stage.setMaxHeight(768);
+		stage.setMinWidth(700);
+		stage.setMaxWidth(700);
 		stage.show();
 	}
 }
