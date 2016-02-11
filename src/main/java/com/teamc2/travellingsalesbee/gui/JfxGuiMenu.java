@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,12 +34,13 @@ public class JfxGuiMenu extends Application
 		docButton.getStyleClass().add("button");
 
 		vBox.getChildren().addAll(simButton, docButton);
-		vBox.setAlignment(Pos.CENTER);
+		vBox.setAlignment(Pos.TOP_CENTER);
+		vBox.setPadding(new Insets(150, 0, 0, 0));
 		vBox.setSpacing(20);
 
 		border.setCenter(vBox);
 
-		Scene scene = new Scene(border, 800, 800);
+		Scene scene = new Scene(border, 700, 768);
 		File file = new File("target/classes/stylesheets/menu.css");
 		try {
 			URL url = file.toURI().toURL();
