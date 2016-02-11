@@ -25,7 +25,8 @@ public class JfxGuiMenu extends Application
 		border.setId("main");
 
 		VBox vBox = new VBox();
-		Button simButton = new Button("Simulation");
+
+		Button simButton = new Button("Run Simulation");
 		simButton.setMinSize(150, 60);
 		simButton.getStyleClass().add("button");
 
@@ -33,10 +34,18 @@ public class JfxGuiMenu extends Application
 		docButton.setMinSize(150, 60);
 		docButton.getStyleClass().add("button");
 
-		vBox.getChildren().addAll(simButton, docButton);
+		Button faqButton = new Button("FAQ");
+		faqButton.setMinSize(150, 60);
+		faqButton.getStyleClass().add("button");
+
+		Button aboutButton = new Button("About");
+		aboutButton.setMinSize(150, 60);
+		aboutButton.getStyleClass().add("button");
+
+		vBox.getChildren().addAll(simButton, docButton, faqButton, aboutButton);
 		vBox.setAlignment(Pos.TOP_CENTER);
 		vBox.setPadding(new Insets(150, 0, 0, 0));
-		vBox.setSpacing(20);
+		vBox.setSpacing(30);
 
 		border.setCenter(vBox);
 
