@@ -13,7 +13,7 @@ public class Bee {
 
 	private Cell hive;
 	private ArrayList<Cell> path = new ArrayList<>();
-	private double cost = Float.MAX_VALUE;
+	private double cost = Double.MAX_VALUE;
 	private Map map;
 
 	public Bee(Map map, CellHive hive, int experiments) {
@@ -33,12 +33,12 @@ public class Bee {
 
 		// Loop over flowers missing from path
 		while (!flowers.isEmpty()) {
-			float bestDistance = Float.MAX_VALUE;
+			double bestDistance = Double.MAX_VALUE;
 			CellFlower closest = null;
 
 			// Find the closest flower to the previous
 			for (CellFlower flower : flowers) {
-				float distance = flower.distance((Point2D) newPath.get(newPath.size() - 1));
+				double distance = flower.distance(newPath.get(newPath.size() - 1));
 				if (distance < bestDistance) {
 					closest = flower;
 					bestDistance = distance;
@@ -49,7 +49,7 @@ public class Bee {
 			newPath.add(closest);
 			flowers.remove(closest);
 		}
-		float distance = ((Point2D) hive).distance((Point2D) newPath.get(newPath.size() - 1));
+		double distance = hive.distance(newPath.get(newPath.size() - 1));
 		cost += distance;
 		newPath.add(hive);
 		setPath(newPath, cost);
@@ -86,22 +86,22 @@ public class Bee {
 
 		// Loop over flowers missing from path
 		while (!flowers.isEmpty()) {
-			float distance = Float.MAX_VALUE;
+			double distance = Double.MAX_VALUE;
 			int flowerPos;
 			CellFlower flower = null;
 			
-			while(distance == Float.MAX_VALUE || distance == 0) {
+			while(distance == Double.MAX_VALUE || distance == 0) {
 				flowerPos = ThreadLocalRandom.current().nextInt(1, flowers.size());
 				flower = flowers.get(flowerPos);
 				
-				distance = flower.distance((Point2D) newPath.get(newPath.size() - 1));
+				distance = flower.distance(newPath.get(newPath.size() - 1));
 			}
 
 			cost += distance;
 			newPath.add(flower);
 			flowers.remove(flower);
 		}
-		float distance = ((Point2D) hive).distance((Point2D) newPath.get(newPath.size() - 1));
+		double distance = hive.distance(newPath.get(newPath.size() - 1));
 		cost += distance;
 		newPath.add(hive);
 		setPath(newPath, cost);
@@ -115,8 +115,8 @@ public class Bee {
 		double cost = 0;
 		for (int i = 0; i < path.size(); i++) {
 			if (i + 1 < path.size()) {
-				Point2D pos1 = (Point2D) path.get(i);
-				Point2D pos2 = (Point2D) path.get(i + 1);
+				Cell pos1 = path.get(i);
+				Cell pos2 = path.get(i + 1);
 
 				cost += pos1.distance(pos2);
 			}
