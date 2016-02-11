@@ -24,15 +24,15 @@ public class JfxGuiMenu extends Application
 		border.setId("main");
 
 		VBox vBox = new VBox();
-		Button testButton = new Button("Simulation");
-		testButton.setId("button");
-		testButton.setMinSize(150, 60);
+		Button simButton = new Button("Simulation");
+		simButton.setMinSize(150, 60);
+		simButton.getStyleClass().add("button");
 
-		Button testButton2 = new Button("Documentation");
-		testButton2.setId("button2");
-		testButton2.setMinSize(150, 60);
+		Button docButton = new Button("Documentation");
+		docButton.setMinSize(150, 60);
+		docButton.getStyleClass().add("button");
 
-		vBox.getChildren().addAll(testButton, testButton2);
+		vBox.getChildren().addAll(simButton, docButton);
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(20);
 
