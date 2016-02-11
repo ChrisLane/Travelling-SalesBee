@@ -115,10 +115,10 @@ public class Bee {
 		int cost = 0;
 		for (int i = 0; i < path.size(); i++) {
 			if (i + 1 < path.size()) {
-				CellFlower flower1 = (CellFlower) path.get(i);
-				CellFlower flower2 = (CellFlower) path.get(i + 1);
+				Point2D pos1 = (Point2D) path.get(i);
+				Point2D pos2 = (Point2D) path.get(i + 1);
 
-				cost += flower1.distance(flower2);
+				cost += pos1.distance(pos2);
 			}
 		}
 
@@ -135,5 +135,9 @@ public class Bee {
 	public void setPath(ArrayList<Cell> path, int cost) {
 		this.path = path;
 		this.cost = cost;
+	}
+
+	public ArrayList<Cell> getPath() {
+		return path;
 	}
 }
