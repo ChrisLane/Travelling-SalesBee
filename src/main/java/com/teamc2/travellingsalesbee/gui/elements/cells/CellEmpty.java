@@ -11,8 +11,4 @@ public class CellEmpty extends Cell {
 	public CellType getType() {
 		return CellType.EMPTY;
 	}
-
-	public BufferedImage getImage() {
-		return null;
-	}
 }
