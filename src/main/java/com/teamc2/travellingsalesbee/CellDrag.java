@@ -67,7 +67,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		// TODO Auto-generated method stub
 		System.out.println("Drag Gesture Recognised");
 		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDrag("", width, height, type), this);
 		
@@ -79,7 +78,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
-		// TODO Auto-generated method stub
 		try{
 			CellDrag droppedBtn = new CellDrag("",width,height,type);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
@@ -107,27 +105,23 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
-		// TODO Auto-generated method stub
 		System.out.println("Drag Entered");
 	}
 
 	@Override
 	public void dragExit(DragSourceEvent arg0) {
-		// TODO Auto-generated method stub
 		System.out.println("Drag exit");
 		
 	}
 
 	@Override
 	public void dragOver(DragSourceDragEvent arg0) {
-		// TODO Auto-generated method stub
 		System.out.println("Drag Over");
 		
 	}
 
 	@Override
 	public void dropActionChanged(DragSourceDragEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
