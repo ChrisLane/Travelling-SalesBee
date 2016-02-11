@@ -1,14 +1,10 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
-import java.awt.Point;
-
-import com.sun.javafx.geom.Point2D;
-
 import java.awt.image.BufferedImage;
 
-public class CellEmpty extends Point2D implements Cell {
+public class CellEmpty extends Cell {
 
-	public CellEmpty(int x, int y) {
+	public CellEmpty(double x, double y) {
 		super(x, y);
 	}
 

@@ -1,12 +1,13 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
-import com.sun.javafx.geom.Point2D;
-
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class CellHive extends Point2D implements Cell {
+public class CellHive extends Cell {
 
-	public CellHive(int x, int y) {
+	public CellHive(double x, double y) {
 		super(x, y);
 	}
 
@@ -14,7 +15,14 @@ public class CellHive extends Point2D implements Cell {
 		return CellType.HIVE;
 	}
 
+	@Override
 	public BufferedImage getImage() {
-		return null;
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(new File("target/classes/icons/Hive.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return image;
 	}
 }
