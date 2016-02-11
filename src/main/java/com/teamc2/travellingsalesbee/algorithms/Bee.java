@@ -66,7 +66,7 @@ public class Bee {
 			testPath.set(flowerPos1, flower2);
 			testPath.set(flowerPos2, flower1);
 		} else {
-			experimentalRun();
+			experimentalRunChris();
 		}
 
 		int testCost = calculatePathCost(testPath);
