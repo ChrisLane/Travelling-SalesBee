@@ -21,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.TransferHandler;
 
 @SuppressWarnings("serial")
@@ -80,8 +79,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
-		if (!hiveExists(panel)||type!="HIVE"){
 			try{
+				hiveExists(panel);
 				CellDrag droppedBtn = new CellDrag("",width,height,type);
 				droppedBtn.setIcon(new ImageIcon(getImage(type)));
 				
@@ -103,7 +102,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				panel.revalidate();
 				panel.repaint();
 			}
-		}	
+			
 	}
 
 	@Override
@@ -150,7 +149,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		for (Component c : panel.getComponents()) {
 		    if (c instanceof CellDrag) { 
 		       if (c.isEnabled()&&((CellDrag) c).getType()=="HIVE"){
-		    	   return true;
+		    	   panel.remove(c);
+		    	   c.setEnabled(false);
 		       }
 		    }
 		}
