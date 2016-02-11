@@ -5,10 +5,14 @@ import java.awt.image.BufferedImage;
 
 public class Cell extends Point2D.Double {
 
-	enum CellType {EMPTY, FLOWER, HIVE};
+	public enum CellType {EMPTY, FLOWER, HIVE};
 	
 	public Cell(double x, double y) {
 		super(x, y);
+	}
+	
+	public CellType getType() {
+		return null;
 	}
 	
 	public BufferedImage getImage() {
