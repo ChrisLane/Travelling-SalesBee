@@ -1,7 +1,6 @@
 package com.teamc2.travellingsalesbee;
 
 import java.awt.Image;
-import java.awt.MouseInfo;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
