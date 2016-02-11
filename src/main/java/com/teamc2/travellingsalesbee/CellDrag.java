@@ -80,7 +80,9 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 			try{
-				hiveExists(panel);
+				if (type=="HIVE"){
+					hiveExists(panel);
+				}
 				CellDrag droppedBtn = new CellDrag("",width,height,type);
 				droppedBtn.setIcon(new ImageIcon(getImage(type)));
 				
