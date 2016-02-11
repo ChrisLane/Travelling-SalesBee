@@ -1,8 +1,15 @@
 package com.teamc2.travellingsalesbee;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -26,6 +33,7 @@ public class TSB extends JFrame {
 	private JPanel contentPane;
 	private int width = 50;
 	private int height = 50;
+	private boolean hiveSet = false;
 
 	/**
 	 * Launch the application.
@@ -45,6 +53,7 @@ public class TSB extends JFrame {
 	 * Create the frame.
 	 */
 	public TSB() {
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 489);
 		contentPane = new JPanel();
@@ -57,6 +66,8 @@ public class TSB extends JFrame {
 		JPanel panel_settings = new JPanel();
 		panel_settings.setBackground(Color.LIGHT_GRAY);
 
+		
+		//ADD GRID TO THE GRIDMAP
 		JPanel panel_gridmap = new JPanel();
 		panel_gridmap.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -91,10 +102,6 @@ public class TSB extends JFrame {
 		panel_gridmap.setLayout(null);
 
 
-
-
-
-
 		JTextArea txtrDragElementsOnto = new JTextArea();
 		txtrDragElementsOnto.setEditable(false);
 		txtrDragElementsOnto.setWrapStyleWord(true);
@@ -105,7 +112,7 @@ public class TSB extends JFrame {
 
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
-		try {
+		try { 
 			Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
 			Image scaledFlowerImg = flowerImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 
@@ -140,13 +147,44 @@ public class TSB extends JFrame {
 				);
 		panel_toolbox.setLayout(gl_panel_toolbox);
 		contentPane.setLayout(gl_contentPane);
+		
+		/*frame.addComponentListener(new ComponentListener() {
+		    public void componentResized(ComponentEvent e) {
+		        // do stuff           
+		    	System.out.println("Window is re-sized");
+		    }
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});*/
 	}
 
 	public JPanel genGrid(JPanel panel_gridmap){
-		int widthCount = 0;
-		int heightCount = 0;
+		int widthCount = 0; //Keeps track of current horizontal line we're drawing
+		int heightCount = 0;//Keeps track of current vertical we're drawing
+		
+		//Gets the width and height of the users screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
 
-		while (widthCount < 5000){
+		//While the widthCount is less than the width of the users screen, draw horizontal lines
+		while (widthCount < screenWidth){
 
 
 			@SuppressWarnings("serial")
@@ -160,7 +198,8 @@ public class TSB extends JFrame {
 			widthCount = widthCount + width;
 		}
 
-		while (heightCount < 5000){
+		//While the heightCount is less than the height of the users screen, draw vertical lines
+		while (heightCount < screenHeight){
 
 
 			@SuppressWarnings("serial")
