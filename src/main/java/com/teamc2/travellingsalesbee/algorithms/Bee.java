@@ -13,7 +13,7 @@ public class Bee {
 
 	private Cell hive;
 	private ArrayList<Cell> path = new ArrayList<>();
-	private int cost = Integer.MAX_VALUE;
+	private double cost = Float.MAX_VALUE;
 	private Map map;
 
 	public Bee(Map map, CellHive hive, int experiments) {
@@ -71,7 +71,7 @@ public class Bee {
 			experimentalRunChris();
 		}
 
-		int testCost = calculatePathCost(testPath);
+		double testCost = calculatePathCost(testPath);
 		if (testCost < cost) {
 			setPath(testPath, testCost);
 		}
@@ -107,12 +107,12 @@ public class Bee {
 		setPath(newPath, cost);
 	}
 
-	public int getPathCost() {
+	public double getPathCost() {
 		return cost;
 	}
 
-	public int calculatePathCost(ArrayList<Cell> path) {
-		int cost = 0;
+	public double calculatePathCost(ArrayList<Cell> path) {
+		double cost = 0;
 		for (int i = 0; i < path.size(); i++) {
 			if (i + 1 < path.size()) {
 				Point2D pos1 = (Point2D) path.get(i);
@@ -121,7 +121,6 @@ public class Bee {
 				cost += pos1.distance(pos2);
 			}
 		}
-
 		return cost;
 	}
 
@@ -132,7 +131,7 @@ public class Bee {
 		}
 	}
 
-	public void setPath(ArrayList<Cell> path, int cost) {
+	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
 		this.cost = cost;
 	}
