@@ -69,7 +69,6 @@ public class TSB extends JFrame {
 		
 		//ADD GRID TO THE GRIDMAP
 		JPanel panel_gridmap = new JPanel();
-		panel_gridmap.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -91,9 +90,19 @@ public class TSB extends JFrame {
 
 
 		panel_gridmap = genGrid(panel_gridmap);
-
-
-
+		
+		Image background;
+		try {
+			background = ImageIO.read(new File("target/classes/backgrounds/grass.jpg"));
+			JLabel bg = new JLabel(new ImageIcon(background));
+			bg.setBounds(0,0,2000,2000);
+			panel_gridmap.add(bg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		panel_settings.setLayout(null);
 
 		JLabel lblSettingsBoxWe = new JLabel("Settings box, we also need to choose a background image for this");
@@ -119,7 +128,7 @@ public class TSB extends JFrame {
 			Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
 			Image scaledHiveImg = hiveImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 
-
+			
 			flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
 			hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
 

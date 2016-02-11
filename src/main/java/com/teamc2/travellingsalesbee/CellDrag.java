@@ -2,6 +2,8 @@ package com.teamc2.travellingsalesbee;
 
 import java.awt.Component;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -22,6 +24,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")
 public class CellDrag extends JButton implements Transferable, DragSourceListener, DragGestureListener {
@@ -44,10 +48,34 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			}
 		};
 		
+		//Aesthetic code to style buttons correctly.
+		this.setFocusPainted(false);
+		this.setOpaque(false);
+		this.setBorderPainted(false);
+		this.setContentAreaFilled(false);
+		
 		setTransferHandler(transHandler);
 		
 		source = new DragSource();
 		source.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY, this);
+		
+		this.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent evt) {
+                if (getModel().isPressed()) {
+                    System.out.println("PRESSED!!!!");
+                    ImageIcon img;
+					try {
+						img = new ImageIcon(getImage(type));
+	        			setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                } 
+            }
+        });
 		
 	}
 	
@@ -80,6 +108,9 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 			try{
+				panel.grabFocus();
+				//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+				//setCursor(defaultCursor);
 				if (type=="HIVE"){
 					hiveExists(panel);
 				}
@@ -110,6 +141,16 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
 		System.out.println("Drag Entered");
+		/**
+		try {
+			//ImageIcon img = new ImageIcon(getImage(type));
+			//setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 
 	@Override
@@ -122,11 +163,12 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	public void dragOver(DragSourceDragEvent arg0) {
 		System.out.println("Drag Over");
 		
+		
 	}
 
 	@Override
 	public void dropActionChanged(DragSourceDragEvent arg0) {
-		
+		System.out.println("changed");
 	}
 	
 	public void setPanel(JPanel panel){
