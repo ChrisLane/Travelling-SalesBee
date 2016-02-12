@@ -44,9 +44,9 @@ public class Map extends JPanel {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				//if (cells[i][j].getType().equals(CellType.FLOWER)) {
-				//	flowers.add((CellFlower) cells[i][j]);
-				//}
+				if (cells[i][j].getType().equals(CellType.FLOWER)) {
+					flowers.add((CellFlower) cells[i][j]);
+				}
 			}
 		}
 		return flowers;
