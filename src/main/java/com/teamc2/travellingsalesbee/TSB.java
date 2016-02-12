@@ -1,15 +1,10 @@
 package com.teamc2.travellingsalesbee;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;

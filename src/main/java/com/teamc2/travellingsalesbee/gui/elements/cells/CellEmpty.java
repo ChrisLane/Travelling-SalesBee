@@ -1,7 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.elements.cells;
 
-import java.awt.image.BufferedImage;
-
 public class CellEmpty extends Cell {
 
 	public CellEmpty(double x, double y) {

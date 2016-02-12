@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import com.sun.javafx.geom.Point2D;
 import com.teamc2.travellingsalesbee.gui.elements.Map;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
