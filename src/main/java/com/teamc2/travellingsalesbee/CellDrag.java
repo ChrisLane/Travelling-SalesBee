@@ -64,7 +64,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 					img = new ImageIcon(getImage(type));
 					setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -153,7 +152,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			//setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		*/
