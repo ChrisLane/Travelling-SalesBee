@@ -191,19 +191,19 @@ public class TSB extends JFrame {
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 
+        //Custom translucent colour
+        Color lineColor = new Color(255, 255, 255, 65);
+
 		//While the widthCount is less than the width of the users screen, draw horizontal lines
 		while (widthCount < screenWidth){
 
-
 			@SuppressWarnings("serial")
 			GridLine gridLine = new GridLine(widthCount,0,widthCount, Integer.MAX_VALUE);
-			gridLine.setBackground(Color.black);
+			gridLine.setBackground(lineColor);
 			gridLine.setBounds(widthCount, 0, 3, Integer.MAX_VALUE);
 			panel_gridmap.add(gridLine);
 
-
-
-			widthCount = widthCount + width;
+			widthCount += width;
 		}
 
 		//While the heightCount is less than the height of the users screen, draw vertical lines
@@ -212,12 +212,11 @@ public class TSB extends JFrame {
 
 			@SuppressWarnings("serial")
 			GridLine gridLine = new GridLine(0,Integer.MAX_VALUE,heightCount,heightCount);
-			gridLine.setBackground(Color.black);
+			gridLine.setBackground(lineColor);
 			gridLine.setBounds(0, heightCount, Integer.MAX_VALUE, 3);
 			panel_gridmap.add(gridLine);
 
-
-			heightCount = heightCount + height;
+			heightCount += height;
 		}
 		return panel_gridmap;
 	}
