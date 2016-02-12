@@ -13,15 +13,9 @@ import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 public class TSB extends JFrame {
@@ -88,20 +82,7 @@ public class TSB extends JFrame {
 				.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 				);
 
-
 		panel_gridmap = genGrid(panel_gridmap);
-		
-		Image background;
-		try {
-			background = ImageIO.read(new File("target/classes/backgrounds/grass.jpg"));
-			JLabel bg = new JLabel(new ImageIcon(background));
-			bg.setBounds(0,0,2000,2000);
-			panel_gridmap.add(bg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		panel_settings.setLayout(null);
 
@@ -116,8 +97,6 @@ public class TSB extends JFrame {
 		txtrDragElementsOnto.setWrapStyleWord(true);
 		txtrDragElementsOnto.setLineWrap(true);
 		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
-
-
 
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
@@ -142,6 +121,25 @@ public class TSB extends JFrame {
 		panel_toolbox.add(hiveToolCell);
 		System.out.println(panel_gridmap.getX());
 
+        //Adding background to panel_gridmap and tiling it using a nested for loop
+        Image background;
+        try {
+            background = ImageIO.read(new File("target/classes/backgrounds/grass.jpg"));
+
+            for(int x = 0; x < 3840; x += 256) {
+                for(int y = 0; y < 2160; y+=172) {
+                    JLabel bg = new JLabel(new ImageIcon(background));
+
+                    bg.setBounds(x, y, 320, 214); //grass.jpg has dimensions of: 257 by 172
+                    panel_gridmap.add(bg);
+                }
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
 				gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
@@ -156,6 +154,7 @@ public class TSB extends JFrame {
 				);
 		panel_toolbox.setLayout(gl_panel_toolbox);
 		contentPane.setLayout(gl_contentPane);
+
 		
 		/*frame.addComponentListener(new ComponentListener() {
 		    public void componentResized(ComponentEvent e) {

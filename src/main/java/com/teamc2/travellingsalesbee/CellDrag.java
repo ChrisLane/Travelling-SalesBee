@@ -142,6 +142,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				panel.revalidate();
 				validate();
 				panel.repaint();
+				panel.setComponentZOrder(droppedBtn, 0); //Sets dropped button to be drawn last to the screen and therefor be on top of everything else
 			}catch(NullPointerException | IOException e){
 				//Deletion for when the cell is dragged off the gridmap panel
 				this.setEnabled(false);
