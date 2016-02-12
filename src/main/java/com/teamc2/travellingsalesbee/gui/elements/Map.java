@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Map extends JPanel {
 
-	private static final CellType EMPTY = CellType.EMPTY;
-	private static final CellType HIVE = CellType.HIVE;
-	private static final CellType FLOWER = CellType.FLOWER;
+	private final CellType EMPTY = CellType.EMPTY;
+	private final CellType HIVE = CellType.HIVE;
+	private final CellType FLOWER = CellType.FLOWER;
 	private int width; //Width of map
 	private int height; //Height of map
 	private int speed; //Speed of bees
@@ -44,9 +44,9 @@ public class Map extends JPanel {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (cells[i][j].getType().equals(CellType.FLOWER)) {
-					flowers.add((CellFlower) cells[i][j]);
-				}
+				//if (cells[i][j].getType().equals(CellType.FLOWER)) {
+				//	flowers.add((CellFlower) cells[i][j]);
+				//}
 			}
 		}
 		return flowers;
