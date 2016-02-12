@@ -11,7 +11,7 @@ public abstract class Cell extends Point2D.Double {
 		super(x, y);
 	}
 	
-	protected abstract CellType getType();
+	public abstract CellType getType();
 	
 	protected abstract BufferedImage getImage();
 }
