@@ -24,10 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-@SuppressWarnings("serial")
 public class CellDrag extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
 	private DragSource source;
