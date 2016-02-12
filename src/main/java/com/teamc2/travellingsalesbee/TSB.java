@@ -188,7 +188,7 @@ public class TSB extends JFrame {
 		while (widthCount < screenWidth){
 
 			@SuppressWarnings("serial")
-			GridLine gridLine = new GridLine(widthCount,0,widthCount, Integer.MAX_VALUE);
+			GridLine gridLine = new GridLine(widthCount, 0, widthCount, Integer.MAX_VALUE);
 			gridLine.setBackground(lineColor);
 			gridLine.setBounds(widthCount, 0, 3, Integer.MAX_VALUE);
 			panel_gridmap.add(gridLine);
@@ -201,7 +201,7 @@ public class TSB extends JFrame {
 
 
 			@SuppressWarnings("serial")
-			GridLine gridLine = new GridLine(0,Integer.MAX_VALUE,heightCount,heightCount);
+			GridLine gridLine = new GridLine(0, heightCount, Integer.MAX_VALUE, heightCount);
 			gridLine.setBackground(lineColor);
 			gridLine.setBounds(0, heightCount, Integer.MAX_VALUE, 3);
 			panel_gridmap.add(gridLine);

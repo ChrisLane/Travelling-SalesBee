@@ -15,7 +15,7 @@ public class GridLine extends JPanel {
 	private float x2;
 	private float y2;
 	
-	public GridLine(float x1, float x2, float y1, float y2){
+	public GridLine(float x1, float y1, float x2, float y2){
 		this.x1=x1;
 		this.x2=x2;
 		this.y1=y1;
