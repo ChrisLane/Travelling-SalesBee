@@ -57,17 +57,18 @@ public class Bee {
 	private void experimentalRun() {
 		ArrayList<Cell> testPath = path;
 
-		int flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
-		int flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
+		int flowerPos1 = 0;
+		int flowerPos2 = 0;
 
-		if (flowerPos1 != flowerPos2) {
+		while (flowerPos1 == flowerPos2) {
+			flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
+			flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
+			
 			Cell flower1 = testPath.get(flowerPos1);
 			Cell flower2 = testPath.get(flowerPos2);
 
 			testPath.set(flowerPos1, flower2);
 			testPath.set(flowerPos2, flower1);
-		} else {
-			experimentalRun();
 		}
 
 		double testCost = calculatePathCost(testPath);
