@@ -103,7 +103,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				panel.grabFocus();
 				//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 				//setCursor(defaultCursor);
-				if (type=="HIVE"){
+				if (type.equals("HIVE")){
 					hiveExists(panel);
 				}
 				CellDrag droppedBtn = new CellDrag("",width,height,type);
@@ -196,7 +196,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private boolean hiveExists(JPanel panel){
 		for (Component c : panel.getComponents()) {
 		    if (c instanceof CellDrag) { 
-		       if (c.isEnabled()&&((CellDrag) c).getType()=="HIVE"){
+		       if (c.isEnabled()&&((CellDrag) c).getType().equals("HIVE")){
 		    	   panel.remove(c);
 		    	   c.setEnabled(false);
 		       }
