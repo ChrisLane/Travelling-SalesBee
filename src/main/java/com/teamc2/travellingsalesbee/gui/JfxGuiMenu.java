@@ -1,6 +1,8 @@
 package com.teamc2.travellingsalesbee.gui;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -93,9 +95,36 @@ public class JfxGuiMenu extends Application {
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
+		simButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("<close window, bootstrap & run simulation>");
+			}
+		});
+
 		Button docButton = createButton("Documentation");
+		docButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("<new window - documentation>");
+			}
+		});
+
 		Button faqButton = createButton("FAQ");
+		faqButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("<new window - faq>");
+			}
+		});
+
 		Button aboutButton = createButton("About");
+		aboutButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("<new window - about>");
+			}
+		});
 
 		vBox.getChildren().addAll(simButton, docButton, faqButton, aboutButton);
 		vBox.setAlignment(Pos.TOP_CENTER);
