@@ -57,8 +57,8 @@ public class Bee {
 	private void experimentalRun() {
 		ArrayList<Cell> testPath = path;
 
-		int flowerPos1 = ThreadLocalRandom.current().nextInt(0, testPath.size()-1);
-		int flowerPos2 = ThreadLocalRandom.current().nextInt(0, testPath.size()-1);
+		int flowerPos1 = ThreadLocalRandom.current().nextInt(0, testPath.size() - 1);
+		int flowerPos2 = ThreadLocalRandom.current().nextInt(0, testPath.size() - 1);
 
 		if (flowerPos1 != flowerPos2) {
 			Cell flower1 = testPath.get(flowerPos1);
