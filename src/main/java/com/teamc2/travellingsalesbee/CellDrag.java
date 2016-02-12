@@ -208,7 +208,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private void cellFull(JPanel panel, int x, int y){
 		for (Component c : panel.getComponents()) {
 		    if (c instanceof CellDrag) { 
-		       if (c.isEnabled()&&((CellDrag) c).getBounds().x==x&&c.getBounds().y==y){
+		       if (c.isEnabled()&& c.getBounds().x==x&&c.getBounds().y==y){
 		    	   panel.remove(c);
 		    	   c.setEnabled(false);
 		       }
