@@ -11,6 +11,7 @@ public class CellHive extends Cell {
 		super(x, y);
 	}
 
+	@Override
 	public CellType getType() {
 		return CellType.HIVE;
 	}
