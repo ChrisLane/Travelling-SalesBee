@@ -59,22 +59,19 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		source = new DragSource();
 		source.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY, this);
 		
-		this.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent evt) {
-                if (getModel().isPressed()) {
-                    System.out.println("PRESSED!!!!");
-                    ImageIcon img;
-					try {
-						img = new ImageIcon(getImage(type));
-	        			setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                } 
-            }
-        });
+		this.addChangeListener(evt -> {
+			if (getModel().isPressed()) {
+				System.out.println("PRESSED!!!!");
+				ImageIcon img;
+				try {
+					img = new ImageIcon(getImage(type));
+					setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		
 	}
 	
@@ -115,21 +112,18 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				}
 				CellDrag droppedBtn = new CellDrag("",width,height,type);
 				droppedBtn.setIcon(new ImageIcon(getImage(type)));
-				droppedBtn.addChangeListener(new ChangeListener() {
-		            @Override
-		            public void stateChanged(ChangeEvent evt) {
-		                if (getModel().isPressed()) {
-		                    System.out.println("PRESS GRID");
-		                    ImageIcon img;
-							try {
-								img = new ImageIcon(getImage(type));
-			        			setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-		                } 
-		            }
-		        });
+				droppedBtn.addChangeListener(evt -> {
+					if (getModel().isPressed()) {
+						System.out.println("PRESS GRID");
+						ImageIcon img;
+						try {
+							img = new ImageIcon(getImage(type));
+							setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
 				
 				int x =  (int) Math.round((panel.getMousePosition().getX() - (width/2))/width)*width;
 				int y = (int) Math.round((panel.getMousePosition().getY() - (height/2))/height)*height;
