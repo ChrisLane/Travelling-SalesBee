@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -146,8 +148,11 @@ public class TSB extends JFrame {
 						.addContainerGap(330, Short.MAX_VALUE))
 				);
 		panel_toolbox.setLayout(gl_panel_toolbox);
-		contentPane.setLayout(gl_contentPane);
 
+        /*
+		panel_toolbox.setMaximumSize(new Dimension(500, 500));
+		System.out.println("panel_toobox width: " + panel_toolbox.getWidth() + ", height: " + panel_toolbox.getHeight());
+		contentPane.setLayout(gl_contentPane);*/
 		
 		/*frame.addComponentListener(new ComponentListener() {
 		    public void componentResized(ComponentEvent e) {
