@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -18,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 public class TSB extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private JPanel contentPane;
 	private int width = 50;
@@ -43,7 +41,7 @@ public class TSB extends JFrame {
 	 * Create the frame.
 	 */
 	public TSB() {
-		
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 489);
 		contentPane = new JPanel();
@@ -56,7 +54,7 @@ public class TSB extends JFrame {
 		JPanel panel_settings = new JPanel();
 		panel_settings.setBackground(Color.LIGHT_GRAY);
 
-		
+
 		//ADD GRID TO THE GRIDMAP
 		JPanel panel_gridmap = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -79,7 +77,7 @@ public class TSB extends JFrame {
 				);
 
 		panel_gridmap = genGrid(panel_gridmap);
-		
+
 		panel_settings.setLayout(null);
 
 		JLabel lblSettingsBoxWe = new JLabel("Settings box, we also need to choose a background image for this");
@@ -96,44 +94,58 @@ public class TSB extends JFrame {
 
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
-		try { 
+		try {
 			Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
 			Image scaledFlowerImg = flowerImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 
 			Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
 			Image scaledHiveImg = hiveImg.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 
-			
+
 			flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
 			hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
 
 		} catch (IOException ex) {
 		}
 		flowerToolCell.setPanel(panel_gridmap);
-		flowerToolCell.setBounds(0, 150, width, height);		
+		flowerToolCell.setBounds(0, 150, width, height);
 		hiveToolCell.setPanel(panel_gridmap);
 		hiveToolCell.setBounds(0, 155+height, width, height);
 		panel_toolbox.add(flowerToolCell);
 		panel_toolbox.add(hiveToolCell);
 		System.out.println(panel_gridmap.getX());
 
+        /*****BACKGROUNDS*****/
         //Adding background to panel_gridmap and tiling it using a nested for loop
         Image background;
         try {
             background = ImageIO.read(new File("target/classes/backgrounds/grass.jpg"));
+            addTiledBgImg(panel_gridmap, background, 256, 172);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            for(int x = 0; x < 3840; x += 256) {
-                for(int y = 0; y < 2160; y+=172) {
-                    JLabel bg = new JLabel(new ImageIcon(background));
-
-                    bg.setBounds(x, y, 320, 214); //grass.jpg has dimensions of: 257 by 172
-                    panel_gridmap.add(bg);
-                }
-            }
+        //Background Images for Toolbox
+        Image toolbox;
+        try {
+            toolbox = ImageIO.read(new File("target/classes/backgrounds/brownBack315.png"));
+            addTiledBgImg(panel_toolbox, toolbox, 315, 315);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Background image for Settings
+        Image settings;
+        try {
+            settings = ImageIO.read(new File("target/classes/backgrounds/greyBack315.png"));
+            addTiledBgImg(panel_settings, settings, 315, 315);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Background image for mother panel
+        contentPane.setBackground(new Color(71, 35, 35));
 
 		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
 		gl_panel_toolbox.setHorizontalGroup(
@@ -148,11 +160,8 @@ public class TSB extends JFrame {
 						.addContainerGap(330, Short.MAX_VALUE))
 				);
 		panel_toolbox.setLayout(gl_panel_toolbox);
+		contentPane.setLayout(gl_contentPane);
 
-        /*
-		panel_toolbox.setMaximumSize(new Dimension(500, 500));
-		System.out.println("panel_toobox width: " + panel_toolbox.getWidth() + ", height: " + panel_toolbox.getHeight());
-		contentPane.setLayout(gl_contentPane);*/
 		
 		/*frame.addComponentListener(new ComponentListener() {
 		    public void componentResized(ComponentEvent e) {
@@ -215,4 +224,16 @@ public class TSB extends JFrame {
 		}
 		return panel_gridmap;
 	}
+
+    public static void addTiledBgImg(JPanel panel, Image img, int width, int height) { //Adds tiles image to panel and returns it
+        for(int x = 0; x < 3840; x += width) {
+            for(int y = 0; y < 2160; y+= height) {
+                JLabel bg = new JLabel(new ImageIcon(img));
+
+                bg.setBounds(x, y, width, height); //grass.jpg has dimensions of: 257 x 172
+                panel.add(bg);
+            }
+        }
+
+    }
 }
