@@ -117,7 +117,7 @@ public class TSB extends JFrame implements Observer {
 		//Adding background to panel_gridmap and tiling it using a nested for loop
 		Image background;
 		try {
-			background = ImageIO.read(new File("target/classes/backgrounds/grass.jpg"));
+			background = ImageIO.read(new File("target/classes/backgrounds/Grass.jpg"));
 			addTiledBgImg(panel_gridmap, background, 256, 172);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -126,7 +126,7 @@ public class TSB extends JFrame implements Observer {
 		//Background Images for Toolbox
 		Image toolbox;
 		try {
-			toolbox = ImageIO.read(new File("target/classes/backgrounds/brownBack150.png"));
+			toolbox = ImageIO.read(new File("target/classes/backgrounds/BrownBack150.png"));
 			addTiledBgImg(panel_toolbox, toolbox, 150, 150);
 
 		} catch (IOException e) {
@@ -136,7 +136,7 @@ public class TSB extends JFrame implements Observer {
 		//Background image for Settings
 		Image settings;
 		try {
-			settings = ImageIO.read(new File("target/classes/backgrounds/greyBack150.png"));
+			settings = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
 			addTiledBgImg(panel_settings, settings, 150, 150);
 			
 			JButton btnNewButton = new JButton("RUN");
@@ -233,7 +233,7 @@ public class TSB extends JFrame implements Observer {
 			for (int y = 0; y < 2160; y += height) {
 				JLabel bg = new JLabel(new ImageIcon(img));
 
-				bg.setBounds(x, y, width, height); //grass.jpg has dimensions of: 257 x 172
+				bg.setBounds(x, y, width, height); //Grass.jpg has dimensions of: 257 x 172
 				panel.add(bg);
 			}
 		}
