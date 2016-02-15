@@ -53,7 +53,6 @@ public class Bee extends Observable {
 		}
 		double distance = hive.distance(newPath.get(newPath.size() - 1));
 		cost += distance;
-		newPath.add(hive);
 		setPath(newPath, cost);
 	}
 
