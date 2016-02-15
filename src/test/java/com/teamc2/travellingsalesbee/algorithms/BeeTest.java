@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class BeeTest {
 	private Bee bee;
 	private Map map;
-	private ArrayList<Cell> path;
 
 	@BeforeClass
 	public void initialise() {
@@ -59,11 +58,21 @@ public class BeeTest {
 		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}};
 	}
 
+	/**
+	 * Test that each flower is contained in the path generated
+	 */
 	@Test
 	public void testNaiveRun() throws Exception {
+		// Set the path to empty
 		bee.setPath(new ArrayList<Cell>(), 0);
+
+		// Generate a new path
 		bee.naiveRun();
-		Assert.assertEquals(bee.getPath().isEmpty(), false);
+
+		// Check that each flower on the map is in the new path
+		for (Cell cell : map.getFlowers()) {
+			Assert.assertEquals(bee.getPath().contains(cell), true);
+		}
 	}
 
 	@Test(dataProvider = "paths")
