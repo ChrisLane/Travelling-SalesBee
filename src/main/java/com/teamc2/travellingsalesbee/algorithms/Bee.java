@@ -56,6 +56,10 @@ public class Bee extends Observable {
 	}
 
 	private void experimentalRun() {
+		if (path.isEmpty()) {
+			naiveRun();
+		}
+
 		ArrayList<Cell> testPath = path;
 
 		int flowerPos1 = 0;
