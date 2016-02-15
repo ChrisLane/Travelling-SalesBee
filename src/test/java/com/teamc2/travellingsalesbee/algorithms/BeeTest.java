@@ -61,12 +61,15 @@ public class BeeTest {
 
 	@Test
 	public void testNaiveRun() throws Exception {
-
+		bee.setPath(new ArrayList<Cell>(), 0);
+		bee.naiveRun();
+		Assert.assertEquals(bee.getPath().isEmpty(), false);
 	}
 
-	@Test
-	public void testGetPathCost() throws Exception {
-
+	@Test (dataProvider = "paths")
+	public void testGetPathCost(ArrayList<Cell> path, double cost) throws Exception {
+		bee.setPath(path, cost);
+		Assert.assertEquals(bee.getPathCost(), cost);
 	}
 
 	@Test (dataProvider = "paths")
