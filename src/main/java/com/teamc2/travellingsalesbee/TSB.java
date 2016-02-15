@@ -129,7 +129,7 @@ public class TSB extends JFrame {
         Image toolbox;
         try {
             toolbox = ImageIO.read(new File("target/classes/backgrounds/brownBack315.png"));
-            addTiledBgImg(panel_toolbox, toolbox, 315, 315);
+            addTiledBgImg(panel_toolbox, toolbox, 150, 150);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,7 +139,7 @@ public class TSB extends JFrame {
         Image settings;
         try {
             settings = ImageIO.read(new File("target/classes/backgrounds/greyBack315.png"));
-            addTiledBgImg(panel_settings, settings, 315, 315);
+            addTiledBgImg(panel_settings, settings, 150, 150);
         } catch (IOException e) {
             e.printStackTrace();
         }
