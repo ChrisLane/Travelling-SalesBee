@@ -7,13 +7,15 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-public class TSB extends JFrame {
+public class TSB extends JFrame implements Observer {
 
 	/**
 	 *
@@ -129,7 +131,7 @@ public class TSB extends JFrame {
         Image toolbox;
         try {
             toolbox = ImageIO.read(new File("target/classes/backgrounds/brownBack315.png"));
-            addTiledBgImg(panel_toolbox, toolbox, 150, 150);
+            addTiledBgImg(panel_toolbox, toolbox, 315, 315);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,7 +141,7 @@ public class TSB extends JFrame {
         Image settings;
         try {
             settings = ImageIO.read(new File("target/classes/backgrounds/greyBack315.png"));
-            addTiledBgImg(panel_settings, settings, 150, 150);
+            addTiledBgImg(panel_settings, settings, 315, 315);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -189,7 +191,7 @@ public class TSB extends JFrame {
 	public JPanel genGrid(JPanel panel_gridmap){
 		int widthCount = 0; //Keeps track of current horizontal line we're drawing
 		int heightCount = 0;//Keeps track of current vertical we're drawing
-		
+
 		//Gets the width and height of the users screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
@@ -236,4 +238,9 @@ public class TSB extends JFrame {
         }
 
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// Run method to display new best path
+	}
 }
