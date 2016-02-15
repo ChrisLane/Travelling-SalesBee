@@ -27,7 +27,7 @@ public class BeeTest {
 		bee = new Bee(map, map.getHive(), 5);
 	}
 
-	@DataProvider (name = "paths")
+	@DataProvider(name = "paths")
 	public Object[][] path() {
 		ArrayList<CellFlower> flowers = map.getFlowers();
 		CellFlower flower1 = flowers.get(0);
@@ -56,7 +56,7 @@ public class BeeTest {
 		path3.add(flower1); // cost 4
 		path3.add(flower3); // cost 4.4721360206604
 
-		return new Object[][] {{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}};
+		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}};
 	}
 
 	@Test
@@ -66,13 +66,13 @@ public class BeeTest {
 		Assert.assertEquals(bee.getPath().isEmpty(), false);
 	}
 
-	@Test (dataProvider = "paths")
+	@Test(dataProvider = "paths")
 	public void testGetPathCost(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPathCost(), cost);
 	}
 
-	@Test (dataProvider = "paths")
+	@Test(dataProvider = "paths")
 	public void testCalculatePathCost(ArrayList<Cell> path, double cost) throws Exception {
 		Assert.assertEquals(bee.calculatePathCost(path), cost);
 	}
@@ -83,7 +83,7 @@ public class BeeTest {
 	}
 
 
-	@Test (dataProvider = "paths")
+	@Test(dataProvider = "paths")
 	public void testSetPath(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPath(), path);
