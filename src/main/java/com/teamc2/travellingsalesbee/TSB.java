@@ -138,7 +138,7 @@ public class TSB extends JFrame implements Observer {
 		try {
 			settings = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
 			addTiledBgImg(panel_settings, settings, 150, 150);
-			
+
 			JButton btnNewButton = new JButton("RUN");
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			btnNewButton.setBounds(481, 7, 93, 29);
@@ -242,6 +242,6 @@ public class TSB extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// Run method to display new best path
+		// There is a new path! Visualise it
 	}
 }
