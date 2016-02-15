@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui;
 
+import com.teamc2.travellingsalesbee.gui.pages.AboutPage;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -95,35 +96,24 @@ public class JfxGuiMenu extends Application {
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
-		simButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("<close window, bootstrap & run simulation>");
-			}
+		simButton.setOnAction(event -> {
+			System.out.println("<close window, bootstrap & run simulation>");
 		});
 
 		Button docButton = createButton("Documentation");
-		docButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("<new window - documentation>");
-			}
+		docButton.setOnAction(event -> {
+			System.out.println("<new window - documentation>");
+			AboutPage page = new AboutPage();
 		});
 
 		Button faqButton = createButton("FAQ");
-		faqButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("<new window - faq>");
-			}
+		faqButton.setOnAction(event -> {
+			System.out.println("<new window - faq>");
 		});
 
 		Button aboutButton = createButton("About");
-		aboutButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("<new window - about>");
-			}
+		aboutButton.setOnAction(event -> {
+			System.out.println("<new window - about>");
 		});
 
 		vBox.getChildren().addAll(simButton, docButton, faqButton, aboutButton);
