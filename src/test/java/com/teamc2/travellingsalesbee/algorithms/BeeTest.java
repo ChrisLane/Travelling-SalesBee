@@ -62,7 +62,7 @@ public class BeeTest {
 	/**
 	 * Test that each flower is contained in the path generated
 	 */
-	@Test
+	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost"})
 	public void testNaiveRun() throws Exception {
 		// TODO: Change this to include the hive
 		// Set the path to empty
@@ -83,7 +83,7 @@ public class BeeTest {
 		Assert.assertEquals(path.equals(flowers), true);
 	}
 
-	@Test(dataProvider = "paths")
+	@Test(dataProvider = "paths", dependsOnMethods = "testSetPathCost")
 	public void testGetPathCost(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPathCost(), cost);
@@ -94,16 +94,20 @@ public class BeeTest {
 		Assert.assertEquals(bee.calculatePathCost(path), cost);
 	}
 
-	@Test
+	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost"})
 	public void testExperimentalRuns() throws Exception {
 
 	}
-
 
 	@Test(dataProvider = "paths")
 	public void testSetPath(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPath(), path);
+	}
+
+	@Test(dataProvider = "paths")
+	public void testSetPathCost(ArrayList<Cell> path, double cost) throws Exception {
+		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPathCost(), cost);
 	}
 }
