@@ -48,9 +48,6 @@ public class Bee extends Observable {
 			cost += bestDistance;
 			newPath.add(closest);
 			flowers.remove(closest);
-
-			setChanged();
-			notifyObservers();
 		}
 		double distance = hive.distance(newPath.get(newPath.size() - 1));
 		cost += distance;
@@ -108,6 +105,9 @@ public class Bee extends Observable {
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
 		this.cost = cost;
+
+		setChanged();
+		notifyObservers(path);
 	}
 
 	public ArrayList<Cell> getPath() {
