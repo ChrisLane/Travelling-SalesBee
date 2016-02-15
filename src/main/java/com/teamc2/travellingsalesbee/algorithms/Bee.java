@@ -6,9 +6,10 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Bee {
+public class Bee extends Observable {
 
 	private Cell hive;
 	private ArrayList<Cell> path = new ArrayList<>();
@@ -47,6 +48,9 @@ public class Bee {
 			cost += bestDistance;
 			newPath.add(closest);
 			flowers.remove(closest);
+
+			setChanged();
+			notifyObservers();
 		}
 		double distance = hive.distance(newPath.get(newPath.size() - 1));
 		cost += distance;
@@ -64,12 +68,12 @@ public class Bee {
 			flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
 			flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
 		}
-		
-			Cell flower1 = testPath.get(flowerPos1);
-			Cell flower2 = testPath.get(flowerPos2);
 
-			testPath.set(flowerPos1, flower2);
-			testPath.set(flowerPos2, flower1);
+		Cell flower1 = testPath.get(flowerPos1);
+		Cell flower2 = testPath.get(flowerPos2);
+
+		testPath.set(flowerPos1, flower2);
+		testPath.set(flowerPos2, flower1);
 
 		double testCost = calculatePathCost(testPath);
 		if (testCost < cost) {
