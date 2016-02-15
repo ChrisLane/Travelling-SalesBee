@@ -215,7 +215,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		}
 	}
 	
-	private String getType(){
+	public String getType(){
 		return this.type;
 	}
 
