@@ -42,14 +42,14 @@ public class BeeTest {
 		path1.add(flower2); // cost 4
 		path1.add(flower3); // cost 2
 
-		double path2Cost = 12.324555397033691;
+		double path2Cost = 12.32455532033676;
 		ArrayList<Cell> path2 = new ArrayList<>();
 		path2.add(hive);
 		path2.add(flower3); // cost 6.324555397033691
 		path2.add(flower2); // cost 2
 		path2.add(flower1); // cost 4
 
-		double path3Cost = 14.4721360206604;
+		double path3Cost = 14.47213595499958;
 		ArrayList<Cell> path3 = new ArrayList<>();
 		path3.add(hive);
 		path3.add(flower2); // cost 6
