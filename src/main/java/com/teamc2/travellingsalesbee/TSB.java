@@ -5,11 +5,21 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import com.teamc2.travellingsalesbee.algorithms.Bee;
+import com.teamc2.travellingsalesbee.gui.elements.Map;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell.CellType;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TSB extends JFrame implements Observer {
 
@@ -139,7 +149,48 @@ public class TSB extends JFrame implements Observer {
 			settings = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
 			addTiledBgImg(panel_settings, settings, 150, 150);
 
+			
+			final JPanel finalGridmap = panel_gridmap;
+			
 			JButton btnNewButton = new JButton("RUN");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				
+					int panelWidth = finalGridmap.getWidth();
+					int panelHeight = finalGridmap.getHeight();
+					
+					System.out.print(panelWidth);
+					System.out.print(panelHeight);
+					System.out.println("Button pressed!");
+					
+					//Gets the amount of cells respective to the width and height of the map
+					Map map = new Map(panelWidth, panelHeight); //Initialising Map with cellsX and cellsY as width and height of map
+					
+					for(Component c : finalGridmap.getComponents()) {
+						if(c instanceof CellDrag) {
+							if(c.isEnabled() && ((CellDrag) c).getType().equals("FLOWER")) {
+								System.out.println("c.getX(): " + c.getX() + "c.getY(): " + c.getY());
+								System.out.println("Width of panel: " + finalGridmap.getWidth() + ", height of panel: " + finalGridmap.getHeight());
+								
+								map.setCell(c.getX(), c.getY(), CellType.FLOWER); //Add flower positions to map
+								
+							} else if(c.isEnabled() && ((CellDrag) c).getType().equals("HIVE")) {
+								
+								map.setCell(c.getX(), c.getY(), CellType.HIVE); //Add hive position to map
+								
+							}
+						}
+					}
+					
+					Bee bee = new Bee(map, map.getHive(), 26);
+					ArrayList <Cell> beePath =  bee.getPath();
+					System.out.println(bee.getPathCost());
+					
+					for (Cell cell : beePath) {
+						System.out.println(cell.x/50 + " " + cell.y/50);
+					}
+				}
+			});
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			btnNewButton.setBounds(481, 7, 93, 29);
 			panel_settings.add(btnNewButton);

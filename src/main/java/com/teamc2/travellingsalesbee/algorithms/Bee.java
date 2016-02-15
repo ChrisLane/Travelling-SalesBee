@@ -21,7 +21,9 @@ public class Bee extends Observable {
 		this.hive = hive;
 
 		naiveRun();
+		//System.out.println("Naive Run: " + this.cost);
 		experimentalRuns(experiments);
+		//System.out.println("Post-Experimental Run: " + this.cost);
 	}
 
 	public void naiveRun() {
