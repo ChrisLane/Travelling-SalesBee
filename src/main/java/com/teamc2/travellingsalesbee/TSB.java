@@ -138,6 +138,11 @@ public class TSB extends JFrame implements Observer {
 		try {
 			settings = ImageIO.read(new File("target/classes/backgrounds/greyBack150.png"));
 			addTiledBgImg(panel_settings, settings, 150, 150);
+			
+			JButton btnNewButton = new JButton("RUN");
+			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			btnNewButton.setBounds(481, 7, 93, 29);
+			panel_settings.add(btnNewButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
