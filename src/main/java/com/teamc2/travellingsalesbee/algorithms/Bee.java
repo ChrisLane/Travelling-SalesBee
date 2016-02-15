@@ -76,6 +76,8 @@ public class Bee extends Observable {
 		testPath.set(flowerPos1, flower2);
 		testPath.set(flowerPos2, flower1);
 
+		// TODO: Call a method to visualise the flower1 and flower2 swap
+
 		double testCost = calculatePathCost(testPath);
 		if (testCost < cost) {
 			setPath(testPath, testCost);
