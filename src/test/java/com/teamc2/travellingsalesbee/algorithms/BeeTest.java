@@ -2,6 +2,7 @@ package com.teamc2.travellingsalesbee.algorithms;
 
 import com.teamc2.travellingsalesbee.gui.elements.Map;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellComparator;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 import org.testng.Assert;
@@ -63,16 +64,23 @@ public class BeeTest {
 	 */
 	@Test
 	public void testNaiveRun() throws Exception {
+		// TODO: Change this to include the hive
 		// Set the path to empty
 		bee.setPath(new ArrayList<Cell>(), 0);
 
 		// Generate a new path
 		bee.naiveRun();
 
-		// Check that each flower on the map is in the new path
-		for (Cell cell : map.getFlowers()) {
-			Assert.assertEquals(bee.getPath().contains(cell), true);
-		}
+		// Sort the path and remove hive
+		ArrayList<Cell> path = bee.getPath();
+		path.remove(0);
+		path.sort(new CellComparator());
+
+		// Sort the flowers
+		ArrayList<CellFlower> flowers = map.getFlowers();
+		flowers.sort(new CellComparator());
+
+		Assert.assertEquals(path.equals(flowers), true);
 	}
 
 	@Test(dataProvider = "paths")
