@@ -103,7 +103,6 @@ public class JfxGuiMenu extends Application {
 		Button docButton = createButton("Documentation");
 		docButton.setOnAction(event -> {
 			System.out.println("<new window - documentation>");
-			AboutPage page = new AboutPage();
 		});
 
 		Button faqButton = createButton("FAQ");
@@ -114,6 +113,9 @@ public class JfxGuiMenu extends Application {
 		Button aboutButton = createButton("About");
 		aboutButton.setOnAction(event -> {
 			System.out.println("<new window - about>");
+			AboutPage page = new AboutPage(appHeight, appWidth);
+			page.bootstrap();
+			page.show();
 		});
 
 		vBox.getChildren().addAll(simButton, docButton, faqButton, aboutButton);
