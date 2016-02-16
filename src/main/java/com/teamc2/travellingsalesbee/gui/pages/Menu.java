@@ -7,10 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class Menu extends Page {
 
 	public Menu(String title, int height, int width)
@@ -38,27 +34,6 @@ public class Menu extends Page {
 		setMinWidth(width);
 		setMaxWidth(width);
 		show();
-	}
-
-	/**
-	 * Create the scene to be used by the application.
-	 *
-	 * @param borderPane The BorderPane to initialise the Scene with.
-	 * @return 			 The created scene.
-	 */
-	protected Scene createScene(BorderPane borderPane)
-	{
-		Scene scene = new Scene(borderPane, width, height);
-		File file = new File("target/classes/stylesheets/menu.css");
-		try {
-			URL url = file.toURI().toURL();
-			scene.getStylesheets().add(url.toExternalForm());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-
-		return scene;
 	}
 
 	/**
