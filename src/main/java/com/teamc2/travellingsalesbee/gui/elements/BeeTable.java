@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class BeeTable extends JPanel {
 
-	private Map map;
+	private final Map map;
 
 	public BeeTable(Map map) {
 		this.map = map;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CostMatrix {
 
-	private Map map;
+	private final Map map;
 	private double[][] costMatrix;
 
 	/**

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
-	JPanel parent;
+	private final JPanel parent;
 
 	public PanelSettings(JPanel parent) {
 		this.parent = parent;

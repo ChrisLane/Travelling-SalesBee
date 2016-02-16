@@ -9,8 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public abstract class Page extends Stage {
-	protected int height;
-	protected int width;
+	protected final int height;
+	protected final int width;
 
 	public Page(String title, int height, int width) {
 		super();

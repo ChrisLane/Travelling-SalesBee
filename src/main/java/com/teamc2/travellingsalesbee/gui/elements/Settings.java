@@ -3,7 +3,7 @@ package com.teamc2.travellingsalesbee.gui.elements;
 import javax.swing.*;
 
 public class Settings extends JPanel {
-	private Map gridMap;
+	private final Map gridMap;
 
 	public Settings(Map gridMap) {
 		this.gridMap = gridMap;

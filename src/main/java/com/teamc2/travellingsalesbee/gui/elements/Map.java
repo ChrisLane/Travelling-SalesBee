@@ -14,10 +14,10 @@ public class Map extends JPanel {
 	private final CellType EMPTY = CellType.EMPTY;
 	private final CellType HIVE = CellType.HIVE;
 	private final CellType FLOWER = CellType.FLOWER;
-	private int width; //Width of map
-	private int height; //Height of map
+	private final int width; //Width of map
+	private final int height; //Height of map
 	private int speed; //Speed of bees
-	private Cell[][] cells; //Will store our ElementCells
+	private final Cell[][] cells; //Will store our ElementCells
 	private CellHive hive;
 
 	/**
