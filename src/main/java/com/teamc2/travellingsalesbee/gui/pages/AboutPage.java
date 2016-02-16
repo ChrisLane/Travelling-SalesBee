@@ -2,13 +2,12 @@ package com.teamc2.travellingsalesbee.gui.pages;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AboutPage extends Stage {
+public class AboutPage extends Page {
 	protected int height;
 	protected int width;
 
