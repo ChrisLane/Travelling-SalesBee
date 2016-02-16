@@ -3,7 +3,7 @@ package com.teamc2.travellingsalesbee.gui.elements;
 import javax.swing.*;
 
 public class BeeTable extends JPanel {
-	
+
 	private Map map;
 
 	public BeeTable(Map map) {

@@ -9,13 +9,11 @@ import javafx.scene.layout.VBox;
 
 public class Menu extends Page {
 
-	public Menu(String title, int height, int width)
-	{
+	public Menu(String title, int height, int width) {
 		super(title, height, width);
 	}
 
-	public void bootstrap()
-	{
+	public void bootstrap() {
 		// create the border pane
 		BorderPane border = new BorderPane();
 		border.setId("main");
@@ -39,8 +37,7 @@ public class Menu extends Page {
 	 *
 	 * @return The newly created VBox.
 	 */
-	protected VBox createButtonVBox()
-	{
+	protected VBox createButtonVBox() {
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
@@ -78,10 +75,9 @@ public class Menu extends Page {
 	 * Create a button for use in the application.
 	 *
 	 * @param title The button text.
-	 * @return      The newly created button.
+	 * @return The newly created button.
 	 */
-	protected Button createButton(String title)
-	{
+	protected Button createButton(String title) {
 		Button button = new Button(title);
 		button.setMinSize(150, 60);
 		button.getStyleClass().add("button");
