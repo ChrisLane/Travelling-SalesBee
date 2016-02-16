@@ -30,10 +30,8 @@ public class Menu extends Page {
 		// stage-ify!
 		setScene(scene);
 		setMinHeight(height);
-		setMaxHeight(height);
 		setMinWidth(width);
-		setMaxWidth(width);
-		show();
+		setResizable(false);
 	}
 
 	/**

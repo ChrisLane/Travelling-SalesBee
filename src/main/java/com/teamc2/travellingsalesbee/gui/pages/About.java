@@ -23,8 +23,7 @@ public class About extends Page {
 		setScene(scene);
 		setTitle("Travelling Salesbee");
 		setMinHeight(height);
-		setMaxHeight(height);
 		setMinWidth(width);
-		setMaxWidth(width);
+		setResizable(false);
 	}
 }
