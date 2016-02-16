@@ -71,20 +71,7 @@ public class TSB extends JFrame implements Observer {
 						.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
 		contentPane.setBackground(new Color(71, 35, 35));
-
 		contentPane.setLayout(gl_contentPane);
-	}
-
-	public static void addTiledBgImg(JPanel panel, Image img, int width, int height) { //Adds tiles image to panel and returns it
-		for (int x = 0; x < 3840; x += width) {
-			for (int y = 0; y < 2160; y += height) {
-				JLabel bg = new JLabel(new ImageIcon(img));
-
-				bg.setBounds(x, y, width, height); //Grass.jpg has dimensions of: 257 x 172
-				panel.add(bg);
-			}
-		}
-
 	}
 
 	@Override
