@@ -8,15 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class About extends Page {
-	protected int height;
-	protected int width;
 
-	public About(int height, int width)
+	public About(String title, int height, int width)
 	{
-		super();
-		this.height = height;
-		this.width = width;
-		setTitle("About");
+		super(title, height, width);
 	}
 
 	public void bootstrap()
