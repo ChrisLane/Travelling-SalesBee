@@ -32,7 +32,7 @@ public class JfxGuiMenu extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
-		Menu page = new Menu(appHeight, appWidth);
+		Menu page = new Menu("Travelling Salesbee", appHeight, appWidth);
 		page.bootstrap();
 		page.show();
 	}

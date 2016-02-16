@@ -12,15 +12,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Menu extends Page {
-	protected int height;
-	protected int width;
 
-	public Menu(int height, int width)
+	public Menu(String title, int height, int width)
 	{
-		super();
-		this.height = height;
-		this.width = width;
-		setTitle("About");
+		super(title, height, width);
 	}
 
 	public void bootstrap()
@@ -38,7 +33,6 @@ public class Menu extends Page {
 
 		// stage-ify!
 		setScene(scene);
-		setTitle("Travelling Salesbee");
 		setMinHeight(height);
 		setMaxHeight(height);
 		setMinWidth(width);
@@ -94,7 +88,7 @@ public class Menu extends Page {
 		Button aboutButton = createButton("About");
 		aboutButton.setOnAction(event -> {
 			System.out.println("<new window - about>");
-			About page = new About(height, width);
+			About page = new About("About", height, width);
 			page.bootstrap();
 			page.show();
 		});
