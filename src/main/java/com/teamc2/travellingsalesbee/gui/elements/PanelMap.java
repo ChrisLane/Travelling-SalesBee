@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class PanelMap extends JPanel {
-	private int gridWidth;
-	private int gridHeight;
+	private final int gridWidth;
+	private final int gridHeight;
 
 	public PanelMap(int gridWidth, int gridHeight) {
 		this.gridWidth = gridWidth;

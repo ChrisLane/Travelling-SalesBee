@@ -12,12 +12,12 @@ import java.io.IOException;
 
 public class CellDrag extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
-	private DragSource source;
-	private TransferHandler transHandler;
-	private int width;
-	private int height;
+	private final DragSource source;
+	private final TransferHandler transHandler;
+	private final int width;
+	private final int height;
 	private JPanel panel;
-	private String type;
+	private final String type;
 
 	public CellDrag(String name, int width, int height, String type) {
 		super(name);

@@ -11,10 +11,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bee extends Observable {
 
-	private Cell hive;
+	private final Cell hive;
 	private ArrayList<Cell> path = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
-	private Map map;
+	private final Map map;
 
 	public Bee(Map map, CellHive hive, int experiments) {
 		this.map = map;

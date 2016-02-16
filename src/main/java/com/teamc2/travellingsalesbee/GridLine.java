@@ -7,10 +7,10 @@ import java.awt.geom.Line2D;
 public class GridLine extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private float x1;
-	private float y1;
-	private float x2;
-	private float y2;
+	private final float x1;
+	private final float y1;
+	private final float x2;
+	private final float y2;
 
 	public GridLine(float x1, float y1, float x2, float y2) {
 		this.x1 = x1;
