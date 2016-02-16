@@ -14,9 +14,9 @@ import java.util.Observer;
 
 public class TSB extends JFrame implements Observer {
 
-	private JPanel contentPane;
-	private int width = 50;
-	private int height = 50;
+	private final JPanel contentPane;
+	private final int width = 50;
+	private final int height = 50;
 	private boolean hiveSet = false;
 
 	/**
@@ -31,7 +31,7 @@ public class TSB extends JFrame implements Observer {
 		contentPane.setBackground(new Color(71, 35, 35));
 		setContentPane(contentPane);
 
-		JPanel panelMap = new PanelMap(width, height);
+		PanelMap panelMap = new PanelMap(width, height);
 		JPanel panelToolbox = new PanelToolbox(panelMap);
 		JPanel panelSettings = new PanelSettings(panelMap);
 

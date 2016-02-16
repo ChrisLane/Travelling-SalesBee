@@ -12,14 +12,14 @@ import java.io.IOException;
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
-	private JPanel parent;
-	private int width;
-	private int height;
+	private final JPanel parent;
+	private final int width;
+	private final int height;
 
-	public PanelToolbox(JPanel parent) {
+	public PanelToolbox(PanelMap parent) {
 		this.parent = parent;
-		this.width = parent.getWidth();
-		this.height = parent.getHeight();
+		this.width = parent.getGridWidth();
+		this.height = parent.getGridHeight();
 		setBackground(Color.WHITE);
 
 		JTextArea txtrDragElementsOnto = new JTextArea();
