@@ -26,7 +26,7 @@ public class PanelToolbox extends JPanel {
 		txtrDragElementsOnto.setEditable(false);
 		txtrDragElementsOnto.setWrapStyleWord(true);
 		txtrDragElementsOnto.setLineWrap(true);
-		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
+		txtrDragElementsOnto.setText("Toolbox");
 
 		GroupLayout gl_panel_toolbox = new GroupLayout(this);
 		gl_panel_toolbox.setHorizontalGroup(
