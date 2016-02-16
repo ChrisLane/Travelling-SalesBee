@@ -41,19 +41,13 @@ public class Menu extends Page {
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
-		simButton.setOnAction(event -> {
-			System.out.println("<close window, bootstrap & run simulation>");
-		});
+		simButton.setOnAction(event -> System.out.println("<close window, bootstrap & run simulation>"));
 
 		Button docButton = createButton("Documentation");
-		docButton.setOnAction(event -> {
-			System.out.println("<new window - documentation>");
-		});
+		docButton.setOnAction(event -> System.out.println("<new window - documentation>"));
 
 		Button faqButton = createButton("FAQ");
-		faqButton.setOnAction(event -> {
-			System.out.println("<new window - faq>");
-		});
+		faqButton.setOnAction(event -> System.out.println("<new window - faq>"));
 
 		Button aboutButton = createButton("About");
 		aboutButton.setOnAction(event -> {
