@@ -17,8 +17,6 @@ public class PanelMap extends JPanel {
 		this.width = width;
 		this.height = height;
 
-
-
 		genGrid();
 		setLayout(null);
 	}
@@ -27,9 +25,11 @@ public class PanelMap extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		try {
-			Image img = ImageIO.read(new File("target/classes/backgrounds/Grass.jpg"));
-			g.drawImage(img, 0, 0, null);
-			// TODO: Background needs tiling
+			Graphics2D g2 = (Graphics2D) g;
+			BufferedImage img = ImageIO.read(new File("target/classes/backgrounds/Grass.jpg"));
+			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(0, 0, getParent().getWidth(), getParent().getHeight()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
