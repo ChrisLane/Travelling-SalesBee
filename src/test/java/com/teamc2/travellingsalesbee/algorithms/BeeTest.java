@@ -24,7 +24,7 @@ public class BeeTest {
 		map.setCell(0, 6, Cell.CellType.FLOWER); // flower 2
 		map.setCell(2, 6, Cell.CellType.FLOWER); // flower 3
 
-		bee = new Bee(map, map.getHive(), 5);
+		bee = new Bee(map, 5);
 	}
 
 	@DataProvider(name = "paths")

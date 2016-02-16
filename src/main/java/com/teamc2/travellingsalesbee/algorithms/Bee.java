@@ -16,9 +16,9 @@ public class Bee extends Observable {
 	private double cost = Double.MAX_VALUE;
 	private final Map map;
 
-	public Bee(Map map, CellHive hive, int experiments) {
+	public Bee(Map map, int experiments) {
 		this.map = map;
-		this.hive = hive;
+		hive = map.getHive();
 
 		naiveRun();
 		//System.out.println("Naive Run: " + this.cost);
