@@ -81,7 +81,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	/**
 	 * Method to place a draggable cell in the gridmap
 	 *
-	 * @param arg0. The Drag event initiated by the user dragging a CellDrag button.
+	 * @param arg0 The Drag event initiated by the user dragging a CellDrag button.
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
