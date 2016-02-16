@@ -6,7 +6,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
 import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
+import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
 
 import java.awt.*;
 import java.io.File;
@@ -49,10 +51,8 @@ public class TSB extends JFrame implements Observer {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JPanel panel_toolbox = new JPanel();
-		panel_toolbox.setBackground(Color.WHITE);
-
-		JPanel panel_gridmap = new JPanel();
+		JPanel panel_gridmap = new PanelMap(width, height);
+		JPanel panel_toolbox = new PanelToolbox(panel_gridmap, width, height);
 		JPanel panel_settings = new PanelSettings(panel_gridmap);
 
 		//ADD GRID TO THE GRIDMAP
@@ -75,50 +75,8 @@ public class TSB extends JFrame implements Observer {
 						.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
 
-		panel_gridmap = genGrid(panel_gridmap);
-		panel_gridmap.setLayout(null);
-
-
-		JTextArea txtrDragElementsOnto = new JTextArea();
-		txtrDragElementsOnto.setEditable(false);
-		txtrDragElementsOnto.setWrapStyleWord(true);
-		txtrDragElementsOnto.setLineWrap(true);
-		txtrDragElementsOnto.setText("Drag elements onto the gridmap!");
-
-		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
-		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
-		try {
-			Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
-			Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-
-			Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
-			Image scaledHiveImg = hiveImg.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-
-
-			flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
-			hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		flowerToolCell.setPanel(panel_gridmap);
-		flowerToolCell.setBounds(0, 150, width, height);
-		hiveToolCell.setPanel(panel_gridmap);
-		hiveToolCell.setBounds(0, 155 + height, width, height);
-		panel_toolbox.add(flowerToolCell);
-		panel_toolbox.add(hiveToolCell);
-		System.out.println(panel_gridmap.getX());
 
 		/*****BACKGROUNDS*****/
-		//Adding background to panel_gridmap and tiling it using a nested for loop
-		Image background;
-		try {
-			background = ImageIO.read(new File("target/classes/backgrounds/Grass.jpg"));
-			addTiledBgImg(panel_gridmap, background, 256, 172);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		//Background Images for Toolbox
 		Image toolbox;
 		try {
@@ -136,91 +94,13 @@ public class TSB extends JFrame implements Observer {
 			addTiledBgImg(panel_settings, settings, 150, 150);
 
 
-			final JPanel finalGridmap = panel_gridmap;
-
-
 			//Background image for mother panel
 			contentPane.setBackground(new Color(71, 35, 35));
 
-			GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
-			gl_panel_toolbox.setHorizontalGroup(
-					gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-							.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-			);
-			gl_panel_toolbox.setVerticalGroup(
-					gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_panel_toolbox.createSequentialGroup()
-									.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addContainerGap(330, Short.MAX_VALUE))
-			);
-			panel_toolbox.setLayout(gl_panel_toolbox);
 			contentPane.setLayout(gl_contentPane);
-
-		
-		/*frame.addComponentListener(new ComponentListener() {
-			public void componentResized(ComponentEvent e) {
-		        // do stuff           
-		    	System.out.println("Window is re-sized");
-		    }
-
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				
-			}
-
-			@Override
-			public void componentShown(ComponentEvent e) {
-				
-			}
-		});*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public JPanel genGrid(JPanel panel_gridmap) {
-		int widthCount = 0; //Keeps track of current horizontal line we're drawing
-		int heightCount = 0;//Keeps track of current vertical we're drawing
-
-		//Gets the width and height of the users screen
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;
-
-		//Custom translucent colour
-		Color lineColor = new Color(255, 255, 255, 65);
-
-		//While the widthCount is less than the width of the users screen, draw horizontal lines
-		while (widthCount < screenWidth) {
-
-			@SuppressWarnings("serial")
-			GridLine gridLine = new GridLine(widthCount, 0, widthCount, Integer.MAX_VALUE);
-			gridLine.setBackground(lineColor);
-			gridLine.setBounds(widthCount, 0, 3, Integer.MAX_VALUE);
-			panel_gridmap.add(gridLine);
-
-			widthCount += width;
-		}
-
-		//While the heightCount is less than the height of the users screen, draw vertical lines
-		while (heightCount < screenHeight) {
-
-
-			@SuppressWarnings("serial")
-			GridLine gridLine = new GridLine(0, heightCount, Integer.MAX_VALUE, heightCount);
-			gridLine.setBackground(lineColor);
-			gridLine.setBounds(0, heightCount, Integer.MAX_VALUE, 3);
-			panel_gridmap.add(gridLine);
-
-			heightCount += height;
-		}
-		return panel_gridmap;
 	}
 
 	public static void addTiledBgImg(JPanel panel, Image img, int width, int height) { //Adds tiles image to panel and returns it
