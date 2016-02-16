@@ -6,7 +6,6 @@ import java.awt.geom.Line2D;
 
 public class GridLine extends JPanel {
 
-	private static final long serialVersionUID = 1L;
 	private final float x1;
 	private final float y1;
 	private final float x2;
