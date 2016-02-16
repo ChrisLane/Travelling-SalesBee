@@ -94,9 +94,11 @@ public class BeeTest {
 		Assert.assertEquals(bee.calculatePathCost(path), cost);
 	}
 
-	@Test(enabled = false, dependsOnMethods = {"testSetPath", "testSetPathCost"})
-	public void testExperimentalRuns() throws Exception {
-
+	@Test(dataProvider = "paths", dependsOnMethods = {"testSetPath", "testSetPathCost", "testGetPathCost"})
+	public void testExperimentalRuns(ArrayList<Cell> path, double cost) throws Exception {
+		bee.setPath(path, cost);
+		bee.experimentalRuns(20);
+		Assert.assertTrue(bee.getPathCost() <= cost);
 	}
 
 	@Test(dataProvider = "paths")
