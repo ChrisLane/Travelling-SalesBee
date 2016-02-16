@@ -9,15 +9,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static java.awt.Image.SCALE_SMOOTH;
+
 public class PanelToolbox extends JPanel {
 	private JPanel parent;
 	private int width;
 	private int height;
 
-	public PanelToolbox(JPanel parent, int width, int height) {
+	public PanelToolbox(JPanel parent) {
 		this.parent = parent;
-		this.width = width;
-		this.height = height;
+		this.width = parent.getWidth();
+		this.height = parent.getHeight();
 		setBackground(Color.WHITE);
 
 		JTextArea txtrDragElementsOnto = new JTextArea();
@@ -63,10 +65,10 @@ public class PanelToolbox extends JPanel {
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
 		try {
 			Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
-			Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+			Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 			Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
-			Image scaledHiveImg = hiveImg.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+			Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 
 			flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
@@ -75,6 +77,7 @@ public class PanelToolbox extends JPanel {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+
 		flowerToolCell.setPanel(parent);
 		flowerToolCell.setBounds(0, 150, width, height);
 		hiveToolCell.setPanel(parent);

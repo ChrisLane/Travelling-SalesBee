@@ -46,7 +46,7 @@ public class TSB extends JFrame implements Observer {
 		setContentPane(contentPane);
 
 		JPanel panelMap = new PanelMap(width, height);
-		JPanel panelToolbox = new PanelToolbox(panelMap, width, height);
+		JPanel panelToolbox = new PanelToolbox(panelMap);
 		JPanel panelSettings = new PanelSettings(panelMap);
 
 		//ADD GRID TO THE GRIDMAP

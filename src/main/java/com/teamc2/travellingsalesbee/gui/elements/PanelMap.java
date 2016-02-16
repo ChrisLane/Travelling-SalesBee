@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class PanelMap extends JPanel {
-	private int width;
-	private int height;
+	private int gridWidth;
+	private int gridHeight;
 
-	public PanelMap(int width, int height) {
-		this.width = width;
-		this.height = height;
+	public PanelMap(int gridWidth, int gridHeight) {
+		this.gridWidth = gridWidth;
+		this.gridHeight = gridHeight;
 
 		genGrid();
 		setLayout(null);
@@ -35,11 +35,19 @@ public class PanelMap extends JPanel {
 		}
 	}
 
+	public int getGridHeight() {
+		return gridHeight;
+	}
+
+	public int getGridWidth() {
+		return gridWidth;
+	}
+
 	public void genGrid() {
 		int widthCount = 0; //Keeps track of current horizontal line we're drawing
 		int heightCount = 0;//Keeps track of current vertical we're drawing
 
-		//Gets the width and height of the users screen
+		//Gets the gridWidth and gridHeight of the users screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
@@ -47,24 +55,24 @@ public class PanelMap extends JPanel {
 		//Custom translucent colour
 		Color lineColor = new Color(255, 255, 255, 65);
 
-		//While the widthCount is less than the width of the users screen, draw horizontal lines
+		//While the widthCount is less than the gridWidth of the users screen, draw horizontal lines
 		while (widthCount < screenWidth) {
 			GridLine gridLine = new GridLine(widthCount, 0, widthCount, Integer.MAX_VALUE);
 			gridLine.setBackground(lineColor);
 			gridLine.setBounds(widthCount, 0, 3, Integer.MAX_VALUE);
 			add(gridLine);
 
-			widthCount += width;
+			widthCount += gridWidth;
 		}
 
-		//While the heightCount is less than the height of the users screen, draw vertical lines
+		//While the heightCount is less than the gridHeight of the users screen, draw vertical lines
 		while (heightCount < screenHeight) {
 			GridLine gridLine = new GridLine(0, heightCount, Integer.MAX_VALUE, heightCount);
 			gridLine.setBackground(lineColor);
 			gridLine.setBounds(0, heightCount, Integer.MAX_VALUE, 3);
 			add(gridLine);
 
-			heightCount += height;
+			heightCount += gridHeight;
 		}
 	}
 }
