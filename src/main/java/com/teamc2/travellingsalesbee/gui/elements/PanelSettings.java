@@ -19,8 +19,8 @@ public class PanelSettings extends JPanel {
 		this.parent = parent;
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
-
 		addSettingsInfo();
+		addButtons();
 	}
 
 	@Override
