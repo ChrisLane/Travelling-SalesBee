@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.GridLine;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,11 +9,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
 
 
 public class PanelMap extends JPanel {
 	private final int gridWidth;
 	private final int gridHeight;
+	
+	private ArrayList<Cell> beePath = new ArrayList<Cell>();
 
 	/**
 	 * PanelMap. The gridmap 
@@ -33,14 +38,20 @@ public class PanelMap extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		try {
-			Graphics2D g2 = (Graphics2D) g;
+		Graphics2D g2 = (Graphics2D) g;
+		try {			
 			BufferedImage img = ImageIO.read(new File("target/classes/backgrounds/Grass.jpg"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		
+		if(beePath.size() > 0) {
+			g2.setPaint(Color.yellow);
+			g2.setStroke(new BasicStroke(5));
+			g2.drawLine(0, 0, 500, 500);
 		}
 	}
 
@@ -58,6 +69,12 @@ public class PanelMap extends JPanel {
 	 */
 	public int getGridWidth() {
 		return gridWidth;
+	}
+	
+	public void setPath(ArrayList<Cell> path) {
+		this.beePath = path;
+		
+		this.repaint();
 	}
 
 	/**
