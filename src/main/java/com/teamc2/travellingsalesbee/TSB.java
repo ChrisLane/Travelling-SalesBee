@@ -14,9 +14,6 @@ import java.util.Observer;
 
 public class TSB extends JFrame implements Observer {
 
-	/**
-	 *
-	 */
 	private JPanel contentPane;
 	private int width = 50;
 	private int height = 50;
@@ -45,32 +42,32 @@ public class TSB extends JFrame implements Observer {
 		setBounds(100, 100, 756, 489);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(71, 35, 35));
 		setContentPane(contentPane);
 
-		JPanel panel_gridmap = new PanelMap(width, height);
-		JPanel panel_toolbox = new PanelToolbox(panel_gridmap, width, height);
-		JPanel panel_settings = new PanelSettings(panel_gridmap);
+		JPanel panelMap = new PanelMap(width, height);
+		JPanel panelToolbox = new PanelToolbox(panelMap, width, height);
+		JPanel panelSettings = new PanelSettings(panelMap);
 
 		//ADD GRID TO THE GRIDMAP
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(panel_toolbox, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel_settings, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
-										.addComponent(panel_gridmap, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)))
+										.addComponent(panelSettings, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+										.addComponent(panelMap, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)))
 		);
 		gl_contentPane.setVerticalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(panel_gridmap, GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+								.addComponent(panelMap, GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(panel_settings, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-						.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+								.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
-		contentPane.setBackground(new Color(71, 35, 35));
 		contentPane.setLayout(gl_contentPane);
 	}
 
