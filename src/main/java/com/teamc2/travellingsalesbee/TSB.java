@@ -6,20 +6,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell.CellType;
+import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class TSB extends JFrame implements Observer {
 
@@ -59,12 +52,10 @@ public class TSB extends JFrame implements Observer {
 		JPanel panel_toolbox = new JPanel();
 		panel_toolbox.setBackground(Color.WHITE);
 
-		JPanel panel_settings = new JPanel();
-		panel_settings.setBackground(Color.LIGHT_GRAY);
-
+		JPanel panel_gridmap = new JPanel();
+		JPanel panel_settings = new PanelSettings(panel_gridmap);
 
 		//ADD GRID TO THE GRIDMAP
-		JPanel panel_gridmap = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -85,12 +76,6 @@ public class TSB extends JFrame implements Observer {
 		);
 
 		panel_gridmap = genGrid(panel_gridmap);
-
-		panel_settings.setLayout(null);
-
-		JLabel lblSettingsBoxWe = new JLabel("Settings box, we also need to choose a background image for this");
-		lblSettingsBoxWe.setBounds(10, 11, 350, 14);
-		panel_settings.add(lblSettingsBoxWe);
 		panel_gridmap.setLayout(null);
 
 
@@ -114,6 +99,7 @@ public class TSB extends JFrame implements Observer {
 			hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
 
 		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 		flowerToolCell.setPanel(panel_gridmap);
 		flowerToolCell.setBounds(0, 150, width, height);
@@ -149,72 +135,27 @@ public class TSB extends JFrame implements Observer {
 			settings = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
 			addTiledBgImg(panel_settings, settings, 150, 150);
 
-			
+
 			final JPanel finalGridmap = panel_gridmap;
-			
-			JButton btnNewButton = new JButton("RUN");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				
-					int panelWidth = finalGridmap.getWidth();
-					int panelHeight = finalGridmap.getHeight();
-					
-					System.out.print(panelWidth);
-					System.out.print(panelHeight);
-					System.out.println("Button pressed!");
-					
-					//Gets the amount of cells respective to the width and height of the map
-					Map map = new Map(panelWidth, panelHeight); //Initialising Map with cellsX and cellsY as width and height of map
-					
-					for(Component c : finalGridmap.getComponents()) {
-						if(c instanceof CellDrag) {
-							if(c.isEnabled() && ((CellDrag) c).getType().equals("FLOWER")) {
-								System.out.println("c.getX(): " + c.getX() + "c.getY(): " + c.getY());
-								System.out.println("Width of panel: " + finalGridmap.getWidth() + ", height of panel: " + finalGridmap.getHeight());
-								
-								map.setCell(c.getX(), c.getY(), CellType.FLOWER); //Add flower positions to map
-								
-							} else if(c.isEnabled() && ((CellDrag) c).getType().equals("HIVE")) {
-								
-								map.setCell(c.getX(), c.getY(), CellType.HIVE); //Add hive position to map
-								
-							}
-						}
-					}
-					
-					Bee bee = new Bee(map, map.getHive(), 26);
-					ArrayList <Cell> beePath =  bee.getPath();
-					System.out.println(bee.getPathCost());
-					
-					for (Cell cell : beePath) {
-						System.out.println(cell.x/50 + " " + cell.y/50);
-					}
-				}
-			});
-			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-			btnNewButton.setBounds(481, 7, 93, 29);
-			panel_settings.add(btnNewButton);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		//Background image for mother panel
-		contentPane.setBackground(new Color(71, 35, 35));
 
-		GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
-		gl_panel_toolbox.setHorizontalGroup(
-				gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-		);
-		gl_panel_toolbox.setVerticalGroup(
-				gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_toolbox.createSequentialGroup()
-								.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addContainerGap(330, Short.MAX_VALUE))
-		);
-		panel_toolbox.setLayout(gl_panel_toolbox);
-		contentPane.setLayout(gl_contentPane);
+			//Background image for mother panel
+			contentPane.setBackground(new Color(71, 35, 35));
+
+			GroupLayout gl_panel_toolbox = new GroupLayout(panel_toolbox);
+			gl_panel_toolbox.setHorizontalGroup(
+					gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
+							.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+			);
+			gl_panel_toolbox.setVerticalGroup(
+					gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_toolbox.createSequentialGroup()
+									.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addContainerGap(330, Short.MAX_VALUE))
+			);
+			panel_toolbox.setLayout(gl_panel_toolbox);
+			contentPane.setLayout(gl_contentPane);
 
 		
 		/*frame.addComponentListener(new ComponentListener() {
@@ -238,6 +179,9 @@ public class TSB extends JFrame implements Observer {
 				
 			}
 		});*/
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public JPanel genGrid(JPanel panel_gridmap) {
