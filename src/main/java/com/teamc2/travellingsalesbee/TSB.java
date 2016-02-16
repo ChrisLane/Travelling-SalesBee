@@ -20,20 +20,6 @@ public class TSB extends JFrame implements Observer {
 	private boolean hiveSet = false;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				TSB frame = new TSB();
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public TSB() {
@@ -69,6 +55,20 @@ public class TSB extends JFrame implements Observer {
 						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+			try {
+				TSB frame = new TSB();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@Override

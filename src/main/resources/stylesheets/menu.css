@@ -10,22 +10,20 @@
 
 .button {
     -fx-background-radius: 3px;
-    -fx-background-color:
-            linear-gradient(#f0ff35, #ffeb05),
-            radial-gradient(center 50% -40%, radius 200%, #eee11d 45%, #c8a324 50%);
+    -fx-background-color: linear-gradient(#f0ff35, #ffeb05),
+    radial-gradient(center 50% -40%, radius 200%, #eee11d 45%, #c8a324 50%);
     -fx-background-insets: 1, 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0.0, 0, 1);
     -fx-text-fill: #395306;
 }
 
 .button:pressed {
     -fx-background-insets: 1, 2, 1, 2;
-    -fx-background-color:
-            linear-gradient(#aab030, #b6a205),
-            radial-gradient(center 50% -40%, radius 200%, #a89b1a 45%, #83671b 50%);
+    -fx-background-color: linear-gradient(#aab030, #b6a205),
+    radial-gradient(center 50% -40%, radius 200%, #a89b1a 45%, #83671b 50%);
     -fx-padding: 2 0 0 2;
 }
 
 .button Text {
-    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.9), 1, 0.0, 0, 1);
 }

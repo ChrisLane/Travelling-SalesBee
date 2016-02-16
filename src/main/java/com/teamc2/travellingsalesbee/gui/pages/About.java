@@ -5,13 +5,11 @@ import javafx.scene.layout.BorderPane;
 
 public class About extends Page {
 
-	public About(String title, int height, int width)
-	{
+	public About(String title, int height, int width) {
 		super(title, height, width);
 	}
 
-	public void bootstrap()
-	{
+	public void bootstrap() {
 		// create the border pane
 		BorderPane border = new BorderPane();
 		border.setId("about");
