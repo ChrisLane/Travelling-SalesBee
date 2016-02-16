@@ -49,9 +49,20 @@ public class PanelMap extends JPanel {
 		}
 		
 		if(beePath.size() > 0) {
-			g2.setPaint(Color.yellow);
-			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(0, 0, 500, 500);
+			
+			int x1, x2, y1, y2;
+			
+			for(int i = 0; i < beePath.size()-1; i++) {
+				
+				x1 = (int) beePath.get(i).x;
+				y1 = (int) beePath.get(i).y;
+				x2 = (int) beePath.get(i+1).x;
+				y2 = (int) beePath.get(i+1).y;
+				
+				g2.setPaint(Color.yellow);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawLine(x1+25, y1+25, x2+25, y2+25);
+			}
 		}
 	}
 
