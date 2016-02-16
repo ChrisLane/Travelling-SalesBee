@@ -1,18 +1,14 @@
 package com.teamc2.travellingsalesbee;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-
 import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
 import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -74,33 +70,9 @@ public class TSB extends JFrame implements Observer {
 								.addComponent(panel_settings, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
 						.addComponent(panel_toolbox, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
+		contentPane.setBackground(new Color(71, 35, 35));
 
-
-		/*****BACKGROUNDS*****/
-		//Background Images for Toolbox
-		Image toolbox;
-		try {
-			toolbox = ImageIO.read(new File("target/classes/backgrounds/BrownBack150.png"));
-			addTiledBgImg(panel_toolbox, toolbox, 150, 150);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		//Background image for Settings
-		Image settings;
-		try {
-			settings = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
-			addTiledBgImg(panel_settings, settings, 150, 150);
-
-
-			//Background image for mother panel
-			contentPane.setBackground(new Color(71, 35, 35));
-
-			contentPane.setLayout(gl_contentPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		contentPane.setLayout(gl_contentPane);
 	}
 
 	public static void addTiledBgImg(JPanel panel, Image img, int width, int height) { //Adds tiles image to panel and returns it

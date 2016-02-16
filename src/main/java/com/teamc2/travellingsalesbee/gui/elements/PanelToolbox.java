@@ -5,6 +5,7 @@ import com.teamc2.travellingsalesbee.CellDrag;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,6 +42,20 @@ public class PanelToolbox extends JPanel {
 		setLayout(gl_panel_toolbox);
 
 		addTools();
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		try {
+			Graphics2D g2 = (Graphics2D) g;
+			BufferedImage img = ImageIO.read(new File("target/classes/backgrounds/BrownBack150.png"));
+			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void addTools() {

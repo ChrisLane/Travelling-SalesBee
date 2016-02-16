@@ -4,8 +4,12 @@ import com.teamc2.travellingsalesbee.CellDrag;
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
@@ -17,6 +21,20 @@ public class PanelSettings extends JPanel {
 		setLayout(null);
 
 		addSettingsInfo();
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		try {
+			Graphics2D g2 = (Graphics2D) g;
+			BufferedImage img = ImageIO.read(new File("target/classes/backgrounds/GreyBack150.png"));
+			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void addSettingsInfo() {
