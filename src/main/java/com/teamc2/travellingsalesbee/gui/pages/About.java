@@ -7,11 +7,11 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AboutPage extends Page {
+public class About extends Page {
 	protected int height;
 	protected int width;
 
-	public AboutPage(int height, int width)
+	public About(int height, int width)
 	{
 		super();
 		this.height = height;
