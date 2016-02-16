@@ -72,7 +72,7 @@ public class PanelSettings extends JPanel {
 				}
 			}
 
-			Bee bee = new Bee(map, map.getHive(), 26);
+			Bee bee = new Bee(map, 26);
 			ArrayList<Cell> beePath = bee.getPath();
 			System.out.println(bee.getPathCost());
 
