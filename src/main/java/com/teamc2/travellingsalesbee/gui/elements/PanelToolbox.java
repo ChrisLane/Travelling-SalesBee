@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-import com.teamc2.travellingsalesbee.CellDrag;
+import com.teamc2.travellingsalesbee.gui.CellDrag;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

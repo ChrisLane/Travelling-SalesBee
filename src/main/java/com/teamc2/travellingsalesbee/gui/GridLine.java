@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee;
+package com.teamc2.travellingsalesbee.gui;
 
 import javax.swing.*;
 import java.awt.*;
