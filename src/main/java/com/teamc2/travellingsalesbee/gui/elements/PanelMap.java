@@ -17,7 +17,7 @@ public class PanelMap extends JPanel {
 	private final int gridWidth;
 	private final int gridHeight;
 	
-	private ArrayList<Cell> beePath = new ArrayList<Cell>();
+	private ArrayList<Cell> beePath = new ArrayList<>();
 
 	/**
 	 * PanelMap. The gridmap 
