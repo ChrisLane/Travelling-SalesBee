@@ -1,5 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.pages;
 
+import com.teamc2.travellingsalesbee.TSB;
+import com.teamc2.travellingsalesbee.gui.JfxGuiMenu;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,7 +44,11 @@ public class Menu extends Page {
 		VBox vBox = new VBox();
 
 		Button simButton = createButton("Run Simulation");
-		simButton.setOnAction(event -> System.out.println("<close window, bootstrap & run simulation>"));
+		simButton.setOnAction(event -> {
+			TSB.main(JfxGuiMenu.getArgs());
+			Platform.setImplicitExit(false);
+			hide();
+		});
 
 		Button docButton = createButton("Documentation");
 		docButton.setOnAction(event -> System.out.println("<new window - documentation>"));
@@ -51,7 +58,6 @@ public class Menu extends Page {
 
 		Button aboutButton = createButton("About");
 		aboutButton.setOnAction(event -> {
-			System.out.println("<new window - about>");
 			About page = new About("About", height, width);
 			page.bootstrap();
 			page.show();

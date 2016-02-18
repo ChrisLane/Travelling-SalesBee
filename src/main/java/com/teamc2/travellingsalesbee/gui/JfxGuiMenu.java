@@ -19,11 +19,17 @@ public class JfxGuiMenu extends Application {
 	protected final int appHeight = 768;
 
 	/**
+	 * Program arguments.
+	 */
+	protected static String[] args;
+
+	/**
 	 * Main method.
 	 *
 	 * @param args Program arguments.
 	 */
 	public static void main(String[] args) {
+		JfxGuiMenu.args = args;
 		launch(args);
 	}
 
@@ -35,5 +41,9 @@ public class JfxGuiMenu extends Application {
 		Menu page = new Menu("Travelling Salesbee", appHeight, appWidth);
 		page.bootstrap();
 		page.show();
+	}
+
+	public static String[] getArgs() {
+		return args;
 	}
 }
