@@ -62,7 +62,7 @@ public class BeeTest {
 	/**
 	 * Test that each flower is contained in the path generated
 	 */
-	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost"})
+	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost", "testCalculatePathCost"})
 	public void testNaiveRun() throws Exception {
 		// TODO: Change this to include the hive
 		// Set the path to empty
