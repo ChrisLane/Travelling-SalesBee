@@ -21,8 +21,8 @@ public class PanelMap extends JPanel {
 
 	/**
 	 * PanelMap. The gridmap 
-	 * @param gridWidth. The width of the gridmap.
-	 * @param gridHeight. The height of the gridmap.
+	 * @param gridWidth The width of the gridmap.
+	 * @param gridHeight The height of the gridmap.
 	 */
 	public PanelMap(int gridWidth, int gridHeight) {
 		this.gridWidth = gridWidth;
