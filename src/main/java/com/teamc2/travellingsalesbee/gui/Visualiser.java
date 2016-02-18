@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee;
+package com.teamc2.travellingsalesbee.gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -18,10 +18,8 @@ import javax.swing.border.EmptyBorder;
 import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
 import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
-import javax.swing.JSlider;
-import javax.swing.JLabel;
 
-public class TSB extends JFrame implements Observer {
+public class Visualiser extends JFrame implements Observer {
 
 	private final JPanel contentPane;
 	private final int width = 50;
@@ -33,7 +31,7 @@ public class TSB extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public TSB() {
+	public Visualiser() {
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(300, 300, 956, 689);
@@ -79,7 +77,7 @@ public class TSB extends JFrame implements Observer {
 		int roundWidth = 50;
 		EventQueue.invokeLater(() -> {
 			try {
-				TSB frame = new TSB();
+				Visualiser frame = new Visualiser();
 				frame.setVisible(true);
 				
 				//Listener to implement correct resizing so the gridmap keeps it's grid proportion

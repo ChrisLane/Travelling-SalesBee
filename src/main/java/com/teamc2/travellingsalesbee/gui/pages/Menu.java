@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.pages;
 
-import com.teamc2.travellingsalesbee.TSB;
-import com.teamc2.travellingsalesbee.gui.JfxGuiMenu;
+import com.teamc2.travellingsalesbee.gui.Visualiser;
+import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,7 +45,7 @@ public class Menu extends Page {
 
 		Button simButton = createButton("Run Simulation");
 		simButton.setOnAction(event -> {
-			TSB.main(JfxGuiMenu.getArgs());
+			Visualiser.main(TravellingSalesBee.getArgs());
 			Platform.setImplicitExit(false);
 			hide();
 		});
