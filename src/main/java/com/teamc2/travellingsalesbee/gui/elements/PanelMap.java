@@ -50,8 +50,8 @@ public class PanelMap extends JPanel {
 		
 		if(beePath.size() > 0) {
 			
-			int x1, x2, y1, y2;
-			int transparencyIncrement = Math.round(180/beePath.size());
+			int x1, x2=0, y1, y2=0;
+			int transparencyIncrement = Math.round(170/beePath.size());
 			int transparency = 0;
 			
 			for(int i = 0; i < beePath.size()-1; i++) {
@@ -72,6 +72,9 @@ public class PanelMap extends JPanel {
 				
 				transparency += transparencyIncrement;
 			}
+			g2.setPaint(new Color(255, 255,0,75 + transparency+10));
+			g2.setStroke(new BasicStroke(5));
+			g2.drawLine(x2+(50/2), y2+(50/2), (int)beePath.get(0).x+(50/2), (int)beePath.get(0).y+(50/2));
 		}
 	}
 
