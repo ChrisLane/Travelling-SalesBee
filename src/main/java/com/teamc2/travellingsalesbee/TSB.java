@@ -18,6 +18,8 @@ import javax.swing.border.EmptyBorder;
 import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
 import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
+import javax.swing.JSlider;
+import javax.swing.JLabel;
 
 public class TSB extends JFrame implements Observer {
 
@@ -64,6 +66,7 @@ public class TSB extends JFrame implements Observer {
 								.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
 						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
 		);
+		
 		contentPane.setLayout(gl_contentPane);
 	}
 
