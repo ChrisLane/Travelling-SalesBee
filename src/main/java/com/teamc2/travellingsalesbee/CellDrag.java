@@ -178,7 +178,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				filepath = "";
 		}
 		Image img = ImageIO.read(new File(filepath));
-		return img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		return img.getScaledInstance(width-5, height-5, Image.SCALE_SMOOTH);
 	}
 
 	private boolean hiveExists(JPanel panel) {
