@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.algorithms;
 import com.teamc2.travellingsalesbee.gui.elements.Map;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
 
 import java.util.ArrayList;
 import java.util.Observable;
