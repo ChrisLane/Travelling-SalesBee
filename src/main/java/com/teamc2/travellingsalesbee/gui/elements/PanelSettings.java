@@ -6,11 +6,18 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelSettings extends JPanel {
 	private final JPanel parent;
@@ -18,6 +25,9 @@ public class PanelSettings extends JPanel {
 	private ArrayList<Cell> path;
 
 	private ArrayList<Cell> beePath;
+	private JLabel infoLabel;
+	
+	private int experimentalRuns = 26; //Set to 26 by default
 	
 	/**
 	 * @param parent Parent panel
@@ -28,7 +38,6 @@ public class PanelSettings extends JPanel {
 		this.gridmap = gridmap;
 		
 		setBackground(Color.LIGHT_GRAY);
-		setLayout(null);
 		addSettingsInfo();
 		addButtons();
 	}
@@ -48,9 +57,7 @@ public class PanelSettings extends JPanel {
 	}
 
 	public void addSettingsInfo() {
-		JLabel infoLabel = new JLabel("Settings box, we also need to choose a background image for this");
-		infoLabel.setBounds(10, 11, 350, 14);
-		add(infoLabel);
+		infoLabel = new JLabel("Settings box, we also need to choose a background image for this");
 	}
 	
 	public ArrayList<Cell> getPath() {
@@ -58,8 +65,8 @@ public class PanelSettings extends JPanel {
 	}
 
 	public void addButtons() {
-		JButton btnNewButton = new JButton("RUN");
-		btnNewButton.addActionListener(arg0 -> {
+		JButton btnRun = new JButton("RUN");
+		btnRun.addActionListener(arg0 -> {
 			
 			//Get parent width and height
 			int panelWidth = parent.getWidth();
@@ -84,7 +91,7 @@ public class PanelSettings extends JPanel {
 			}
 
 			System.out.println("Pre-Bee"); //USE ATLEAST 3 FLOWERS
-			Bee bee = new Bee(map, 26);
+			Bee bee = new Bee(map, experimentalRuns);
 			System.out.println("pre path = bee");
 			path = bee.getPath();
 			this.gridmap.setPath(path);
@@ -92,10 +99,76 @@ public class PanelSettings extends JPanel {
 			
 		});
 
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(481, 7, 93, 29);
-
-		add(btnNewButton);
+		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JSlider slider = new JSlider();
+		slider.setValue(experimentalRuns);
+		JLabel lblExperimentRuns = new JLabel("Experiment Runs:");
+		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
+		
+		slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				System.out.println("Slider Changed");
+				slider.setValue(slider.getValue());
+				lblNoOfRuns.setText("" + slider.getValue());
+				experimentalRuns = slider.getValue();
+			}
+			
+		});
+		
+		JTextPane txtpnTextWillAppear = new JTextPane();
+		txtpnTextWillAppear.setText("Text will appear here as you step through the algorithm, explaining how it works at each step");
+		
+		JButton btnPrev = new JButton("<-");
+		JButton btnNext = new JButton("->");
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(infoLabel, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblExperimentRuns)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNoOfRuns))
+						.addComponent(slider, GroupLayout.PREFERRED_SIZE, 457, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnRun, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+							.addComponent(btnPrev)
+							.addGap(18)
+							.addComponent(btnNext))
+						.addComponent(txtpnTextWillAppear, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(infoLabel)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblExperimentRuns)
+						.addComponent(lblNoOfRuns))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(211, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnPrev, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnRun))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtpnTextWillAppear, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		setLayout(groupLayout);
 	}
-
 }
