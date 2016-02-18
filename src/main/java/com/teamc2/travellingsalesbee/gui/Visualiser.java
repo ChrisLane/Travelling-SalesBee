@@ -79,6 +79,7 @@ public class Visualiser extends JFrame implements Observer {
 		EventQueue.invokeLater(() -> {
 			try {
 				Visualiser frame = new Visualiser();
+				frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);
 				
 				//Listener to implement correct resizing so the gridmap keeps it's grid proportion
