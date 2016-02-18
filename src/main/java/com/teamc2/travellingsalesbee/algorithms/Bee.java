@@ -26,33 +26,32 @@ public class Bee extends Observable {
 	}
 
 	public void naiveRun() {
-		ArrayList<Cell> newPath = new ArrayList<>();
-		ArrayList<CellFlower> flowers = map.getFlowers();
-		int cost = 0;
+		if (!(hive == null)) {
+			ArrayList<Cell> newPath = new ArrayList<>();
+			ArrayList<CellFlower> flowers = map.getFlowers();
 
-		newPath.add(hive);
+			newPath.add(hive);
 
-		// Loop over flowers missing from path
-		while (!flowers.isEmpty()) {
-			double bestDistance = Double.MAX_VALUE;
-			CellFlower closest = null;
+			// Loop over flowers missing from path
+			while (!flowers.isEmpty()) {
+				double bestDistance = Double.MAX_VALUE;
+				CellFlower closest = null;
 
-			// Find the closest flower to the previous
-			for (CellFlower flower : flowers) {
-				double distance = flower.distance(newPath.get(newPath.size() - 1));
-				if (distance < bestDistance) {
-					closest = flower;
-					bestDistance = distance;
+				// Find the closest flower to the previous
+				for (CellFlower flower : flowers) {
+					double distance = flower.distance(newPath.get(newPath.size() - 1));
+					if (distance < bestDistance) {
+						closest = flower;
+						bestDistance = distance;
+					}
 				}
+				newPath.add(closest);
+				flowers.remove(closest);
 			}
 
-			cost += bestDistance;
-			newPath.add(closest);
-			flowers.remove(closest);
+			double cost = calculatePathCost(newPath);
+			setPath(newPath, cost);
 		}
-		double distance = hive.distance(newPath.get(newPath.size() - 1));
-		cost += distance;
-		setPath(newPath, cost);
 	}
 
 	private void experimentalRun() {
