@@ -1,15 +1,12 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.CellDrag;
-import com.teamc2.travellingsalesbee.GridLine;
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.awt.geom.Line2D.Double;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
