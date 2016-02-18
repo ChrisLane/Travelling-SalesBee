@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-import com.teamc2.travellingsalesbee.GridLine;
+import com.teamc2.travellingsalesbee.gui.GridLine;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
