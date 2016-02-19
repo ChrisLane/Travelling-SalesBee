@@ -8,10 +8,19 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Base page class.
+ */
 public abstract class Page extends Stage {
 	protected final int height;
 	protected final int width;
 
+	/**
+	 * Creates a page as a stage, with a given window title, window height, and window width.
+	 * @param title  The window title.
+	 * @param height The window height.
+	 * @param width  The window width.
+	 */
 	public Page(String title, int height, int width) {
 		super();
 		this.height = height;
@@ -19,6 +28,12 @@ public abstract class Page extends Stage {
 		setTitle(title);
 	}
 
+	/**
+	 * Create the scene for the stage.
+	 *
+	 * @param borderPane The BorderPane to use in the scene.
+	 * @return           The newly created scene.
+	 */
 	protected Scene createScene(BorderPane borderPane) {
 		Scene scene = new Scene(borderPane, width, height);
 		File file = new File("target/classes/stylesheets/menu.css");
