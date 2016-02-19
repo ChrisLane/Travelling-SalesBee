@@ -10,12 +10,18 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * A class for generating and viewing the menu page.
+ */
 public class Menu extends Page {
 
 	public Menu(String title, int height, int width) {
 		super(title, height, width);
 	}
 
+	/**
+	 * Bootstraps the page.
+	 */
 	public void bootstrap() {
 		// create the border pane
 		BorderPane border = new BorderPane();

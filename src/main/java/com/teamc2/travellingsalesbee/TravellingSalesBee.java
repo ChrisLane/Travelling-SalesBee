@@ -43,6 +43,11 @@ public class TravellingSalesBee extends Application {
 		page.show();
 	}
 
+	/**
+	 * Get the program arguments.
+	 *
+	 * @return The program arguments.
+	 */
 	public static String[] getArgs() {
 		return args;
 	}
