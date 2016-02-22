@@ -4,8 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -17,6 +15,7 @@ public abstract class Page extends Stage {
 
 	/**
 	 * Creates a page as a stage, with a given window title, window height, and window width.
+	 *
 	 * @param title  The window title.
 	 * @param height The window height.
 	 * @param width  The window width.
@@ -32,18 +31,12 @@ public abstract class Page extends Stage {
 	 * Create the scene for the stage.
 	 *
 	 * @param borderPane The BorderPane to use in the scene.
-	 * @return           The newly created scene.
+	 * @return The newly created scene.
 	 */
 	protected Scene createScene(BorderPane borderPane) {
 		Scene scene = new Scene(borderPane, width, height);
-		File file = new File("target/classes/stylesheets/menu.css");
-		try {
-			URL url = file.toURI().toURL();
-			scene.getStylesheets().add(url.toExternalForm());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
+		URL url = this.getClass().getResource("/assets/stylesheets/menu.css");
+		scene.getStylesheets().add(url.toExternalForm());
 
 		return scene;
 	}

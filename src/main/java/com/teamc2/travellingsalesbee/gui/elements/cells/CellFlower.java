@@ -20,7 +20,7 @@ public class CellFlower extends Cell {
 	public BufferedImage getImage() {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("target/classes/icons/Flower.png"));
+			image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
