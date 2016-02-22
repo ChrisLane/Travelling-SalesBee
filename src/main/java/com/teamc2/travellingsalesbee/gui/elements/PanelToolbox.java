@@ -51,7 +51,7 @@ public class PanelToolbox extends JPanel {
 		super.paintComponent(g);
 		try {
 			Graphics2D g2 = (Graphics2D) g;
-			BufferedImage img = ImageIO.read(new File("target/classes/backgrounds/BrownBack150.png"));
+			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/BrownBack150.png"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
@@ -63,11 +63,12 @@ public class PanelToolbox extends JPanel {
 	public void addTools() {
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
+
 		try {
-			Image flowerImg = ImageIO.read(new File("target/classes/icons/Flower.png"));
+			Image flowerImg = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 			Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
-			Image hiveImg = ImageIO.read(new File("target/classes/icons/Hive.png"));
+			Image hiveImg = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
 			Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 

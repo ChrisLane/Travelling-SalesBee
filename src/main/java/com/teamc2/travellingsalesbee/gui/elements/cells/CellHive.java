@@ -20,7 +20,7 @@ public class CellHive extends Cell {
 	public BufferedImage getImage() {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("target/classes/icons/Hive.png"));
+			image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

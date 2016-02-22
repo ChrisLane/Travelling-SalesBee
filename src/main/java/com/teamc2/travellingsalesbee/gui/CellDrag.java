@@ -156,15 +156,15 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		String filepath;
 		switch (type) {
 			case "FLOWER":
-				filepath = "target/classes/icons/Flower.png";
+				filepath = "/assets/icons/Flower.png";
 				break;
 			case "HIVE":
-				filepath = "target/classes/icons/Hive.png";
+				filepath = "/assets/icons/Hive.png";
 				break;
 			default:
 				filepath = "";
 		}
-		Image img = ImageIO.read(new File(filepath));
+		Image img = ImageIO.read(this.getClass().getResource(filepath));
 		return img.getScaledInstance(width-5, height-5, Image.SCALE_SMOOTH);
 	}
 
