@@ -18,9 +18,10 @@ public class PanelMap extends JPanel {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 
 	/**
-	 * PanelMap. The gridmap 
-	 * @param gridWidth The width of the gridmap.
-	 * @param gridHeight The height of the gridmap.
+	 * Create the map panel
+	 *
+	 * @param gridWidth Width of the grid sections
+	 * @param gridHeight Height of the grid sections
 	 */
 	public PanelMap(int gridWidth, int gridHeight) {
 		this.gridWidth = gridWidth;
@@ -31,7 +32,7 @@ public class PanelMap extends JPanel {
 	}
 
 	/**
-	 * Method to paint the grass texture onto the back of the gridmap.
+	 * Paint the grass texture onto the map and the grid
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -79,21 +80,28 @@ public class PanelMap extends JPanel {
 	}
 
 	/**
-	 * 
-	 * @return gridHeight. The height of the grid.
+	 * Return the height of grid sections
+	 *
+	 * @return Height of grid sections
 	 */
 	public int getGridHeight() {
 		return gridHeight;
 	}
 	
 	/**
-	 * 
-	 * @return gridWidth. The width of the grid.
+	 * Return the width of grid sections
+	 *
+	 * @return Width of grid sections
 	 */
 	public int getGridWidth() {
 		return gridWidth;
 	}
-	
+
+	/**
+	 * Set the path in algorithms
+	 *
+	 * @param path Path to set in algorithms
+	 */
 	public void setPath(ArrayList<Cell> path) {
 		this.beePath = path;
 		
@@ -101,7 +109,7 @@ public class PanelMap extends JPanel {
 	}
 
 	/**
-	 * Method to create the gridlines that together form the grid.
+	 * Generate the grid lines that together form the grid.
 	 */
 	public void genGrid() {
 		int widthCount = 0; //Keeps track of current horizontal line we're drawing
