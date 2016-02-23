@@ -16,6 +16,11 @@ public class PanelToolbox extends JPanel {
 	private final int width;
 	private final int height;
 
+	/**
+	 * Create a toolbox panel
+	 *
+	 * @param parent The parent panel
+	 */
 	public PanelToolbox(PanelMap parent) {
 		this.parent = parent;
 		this.width = parent.getGridWidth();
@@ -46,6 +51,9 @@ public class PanelToolbox extends JPanel {
 		addTools();
 	}
 
+	/**
+	 * Set the background for the toolbox panel
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -60,6 +68,9 @@ public class PanelToolbox extends JPanel {
 		}
 	}
 
+	/**
+	 * Add all tools for the toolbox
+	 */
 	public void addTools() {
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
