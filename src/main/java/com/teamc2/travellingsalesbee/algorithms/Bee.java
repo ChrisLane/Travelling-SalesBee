@@ -77,8 +77,8 @@ public class Bee extends Observable {
 			int flowerPos2 = 0;
 
 			while (flowerPos1 == flowerPos2) {
-				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
-				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
+				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
 			}
 
 			Cell flower1 = testPath.get(flowerPos1);
