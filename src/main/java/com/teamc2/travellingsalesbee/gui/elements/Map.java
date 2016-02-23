@@ -64,7 +64,7 @@ public class Map extends JPanel {
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell
-	 * @return
+	 * @return Cell at (x, y)
 	 */
 	public Cell getCell(int x, int y) {
 		return cells[x][y];
