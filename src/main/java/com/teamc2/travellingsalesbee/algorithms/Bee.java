@@ -15,6 +15,12 @@ public class Bee extends Observable {
 	private double cost = Double.MAX_VALUE;
 	private final Map map;
 
+	/**
+	 * Constructor
+	 *
+	 * @param map Map object for storing cells
+	 * @param experiments Number of experiments to run
+	 */
 	public Bee(Map map, int experiments) {
 		this.map = map;
 		hive = map.getHive();
@@ -25,6 +31,9 @@ public class Bee extends Observable {
 		//System.out.println("Post-Experimental Run: " + this.cost);
 	}
 
+	/**
+	 * Run a naive path find.
+	 */
 	public void naiveRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
@@ -54,6 +63,9 @@ public class Bee extends Observable {
 		}
 	}
 
+	/**
+	 * Runs an experimental path improvement check
+	 */
 	private void experimentalRun() {
 		if (path.isEmpty()) {
 			naiveRun();
@@ -84,10 +96,21 @@ public class Bee extends Observable {
 		}
 	}
 
+	/**
+	 * A method for retrieving the path of the current path
+	 *
+	 * @return Cost of the current path
+	 */
 	public double getPathCost() {
 		return cost;
 	}
 
+	/**
+	 * Calculate the cost for a given path
+	 *
+	 * @param path The path to calculate the cost for
+	 * @return Cost of the path
+	 */
 	public double calculatePathCost(ArrayList<Cell> path) {
 		double cost = 0;
 		for (int i = 0; i < path.size(); i++) {
@@ -101,6 +124,11 @@ public class Bee extends Observable {
 		return cost;
 	}
 
+	/**
+	 * Run experimental tests on the path, a given number of times
+	 *
+	 * @param experiments Number of experimental runs
+	 */
 	public void experimentalRuns(int experiments) {
 		while (experiments > 0) {
 			experimentalRun();
@@ -108,6 +136,12 @@ public class Bee extends Observable {
 		}
 	}
 
+	/**
+	 * Set the current path
+	 *
+	 * @param path Path to be set
+	 * @param cost Cost of the path being set
+	 */
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
 		this.cost = cost;
@@ -116,6 +150,11 @@ public class Bee extends Observable {
 		notifyObservers(path);
 	}
 
+	/**
+	 * Return the current path
+	 *
+	 * @return Current path
+	 */
 	public ArrayList<Cell> getPath() {
 		return path;
 	}
