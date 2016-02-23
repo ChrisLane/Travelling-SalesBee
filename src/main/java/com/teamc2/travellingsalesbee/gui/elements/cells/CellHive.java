@@ -7,15 +7,27 @@ import java.io.IOException;
 
 public class CellHive extends Cell {
 
+	/**
+	 * Create a new hive cell
+	 *
+	 * @param x X position of cell
+	 * @param y Y position of cell
+	 */
 	public CellHive(double x, double y) {
 		super(x, y);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public CellType getType() {
 		return CellType.HIVE;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BufferedImage getImage() {
 		BufferedImage image = null;
