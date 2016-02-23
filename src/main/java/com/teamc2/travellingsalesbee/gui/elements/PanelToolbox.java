@@ -16,11 +16,6 @@ public class PanelToolbox extends JPanel {
 	private final int width;
 	private final int height;
 
-	/**
-	 * Create a toolbox panel
-	 *
-	 * @param parent The parent panel
-	 */
 	public PanelToolbox(PanelMap parent) {
 		this.parent = parent;
 		this.width = parent.getGridWidth();
@@ -51,9 +46,6 @@ public class PanelToolbox extends JPanel {
 		addTools();
 	}
 
-	/**
-	 * Set the background for the toolbox panel
-	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -68,9 +60,6 @@ public class PanelToolbox extends JPanel {
 		}
 	}
 
-	/**
-	 * Add all tools for the toolbox
-	 */
 	public void addTools() {
 		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
 		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
@@ -90,10 +79,13 @@ public class PanelToolbox extends JPanel {
 			ex.printStackTrace();
 		}
 
-		flowerToolCell.setPanel(parent);
-		flowerToolCell.setBounds(0, 150, width, height);
+
+		//Add buttons to the toolbox
 		hiveToolCell.setPanel(parent);
-		hiveToolCell.setBounds(0, 155 + width, width, height);
+		hiveToolCell.setBounds(0, 150 , 100, 100);
+
+		flowerToolCell.setPanel(parent);
+		flowerToolCell.setBounds(0, 160 + width, 100, 100);
 
 		add(flowerToolCell);
 		add(hiveToolCell);
