@@ -7,15 +7,27 @@ import java.io.IOException;
 
 public class CellFlower extends Cell {
 
+	/**
+	 * Create a new flower cell
+	 *
+	 * @param x X position of cell
+	 * @param y Y position of cell
+	 */
 	public CellFlower(double x, double y) {
 		super(x, y);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public CellType getType() {
 		return CellType.FLOWER;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BufferedImage getImage() {
 		BufferedImage image = null;
