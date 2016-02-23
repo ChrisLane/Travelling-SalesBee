@@ -7,12 +7,9 @@ import java.awt.event.ComponentListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
@@ -33,6 +30,19 @@ public class Visualiser extends JFrame implements Observer {
 	 */
 	public Visualiser() {
 
+		//Set the UIManager look and feel to the system default
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(300, 300, 956, 689);
 		contentPane = new JPanel();
@@ -40,11 +50,11 @@ public class Visualiser extends JFrame implements Observer {
 		contentPane.setBackground(new Color(71, 35, 35));
 		setContentPane(contentPane);
 
+
 		PanelMap panelMap = new PanelMap(width, height);
 		this.panelMap = panelMap;
 		JPanel panelToolbox = new PanelToolbox(panelMap);
 		JPanel panelSettings = new PanelSettings(panelMap, panelMap);
-
 		//ADD GRID TO THE GRIDMAP
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
