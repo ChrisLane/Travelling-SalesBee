@@ -30,6 +30,8 @@ public class PanelSettings extends JPanel {
 	private int experimentalRuns = 26; //Set to 26 by default
 	
 	/**
+	 * Create a settings panel
+	 *
 	 * @param parent Parent panel
 	 * @param gridmap Gridmap panel
 	 */
@@ -42,6 +44,9 @@ public class PanelSettings extends JPanel {
 		addButtons();
 	}
 
+	/**
+	 * Add the background to the settings panel
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -56,6 +61,9 @@ public class PanelSettings extends JPanel {
 		}
 	}
 
+	/**
+	 * Add information on how to use the settings panel
+	 */
 	public void addSettingsInfo() {
 		infoLabel = new JLabel("Settings box, we also need to choose a background image for this");
 	}
@@ -64,6 +72,9 @@ public class PanelSettings extends JPanel {
 		return path;
 	}
 
+	/**
+	 * Add the settings buttons to the panel
+	 */
 	public void addButtons() {
 		JButton btnRun = new JButton("RUN");
 		btnRun.addActionListener(arg0 -> {
