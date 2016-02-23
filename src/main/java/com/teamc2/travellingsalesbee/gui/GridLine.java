@@ -31,6 +31,4 @@ public class GridLine extends JPanel {
 	public Dimension getPreferredSize() {
 		return new Dimension(300, 300);
 	}
-
-
 }
