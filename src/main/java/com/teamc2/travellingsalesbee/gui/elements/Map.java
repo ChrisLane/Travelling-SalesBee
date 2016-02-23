@@ -36,10 +36,20 @@ public class Map extends JPanel {
 
 	//GET METHODS
 
+	/**
+	 * Return all cells in the map
+	 *
+	 * @return 2D array of cells in the map
+	 */
 	public Cell[][] getCells() {
 		return cells;
 	}
 
+	/**
+	 * Return all flowers in the map
+	 *
+	 * @return ArrayList of flowers in the map
+	 */
 	public ArrayList<CellFlower> getFlowers() {
 		ArrayList<CellFlower> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
@@ -52,6 +62,13 @@ public class Map extends JPanel {
 		return flowers;
 	}
 
+	/**
+	 * Get the cell at position (x, y)
+	 *
+	 * @param x X position of cell
+	 * @param y Y position of cell
+	 * @return
+	 */
 	public Cell getCell(int x, int y) {
 		return cells[x][y];
 	}
@@ -59,7 +76,11 @@ public class Map extends JPanel {
 	//SET METHODS
 
 	/**
-	 * Adds a new cell to the grid map at x, y
+	 * Set the type of a cell at position (x, y)
+	 *
+	 * @param x X position of cell
+	 * @param y Y position of cell
+	 * @param type Type of cell
 	 */
 	public void setCell(int x, int y, CellType type) {
 		switch (type) {
@@ -77,20 +98,27 @@ public class Map extends JPanel {
 		}
 	}
 
-
+	/**
+	 * Set a cell at position (x, y) to empty
+	 *
+	 * @param x X position of cell
+	 * @param y Y position of cell
+	 */
 	public void clearCell(int x, int y) {
 		setCell(x, y, EMPTY);
 	}
 
 	/**
-	 * Sets the speed for the bees to move at
+	 * Set the speed of the map's visualisation
+	 *
+	 * @param speed Speed of the visualisation
 	 */
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
 	/**
-	 * Reset the current map
+	 * Fill the map will empty cels
 	 */
 	public void setMap() {
 		for (int i = 0; i < width; i++) {
@@ -100,6 +128,11 @@ public class Map extends JPanel {
 		}
 	}
 
+	/**
+	 * Return the hive for the map
+	 *
+	 * @return Map's hive cell
+	 */
 	public CellHive getHive() {
 		return hive;
 	}
