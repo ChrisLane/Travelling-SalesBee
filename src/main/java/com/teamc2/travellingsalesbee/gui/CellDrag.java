@@ -7,7 +7,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
-import java.io.File;
 import java.io.IOException;
 
 public class CellDrag extends JButton implements Transferable, DragSourceListener, DragGestureListener {
@@ -19,6 +18,14 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private JPanel panel;
 	private final String type;
 
+	/**
+	 * Create a new cell drag object
+	 *
+	 * @param name   Name of the cell
+	 * @param width  Width of the cell
+	 * @param height Height of the cell
+	 * @param type   Type of the cell
+	 */
 	public CellDrag(String name, int width, int height, String type) {
 		super(name);
 		this.width = width;
@@ -43,21 +50,33 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object getTransferData(DataFlavor flavour) throws UnsupportedFlavorException, IOException {
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public DataFlavor[] getTransferDataFlavors() {
 		return new DataFlavor[]{new DataFlavor(CellDrag.class, "JButton")};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isDataFlavorSupported(DataFlavor flavour) {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
 		System.out.println("Drag Gesture Recognised");
@@ -66,9 +85,9 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	}
 
 	/**
-	 * Method to place a draggable cell in the gridmap
+	 * Method to place a draggable cell in the map
 	 *
-	 * @param arg0 The Drag event initiated by the user dragging a CellDrag button.
+	 * @param arg0 Drag event initiated by the user dragging a CellDrag button.
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
@@ -148,10 +167,22 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		System.out.println("changed");
 	}
 
+	/**
+	 * Set the panel for the cell
+	 *
+	 * @param panel Panel to set for the cell
+	 */
 	public void setPanel(JPanel panel) {
 		this.panel = panel;
 	}
 
+	/**
+	 * Get the image for this type of cell
+	 *
+	 * @param type Type of cell
+	 * @return The cell image
+	 * @throws IOException
+	 */
 	public Image getImage(String type) throws IOException {
 		String filepath;
 		switch (type) {
@@ -165,10 +196,15 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				filepath = "";
 		}
 		Image img = ImageIO.read(this.getClass().getResource(filepath));
-		return img.getScaledInstance(width-5, height-5, Image.SCALE_SMOOTH);
+		return img.getScaledInstance(width - 5, height - 5, Image.SCALE_SMOOTH);
 	}
 
-	private boolean hiveExists(JPanel panel) {
+	/**
+	 * Set the hive for a given panel
+	 *
+	 * @param panel Panel to set the hive in
+	 */
+	private void hiveExists(JPanel panel) {
 		for (Component c : panel.getComponents()) {
 			if (c instanceof CellDrag) {
 				if (c.isEnabled() && ((CellDrag) c).getType().equals("HIVE")) {
@@ -177,7 +213,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 				}
 			}
 		}
-		return false;
 	}
 
 	private void cellFull(JPanel panel, int x, int y) {
@@ -191,8 +226,12 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 		}
 	}
 
+	/**
+	 * Get the type of the cell
+	 *
+	 * @return Type of the cell
+	 */
 	public String getType() {
 		return this.type;
 	}
-
 }
