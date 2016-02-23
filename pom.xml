@@ -26,6 +26,7 @@
 
     <build>
         <plugins>
+            <!-- Compiler Settings -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -36,6 +37,8 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
+
+            <!-- Jar Generation -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -48,6 +51,8 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- Jar Obfuscation -->
             <plugin>
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
