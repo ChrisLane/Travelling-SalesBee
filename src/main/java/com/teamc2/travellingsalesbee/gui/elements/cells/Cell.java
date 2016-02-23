@@ -28,6 +28,4 @@ public abstract class Cell extends Point2D.Double {
 	 * @return Cell image
 	 */
 	protected abstract BufferedImage getImage();
-
-	public enum CellType {EMPTY, FLOWER, HIVE}
 }

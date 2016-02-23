@@ -1,10 +1,7 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
 import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellComparator;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.elements.cells.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -19,10 +16,10 @@ public class BeeTest {
 	@BeforeClass
 	public void initialise() {
 		map = new Map(10, 10);
-		map.setCell(0, 0, Cell.CellType.HIVE);
-		map.setCell(0, 2, Cell.CellType.FLOWER); // flower 1
-		map.setCell(0, 6, Cell.CellType.FLOWER); // flower 2
-		map.setCell(2, 6, Cell.CellType.FLOWER); // flower 3
+		map.setCell(0, 0, CellType.HIVE);
+		map.setCell(0, 2, CellType.FLOWER); // flower 1
+		map.setCell(0, 6, CellType.FLOWER); // flower 2
+		map.setCell(2, 6, CellType.FLOWER); // flower 3
 
 		bee = new Bee(map, 5);
 	}
