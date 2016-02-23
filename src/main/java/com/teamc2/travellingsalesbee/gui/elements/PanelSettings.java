@@ -3,6 +3,7 @@ package com.teamc2.travellingsalesbee.gui.elements;
 import com.teamc2.travellingsalesbee.gui.CellDrag;
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellType;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -94,9 +95,9 @@ public class PanelSettings extends JPanel {
 			for (Component c : parent.getComponents()) {
 				if (c instanceof CellDrag) {
 					if (c.isEnabled() && ((CellDrag) c).getType().equals("FLOWER")) {
-						map.setCell(c.getX(), c.getY(), Cell.CellType.FLOWER); //Add flower positions to map
+						map.setCell(c.getX(), c.getY(), CellType.FLOWER); //Add flower positions to map
 					} else if (c.isEnabled() && ((CellDrag) c).getType().equals("HIVE")) {
-						map.setCell(c.getX(), c.getY(), Cell.CellType.HIVE); //Add hive position to map
+						map.setCell(c.getX(), c.getY(), CellType.HIVE); //Add hive position to map
 					}
 				}
 			}

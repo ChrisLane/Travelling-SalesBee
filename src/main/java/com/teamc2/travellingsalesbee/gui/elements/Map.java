@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell.CellType;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellEmpty;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
@@ -11,9 +11,6 @@ import java.util.ArrayList;
 
 public class Map extends JPanel {
 
-	private final CellType EMPTY = CellType.EMPTY;
-	private final CellType HIVE = CellType.HIVE;
-	private final CellType FLOWER = CellType.FLOWER;
 	private final int width; //Width of map
 	private final int height; //Height of map
 	private int speed; //Speed of bees
@@ -105,7 +102,7 @@ public class Map extends JPanel {
 	 * @param y Y position of cell
 	 */
 	public void clearCell(int x, int y) {
-		setCell(x, y, EMPTY);
+		setCell(x, y, CellType.EMPTY);
 	}
 
 	/**
