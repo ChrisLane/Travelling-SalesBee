@@ -138,9 +138,8 @@ public class PanelMap extends JPanel {
 	 * @param path Path to set in algorithms
 	 */
 	public void setPath(ArrayList<Cell> path) {
-		this.beePath = path;
-
-		this.repaint();
+		beePath = path;
+		repaint();
 	}
 
 	/**
