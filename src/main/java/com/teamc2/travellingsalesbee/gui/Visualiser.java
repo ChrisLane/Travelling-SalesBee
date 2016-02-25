@@ -67,6 +67,8 @@ public class Visualiser extends JFrame implements Observer {
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args The runtime arguments for the application.
 	 */
 	public static void main(String[] args) {
 		// Temporary variables, should be removed and replaced for width and height when not in static main.
