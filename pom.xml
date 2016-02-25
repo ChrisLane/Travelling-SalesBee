@@ -60,7 +60,9 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>proguard</goal></goals>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
                     </execution>
                 </executions>
                 <configuration>
