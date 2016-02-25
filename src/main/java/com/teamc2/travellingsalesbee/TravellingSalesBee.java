@@ -11,17 +11,17 @@ public class TravellingSalesBee extends Application {
 	/**
 	 * Program arguments.
 	 */
-	protected static String[] args;
+	private static String[] args;
 
 	/**
 	 * Fixed width of the window/application.
 	 */
-	protected final int appWidth = 700;
+	private final int appWidth = 700;
 
 	/**
 	 * Fixed height of the window/application.
 	 */
-	protected final int appHeight = 768;
+	private final int appHeight = 768;
 
 	/**
 	 * Main method.
