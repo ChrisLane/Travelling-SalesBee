@@ -9,14 +9,19 @@ import javafx.scene.layout.BorderPane;
 public class About extends Page {
 
 	/**
-	 * @see com.teamc2.travellingsalesbee.gui.pages.Page#Page
+	 * Creates a page as a stage, with a given window title, window height, and window width.
+	 *
+	 * @param title  The window title.
+	 * @param height The window height.
+	 * @param width  The window width.
+	 * @see Page#Page(String, int, int)
 	 */
 	public About(String title, int height, int width) {
 		super(title, height, width);
 	}
 
 	/**
-	 * @see PageInterface#bootstrap()
+	 * {@inheritDoc}
 	 */
 	public void bootstrap() {
 		// create the border pane
