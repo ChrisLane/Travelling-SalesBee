@@ -43,6 +43,8 @@ public class TravellingSalesBee extends Application {
 	}
 
 	/**
+	 * <p>Start the program, showing the main menu.</p>
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
