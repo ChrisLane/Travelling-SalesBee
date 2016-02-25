@@ -15,20 +15,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Visualiser extends JFrame implements Observer {
-
-	private final static int roundingFactor = 50;
-	private static PanelMap panelMap;
-	private final JPanel contentPane;
-	private final int width = 50;
-	private final int height = 50;
-	private boolean hiveSet = false;
-
 	/**
 	 * Create the frame.
 	 */
-	public Visualiser() {
+	private Visualiser() {
 
-		//Set the UIManager look and feel to the system default
+		// Set the UIManager look and feel to the system default
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -37,17 +29,19 @@ public class Visualiser extends JFrame implements Observer {
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(300, 300, 956, 689);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(71, 35, 35));
 		setContentPane(contentPane);
 
 
+		int width = 50;
+		int height = 50;
 		PanelMap panelMap = new PanelMap(width, height);
-		this.panelMap = panelMap;
 		JPanel panelToolbox = new PanelToolbox(panelMap);
 		JPanel panelSettings = new PanelSettings(panelMap, panelMap);
-		//ADD GRID TO THE GRIDMAP
+
+		// Add grid to the map
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -75,7 +69,7 @@ public class Visualiser extends JFrame implements Observer {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		//Temporary variables, should be removed and replaced for width and height when not in static main.
+		// Temporary variables, should be removed and replaced for width and height when not in static main.
 		int roundHeight = 50;
 		int roundWidth = 50;
 		EventQueue.invokeLater(() -> {
@@ -84,27 +78,34 @@ public class Visualiser extends JFrame implements Observer {
 				frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);
 
-				//Listener to implement correct resizing so the gridmap keeps it's grid proportion
+				// Listener to implement correct resizing so that the map keeps it's grid proportion
 				frame.addComponentListener(new ComponentListener() {
+					@Override
 					public void componentResized(ComponentEvent e) {
 						System.out.println("Resized");
-						//frameWidth = snap to the nearest cell width
+						// frameWidth = snap to the nearest cell width
 						int frameWidth = (frame.getWidth() / roundWidth) * roundWidth;
 
-						//frameHeight = snap to the nearest cell Height
+						// frameHeight = snap to the nearest cell Height
 						int frameHeight = (frame.getHeight() / (2 * roundHeight)) * (2 * roundHeight);
 
-						//Resize frame according to the nearest possible snap
+						// Resize frame according to the nearest possible snap
 						frame.setSize(frameWidth, frameHeight);
 					}
 
-					public void componentHidden(ComponentEvent arg0) {
+					@Override
+					public void componentMoved(ComponentEvent e) {
+
 					}
 
-					public void componentMoved(ComponentEvent arg0) {
+					@Override
+					public void componentShown(ComponentEvent e) {
+
 					}
 
-					public void componentShown(ComponentEvent arg0) {
+					@Override
+					public void componentHidden(ComponentEvent e) {
+
 					}
 				});
 			} catch (Exception e) {
