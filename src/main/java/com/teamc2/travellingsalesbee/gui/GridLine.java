@@ -27,7 +27,7 @@ public class GridLine extends JPanel {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Draw the line
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
