@@ -25,6 +25,9 @@ public class PanelSettings extends JPanel {
 	private JLabel infoLabel;
 
 	private int experimentalRuns = 26; //Set to 26 by default
+	
+	// Remove later
+	protected boolean debug = true;
 
 	/**
 	 * Create a settings panel
@@ -80,9 +83,9 @@ public class PanelSettings extends JPanel {
 			int panelWidth = parent.getWidth();
 			int panelHeight = parent.getHeight();
 
-			System.out.print(panelWidth);
-			System.out.print(panelHeight);
-			System.out.println("Button pressed!");
+			if (debug) System.out.print(panelWidth);
+			if (debug) System.out.print(panelHeight);
+			if (debug) System.out.println("Button pressed!");
 
 			//Gets the amount of cells respective to the width and height of the map
 			Map map = new Map(panelWidth, panelHeight); //Initialising Map with cellsX and cellsY as width and height of map
@@ -98,12 +101,12 @@ public class PanelSettings extends JPanel {
 				}
 			}
 
-			System.out.println("Pre-Bee"); //USE ATLEAST 3 FLOWERS
+			if (debug) System.out.println("Pre-Bee"); //USE ATLEAST 3 FLOWERS
 			Bee bee = new Bee(map, experimentalRuns);
-			System.out.println("pre path = bee");
+			if (debug) System.out.println("pre path = bee");
 			path = bee.getPath();
 			this.gridmap.setPath(path);
-			System.out.println("Path Cost: " + bee.getPathCost());
+			if (debug) System.out.println("Path Cost: " + bee.getPathCost());
 
 		});
 
@@ -118,7 +121,7 @@ public class PanelSettings extends JPanel {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				System.out.println("Slider Changed");
+				if (debug ) System.out.println("Slider Changed");
 				slider.setValue(slider.getValue());
 				lblNoOfRuns.setText("" + slider.getValue());
 				experimentalRuns = slider.getValue();
