@@ -181,7 +181,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 *
 	 * @param type Type of cell
 	 * @return The cell image
-	 * @throws IOException
+	 * @throws IOException Exception thrown if the image cannot be retrieved
 	 */
 	public Image getImage(String type) throws IOException {
 		String filepath;
