@@ -16,14 +16,14 @@ import javafx.scene.layout.VBox;
 public class Menu extends Page {
 
 	/**
-	 * {@inheritDoc}
+	 * @see com.teamc2.travellingsalesbee.gui.pages.Page#Page
 	 */
 	public Menu(String title, int height, int width) {
 		super(title, height, width);
 	}
 
 	/**
-	 * Bootstraps the page.
+	 * @see PageInterface#bootstrap()
 	 */
 	public void bootstrap() {
 		// create the border pane

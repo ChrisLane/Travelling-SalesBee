@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * Base page class.
  */
-public abstract class Page extends Stage {
+public abstract class Page extends Stage implements PageInterface {
 	protected final int height;
 	protected final int width;
 
