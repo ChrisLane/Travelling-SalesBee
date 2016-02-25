@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class PanelMap extends JPanel {
 	private final int gridWidth;
 	private final int gridHeight;
-	
+
 	private ArrayList<Cell> beePath = new ArrayList<>();
 
 	/**
 	 * Create the map panel
 	 *
-	 * @param gridWidth Width of the grid sections
+	 * @param gridWidth  Width of the grid sections
 	 * @param gridHeight Height of the grid sections
 	 */
 	public PanelMap(int gridWidth, int gridHeight) {
@@ -46,36 +46,36 @@ public class PanelMap extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		if(beePath.size() > 0) {
-			
-			int x1, x2=0, y1, y2=0;
-			int transparencyIncrement = Math.round(170/beePath.size());
+
+		if (beePath.size() > 0) {
+
+			int x1, x2 = 0, y1, y2 = 0;
+			int transparencyIncrement = Math.round(170 / beePath.size());
 			int transparency = 0;
-			int lineThicknessIncrement = Math.round(4/beePath.size());
+			int lineThicknessIncrement = Math.round(4 / beePath.size());
 			int lineThickness = 5;
-			for(int i = 0; i < beePath.size()-1; i++) {
-				
+			for (int i = 0; i < beePath.size() - 1; i++) {
+
 				x1 = (int) beePath.get(i).x;
 				y1 = (int) beePath.get(i).y;
-				x2 = (int) beePath.get(i+1).x;
-				y2 = (int) beePath.get(i+1).y;
-				Color lineColor = new Color(255, 255,0,75 + transparency);
-				
+				x2 = (int) beePath.get(i + 1).x;
+				y2 = (int) beePath.get(i + 1).y;
+				Color lineColor = new Color(255, 255, 0, 75 + transparency);
+
 				g2.setPaint(lineColor);
 				g2.setStroke(new BasicStroke(lineThickness));
-				g2.drawLine(x1+25, y1+25, x2+25, y2+25);
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 				String position = Integer.toString(i);
 				g2.setPaint(Color.white);
 				g2.setFont(new Font(null, Font.PLAIN, 15));
-				g2.drawString(position, x1+(50/12), y1+(50/4));
-				
+				g2.drawString(position, x1 + (50 / 12), y1 + (50 / 4));
+
 				lineThickness = lineThickness - lineThicknessIncrement;
 				transparency += transparencyIncrement;
 			}
-			g2.setPaint(new Color(255, 255,0,75 + transparency+10));
+			g2.setPaint(new Color(255, 255, 0, 75 + transparency + 10));
 			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(x2+(50/2), y2+(50/2), (int)beePath.get(0).x+(50/2), (int)beePath.get(0).y+(50/2));
+			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 		}
 	}
 
@@ -87,7 +87,7 @@ public class PanelMap extends JPanel {
 	public int getGridHeight() {
 		return gridHeight;
 	}
-	
+
 	/**
 	 * Return the width of grid sections
 	 *
@@ -104,7 +104,7 @@ public class PanelMap extends JPanel {
 	 */
 	public void setPath(ArrayList<Cell> path) {
 		this.beePath = path;
-		
+
 		this.repaint();
 	}
 

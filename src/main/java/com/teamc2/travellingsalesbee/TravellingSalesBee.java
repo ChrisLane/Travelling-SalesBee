@@ -9,6 +9,11 @@ import javafx.stage.Stage;
  */
 public class TravellingSalesBee extends Application {
 	/**
+	 * Program arguments.
+	 */
+	protected static String[] args;
+
+	/**
 	 * Fixed width of the window/application.
 	 */
 	protected final int appWidth = 700;
@@ -17,11 +22,6 @@ public class TravellingSalesBee extends Application {
 	 * Fixed height of the window/application.
 	 */
 	protected final int appHeight = 768;
-
-	/**
-	 * Program arguments.
-	 */
-	protected static String[] args;
 
 	/**
 	 * Main method.
@@ -34,6 +34,15 @@ public class TravellingSalesBee extends Application {
 	}
 
 	/**
+	 * Get the program arguments.
+	 *
+	 * @return The program arguments.
+	 */
+	public static String[] getArgs() {
+		return args;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -41,14 +50,5 @@ public class TravellingSalesBee extends Application {
 		Menu page = new Menu("Travelling Salesbee", appHeight, appWidth);
 		page.bootstrap();
 		page.show();
-	}
-
-	/**
-	 * Get the program arguments.
-	 *
-	 * @return The program arguments.
-	 */
-	public static String[] getArgs() {
-		return args;
 	}
 }

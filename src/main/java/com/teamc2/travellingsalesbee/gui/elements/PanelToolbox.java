@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import static java.awt.Image.SCALE_SMOOTH;
@@ -82,7 +81,7 @@ public class PanelToolbox extends JPanel {
 
 		//Add buttons to the toolbox
 		hiveToolCell.setPanel(parent);
-		hiveToolCell.setBounds(0, 150 , 100, 100);
+		hiveToolCell.setBounds(0, 150, 100, 100);
 
 		flowerToolCell.setPanel(parent);
 		flowerToolCell.setBounds(0, 160 + width, 100, 100);

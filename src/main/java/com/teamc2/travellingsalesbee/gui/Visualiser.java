@@ -1,29 +1,27 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.util.Observable;
-import java.util.Observer;
+import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
+import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
+import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
-import com.teamc2.travellingsalesbee.gui.elements.PanelMap;
-import com.teamc2.travellingsalesbee.gui.elements.PanelSettings;
-import com.teamc2.travellingsalesbee.gui.elements.PanelToolbox;
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.Observable;
+import java.util.Observer;
 
 public class Visualiser extends JFrame implements Observer {
 
+	private final static int roundingFactor = 50;
+	private static PanelMap panelMap;
 	private final JPanel contentPane;
 	private final int width = 50;
 	private final int height = 50;
-	private final static int roundingFactor = 50;
 	private boolean hiveSet = false;
-	private static PanelMap panelMap;
 
 	/**
 	 * Create the frame.
@@ -58,24 +56,24 @@ public class Visualiser extends JFrame implements Observer {
 		//ADD GRID TO THE GRIDMAP
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
-						.addComponent(panelMap, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)))
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+										.addComponent(panelMap, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panelMap, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelSettings, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(105, Short.MAX_VALUE))
-				.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(panelMap, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(panelSettings, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(105, Short.MAX_VALUE))
+						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
 		);
-		
+
 		contentPane.setLayout(gl_contentPane);
 	}
 
@@ -91,24 +89,30 @@ public class Visualiser extends JFrame implements Observer {
 				Visualiser frame = new Visualiser();
 				frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);
-				
+
 				//Listener to implement correct resizing so the gridmap keeps it's grid proportion
 				frame.addComponentListener(new ComponentListener() {
-			        public void componentResized(ComponentEvent e) {
-			            System.out.println("Resized");
-			            //frameWidth = snap to the nearest cell width
-			            int frameWidth = (frame.getWidth()/roundWidth)*roundWidth;
-			            
-			            //frameHeight = snap to the nearest cell Height
-			            int frameHeight = (frame.getHeight()/(2*roundHeight))*(2*roundHeight);
-			            
-			            //Resize frame according to the nearest possible snap
-			            frame.setSize(frameWidth,frameHeight);
-			        }
-			        public void componentHidden(ComponentEvent arg0) {}
-			        public void componentMoved(ComponentEvent arg0) {}
-			        public void componentShown(ComponentEvent arg0) {}
-			    });
+					public void componentResized(ComponentEvent e) {
+						System.out.println("Resized");
+						//frameWidth = snap to the nearest cell width
+						int frameWidth = (frame.getWidth() / roundWidth) * roundWidth;
+
+						//frameHeight = snap to the nearest cell Height
+						int frameHeight = (frame.getHeight() / (2 * roundHeight)) * (2 * roundHeight);
+
+						//Resize frame according to the nearest possible snap
+						frame.setSize(frameWidth, frameHeight);
+					}
+
+					public void componentHidden(ComponentEvent arg0) {
+					}
+
+					public void componentMoved(ComponentEvent arg0) {
+					}
+
+					public void componentShown(ComponentEvent arg0) {
+					}
+				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -15,8 +15,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private final TransferHandler transHandler;
 	private final int width;
 	private final int height;
-	private JPanel panel;
 	private final String type;
+	private JPanel panel;
 
 	/**
 	 * Create a new cell drag object
