@@ -90,9 +90,10 @@ public class Bee extends Observable {
 	
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
-					System.out.println(testCost);
-					System.out.println(cost);
+					System.out.println("PATH CHANGED!");
 					setPath(testPath, testCost);
+				} else {
+					System.out.println("ERROR");
 				}
 				experiments--;
 			}

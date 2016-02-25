@@ -101,12 +101,10 @@ public class PanelSettings extends JPanel {
 				}
 			}
 
-			if (debug) System.out.println("Pre-Bee"); //USE ATLEAST 3 FLOWERS
 			Bee bee = new Bee(map, experimentalRuns);
-			if (debug) System.out.println("pre path = bee");
 			path = bee.getPath();
-			this.gridmap.setPath(path);
-			if (debug) System.out.println("Path Cost: " + bee.getPathCost());
+			gridmap.setPath(path);
+			System.out.println("Path Cost: " + bee.getPathCost());
 
 		});
 
