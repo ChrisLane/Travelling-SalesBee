@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BeeAnimationTest extends JPanel {
+public class BeeAnimation extends JPanel {
     private JPanel map;
     private ArrayList<Cell> list;
     int x = -100, y = 100;
     private int width, height;
 
-    public BeeAnimationTest(JPanel map, ArrayList<Cell> list) {
+    public BeeAnimation(JPanel map, ArrayList<Cell> list) {
         this.map = map;
         this.list = list;
         this.width = map.getWidth();
@@ -48,7 +48,7 @@ public class BeeAnimationTest extends JPanel {
         JFrame jf = new JFrame("East");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setSize(700, 200);
-        jf.add(new BeeAnimationTest());
+        jf.add(new BeeAnimation());
         jf.setVisible(true);
     }*/
 
