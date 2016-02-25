@@ -37,11 +37,11 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			}
 		};
 
-		//Aesthetic code to style buttons correctly.
-		this.setFocusPainted(false);
-		this.setOpaque(false);
-		this.setBorderPainted(false);
-		this.setContentAreaFilled(false);
+		// Aesthetic code to style buttons correctly.
+		setFocusPainted(false);
+		setOpaque(false);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
 
 		setTransferHandler(transHandler);
 
@@ -116,7 +116,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			int x = (int) Math.round((panel.getMousePosition().getX() - (width / 2)) / width) * width;
 			int y = (int) Math.round((panel.getMousePosition().getY() - (height / 2)) / height) * height;
 			cellFull(panel, x, y);
-			//Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
+			// Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);
 			droppedBtn.setPanel(panel);
 			panel.add(droppedBtn);
@@ -124,9 +124,9 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			panel.revalidate();
 			validate();
 			panel.repaint();
-			panel.setComponentZOrder(droppedBtn, 0); //Sets dropped button to be drawn last to the screen and therefor be on top of everything else
+			panel.setComponentZOrder(droppedBtn, 0); // Sets dropped button to be drawn last to the screen and therefor be on top of everything else
 		} catch (NullPointerException | IOException e) {
-			//Deletion for when the cell is dragged off the gridmap panel
+			// Deletion for when the cell is dragged off the gridmap panel
 			this.setEnabled(false);
 			panel.remove(this);
 			panel.revalidate();
