@@ -77,6 +77,41 @@ public class PanelMap extends JPanel {
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 		}
+
+		drawBees(g2);
+	}
+
+	private void drawBees(Graphics g2) {
+		System.out.println("Drawing Bees");
+		/*Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
+		g2.setFont(font);
+		g2.setColor(Color.red);
+		g2.drawString("TEAM C2 ARE DA BEST IN DA WURLDZ", x, y);
+
+		System.out.println("Animation is running");
+
+		try {
+			Thread.sleep(100);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		x+= 10;
+
+		if(x > this.getWidth()) {
+			x = 0;
+		}
+
+		try {
+			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		repaint();*/
 	}
 
 	/**
