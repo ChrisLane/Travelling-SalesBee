@@ -16,11 +16,7 @@ import javafx.scene.layout.VBox;
 public class Menu extends Page {
 
 	/**
-	 * Create a new menu window
-	 *
-	 * @param title Title for the menu
-	 * @param height Height of the menu
-	 * @param width Width of the menu
+	 * {@inheritDoc}
 	 */
 	public Menu(String title, int height, int width) {
 		super(title, height, width);
