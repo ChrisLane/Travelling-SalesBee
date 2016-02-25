@@ -2,7 +2,6 @@ package com.teamc2.travellingsalesbee.gui.elements.cells;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class CellHive extends Cell {

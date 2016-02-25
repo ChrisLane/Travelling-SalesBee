@@ -1,10 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellType;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellEmpty;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.elements.cells.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,14 +9,14 @@ public class Map extends JPanel {
 
 	private final int width; //Width of map
 	private final int height; //Height of map
-	private int speed; //Speed of bees
 	private final Cell[][] cells; //Will store our ElementCells
+	private int speed; //Speed of bees
 	private CellHive hive;
 
 	/**
 	 * Create a new map
 	 *
-	 * @param width Width of the map
+	 * @param width  Width of the map
 	 * @param height Height of the map
 	 */
 	public Map(int width, int height) {
@@ -75,8 +71,8 @@ public class Map extends JPanel {
 	/**
 	 * Set the type of a cell at position (x, y)
 	 *
-	 * @param x X position of cell
-	 * @param y Y position of cell
+	 * @param x    X position of cell
+	 * @param y    Y position of cell
 	 * @param type Type of cell
 	 */
 	public void setCell(int x, int y, CellType type) {
