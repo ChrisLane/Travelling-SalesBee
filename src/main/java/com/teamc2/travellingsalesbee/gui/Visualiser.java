@@ -31,13 +31,7 @@ public class Visualiser extends JFrame implements Observer {
 		//Set the UIManager look and feel to the system default
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
