@@ -9,14 +9,14 @@ import javafx.scene.layout.BorderPane;
 public class About extends Page {
 
 	/**
-	 * {@inheritDoc}
+	 * @see com.teamc2.travellingsalesbee.gui.pages.Page#Page
 	 */
 	public About(String title, int height, int width) {
 		super(title, height, width);
 	}
 
 	/**
-	 * Bootstraps the page.
+	 * @see PageInterface#bootstrap()
 	 */
 	public void bootstrap() {
 		// create the border pane

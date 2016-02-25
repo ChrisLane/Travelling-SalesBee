@@ -5,9 +5,16 @@ package com.teamc2.travellingsalesbee.gui.pages;
  */
 public class Faq extends Page {
 	/**
-	 * {@inheritDoc}
+	 * @see Page#Page
 	 */
 	public Faq(String title, int height, int width) {
 		super(title, height, width);
+	}
+
+	/**
+	 * @see PageInterface#bootstrap()
+	 */
+	public void bootstrap() {
+		// TODO: implement
 	}
 }
