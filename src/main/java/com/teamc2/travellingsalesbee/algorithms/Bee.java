@@ -26,9 +26,7 @@ public class Bee extends Observable {
 		hive = map.getHive();
 
 		naiveRun();
-		//System.out.println("Naive Run: " + this.cost);
-		experimentalRuns(experiments);
-		//System.out.println("Post-Experimental Run: " + this.cost);
+		experimentalRun(experiments);
 	}
 
 	/**
@@ -65,33 +63,38 @@ public class Bee extends Observable {
 
 	/**
 	 * Runs an experimental path improvement check
+	 * @param experiments Number of experimental runs
 	 */
-	private void experimentalRun() {
+	private void experimentalRun(int experiments) {
 		if (path.isEmpty()) {
 			naiveRun();
-		}
-		if (path.size() > 3) {
-			ArrayList<Cell> testPath = path;
-
-			int flowerPos1 = 0;
-			int flowerPos2 = 0;
-
-			while (flowerPos1 == flowerPos2) {
-				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
-				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
-			}
-
-			Cell flower1 = testPath.get(flowerPos1);
-			Cell flower2 = testPath.get(flowerPos2);
-
-			testPath.set(flowerPos1, flower2);
-			testPath.set(flowerPos2, flower1);
-
-			// TODO: Call a method to visualise the flower1 and flower2 swap
-
-			double testCost = calculatePathCost(testPath);
-			if (testCost < cost) {
-				setPath(testPath, testCost);
+		} else if (path.size() > 3) {
+			while (experiments > 0) {
+				ArrayList<Cell> testPath = path;
+	
+				int flowerPos1 = 0;
+				int flowerPos2 = 0;
+	
+				while (flowerPos1 == flowerPos2) {
+					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+				}
+				
+				Cell flower1 = testPath.get(flowerPos1);
+				Cell flower2 = testPath.get(flowerPos2);
+				
+				testPath.set(flowerPos1, flower2);
+				testPath.set(flowerPos2, flower1);
+					
+				// TODO: Call a method to visualise the flower1 and flower2 swap
+	
+				double testCost = calculatePathCost(testPath);
+				if (testCost < cost) {
+					System.out.println(testCost);
+					System.out.println(cost);
+					setPath(testPath, testCost);
+				}
+				experiments--;
 			}
 		}
 	}
@@ -113,27 +116,13 @@ public class Bee extends Observable {
 	 */
 	public double calculatePathCost(ArrayList<Cell> path) {
 		double cost = 0;
-		for (int i = 0; i < path.size(); i++) {
-			if (i + 1 < path.size()) {
-				Cell pos1 = path.get(i);
-				Cell pos2 = path.get(i + 1);
+		for (int i = 0; i < path.size()-1; i++) {
+			Cell pos1 = path.get(i);
+			Cell pos2 = path.get(i + 1);
 
-				cost += pos1.distance(pos2);
-			}
+			cost += pos1.distance(pos2);
 		}
 		return cost;
-	}
-
-	/**
-	 * Run experimental tests on the path, a given number of times
-	 *
-	 * @param experiments Number of experimental runs
-	 */
-	public void experimentalRuns(int experiments) {
-		while (experiments > 0) {
-			experimentalRun();
-			experiments--;
-		}
 	}
 
 	/**
