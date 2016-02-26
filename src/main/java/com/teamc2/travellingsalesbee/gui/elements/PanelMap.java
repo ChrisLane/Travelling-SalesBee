@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class PanelMap extends JPanel {
+public class PanelMap extends JPanel implements Runnable {
 	private final int gridWidth;
 	private final int gridHeight;
 
@@ -124,7 +124,7 @@ public class PanelMap extends JPanel {
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
 		g2.setFont(font);
 		g2.setColor(Color.red);
-		g2.drawString("Neil has a small cock", beePosX, beePosY);
+		g2.drawString("Moving text", beePosX, beePosY);
 
 		System.out.println("Animation is running");
 
@@ -133,11 +133,6 @@ public class PanelMap extends JPanel {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
-		/*Timer timer;
-		timer = new Timer(1000, 1900);
-		timer.setInitialDelay(2);
-		timer.start();*/
 
 		beePosX += 10;
 		beePosY += 10;
@@ -224,5 +219,10 @@ public class PanelMap extends JPanel {
 	public void setStepNumber(int stepNum){
 		this.stepNum = stepNum;
 		this.repaint();
+	}
+
+	@Override
+	public void run() {
+
 	}
 }
