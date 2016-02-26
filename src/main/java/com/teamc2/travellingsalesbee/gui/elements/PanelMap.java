@@ -119,7 +119,8 @@ public class PanelMap extends JPanel implements Runnable {
 		drawBees(g2);
 	}
 
-	private void drawBees(Graphics g2) {
+	private void drawAnimals(Graphics g2, BufferedImage img) {
+
 		System.out.println("Drawing Bees");
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
 		g2.setFont(font);
