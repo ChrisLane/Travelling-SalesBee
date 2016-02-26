@@ -163,7 +163,7 @@ public class Bee extends Observable {
 	 */
 	public void experimentalRuns(int experiments) {
 		while (experiments > 0) {
-			experimentalRun();
+			experimentalRun(experiments);
 			experiments--;
 		}
 	}
