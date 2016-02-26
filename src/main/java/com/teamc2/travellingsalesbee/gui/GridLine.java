@@ -3,7 +3,11 @@ package com.teamc2.travellingsalesbee.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
-
+/*
+ * 	Class to create a single grid line to display on the gridmap
+ * 	
+ * 	extends JPanel so it can be added to the grid map as a child component
+ */
 public class GridLine extends JPanel {
 
 	private final float x1;
@@ -14,10 +18,10 @@ public class GridLine extends JPanel {
 	/**
 	 * Create a new line
 	 *
-	 * @param x1 X of position 1
-	 * @param y1 Y of position 1
-	 * @param x2 X of position 2
-	 * @param y2 Y of position 2
+	 * @param x1. The x position of line start
+	 * @param y1. The y position of line start
+	 * @param x2. The x position of line end
+	 * @param y2. The y position of line end
 	 */
 	public GridLine(float x1, float y1, float x2, float y2) {
 		this.x1 = x1;

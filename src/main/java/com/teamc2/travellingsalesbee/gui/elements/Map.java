@@ -54,6 +54,18 @@ public class Map extends JPanel {
 		}
 		return flowers;
 	}
+	
+	public ArrayList<Cell> getNodes() {
+		ArrayList<Cell> flowers = new ArrayList<>();
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (cells[i][j].getType().equals(CellType.FLOWER)) {
+					flowers.add(cells[i][j]);
+				}
+			}
+		}
+		return flowers;
+	}
 
 	/**
 	 * Get the cell at position (x, y)
