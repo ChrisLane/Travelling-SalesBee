@@ -128,12 +128,6 @@ public class PanelMap extends JPanel implements Runnable {
 
 		System.out.println("Animation is running");
 
-		try {
-			Thread.sleep(100);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
 		beePosX += 10;
 		beePosY += 10;
 
@@ -142,7 +136,17 @@ public class PanelMap extends JPanel implements Runnable {
 			beePosY = 0;
 		}
 
-		repaint();
+		(new Thread() {
+			public void run() {
+				try {
+					Thread.sleep(100);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+
+				repaint();
+			}
+		}).start();
 	}
 
 	/**
