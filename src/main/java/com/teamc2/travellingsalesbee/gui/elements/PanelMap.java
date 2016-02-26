@@ -116,25 +116,7 @@ public class PanelMap extends JPanel {
 			}
 		}
 
-		/*
-		final Thread thread = new Thread() {
-			//drawBees(g2);
-		}
-
-
-					public class MyRunnable implements Runnable {
-
-					private int var;
-
-					public MyRunnable(int var) {
-						this.var = var;
-					}
-
-					public void run() {
-						// code in the other thread, can reference "var" variable
-					}
-					}
-				*/
+		drawBees(g2);
 	}
 
 	private void drawBees(Graphics g2) {
@@ -142,7 +124,7 @@ public class PanelMap extends JPanel {
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
 		g2.setFont(font);
 		g2.setColor(Color.red);
-		g2.drawString("TEAM C2 ARE DA BEST IN DA WURLDZ", beePosX, beePosY);
+		g2.drawString("It's just banter, ayyit", beePosX, beePosY);
 
 		System.out.println("Animation is running");
 
@@ -152,11 +134,17 @@ public class PanelMap extends JPanel {
 			e.printStackTrace();
 		}
 
+		/*Timer timer;
+		timer = new Timer(1000, 1900);
+		timer.setInitialDelay(2);
+		timer.start();*/
+
 		beePosX += 10;
 		beePosY += 10;
 
-		if(beePosX > this.getWidth()) {
+		if(beePosX > this.getWidth() || beePosY > this.getHeight()) {
 			beePosX = 0;
+			beePosY = 0;
 		}
 
 		repaint();
