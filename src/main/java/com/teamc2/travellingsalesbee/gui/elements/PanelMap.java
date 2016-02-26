@@ -21,6 +21,7 @@ public class PanelMap extends JPanel {
 
 	private int beePosX = 0;
 	private int beePosY = 0;
+	private int stepNum = 0;
 
 	/**
 	 * Create the map panel
@@ -86,7 +87,7 @@ public class PanelMap extends JPanel {
 			int x1, x2 = 0, y1, y2 = 0;
 
 
-			for (int i = 0; i<naiveSteps.size();i++){
+			for (int i = 0; i<stepNum+1;i++){
 				naiveStep step = naiveSteps.get(i);
 				System.out.println(step.getAvailable().size());
 				x1 = (int) step.getStart().x;
@@ -95,13 +96,17 @@ public class PanelMap extends JPanel {
 				ArrayList<Cell> available = step.getAvailable();
 				System.out.println("naiveSteps.size() " + naiveSteps.size());
 				System.out.println("available size " + available.size());
-				for (int j=0;j<available.size();j++){
-					g2.setStroke(new BasicStroke(5));
-					g2.setPaint(Color.red);
-					x2 = (int) available.get(j).x;
-					y2 = (int) available.get(j).y;
-					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				
+				if (i==stepNum){
+					for (int j=0;j<available.size();j++){
+						g2.setStroke(new BasicStroke(5));
+						g2.setPaint(Color.red);
+						x2 = (int) available.get(j).x;
+						y2 = (int) available.get(j).y;
+						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					}
 				}
+				
 				g2.setStroke(new BasicStroke(6));
 				g2.setPaint(Color.green);
 				System.out.println("Green: " + step.getStart() + "->" + step.getEnd());
@@ -225,6 +230,11 @@ public class PanelMap extends JPanel {
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<naiveStep> steps) {
 		this.naiveSteps = steps;
+		this.repaint();
+	}
+	
+	public void setStepNumber(int stepNum){
+		this.stepNum = stepNum;
 		this.repaint();
 	}
 }

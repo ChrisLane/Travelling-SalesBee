@@ -7,14 +7,14 @@ import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 
 public class naiveStep {
 
-	private CellFlower end;
+	private Cell end;
 	private ArrayList<Cell> available = new ArrayList<Cell>();
 	private Cell start;
 
-	public naiveStep(Cell start, ArrayList<Cell> available,CellFlower dest){
+	public naiveStep(Cell start, ArrayList<Cell> available,Cell cell){
 		this.start=start;
 		this.available=available;
-		this.end=dest;
+		this.end=cell;
 	}
 	
 	public Cell getStart(){
@@ -25,7 +25,7 @@ public class naiveStep {
 		return this.available;
 	}
 	
-	public CellFlower getEnd(){
+	public Cell getEnd(){
 		return end;
 	}
 	
