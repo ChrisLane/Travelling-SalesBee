@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.gui;
 import java.util.ArrayList;
 
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 
 public class NaiveStep {
 
