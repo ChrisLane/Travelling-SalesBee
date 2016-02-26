@@ -1,18 +1,20 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
+
+import com.teamc2.travellingsalesbee.gui.naiveStep;
+import com.teamc2.travellingsalesbee.gui.elements.Map;
+import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
 
 public class Bee extends Observable {
 
 	private final Cell hive;
 	private final Map map;
 	private ArrayList<Cell> path = new ArrayList<>();
+	private ArrayList<naiveStep> naiveSteps = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
 
 	/**
@@ -31,19 +33,29 @@ public class Bee extends Observable {
 
 	/**
 	 * Run a naive path find.
+	 * 
+	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
+	 * the nearest non-visited neighbour until every flower has been visited, following 
+	 * that it then returns to the hive
 	 */
 	public void naiveRun() {
 		if (!(hive == null)) {
+			Boolean hiveStepDone = false;
 			ArrayList<Cell> newPath = new ArrayList<>();
+			ArrayList<naiveStep> naiveSteps = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
+			ArrayList<Cell> naiveComparisons = new ArrayList<Cell>();
 
 			newPath.add(hive);
-
 			// Loop over flowers missing from path
+			
+			
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				CellFlower closest = null;
-
+				Cell start = newPath.get(newPath.size()-1);
+				
+		
 				// Find the closest flower to the previous
 				for (CellFlower flower : flowers) {
 					double distance = flower.distance(newPath.get(newPath.size() - 1));
@@ -52,12 +64,30 @@ public class Bee extends Observable {
 						bestDistance = distance;
 					}
 				}
+				if (!hiveStepDone){
+					ArrayList<Cell> allFlowers = map.getNodes();
+					allFlowers.remove(closest);
+					naiveStep step = new naiveStep(start,allFlowers,closest);
+					naiveSteps.add(step);
+					hiveStepDone=true;
+				}else{
+
+					for (CellFlower flower : flowers){
+						System.out.print(start.x + " " + start.y + " " +naiveSteps.size());
+						naiveComparisons.add((Cell)flower);
+					}
+					
+					Cell dest = (Cell)closest;
+					naiveStep step = new naiveStep(start, naiveComparisons,closest);
+					naiveSteps.add(step);
+				}
 				newPath.add(closest);
 				flowers.remove(closest);
 			}
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
+			setNaiveSteps(naiveSteps);
 		}
 	}
 
@@ -127,10 +157,30 @@ public class Bee extends Observable {
 	}
 
 	/**
+	 * Run experimental tests on the path, a given number of times
+	 *
+	 * @param experiments Number of experimental runs
+	 */
+	public void experimentalRuns(int experiments) {
+		while (experiments > 0) {
+			experimentalRun();
+			experiments--;
+		}
+	}
+
+	public void setNaiveSteps(ArrayList<naiveStep> naiveSteps){
+		this.naiveSteps = naiveSteps;
+	}
+	
+	public ArrayList<naiveStep> getNaiveSteps() {
+		return naiveSteps;
+	}
+	
+	/**
 	 * Set the current path
 	 *
-	 * @param path Path to be set
-	 * @param cost Cost of the path being set
+	 * @param path. The path to be set
+	 * @param cost. The total cost of the path being set
 	 */
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
@@ -143,7 +193,7 @@ public class Bee extends Observable {
 	/**
 	 * Return the current path
 	 *
-	 * @return Current path
+	 * @return path. The Current path.
 	 */
 	public ArrayList<Cell> getPath() {
 		return path;

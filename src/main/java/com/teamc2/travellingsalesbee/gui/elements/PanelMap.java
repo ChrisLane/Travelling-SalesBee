@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.gui.GridLine;
+import com.teamc2.travellingsalesbee.gui.naiveStep;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ public class PanelMap extends JPanel {
 	private final int gridHeight;
 
 	private ArrayList<Cell> beePath = new ArrayList<>();
+	private ArrayList<naiveStep> naiveSteps = new ArrayList<>();
 
 	/**
 	 * Create the map panel
@@ -47,7 +49,7 @@ public class PanelMap extends JPanel {
 			e.printStackTrace();
 		}
 
-		if (beePath.size() > 0) {
+		if (beePath.size() > 100) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
@@ -76,42 +78,34 @@ public class PanelMap extends JPanel {
 			g2.setPaint(new Color(255, 255, 0, 75 + transparency + 10));
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
+		
+		} else if (naiveSteps.size() > 0){
+			int x1, x2 = 0, y1, y2 = 0;
+			
+			
+			for (int i = 0; i<naiveSteps.size()-1;i++){
+				naiveStep step = naiveSteps.get(i);
+				System.out.println(step.getAvailable().size());
+				x1 = (int) step.getStart().x;
+				y1 = (int) step.getStart().y;
+				
+				ArrayList<Cell> available = step.getAvailable();
+				System.out.println("available size " + available.size());
+				for (int j=0;j<available.size();j++){
+					g2.setStroke(new BasicStroke(5));
+					g2.setPaint(Color.red);
+					x2 = (int) available.get(j).x;
+					y2 = (int) available.get(j).y;
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
+				g2.setStroke(new BasicStroke(6));
+				g2.setPaint(Color.green);
+				System.out.println(step.getStart() + "->" + step.getEnd());
+				x2 = (int) step.getEnd().x;
+				x2 = (int) step.getEnd().y;
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+			}
 		}
-
-		drawBees(g2);
-	}
-
-	private void drawBees(Graphics g2) {
-		System.out.println("Drawing Bees");
-		/*Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
-		g2.setFont(font);
-		g2.setColor(Color.red);
-		g2.drawString("TEAM C2 ARE DA BEST IN DA WURLDZ", x, y);
-
-		System.out.println("Animation is running");
-
-		try {
-			Thread.sleep(100);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
-		x+= 10;
-
-		if(x > this.getWidth()) {
-			x = 0;
-		}
-
-		try {
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
-			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
-			g2.setPaint(paint);
-			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		repaint();*/
 	}
 
 	/**
@@ -138,8 +132,8 @@ public class PanelMap extends JPanel {
 	 * @param path Path to set in algorithms
 	 */
 	public void setPath(ArrayList<Cell> path) {
-		beePath = path;
-		repaint();
+		this.beePath = path;
+		this.repaint();
 	}
 
 	/**
@@ -176,5 +170,12 @@ public class PanelMap extends JPanel {
 
 			heightCount += gridHeight;
 		}
+	}
+	
+	
+	//Naive visualisation
+	public void setNaiveSteps(ArrayList<naiveStep> steps) {
+		this.naiveSteps = steps;
+		this.repaint();
 	}
 }
