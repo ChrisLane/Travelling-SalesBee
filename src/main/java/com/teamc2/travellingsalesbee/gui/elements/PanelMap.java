@@ -132,9 +132,9 @@ public class PanelMap extends JPanel implements Runnable {
 
 		try {
 			BufferedImage beeImg = ImageIO.read(this.getClass().getResource(url));
-			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(0, 0, beeImg.getWidth(), beeImg.getHeight()));
+			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(beePosX, beePosY, beeImg.getWidth(), beeImg.getHeight()));
 			g2.setPaint(paint);
-			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+			g2.fill(new Rectangle(beePosX, beePosY, getWidth(), getHeight()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
