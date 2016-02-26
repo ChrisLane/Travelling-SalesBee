@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -116,21 +117,25 @@ public class PanelMap extends JPanel implements Runnable {
 		}
 
 		String url = "/assets/icons/SalesBee.png";
-		drawAnimals(g2, url);
+		drawAnimals(g2, url, naiveSteps);
 	}
 
-	private void drawAnimals(Graphics2D g2, String url) {
+	private void drawAnimals(Graphics2D g2, String url, ArrayList<NaiveStep> list) {
 
-		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
-		g2.setFont(font);
-		g2.setColor(Color.red);
-		g2.drawString("Moving text", beePosX, beePosY);
+		System.out.println("Drawing Bees");
+
+		int pathSize = list.size(); //size of the list
+
+		//NaiveStep move = list.get(stepNum); //get the current step
+
+		//double incrementX = move.getEnd().getX() - move.getStart().getX();
+		//double incrementY = move.getEnd().getY() - move.getStart().getY();
 
 		try {
 			BufferedImage beeImg = ImageIO.read(this.getClass().getResource(url));
-			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(beePosX, beePosY, beeImg.getWidth(), beeImg.getHeight()));
+			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(beePosX, beePosY, 50, 50));
 			g2.setPaint(paint);
-			g2.fill(new Rectangle(beePosX, beePosY, getWidth(), getHeight()));
+			g2.fill(new Rectangle(beePosX, beePosY, 50, 50));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -198,7 +203,7 @@ public class PanelMap extends JPanel implements Runnable {
 		this.naiveSteps = steps;
 		this.repaint();
 	}
-	
+
 	public void setStepNumber(int stepNum){
 		this.stepNum = stepNum;
 		this.repaint();
