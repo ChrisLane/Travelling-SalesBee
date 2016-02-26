@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
-import com.teamc2.travellingsalesbee.gui.GridLine;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
@@ -189,8 +188,8 @@ public class PanelMap extends JPanel implements Runnable {
 	 * Generate the grid lines that together form the grid.
 	 */
 	public void genGrid() {
-		GridLine gridLine = new GridLine(cellWidth, cellHeight);
-		add(gridLine);
+		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
+		add(componentGrid);
 	}
 
 
