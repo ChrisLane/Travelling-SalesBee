@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee;
 
-import com.teamc2.travellingsalesbee.gui.pages.Menu;
+import com.teamc2.travellingsalesbee.gui.view.pages.Menu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

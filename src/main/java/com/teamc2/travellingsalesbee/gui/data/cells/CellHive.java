@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.elements.cells;
+package com.teamc2.travellingsalesbee.gui.data.cells;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

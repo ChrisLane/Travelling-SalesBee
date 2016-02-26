@@ -5,9 +5,9 @@ import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 
 public class Bee extends Observable {
 
