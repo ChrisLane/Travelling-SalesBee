@@ -64,7 +64,16 @@ public class Bee extends Observable {
 						bestDistance = distance;
 					}
 				}
+				//Remove the flower that is closest from the set
 				flowers.remove(closest);
+				
+				/**************************************************************/
+				/**	Formulating of naive steps for the step through process	**/
+				/************************************************************/
+				
+				//Check to see if the first step has been created
+					//If not then create initial step
+					//Else create the intemediate steps in the naive visualisation
 				if (!hiveStepDone){
 					ArrayList<Cell> allFlowers = map.getNodes();
 					allFlowers.remove(closest);
@@ -79,12 +88,22 @@ public class Bee extends Observable {
 							naiveComparisons.add((Cell)flower);
 						}
 					}
-					
+					//A naive step is compromised of
+						//the start node which is the previous visited flower
+						//naiveComparisons which is the nodes it checks but doesn't choose
+						//the closest node which is the node it has chosen to visit next
 					naiveStep step = new naiveStep(start, naiveComparisons,closest);
+					
+					//Add the step to an array of naiveSteps
 					naiveSteps.add(step);
 				}
 				newPath.add(closest);
 			}
+			
+			//Create the return step from the last node to the hive
+				//start node is the last flower node
+				//Empty available moves as only one move available
+				//hive is the end node as it thus creates the TSM cycle
 			ArrayList<Cell> empty = new ArrayList<>();
 			Cell hive = (Cell)newPath.get(0);
 			naiveStep step = new naiveStep((Cell)closest,empty,hive);
@@ -172,13 +191,14 @@ public class Bee extends Observable {
 			experiments--;
 		}
 	}
-
+	
+	/**
+	 * Set the naive steps.
+	 * 
+	 * @param naiveSteps. The steps involved in the naive run
+	 */
 	public void setNaiveSteps(ArrayList<naiveStep> naiveSteps){
 		this.naiveSteps = naiveSteps;
-	}
-	
-	public ArrayList<naiveStep> getNaiveSteps() {
-		return naiveSteps;
 	}
 	
 	/**
@@ -202,5 +222,14 @@ public class Bee extends Observable {
 	 */
 	public ArrayList<Cell> getPath() {
 		return path;
+	}
+	
+	/**
+	 * Return the naive steps.
+	 * 
+	 * @return naiveSteps. The steps involved in the naive run
+	 */
+	public ArrayList<naiveStep> getNaiveSteps() {
+		return naiveSteps;
 	}
 }
