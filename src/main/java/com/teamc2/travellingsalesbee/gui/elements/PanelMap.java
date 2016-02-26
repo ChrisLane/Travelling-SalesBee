@@ -116,10 +116,11 @@ public class PanelMap extends JPanel implements Runnable {
 			}
 		}
 
-		drawBees(g2);
+		String url = "/assets/icons/SalesBee.png";
+		drawAnimals(g2, url);
 	}
 
-	private void drawAnimals(Graphics g2, BufferedImage img) {
+	private void drawAnimals(Graphics2D g2, String url) {
 
 		System.out.println("Drawing Bees");
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
@@ -128,6 +129,15 @@ public class PanelMap extends JPanel implements Runnable {
 		g2.drawString("Moving text", beePosX, beePosY);
 
 		System.out.println("Animation is running");
+
+		try {
+			BufferedImage beeImg = ImageIO.read(this.getClass().getResource(url));
+			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(0, 0, beeImg.getWidth(), beeImg.getHeight()));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		beePosX += 10;
 		beePosY += 10;
