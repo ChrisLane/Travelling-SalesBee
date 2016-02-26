@@ -48,11 +48,11 @@ public class Bee extends Observable {
 
 			newPath.add(hive);
 			// Loop over flowers missing from path
-			
+			CellFlower closest = null;
 			
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
-				CellFlower closest = null;
+				closest = null;
 				Cell start = newPath.get(newPath.size()-1);
 				
 		
@@ -64,6 +64,7 @@ public class Bee extends Observable {
 						bestDistance = distance;
 					}
 				}
+				flowers.remove(closest);
 				if (!hiveStepDone){
 					ArrayList<Cell> allFlowers = map.getNodes();
 					allFlowers.remove(closest);
@@ -74,17 +75,21 @@ public class Bee extends Observable {
 
 					for (CellFlower flower : flowers){
 						System.out.print(start.x + " " + start.y + " " +naiveSteps.size());
-						naiveComparisons.add((Cell)flower);
+						if (!newPath.contains(flower)){
+							naiveComparisons.add((Cell)flower);
+						}
 					}
 					
-					Cell dest = (Cell)closest;
 					naiveStep step = new naiveStep(start, naiveComparisons,closest);
 					naiveSteps.add(step);
 				}
 				newPath.add(closest);
-				flowers.remove(closest);
 			}
-
+			ArrayList<Cell> empty = new ArrayList<>();
+			Cell hive = (Cell)newPath.get(0);
+			naiveStep step = new naiveStep((Cell)closest,empty,hive);
+			naiveSteps.add(step);
+			
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
 			setNaiveSteps(naiveSteps);

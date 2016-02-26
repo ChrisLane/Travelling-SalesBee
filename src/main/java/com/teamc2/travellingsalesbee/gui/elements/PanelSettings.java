@@ -25,6 +25,7 @@ public class PanelSettings extends JPanel {
 	private JLabel infoLabel;
 
 	private int experimentalRuns = 26; //Set to 26 by default
+	private int stepNum = 0;
 	
 	// Remove later
 	protected boolean debug = true;
@@ -133,7 +134,15 @@ public class PanelSettings extends JPanel {
 		txtpnTextWillAppear.setText("Text will appear here as you step through the algorithm, explaining how it works at each step");
 
 		JButton btnPrev = new JButton("<-");
+		btnPrev.addActionListener(arg0 -> {
+			stepNum--;
+			gridmap.setStepNumber(stepNum);
+		});
 		JButton btnNext = new JButton("->");
+		btnNext.addActionListener(arg0 -> {
+			stepNum++;
+			gridmap.setStepNumber(stepNum);
+		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
