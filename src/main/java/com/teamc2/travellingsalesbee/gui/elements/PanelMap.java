@@ -122,13 +122,10 @@ public class PanelMap extends JPanel implements Runnable {
 
 	private void drawAnimals(Graphics2D g2, String url) {
 
-		System.out.println("Drawing Bees");
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
 		g2.setFont(font);
 		g2.setColor(Color.red);
 		g2.drawString("Moving text", beePosX, beePosY);
-
-		System.out.println("Animation is running");
 
 		try {
 			BufferedImage beeImg = ImageIO.read(this.getClass().getResource(url));
