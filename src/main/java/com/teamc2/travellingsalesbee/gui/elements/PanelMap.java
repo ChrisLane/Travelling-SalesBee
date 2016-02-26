@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.elements;
 
 import com.teamc2.travellingsalesbee.gui.GridLine;
-import com.teamc2.travellingsalesbee.gui.naiveStep;
+import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 
 import javax.imageio.ImageIO;
@@ -17,7 +17,7 @@ public class PanelMap extends JPanel implements Runnable {
 	private final int gridHeight;
 
 	private ArrayList<Cell> beePath = new ArrayList<>();
-	private ArrayList<naiveStep> naiveSteps = new ArrayList<>();
+	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
 	private int beePosX = 0;
 	private int beePosY = 0;
@@ -88,7 +88,7 @@ public class PanelMap extends JPanel implements Runnable {
 
 
 			for (int i = 0; i<stepNum+1;i++){
-				naiveStep step = naiveSteps.get(i);
+				NaiveStep step = naiveSteps.get(i);
 				System.out.println(step.getAvailable().size());
 				x1 = (int) step.getStart().x;
 				y1 = (int) step.getStart().y;
@@ -223,7 +223,7 @@ public class PanelMap extends JPanel implements Runnable {
 
 
 	//Naive visualisation
-	public void setNaiveSteps(ArrayList<naiveStep> steps) {
+	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
 		this.naiveSteps = steps;
 		this.repaint();
 	}
