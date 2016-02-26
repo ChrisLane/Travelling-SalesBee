@@ -124,7 +124,7 @@ public class PanelMap extends JPanel {
 		Font font = new Font("Tahoma", Font.BOLD + Font.PLAIN, 100);
 		g2.setFont(font);
 		g2.setColor(Color.red);
-		g2.drawString("It's just banter, ayyit", beePosX, beePosY);
+		g2.drawString("Neil has a small cock", beePosX, beePosY);
 
 		System.out.println("Animation is running");
 
