@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.teamc2.travellingsalesbee.gui.naiveStep;
+import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.elements.Map;
 import com.teamc2.travellingsalesbee.gui.elements.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.elements.cells.CellFlower;
@@ -14,7 +14,7 @@ public class Bee extends Observable {
 	private final Cell hive;
 	private final Map map;
 	private ArrayList<Cell> path = new ArrayList<>();
-	private ArrayList<naiveStep> naiveSteps = new ArrayList<>();
+	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
 
 	/**
@@ -42,7 +42,7 @@ public class Bee extends Observable {
 		if (!(hive == null)) {
 			Boolean hiveStepDone = false;
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<naiveStep> naiveSteps = new ArrayList<>();
+			ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
 			ArrayList<Cell> naiveComparisons = new ArrayList<Cell>();
 
@@ -77,7 +77,7 @@ public class Bee extends Observable {
 				if (!hiveStepDone){
 					ArrayList<Cell> allFlowers = map.getNodes();
 					allFlowers.remove(closest);
-					naiveStep step = new naiveStep(start,allFlowers,closest);
+					NaiveStep step = new NaiveStep(start,allFlowers,closest);
 					naiveSteps.add(step);
 					hiveStepDone=true;
 				}else{
@@ -92,7 +92,7 @@ public class Bee extends Observable {
 						//the start node which is the previous visited flower
 						//naiveComparisons which is the nodes it checks but doesn't choose
 						//the closest node which is the node it has chosen to visit next
-					naiveStep step = new naiveStep(start, naiveComparisons,closest);
+					NaiveStep step = new NaiveStep(start, naiveComparisons,closest);
 					
 					//Add the step to an array of naiveSteps
 					naiveSteps.add(step);
@@ -106,7 +106,7 @@ public class Bee extends Observable {
 				//hive is the end node as it thus creates the TSM cycle
 			ArrayList<Cell> empty = new ArrayList<>();
 			Cell hive = (Cell)newPath.get(0);
-			naiveStep step = new naiveStep((Cell)closest,empty,hive);
+			NaiveStep step = new NaiveStep((Cell)closest,empty,hive);
 			naiveSteps.add(step);
 			
 			double cost = calculatePathCost(newPath);
@@ -197,7 +197,7 @@ public class Bee extends Observable {
 	 * 
 	 * @param naiveSteps. The steps involved in the naive run
 	 */
-	public void setNaiveSteps(ArrayList<naiveStep> naiveSteps){
+	public void setNaiveSteps(ArrayList<NaiveStep> naiveSteps){
 		this.naiveSteps = naiveSteps;
 	}
 	
@@ -229,7 +229,7 @@ public class Bee extends Observable {
 	 * 
 	 * @return naiveSteps. The steps involved in the naive run
 	 */
-	public ArrayList<naiveStep> getNaiveSteps() {
+	public ArrayList<NaiveStep> getNaiveSteps() {
 		return naiveSteps;
 	}
 }
