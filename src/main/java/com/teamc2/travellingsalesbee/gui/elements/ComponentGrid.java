@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui;
+package com.teamc2.travellingsalesbee.gui.elements;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 	
  * 	extends JComponent so it can be added to the grid map as a child component
  */
-public class GridLine extends JComponent {
+public class ComponentGrid extends JComponent {
 
 	private final int cellWidth;
 	private final int cellHeight;
@@ -22,7 +22,7 @@ public class GridLine extends JComponent {
 	/**
 	 * Create a new line
 	 */
-	public GridLine(int cellWidth, int cellHeight) {
+	public ComponentGrid(int cellWidth, int cellHeight) {
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
 
