@@ -110,6 +110,26 @@ public class PanelMap extends JPanel {
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 			}
 		}
+
+		/*
+		final Thread thread = new Thread() {
+			//drawBees(g2);
+		}
+
+
+					public class MyRunnable implements Runnable {
+
+					private int var;
+
+					public MyRunnable(int var) {
+						this.var = var;
+					}
+
+					public void run() {
+						// code in the other thread, can reference "var" variable
+					}
+					}
+				*/
 	}
 
 	private void drawBees(Graphics g2) {
@@ -128,6 +148,7 @@ public class PanelMap extends JPanel {
 		}
 
 		beePosX += 10;
+		beePosY += 10;
 
 		if(beePosX > this.getWidth()) {
 			beePosX = 0;
