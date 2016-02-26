@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 
 public class PanelMap extends JPanel implements Runnable {
-	private final int gridWidth;
-	private final int gridHeight;
+	private final int cellWidth;
+	private final int cellHeight;
 
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
@@ -26,12 +26,12 @@ public class PanelMap extends JPanel implements Runnable {
 	/**
 	 * Create the map panel
 	 *
-	 * @param gridWidth  Width of the grid sections
-	 * @param gridHeight Height of the grid sections
+	 * @param cellWidth  Width of the grid sections
+	 * @param cellHeight Height of the grid sections
 	 */
-	public PanelMap(int gridWidth, int gridHeight) {
-		this.gridWidth = gridWidth;
-		this.gridHeight = gridHeight;
+	public PanelMap(int cellWidth, int cellHeight) {
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
 
 		genGrid();
 		setLayout(null);
@@ -96,7 +96,7 @@ public class PanelMap extends JPanel implements Runnable {
 				ArrayList<Cell> available = step.getAvailable();
 				System.out.println("naiveSteps.size() " + naiveSteps.size());
 				System.out.println("available size " + available.size());
-				
+
 				if (i==stepNum){
 					for (int j=0;j<available.size();j++){
 						g2.setStroke(new BasicStroke(5));
@@ -106,7 +106,7 @@ public class PanelMap extends JPanel implements Runnable {
 						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 					}
 				}
-				
+
 				g2.setStroke(new BasicStroke(6));
 				g2.setPaint(Color.green);
 				System.out.println("Green: " + step.getStart() + "->" + step.getEnd());
@@ -162,8 +162,8 @@ public class PanelMap extends JPanel implements Runnable {
 	 *
 	 * @return Height of grid sections
 	 */
-	public int getGridHeight() {
-		return gridHeight;
+	public int getCellHeight() {
+		return cellHeight;
 	}
 
 	/**
@@ -171,8 +171,8 @@ public class PanelMap extends JPanel implements Runnable {
 	 *
 	 * @return Width of grid sections
 	 */
-	public int getGridWidth() {
-		return gridWidth;
+	public int getCellWidth() {
+		return cellWidth;
 	}
 
 	/**
@@ -189,36 +189,8 @@ public class PanelMap extends JPanel implements Runnable {
 	 * Generate the grid lines that together form the grid.
 	 */
 	public void genGrid() {
-		int widthCount = 0; //Keeps track of current horizontal line we're drawing
-		int heightCount = 0;//Keeps track of current vertical we're drawing
-
-		//Gets the gridWidth and gridHeight of the users screen
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;
-
-		//Custom translucent colour
-		Color lineColor = new Color(255, 255, 255, 65);
-
-		//While the widthCount is less than the gridWidth of the users screen, draw vertical lines
-		while (widthCount < screenWidth) {
-			GridLine gridLine = new GridLine(widthCount, 0, widthCount, screenHeight);
-			gridLine.setBackground(lineColor);
-			gridLine.setBounds(widthCount, 0, 3, screenHeight);
-			add(gridLine);
-
-			widthCount += gridWidth;
-		}
-
-		//While the heightCount is less than the gridHeight of the users screen, draw horizontal lines
-		while (heightCount < screenHeight) {
-			GridLine gridLine = new GridLine(0, heightCount, screenWidth, heightCount);
-			gridLine.setBackground(lineColor);
-			gridLine.setBounds(0, heightCount, screenWidth, 3);
-			add(gridLine);
-
-			heightCount += gridHeight;
-		}
+		GridLine gridLine = new GridLine(cellWidth, cellHeight);
+		add(gridLine);
 	}
 
 

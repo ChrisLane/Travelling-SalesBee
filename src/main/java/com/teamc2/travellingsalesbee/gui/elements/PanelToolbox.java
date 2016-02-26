@@ -17,8 +17,8 @@ public class PanelToolbox extends JPanel {
 
 	public PanelToolbox(PanelMap parent) {
 		this.parent = parent;
-		this.width = parent.getGridWidth();
-		this.height = parent.getGridHeight();
+		this.width = parent.getCellWidth();
+		this.height = parent.getCellHeight();
 		setBackground(Color.WHITE);
 
 		JTextArea txtrDragElementsOnto = new JTextArea();
