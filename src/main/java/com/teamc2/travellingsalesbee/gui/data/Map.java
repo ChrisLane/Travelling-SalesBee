@@ -1,6 +1,6 @@
-package com.teamc2.travellingsalesbee.gui.elements;
+package com.teamc2.travellingsalesbee.gui.data;
 
-import com.teamc2.travellingsalesbee.gui.elements.cells.*;
+import com.teamc2.travellingsalesbee.gui.data.cells.*;
 
 import javax.swing.*;
 import java.util.ArrayList;

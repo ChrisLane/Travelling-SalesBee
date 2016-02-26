@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import com.teamc2.travellingsalesbee.gui.elements.Map;
-import com.teamc2.travellingsalesbee.gui.elements.cells.*;
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
