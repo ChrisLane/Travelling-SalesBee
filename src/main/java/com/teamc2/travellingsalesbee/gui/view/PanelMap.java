@@ -2,6 +2,7 @@ package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.view.pages.AnimalAnimation;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,8 +19,8 @@ public class PanelMap extends JPanel implements Runnable {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
-	private int beePosX = 0;
-	private int beePosY = 0;
+	private double beePosX = 0;
+	private double beePosY = 0;
 	private int stepNum = 0;
 
 	/**
@@ -43,6 +44,7 @@ public class PanelMap extends JPanel implements Runnable {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+
 		try {
 			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
@@ -85,7 +87,6 @@ public class PanelMap extends JPanel implements Runnable {
 		} else if (naiveSteps.size() > 0){
 			int x1, x2 = 0, y1, y2 = 0;
 
-
 			for (int i = 0; i<stepNum+1;i++){
 				NaiveStep step = naiveSteps.get(i);
 				System.out.println(step.getAvailable().size());
@@ -115,49 +116,16 @@ public class PanelMap extends JPanel implements Runnable {
 			}
 		}
 
-		String url = "/assets/icons/SalesBee.png";
-		drawAnimals(g2, url, naiveSteps);
-	}
+		if(naiveSteps.size() > 0) {
+			String url = "/assets/icons/SalesBee.png";
+			AnimalAnimation aAnimation = new AnimalAnimation(this, url, naiveSteps.get(stepNum), g2);
 
-	private void drawAnimals(Graphics2D g2, String url, ArrayList<NaiveStep> list) {
+			//aAnimation.paintComponents(g);
+			//aAnimation.repaint();
+			//this.repaint();
 
-		System.out.println("Drawing Bees");
-
-		int pathSize = list.size(); //size of the list
-
-		//NaiveStep move = list.get(stepNum); //get the current step
-
-		//double incrementX = move.getEnd().getX() - move.getStart().getX();
-		//double incrementY = move.getEnd().getY() - move.getStart().getY();
-
-		try {
-			BufferedImage beeImg = ImageIO.read(this.getClass().getResource(url));
-			TexturePaint paint = new TexturePaint(beeImg, new Rectangle(beePosX, beePosY, 50, 50));
-			g2.setPaint(paint);
-			g2.fill(new Rectangle(beePosX, beePosY, 50, 50));
-		} catch (IOException e) {
-			e.printStackTrace();
+			this.add(aAnimation);
 		}
-
-		beePosX += 10;
-		beePosY += 10;
-
-		if(beePosX > this.getWidth() || beePosY > this.getHeight()) {
-			beePosX = 0;
-			beePosY = 0;
-		}
-
-		(new Thread() {
-			public void run() {
-				try {
-					Thread.sleep(100);
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-
-				repaint();
-			}
-		}).start();
 	}
 
 	/**
