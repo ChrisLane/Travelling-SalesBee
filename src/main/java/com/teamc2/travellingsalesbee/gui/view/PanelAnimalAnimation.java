@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.view.pages;
+package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class AnimalAnimation extends JPanel {
+public class PanelAnimalAnimation extends JPanel {
 
 	private double beePosX = 200, beePosY = 200,incrementX = 0, incrementY = 0;
 	private String url;
@@ -17,7 +17,7 @@ public class AnimalAnimation extends JPanel {
 
 	private Graphics2D graphics;
 
-	public AnimalAnimation(JPanel panel, String url, NaiveStep move, Graphics2D g) {
+	public PanelAnimalAnimation(JPanel panel, String url, NaiveStep move, Graphics2D g) {
 		this.panel = panel;
 		this.url = url;
 		this.move = move;
