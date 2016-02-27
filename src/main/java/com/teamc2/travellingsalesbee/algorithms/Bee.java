@@ -195,7 +195,7 @@ public class Bee extends Observable {
 	/**
 	 * Set the naive steps.
 	 * 
-	 * @param naiveSteps. The steps involved in the naive run
+	 * @param naiveSteps The steps involved in the naive run
 	 */
 	public void setNaiveSteps(ArrayList<NaiveStep> naiveSteps){
 		this.naiveSteps = naiveSteps;
@@ -204,8 +204,8 @@ public class Bee extends Observable {
 	/**
 	 * Set the current path
 	 *
-	 * @param path. The path to be set
-	 * @param cost. The total cost of the path being set
+	 * @param path The path to be set
+	 * @param cost The total cost of the path being set
 	 */
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
