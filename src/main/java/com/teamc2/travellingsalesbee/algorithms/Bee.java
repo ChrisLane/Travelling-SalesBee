@@ -44,7 +44,7 @@ public class Bee extends Observable {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
-			ArrayList<Cell> naiveComparisons = new ArrayList<Cell>();
+			ArrayList<Cell> naiveComparisons = new ArrayList<>();
 
 			newPath.add(hive);
 			// Loop over flowers missing from path
