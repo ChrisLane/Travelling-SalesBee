@@ -63,7 +63,7 @@ public class BeeTest {
 	public void testNaiveRun() throws Exception {
 		// TODO: Change this to include the hive
 		// Set the path to empty
-		bee.setPath(new ArrayList<Cell>(), 0);
+		bee.setPath(new ArrayList<>(), 0);
 
 		// Generate a new path
 		bee.naiveRun();
