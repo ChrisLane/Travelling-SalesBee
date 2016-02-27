@@ -2,7 +2,6 @@ package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.view.pages.AnimalAnimation;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -116,7 +115,7 @@ public class PanelMap extends JPanel implements Runnable {
 
 		if(naiveSteps.size() > 0) {
 			String url = "/assets/icons/SalesBee.png";
-			AnimalAnimation aAnimation = new AnimalAnimation(this, url, naiveSteps.get(stepNum), g2);
+			PanelAnimalAnimation aAnimation = new PanelAnimalAnimation(this, url, naiveSteps.get(stepNum), g2);
 
 			//aAnimation.paintComponents(g);
 			//aAnimation.repaint();
