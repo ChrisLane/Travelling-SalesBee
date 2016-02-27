@@ -58,19 +58,14 @@ public class ComponentGrid extends JComponent {
 	private void addLines() {
 		lines = new ArrayList<>();
 
-		int widthCount = 0; //Keeps track of current horizontal line we're drawing
-		int heightCount = 0;//Keeps track of current vertical we're drawing
-
 		// While the widthCount is less than the width of the users screen, draw vertical lines
-		while (widthCount < screenWidth) {
-			lines.add(new Line(widthCount, 0, widthCount, screenHeight));
-			widthCount += cellWidth;
+		for (int i = 0; i <= screenWidth; i += cellWidth) {
+			lines.add(new Line(i, 0, i, screenHeight));
 		}
 
 		// While the heightCount is less than the height of the users screen, draw horizontal lines
-		while (heightCount < screenHeight) {
-			lines.add(new Line(0, heightCount, screenWidth, heightCount));
-			heightCount += cellHeight;
+		for (int i = 0; i <= screenHeight; i += cellHeight) {
+			lines.add(new Line(0, i, screenWidth, i));
 		}
 	}
 
