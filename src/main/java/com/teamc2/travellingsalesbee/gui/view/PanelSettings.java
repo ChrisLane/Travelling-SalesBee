@@ -119,16 +119,11 @@ public class PanelSettings extends JPanel {
 		JLabel lblExperimentRuns = new JLabel("Experiment Runs:");
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
-		slider.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				if (debug ) System.out.println("Slider Changed");
-				slider.setValue(slider.getValue());
-				lblNoOfRuns.setText("" + slider.getValue());
-				experimentalRuns = slider.getValue();
-			}
-
+		slider.addChangeListener(arg0 -> {
+			if (debug ) System.out.println("Slider Changed");
+			slider.setValue(slider.getValue());
+			lblNoOfRuns.setText("" + slider.getValue());
+			experimentalRuns = slider.getValue();
 		});
 
 		JTextPane txtpnTextWillAppear = new JTextPane();
