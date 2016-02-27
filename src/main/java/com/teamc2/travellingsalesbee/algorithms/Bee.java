@@ -85,7 +85,7 @@ public class Bee extends Observable {
 					for (CellFlower flower : flowers){
 						System.out.print(start.x + " " + start.y + " " +naiveSteps.size());
 						if (!newPath.contains(flower)){
-							naiveComparisons.add((Cell)flower);
+							naiveComparisons.add(flower);
 						}
 					}
 					//A naive step is compromised of
@@ -105,8 +105,8 @@ public class Bee extends Observable {
 				//Empty available moves as only one move available
 				//hive is the end node as it thus creates the TSM cycle
 			ArrayList<Cell> empty = new ArrayList<>();
-			Cell hive = (Cell)newPath.get(0);
-			NaiveStep step = new NaiveStep((Cell)closest,empty,hive);
+			Cell hive = newPath.get(0);
+			NaiveStep step = new NaiveStep(closest,empty,hive);
 			naiveSteps.add(step);
 			
 			double cost = calculatePathCost(newPath);
