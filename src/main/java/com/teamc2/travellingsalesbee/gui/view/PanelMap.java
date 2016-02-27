@@ -19,8 +19,6 @@ public class PanelMap extends JPanel implements Runnable {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
-	private double beePosX = 0;
-	private double beePosY = 0;
 	private int stepNum = 0;
 
 	/**
