@@ -18,6 +18,8 @@ public class PanelMap extends JPanel implements Runnable {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
+	private PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation();
+
 	private int stepNum = 0;
 
 	/**
@@ -32,6 +34,8 @@ public class PanelMap extends JPanel implements Runnable {
 
 		genGrid();
 		setLayout(null);
+
+		this.add(panelAnimation);
 	}
 
 	/**
@@ -41,6 +45,14 @@ public class PanelMap extends JPanel implements Runnable {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+
+		int animationX = 0;
+		int animationY = 0;
+
+		if(stepNum > 0) {
+			animationX = (int) naiveSteps.get(stepNum).getStart().getX();
+			animationY = (int) naiveSteps.get(stepNum).getStart().getY();
+		}
 
 		try {
 			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
@@ -113,16 +125,20 @@ public class PanelMap extends JPanel implements Runnable {
 			}
 		}
 
-		if(naiveSteps.size() > 0) {
-			String url = "/assets/icons/SalesBee.png";
-			PanelAnimalAnimation aAnimation = new PanelAnimalAnimation(this, url, naiveSteps.get(stepNum), g2);
+		Font font = new Font("Tahoma", Font.BOLD+Font.PLAIN, 100);
+		g2.setFont(font);
+		g2.setColor(Color.yellow);
+		g2.drawString("HELLO THERE, HOW ARE YOU?", animationX, animationY);
 
-			//aAnimation.paintComponents(g);
-			//aAnimation.repaint();
-			//this.repaint();
-
-			this.add(aAnimation);
+		try {
+			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/icons/SalesBee.png"));
+			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, 50, 50));
+			g2.setPaint(paint);
+			g2.fill(new Rectangle(animationX, animationY, 50, 50));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	/**
