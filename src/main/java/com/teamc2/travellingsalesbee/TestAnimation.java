@@ -40,7 +40,7 @@ public class TestAnimation extends Application {
 	
 	private Circle createCircle() {
 		final Circle circle = new Circle(200, 150, 50, Color.BLUEVIOLET);
-		circle.setOpacity(0.7);
+		circle.setOpacity(1);
 		return circle;
 	}
 

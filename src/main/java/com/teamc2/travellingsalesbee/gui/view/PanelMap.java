@@ -18,7 +18,7 @@ public class PanelMap extends JPanel implements Runnable {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
-	private PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation();
+	//private PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation();
 
 	private int stepNum = 0;
 
@@ -35,7 +35,7 @@ public class PanelMap extends JPanel implements Runnable {
 		genGrid();
 		setLayout(null);
 
-		this.add(panelAnimation);
+		//this.add(panelAnimation);
 	}
 
 	/**
