@@ -16,7 +16,6 @@ public class Bee extends Observable {
 	private final Cell hive;
 
 	private ArrayList<Cell> path = new ArrayList<>();
-	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
 
 	/**
@@ -40,11 +39,8 @@ public class Bee extends Observable {
 	 */
 	public void naiveRun() {
 		if (!(hive == null)) {
-			Boolean hiveStepDone = false;
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
-			ArrayList<Cell> naiveComparisons = new ArrayList<>();
 
 			newPath.add(hive);
 			// Loop over flowers missing from path
@@ -53,7 +49,6 @@ public class Bee extends Observable {
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				closest = null;
-				Cell start = newPath.get(newPath.size()-1);
 
 
 				// Find the closest flower to the previous
@@ -66,52 +61,12 @@ public class Bee extends Observable {
 				}
 				//Remove the flower that is closest from the set
 				flowers.remove(closest);
-
-				/**************************************************************/
-				/**	Formulating of naive steps for the step through process	**/
-				/************************************************************/
-
-				//Check to see if the first step has been created
-				//If not then create initial step
-				//Else create the intermediate steps in the naive visualisation
-				if (!hiveStepDone){
-					ArrayList<Cell> allFlowers = map.getNodes();
-					allFlowers.remove(closest);
-					NaiveStep step = new NaiveStep(start,allFlowers,closest);
-					naiveSteps.add(step);
-					hiveStepDone=true;
-				}else{
-
-					for (CellFlower flower : flowers){
-						System.out.print(start.x + " " + start.y + " " +naiveSteps.size());
-						if (!newPath.contains(flower)){
-							naiveComparisons.add(flower);
-						}
-					}
-					//A naive step is compromised of
-					//the start node which is the previous visited flower
-					//naiveComparisons which is the nodes it checks but doesn't choose
-					//the closest node which is the node it has chosen to visit next
-					NaiveStep step = new NaiveStep(start, naiveComparisons,closest);
-
-					//Add the step to an array of naiveSteps
-					naiveSteps.add(step);
-				}
 				newPath.add(closest);
 			}
 
-			//Create the return step from the last node to the hive
-			//start node is the last flower node
-			//Empty available moves as only one move available
-			//hive is the end node as it thus creates the TSM cycle
-			ArrayList<Cell> empty = new ArrayList<>();
-			Cell hive = newPath.get(0);
-			NaiveStep step = new NaiveStep(closest,empty,hive);
-			naiveSteps.add(step);
-
 			double cost = calculatePathCost(newPath);
-			setPath(newPath, cost);
-			setNaiveSteps(naiveSteps);
+			setPath(newPath, cost);	
+			newPath.add(hive);
 		}
 	}
 
@@ -179,15 +134,7 @@ public class Bee extends Observable {
 		return cost;
 	}
 
-	/**
-	 * Set the naive steps.
-	 * 
-	 * @param naiveSteps The steps involved in the naive run
-	 */
-	public void setNaiveSteps(ArrayList<NaiveStep> naiveSteps){
-		this.naiveSteps = naiveSteps;
-	}
-
+	
 	/**
 	 * Set the current path
 	 *
@@ -211,12 +158,4 @@ public class Bee extends Observable {
 		return path;
 	}
 
-	/**
-	 * Return the naive steps.
-	 * 
-	 * @return naiveSteps. The steps involved in the naive run
-	 */
-	public ArrayList<NaiveStep> getNaiveSteps() {
-		return naiveSteps;
-	}
 }
