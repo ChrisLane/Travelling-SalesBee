@@ -127,7 +127,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			panel.setComponentZOrder(droppedBtn, 0); // Sets dropped button to be drawn last to the screen and therefor be on top of everything else
 		} catch (NullPointerException | IOException e) {
 			// Deletion for when the cell is dragged off the map panel
-			this.setEnabled(false);
+			setEnabled(false);
 			panel.remove(this);
 			panel.revalidate();
 			panel.repaint();
@@ -232,6 +232,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 * @return Type of the cell
 	 */
 	public String getType() {
-		return this.type;
+		return type;
 	}
 }

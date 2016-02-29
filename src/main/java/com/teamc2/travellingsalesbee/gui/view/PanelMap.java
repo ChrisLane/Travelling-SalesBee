@@ -165,8 +165,8 @@ public class PanelMap extends JPanel implements Runnable {
 	 * @param path Path to set in algorithms
 	 */
 	public void setPath(ArrayList<Cell> path) {
-		this.beePath = path;
-		this.repaint();
+		beePath = path;
+		repaint();
 	}
 
 	/**
@@ -181,12 +181,12 @@ public class PanelMap extends JPanel implements Runnable {
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
 		this.naiveSteps = steps;
-		this.repaint();
+		repaint();
 	}
 
 	public void setStepNumber(int stepNum){
 		this.stepNum = stepNum;
-		this.repaint();
+		repaint();
 	}
 
 	@Override

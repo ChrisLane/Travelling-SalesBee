@@ -104,7 +104,7 @@ public class PanelSettings extends JPanel {
 			Bee bee = new Bee(map, experimentalRuns);
 			path = bee.getPath();
 			panelMap.setPath(path);
-			this.panelMap.setNaiveSteps(bee.getNaiveSteps());
+			panelMap.setNaiveSteps(bee.getNaiveSteps());
 			System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
 			System.out.println("Path Cost: " + bee.getPathCost());
 
