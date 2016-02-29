@@ -21,7 +21,7 @@ public class BeeTest {
 		map.setCell(0, 6, CellType.FLOWER); // flower 2
 		map.setCell(2, 6, CellType.FLOWER); // flower 3
 
-		bee = new Bee(map, 5);
+		bee = new Bee(map, 20);
 	}
 
 	@DataProvider(name = "paths")
@@ -94,7 +94,7 @@ public class BeeTest {
 	@Test(dataProvider = "paths", dependsOnMethods = {"testSetPath", "testSetPathCost", "testGetPathCost"})
 	public void testExperimentalRuns(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
-		bee.experimentalRuns(20);
+		bee.experimentalRun();
 		Assert.assertTrue(bee.getPathCost() <= cost);
 	}
 
