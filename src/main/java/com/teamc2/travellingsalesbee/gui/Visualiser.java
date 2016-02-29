@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import com.teamc2.travellingsalesbee.gui.view.PanelAnimalAnimation;
 import com.teamc2.travellingsalesbee.gui.view.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
