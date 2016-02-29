@@ -179,18 +179,6 @@ public class Bee extends Observable {
 		}
 		return cost;
 	}
-
-	/**
-	 * Run experimental tests on the path, a given number of times
-	 *
-	 * @param experiments Number of experimental runs
-	 */
-	public void experimentalRuns(int experiments) {
-		while (experiments > 0) {
-			experimentalRun(experiments);
-			experiments--;
-		}
-	}
 	
 	/**
 	 * Set the naive steps.
