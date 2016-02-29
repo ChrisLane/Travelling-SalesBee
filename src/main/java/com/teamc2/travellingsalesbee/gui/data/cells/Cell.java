@@ -7,6 +7,12 @@ public abstract class Cell extends Point2D.Double {
 
 	/**
 	 * Create a new cell
+	 */
+	public Cell() {
+	}
+
+	/**
+	 * Create a new cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell

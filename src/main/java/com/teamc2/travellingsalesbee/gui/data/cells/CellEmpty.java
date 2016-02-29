@@ -6,6 +6,12 @@ public class CellEmpty extends Cell {
 
 	/**
 	 * Create a new empty cell
+	 */
+	public CellEmpty() {
+	}
+
+	/**
+	 * Create a new empty cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell
