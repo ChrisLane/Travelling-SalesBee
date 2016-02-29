@@ -63,7 +63,7 @@ public class PanelMap extends JPanel implements Runnable {
 			e.printStackTrace();
 		}
 
-		if (beePath.size() > 100) {
+		if (beePath.size() > 0) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
