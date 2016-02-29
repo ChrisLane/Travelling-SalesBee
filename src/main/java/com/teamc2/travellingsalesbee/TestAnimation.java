@@ -21,7 +21,7 @@ public class TestAnimation extends Application {
 	@Override public void start(Stage stage) throws Exception {
 		final Circle circle = createCircle();
 		final Group group = new Group(circle);
-		final TranslateTransition transition = createTranslateTransition(circle);
+		final TranslateTransition transition = new TranslateTransition(TRANSLATE_DURATION, circle);
 
 		final Scene scene = new Scene(group, 600, 400, Color.CORNSILK);
 		moveCircleOnMousePress(scene, circle, transition);
@@ -29,23 +29,11 @@ public class TestAnimation extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-
-
+	
 	private Circle createCircle() {
 		final Circle circle = new Circle(200, 150, 50, Color.BLUEVIOLET);
 		circle.setOpacity(0.7);
 		return circle;
-	}
-
-	private TranslateTransition createTranslateTransition(final Circle circle) {
-		final TranslateTransition transition = new TranslateTransition(TRANSLATE_DURATION, circle);
-		transition.setOnFinished(t -> {
-			circle.setCenterX(circle.getTranslateX() + circle.getCenterX());
-			circle.setCenterY(circle.getTranslateY() + circle.getCenterY());
-			circle.setTranslateX(0);
-			circle.setTranslateY(0);
-		});
-		return transition;
 	}
 
 	private void moveCircleOnMousePress(Scene scene, final Circle circle, final TranslateTransition transition) {
