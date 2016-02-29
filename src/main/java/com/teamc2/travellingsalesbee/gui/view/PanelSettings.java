@@ -174,7 +174,5 @@ public class PanelSettings extends JPanel {
 								.addGap(69))
 		);
 		setLayout(groupLayout);
-		
-	
 	}
 }
