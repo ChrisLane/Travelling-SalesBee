@@ -19,7 +19,6 @@ public class PanelSettings extends JPanel {
 	private final PanelMap panelMap;
 	private ArrayList<Cell> path;
 
-	private ArrayList<Cell> beePath;
 	private JLabel infoLabel;
 
 	private int experimentalRuns = 26; //Set to 26 by default
@@ -63,10 +62,6 @@ public class PanelSettings extends JPanel {
 	 */
 	public void addSettingsInfo() {
 		infoLabel = new JLabel("Settings box, we also need to choose a background image for this");
-	}
-
-	public ArrayList<Cell> getPath() {
-		return path;
 	}
 
 	/**
