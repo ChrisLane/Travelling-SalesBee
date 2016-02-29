@@ -107,11 +107,11 @@ public class PanelMap extends JPanel implements Runnable {
 				System.out.println("available size " + available.size());
 
 				if (i==stepNum){
-					for (int j=0;j<available.size();j++){
+					for (Cell anAvailable : available) {
 						g2.setStroke(new BasicStroke(5));
 						g2.setPaint(Color.red);
-						x2 = (int) available.get(j).x;
-						y2 = (int) available.get(j).y;
+						x2 = (int) anAvailable.x;
+						y2 = (int) anAvailable.y;
 						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 					}
 				}
