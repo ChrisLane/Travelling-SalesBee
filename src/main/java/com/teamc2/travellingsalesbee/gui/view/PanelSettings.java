@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 	private final PanelMap panelMap;
-	private ArrayList<Cell> path;
 
 	private JLabel infoLabel;
 
@@ -94,8 +93,7 @@ public class PanelSettings extends JPanel {
 			}
 
 			Bee bee = new Bee(map, experimentalRuns);
-			path = bee.getPath();
-			panelMap.setPath(path);
+			panelMap.setPath(bee.getPath());
 			panelMap.setNaiveSteps(bee.getNaiveSteps());
 			System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
 			System.out.println("Path Cost: " + bee.getPathCost());
