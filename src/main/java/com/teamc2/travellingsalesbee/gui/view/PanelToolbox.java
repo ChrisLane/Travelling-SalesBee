@@ -1,6 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.gui.CellDrag;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -60,33 +63,27 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDrag flowerToolCell = new CellDrag("", width, height, "FLOWER");
-		CellDrag hiveToolCell = new CellDrag("", width, height, "HIVE");
+		CellDrag flowerToolCell = new CellDrag("", width, height, CellType.FLOWER);
+		CellDrag hiveToolCell = new CellDrag("", width, height, CellType.HIVE);
 
-		try {
-			Image flowerImg = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
-			Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
+		Image flowerImg = new CellFlower().getImage();
+		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
-			Image hiveImg = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
-			Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
+		Image hiveImg = new CellHive().getImage();
+		Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 
-			flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
-			hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
+		hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
 
 
 		//Add buttons to the toolbox
 		hiveToolCell.setPanel(panelMap);
 		hiveToolCell.setBounds(0, 150, 100, 100);
+		add(hiveToolCell);
 
 		flowerToolCell.setPanel(panelMap);
-		flowerToolCell.setBounds(0, 160 + width, 100, 100);
-
+		flowerToolCell.setBounds(0, 160 + height, 100, 100);
 		add(flowerToolCell);
-		add(hiveToolCell);
 	}
 }

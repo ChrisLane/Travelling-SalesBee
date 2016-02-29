@@ -1,6 +1,9 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import javax.imageio.ImageIO;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -15,7 +18,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private final TransferHandler transHandler;
 	private final int width;
 	private final int height;
-	private final String type;
+	private final CellType type;
 	private JPanel panel;
 
 	/**
@@ -26,7 +29,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 * @param height Height of the cell
 	 * @param type   Type of the cell
 	 */
-	public CellDrag(String name, int width, int height, String type) {
+	public CellDrag(String name, int width, int height, CellType type) {
 		super(name);
 		this.width = width;
 		this.height = height;
@@ -183,20 +186,20 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 * @return The cell image
 	 * @throws IOException Exception thrown if the image cannot be retrieved
 	 */
-	public Image getImage(String type) throws IOException {
-		String filepath;
+	public Image getImage(CellType type) throws IOException {
+		Image img = null;
 		switch (type) {
-			case "FLOWER":
-				filepath = "/assets/icons/Flower.png";
+			case FLOWER:
+				img = new CellFlower().getImage();
 				break;
-			case "HIVE":
-				filepath = "/assets/icons/Hive.png";
+			case HIVE:
+				img = new CellHive().getImage();
 				break;
-			default:
-				filepath = "";
 		}
-		Image img = ImageIO.read(this.getClass().getResource(filepath));
-		return img.getScaledInstance(width - 5, height - 5, Image.SCALE_SMOOTH);
+		if (img != null) {
+			return img.getScaledInstance(width - 5, height - 5, Image.SCALE_SMOOTH);
+		}
+		return null;
 	}
 
 	/**
@@ -207,7 +210,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	private void hiveExists(JPanel panel) {
 		for (Component c : panel.getComponents()) {
 			if (c instanceof CellDrag) {
-				if (c.isEnabled() && ((CellDrag) c).getType().equals("HIVE")) {
+				if (c.isEnabled() && ((CellDrag) c).getType().equals(CellType.HIVE)) {
 					panel.remove(c);
 					c.setEnabled(false);
 				}
@@ -231,7 +234,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 *
 	 * @return Type of the cell
 	 */
-	public String getType() {
+	public CellType getType() {
 		return type;
 	}
 }
