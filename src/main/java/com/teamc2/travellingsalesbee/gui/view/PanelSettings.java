@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
-	private final JPanel parent;
 	private final PanelMap panelMap;
 	private ArrayList<Cell> path;
 
@@ -32,11 +31,9 @@ public class PanelSettings extends JPanel {
 	/**
 	 * Create a settings panel
 	 *
-	 * @param parent  Parent panel
 	 * @param panelMap Map JPanel
 	 */
-	public PanelSettings(JPanel parent, PanelMap panelMap) {
-		this.parent = parent;
+	public PanelSettings(PanelMap panelMap) {
 		this.panelMap = panelMap;
 
 		setBackground(Color.LIGHT_GRAY);
@@ -80,8 +77,8 @@ public class PanelSettings extends JPanel {
 		btnRun.addActionListener(arg0 -> {
 
 			//Get parent width and height
-			int panelWidth = parent.getWidth();
-			int panelHeight = parent.getHeight();
+			int panelWidth = panelMap.getWidth();
+			int panelHeight = panelMap.getHeight();
 
 			if (debug) System.out.print(panelWidth);
 			if (debug) System.out.print(panelHeight);
@@ -91,7 +88,7 @@ public class PanelSettings extends JPanel {
 			Map map = new Map(panelWidth, panelHeight); //Initialising Map with cellsX and cellsY as width and height of map
 
 			//Add all cells to the map
-			for (Component c : parent.getComponents()) {
+			for (Component c : panelMap.getComponents()) {
 				if (c instanceof CellDrag) {
 					if (c.isEnabled() && ((CellDrag) c).getType().equals("FLOWER")) {
 						map.setCell(c.getX(), c.getY(), CellType.FLOWER); //Add flower positions to map
