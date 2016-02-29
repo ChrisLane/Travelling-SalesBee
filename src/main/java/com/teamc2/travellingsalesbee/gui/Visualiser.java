@@ -38,7 +38,7 @@ public class Visualiser extends JFrame implements Observer {
 		int height = 50;
 		PanelMap panelMap = new PanelMap(width, height);
 		JPanel panelToolbox = new PanelToolbox(panelMap);
-		JPanel panelSettings = new PanelSettings(panelMap, panelMap);
+		JPanel panelSettings = new PanelSettings(panelMap);
 
 		// Add grid to the map
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
