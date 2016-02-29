@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
 
 public class CellEmpty extends Cell {
 
@@ -26,7 +26,7 @@ public class CellEmpty extends Cell {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return null;
 	}
 

@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 
 public abstract class Cell extends Point2D.Double {
 
@@ -27,5 +27,5 @@ public abstract class Cell extends Point2D.Double {
 	 *
 	 * @return Cell image
 	 */
-	protected abstract BufferedImage getImage();
+	protected abstract Image getImage();
 }

@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.IOException;
 
 public class CellFlower extends Cell {
@@ -28,8 +28,8 @@ public class CellFlower extends Cell {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public BufferedImage getImage() {
-		BufferedImage image = null;
+	public Image getImage() {
+		Image image = null;
 		try {
 			image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 		} catch (IOException e) {
