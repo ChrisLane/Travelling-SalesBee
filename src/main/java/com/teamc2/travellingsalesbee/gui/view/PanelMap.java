@@ -49,10 +49,10 @@ public class PanelMap extends JPanel implements Runnable {
 		int animationX = 0;
 		int animationY = 0;
 
-		if(stepNum > 0) {
-			animationX = (int) naiveSteps.get(stepNum).getStart().getX();
-			animationY = (int) naiveSteps.get(stepNum).getStart().getY();
-		}
+		//if(stepNum > 0) {
+		//	animationX = (int) naiveSteps.get(stepNum).getStart().getX();
+		//	animationY = (int) naiveSteps.get(stepNum).getStart().getY();
+		//}
 
 		try {
 			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
@@ -63,7 +63,7 @@ public class PanelMap extends JPanel implements Runnable {
 			e.printStackTrace();
 		}
 
-		if (beePath.size() > 0) {
+		if (beePath.size() > 100) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
@@ -180,7 +180,7 @@ public class PanelMap extends JPanel implements Runnable {
 
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
-		this.naiveSteps = steps;
+		naiveSteps = steps;
 		repaint();
 	}
 

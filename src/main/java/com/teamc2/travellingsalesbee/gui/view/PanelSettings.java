@@ -1,23 +1,39 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.FLOWER;
+import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.HIVE;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTextPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.CellDrag;
 import com.teamc2.travellingsalesbee.gui.data.Map;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.FLOWER;
-import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.HIVE;
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 
 public class PanelSettings extends JPanel {
 	
 	private final PanelMap panelMap;
+
 
 	private JLabel infoLabel;
 
@@ -94,12 +110,14 @@ public class PanelSettings extends JPanel {
 			}
 
 			Bee bee = new Bee(map, experimentalRuns);
+			BeeVisualiser visualise = new BeeVisualiser();
 			bee.naiveRun();
+			panelMap.setNaiveSteps(visualise.getNaiveSteps(bee.getPath()));
 			bee.experimentalRun();
 			panelMap.setPath(bee.getPath());
-			panelMap.setNaiveSteps(bee.getNaiveSteps());
-			System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
-			System.out.println("Path Cost: " + bee.getPathCost());
+
+			//System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
+			//System.out.println("Path Cost: " + bee.getPathCost());
 
 		});
 
