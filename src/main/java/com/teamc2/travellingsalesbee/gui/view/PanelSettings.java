@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.gui.view;
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.CellDrag;
 import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 
 import javax.imageio.ImageIO;
@@ -13,7 +12,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 	private final PanelMap panelMap;
@@ -22,7 +20,7 @@ public class PanelSettings extends JPanel {
 
 	private int experimentalRuns = 26; //Set to 26 by default
 	private int stepNum = 0;
-	
+
 	// Remove later
 	protected boolean debug = true;
 
@@ -108,7 +106,7 @@ public class PanelSettings extends JPanel {
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
 		slider.addChangeListener(arg0 -> {
-			if (debug ) System.out.println("Slider Changed");
+			if (debug) System.out.println("Slider Changed");
 			slider.setValue(slider.getValue());
 			lblNoOfRuns.setText("" + slider.getValue());
 			experimentalRuns = slider.getValue();
