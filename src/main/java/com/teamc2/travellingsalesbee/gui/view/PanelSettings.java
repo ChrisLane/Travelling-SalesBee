@@ -16,6 +16,7 @@ import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.FLOWER;
 import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.HIVE;
 
 public class PanelSettings extends JPanel {
+	
 	private final PanelMap panelMap;
 
 	private JLabel infoLabel;

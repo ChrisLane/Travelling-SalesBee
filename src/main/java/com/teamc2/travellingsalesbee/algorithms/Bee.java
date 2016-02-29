@@ -11,8 +11,10 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 
 public class Bee extends Observable {
 
-	private final Cell hive;
 	private final Map map;
+	private int experiments;
+	private final Cell hive;
+
 	private ArrayList<Cell> path = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
@@ -25,10 +27,8 @@ public class Bee extends Observable {
 	 */
 	public Bee(Map map, int experiments) {
 		this.map = map;
+		this.experiments = experiments;
 		hive = map.getHive();
-
-		naiveRun();
-		experimentalRun(experiments);
 	}
 
 	/**
@@ -49,13 +49,13 @@ public class Bee extends Observable {
 			newPath.add(hive);
 			// Loop over flowers missing from path
 			CellFlower closest = null;
-			
+
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				closest = null;
 				Cell start = newPath.get(newPath.size()-1);
-				
-		
+
+
 				// Find the closest flower to the previous
 				for (CellFlower flower : flowers) {
 					double distance = flower.distance(newPath.get(newPath.size() - 1));
@@ -66,14 +66,14 @@ public class Bee extends Observable {
 				}
 				//Remove the flower that is closest from the set
 				flowers.remove(closest);
-				
+
 				/**************************************************************/
 				/**	Formulating of naive steps for the step through process	**/
 				/************************************************************/
-				
+
 				//Check to see if the first step has been created
-					//If not then create initial step
-					//Else create the intermediate steps in the naive visualisation
+				//If not then create initial step
+				//Else create the intermediate steps in the naive visualisation
 				if (!hiveStepDone){
 					ArrayList<Cell> allFlowers = map.getNodes();
 					allFlowers.remove(closest);
@@ -89,26 +89,26 @@ public class Bee extends Observable {
 						}
 					}
 					//A naive step is compromised of
-						//the start node which is the previous visited flower
-						//naiveComparisons which is the nodes it checks but doesn't choose
-						//the closest node which is the node it has chosen to visit next
+					//the start node which is the previous visited flower
+					//naiveComparisons which is the nodes it checks but doesn't choose
+					//the closest node which is the node it has chosen to visit next
 					NaiveStep step = new NaiveStep(start, naiveComparisons,closest);
-					
+
 					//Add the step to an array of naiveSteps
 					naiveSteps.add(step);
 				}
 				newPath.add(closest);
 			}
-			
+
 			//Create the return step from the last node to the hive
-				//start node is the last flower node
-				//Empty available moves as only one move available
-				//hive is the end node as it thus creates the TSM cycle
+			//start node is the last flower node
+			//Empty available moves as only one move available
+			//hive is the end node as it thus creates the TSM cycle
 			ArrayList<Cell> empty = new ArrayList<>();
 			Cell hive = newPath.get(0);
 			NaiveStep step = new NaiveStep(closest,empty,hive);
 			naiveSteps.add(step);
-			
+
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
 			setNaiveSteps(naiveSteps);
@@ -119,29 +119,28 @@ public class Bee extends Observable {
 	 * Runs an experimental path improvement check
 	 * @param experiments Number of experimental runs
 	 */
-	private void experimentalRun(int experiments) {
-		if (path.isEmpty()) {
-			naiveRun();
-		} else if (path.size() > 3) {
+	private void experimentalRun() {
+		int experiments = this.experiments;
+		if (path.size() > 3) {
 			while (experiments > 0) {
 				ArrayList<Cell> testPath = path;
-	
+
 				int flowerPos1 = 0;
 				int flowerPos2 = 0;
-	
+
 				while (flowerPos1 == flowerPos2) {
 					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
 					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
 				}
-				
+
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
-				
+
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
-					
+
 				// TODO: Call a method to visualise the flower1 and flower2 swap
-	
+
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
 					System.out.println("PATH CHANGED!");
@@ -179,7 +178,7 @@ public class Bee extends Observable {
 		}
 		return cost;
 	}
-	
+
 	/**
 	 * Set the naive steps.
 	 * 
@@ -188,7 +187,7 @@ public class Bee extends Observable {
 	public void setNaiveSteps(ArrayList<NaiveStep> naiveSteps){
 		this.naiveSteps = naiveSteps;
 	}
-	
+
 	/**
 	 * Set the current path
 	 *
@@ -211,7 +210,7 @@ public class Bee extends Observable {
 	public ArrayList<Cell> getPath() {
 		return path;
 	}
-	
+
 	/**
 	 * Return the naive steps.
 	 * 
