@@ -73,7 +73,7 @@ public class Bee extends Observable {
 				
 				//Check to see if the first step has been created
 					//If not then create initial step
-					//Else create the intemediate steps in the naive visualisation
+					//Else create the intermediate steps in the naive visualisation
 				if (!hiveStepDone){
 					ArrayList<Cell> allFlowers = map.getNodes();
 					allFlowers.remove(closest);

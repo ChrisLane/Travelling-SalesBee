@@ -123,7 +123,7 @@ public class Map extends JPanel {
 	}
 
 	/**
-	 * Fill the map will empty cels
+	 * Fill the map will empty cells
 	 */
 	public void setMap() {
 		for (int i = 0; i < width; i++) {

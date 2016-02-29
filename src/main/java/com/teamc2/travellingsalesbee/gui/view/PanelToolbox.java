@@ -21,21 +21,21 @@ public class PanelToolbox extends JPanel {
 		this.height = parent.getCellHeight();
 		setBackground(Color.WHITE);
 
-		JTextArea txtrDragElementsOnto = new JTextArea();
-		txtrDragElementsOnto.setEditable(false);
-		txtrDragElementsOnto.setWrapStyleWord(true);
-		txtrDragElementsOnto.setLineWrap(true);
-		txtrDragElementsOnto.setText("Toolbox");
+		JTextArea txtDragElementsOnto = new JTextArea();
+		txtDragElementsOnto.setEditable(false);
+		txtDragElementsOnto.setWrapStyleWord(true);
+		txtDragElementsOnto.setLineWrap(true);
+		txtDragElementsOnto.setText("Toolbox");
 
 		GroupLayout gl_panel_toolbox = new GroupLayout(this);
 		gl_panel_toolbox.setHorizontalGroup(
 				gl_panel_toolbox.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addComponent(txtrDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+						.addComponent(txtDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
 		);
 		gl_panel_toolbox.setVerticalGroup(
 				gl_panel_toolbox.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(gl_panel_toolbox.createSequentialGroup()
-								.addComponent(txtrDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addContainerGap(330, Short.MAX_VALUE))
 		);
