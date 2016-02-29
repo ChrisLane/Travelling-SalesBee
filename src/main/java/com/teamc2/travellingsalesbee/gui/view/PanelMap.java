@@ -18,8 +18,6 @@ public class PanelMap extends JPanel implements Runnable {
 	private ArrayList<Cell> beePath = new ArrayList<>();
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 
-	//private PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation();
-
 	private int stepNum = 0;
 
 	/**
@@ -36,6 +34,13 @@ public class PanelMap extends JPanel implements Runnable {
 		setLayout(null);
 
 		//this.add(panelAnimation);
+
+		System.out.println("this.getWidth: " + this.getWidth() + ", this.getHeight: " + this.getHeight());
+		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 500, 500);
+		panelAnimation.setBounds(0, 0, 500, 500);
+		this.add(panelAnimation);
+		this.setComponentZOrder(panelAnimation, 0);
+
 	}
 
 	/**
@@ -46,13 +51,6 @@ public class PanelMap extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		int animationX = 0;
-		int animationY = 0;
-
-		//if(stepNum > 0) {
-		//	animationX = (int) naiveSteps.get(stepNum).getStart().getX();
-		//	animationY = (int) naiveSteps.get(stepNum).getStart().getY();
-		//}
 
 		try {
 			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
@@ -93,10 +91,10 @@ public class PanelMap extends JPanel implements Runnable {
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
-		} else if (naiveSteps.size() > 0){
+		} else if (naiveSteps.size() > 0) {
 			int x1, x2, y1, y2;
 
-			for (int i = 0; i<stepNum+1;i++){
+			for (int i = 0; i < stepNum + 1; i++) {
 				NaiveStep step = naiveSteps.get(i);
 				System.out.println(step.getAvailable().size());
 				x1 = (int) step.getStart().x;
@@ -106,7 +104,7 @@ public class PanelMap extends JPanel implements Runnable {
 				System.out.println("naiveSteps.size() " + naiveSteps.size());
 				System.out.println("available size " + available.size());
 
-				if (i==stepNum){
+				if (i == stepNum) {
 					for (Cell anAvailable : available) {
 						g2.setStroke(new BasicStroke(5));
 						g2.setPaint(Color.red);
@@ -124,21 +122,6 @@ public class PanelMap extends JPanel implements Runnable {
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 			}
 		}
-
-		Font font = new Font("Tahoma", Font.BOLD+Font.PLAIN, 100);
-		g2.setFont(font);
-		g2.setColor(Color.yellow);
-		g2.drawString("HELLO THERE, HOW ARE YOU?", animationX, animationY);
-
-		try {
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/icons/SalesBee.png"));
-			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, 50, 50));
-			g2.setPaint(paint);
-			g2.fill(new Rectangle(animationX, animationY, 50, 50));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
