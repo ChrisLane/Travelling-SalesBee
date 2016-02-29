@@ -10,8 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 	private final JPanel parent;
-	private final PanelMap gridmap;
+	private final PanelMap panelMap;
 	private ArrayList<Cell> path;
 
 	private ArrayList<Cell> beePath;
@@ -35,11 +33,11 @@ public class PanelSettings extends JPanel {
 	 * Create a settings panel
 	 *
 	 * @param parent  Parent panel
-	 * @param gridmap Gridmap panel
+	 * @param panelMap Map JPanel
 	 */
-	public PanelSettings(JPanel parent, PanelMap gridmap) {
+	public PanelSettings(JPanel parent, PanelMap panelMap) {
 		this.parent = parent;
-		this.gridmap = gridmap;
+		this.panelMap = panelMap;
 
 		setBackground(Color.LIGHT_GRAY);
 		addSettingsInfo();
@@ -105,8 +103,8 @@ public class PanelSettings extends JPanel {
 
 			Bee bee = new Bee(map, experimentalRuns);
 			path = bee.getPath();
-			gridmap.setPath(path);
-			this.gridmap.setNaiveSteps(bee.getNaiveSteps());
+			panelMap.setPath(path);
+			this.panelMap.setNaiveSteps(bee.getNaiveSteps());
 			System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
 			System.out.println("Path Cost: " + bee.getPathCost());
 
@@ -126,18 +124,18 @@ public class PanelSettings extends JPanel {
 			experimentalRuns = slider.getValue();
 		});
 
-		JTextPane txtpnTextWillAppear = new JTextPane();
-		txtpnTextWillAppear.setText("Text will appear here as you step through the algorithm, explaining how it works at each step");
+		JTextPane txtPaneTextWillAppear = new JTextPane();
+		txtPaneTextWillAppear.setText("Text will appear here as you step through the algorithm, explaining how it works at each step");
 
 		JButton btnPrev = new JButton("<-");
 		btnPrev.addActionListener(arg0 -> {
 			stepNum--;
-			gridmap.setStepNumber(stepNum);
+			panelMap.setStepNumber(stepNum);
 		});
 		JButton btnNext = new JButton("->");
 		btnNext.addActionListener(arg0 -> {
 			stepNum++;
-			gridmap.setStepNumber(stepNum);
+			panelMap.setStepNumber(stepNum);
 		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -160,7 +158,7 @@ public class PanelSettings extends JPanel {
 												.addComponent(btnPrev)
 												.addGap(18)
 												.addComponent(btnNext))
-										.addComponent(txtpnTextWillAppear, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+										.addComponent(txtPaneTextWillAppear, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
 								.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -182,7 +180,7 @@ public class PanelSettings extends JPanel {
 										.addComponent(btnPrev, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 										.addComponent(btnRun))
 								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtpnTextWillAppear, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtPaneTextWillAppear, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
 								.addGap(69))
 		);
 		setLayout(groupLayout);

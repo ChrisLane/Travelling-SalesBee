@@ -35,7 +35,7 @@ public class PanelAnimalAnimation extends JPanel {
 			g2.setPaint(paint);
 			g2.fill(new Rectangle((int)beePosX, (int)beePosY, 50, 50));
 		} catch (IOException e) {
-			System.out.println("Imaeg UEL was not set/url is invalid");
+			System.out.println("Image UEL was not set/url is invalid");
 			e.printStackTrace();
 		}
 
