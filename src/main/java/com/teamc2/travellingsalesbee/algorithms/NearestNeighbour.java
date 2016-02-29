@@ -26,9 +26,8 @@ public class NearestNeighbour extends Observable {
 	/**
 	 * Run the
 	 * 
-	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
-	 * the nearest non-visited neighbour until every flower has been visited, following 
-	 * that it then returns to the hive
+	 * A greedy like algorithm, it visits the nearest non-visited neighbour
+	 * until every flower has been visited, following that it then returns to the hive
 	 */
 	public void run() {
 		if (!(hive == null)) {
