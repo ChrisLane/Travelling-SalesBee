@@ -11,14 +11,14 @@ import java.io.IOException;
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
-	private final JPanel parent;
+	private final JPanel panelMap;
 	private final int width;
 	private final int height;
 
-	public PanelToolbox(PanelMap parent) {
-		this.parent = parent;
-		width = parent.getCellWidth();
-		height = parent.getCellHeight();
+	public PanelToolbox(PanelMap panelMap) {
+		this.panelMap = panelMap;
+		width = panelMap.getCellWidth();
+		height = panelMap.getCellHeight();
 		setBackground(Color.WHITE);
 
 		JTextArea txtDragElementsOnto = new JTextArea();
@@ -80,10 +80,10 @@ public class PanelToolbox extends JPanel {
 
 
 		//Add buttons to the toolbox
-		hiveToolCell.setPanel(parent);
+		hiveToolCell.setPanel(panelMap);
 		hiveToolCell.setBounds(0, 150, 100, 100);
 
-		flowerToolCell.setPanel(parent);
+		flowerToolCell.setPanel(panelMap);
 		flowerToolCell.setBounds(0, 160 + width, 100, 100);
 
 		add(flowerToolCell);
