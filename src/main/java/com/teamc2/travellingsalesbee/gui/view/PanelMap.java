@@ -94,7 +94,7 @@ public class PanelMap extends JPanel implements Runnable {
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
 		} else if (naiveSteps.size() > 0){
-			int x1, x2 = 0, y1, y2 = 0;
+			int x1, x2, y1, y2;
 
 			for (int i = 0; i<stepNum+1;i++){
 				NaiveStep step = naiveSteps.get(i);
