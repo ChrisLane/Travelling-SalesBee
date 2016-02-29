@@ -50,7 +50,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 		source = new DragSource();
 		source.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY, this);
-
 	}
 
 	/**
@@ -82,9 +81,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		System.out.println("Drag Gesture Recognised");
 		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDrag("", width, height, type), this);
-
 	}
 
 	/**
@@ -140,7 +137,6 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
-		System.out.println("Drag Entered");
 		/**
 		 try {
 		 //ImageIcon img = new ImageIcon(getImage(type));
@@ -153,22 +149,13 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	}
 
 	@Override
-	public void dragExit(DragSourceEvent arg0) {
-		System.out.println("Drag exit");
-
-	}
+	public void dragExit(DragSourceEvent arg0) {}
 
 	@Override
-	public void dragOver(DragSourceDragEvent arg0) {
-		System.out.println("Drag Over");
-
-
-	}
+	public void dragOver(DragSourceDragEvent arg0) {}
 
 	@Override
-	public void dropActionChanged(DragSourceDragEvent arg0) {
-		System.out.println("changed");
-	}
+	public void dropActionChanged(DragSourceDragEvent arg0) {}
 
 	/**
 	 * Set the panel for the cell
