@@ -2,24 +2,32 @@ package com.teamc2.travellingsalesbee;
 
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.scene.*;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 /**
  * Reference class for coding animations.
  *
- * Original source:
- * https://gist.githubusercontent.com/jewelsea/4569878/raw/e6d3e5545069678783c171320d075e8e248c0f8c/MovementEventsDemo.java
- */
+ **/
 public class TestAnimation extends Application {
 	private static final Duration TRANSLATE_DURATION = Duration.seconds(0.25);
 
 	public static void main(String[] args) { launch(args); }
 	@Override public void start(Stage stage) throws Exception {
+
+		Image image = new Image("/assets/icons/SalesBee.png");
+
 		final Circle circle = createCircle();
+		circle.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 		final Group group = new Group(circle);
 		final TranslateTransition transition = new TranslateTransition(TRANSLATE_DURATION, circle);
 
