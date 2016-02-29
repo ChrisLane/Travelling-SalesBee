@@ -1,8 +1,8 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import java.util.ArrayList;
-
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
+import java.util.ArrayList;
 
 public class NaiveStep {
 
@@ -10,22 +10,22 @@ public class NaiveStep {
 	private ArrayList<Cell> available = new ArrayList<>();
 	private Cell start;
 
-	public NaiveStep(Cell start, ArrayList<Cell> available, Cell cell){
-		this.start=start;
-		this.available=available;
-		this.end=cell;
+	public NaiveStep(Cell start, ArrayList<Cell> available, Cell cell) {
+		this.start = start;
+		this.available = available;
+		end = cell;
 	}
-	
-	public Cell getStart(){
+
+	public Cell getStart() {
 		return start;
 	}
-	
-	public ArrayList<Cell> getAvailable(){
-		return this.available;
+
+	public ArrayList<Cell> getAvailable() {
+		return available;
 	}
-	
-	public Cell getEnd(){
+
+	public Cell getEnd() {
 		return end;
 	}
-	
+
 }
