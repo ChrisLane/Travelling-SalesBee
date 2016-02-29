@@ -95,7 +95,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			panel.grabFocus();
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
-			if (type.equals("HIVE")) {
+			if (type.equals(CellType.HIVE)) {
 				deleteOldHive(panel);
 			}
 			CellDrag droppedBtn = new CellDrag("", width, height, type);
