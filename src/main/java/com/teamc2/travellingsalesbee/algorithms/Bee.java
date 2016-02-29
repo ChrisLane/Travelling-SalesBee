@@ -119,7 +119,7 @@ public class Bee extends Observable {
 	 * Runs an experimental path improvement check
 	 * @param experiments Number of experimental runs
 	 */
-	private void experimentalRun() {
+	public void experimentalRun() {
 		int experiments = this.experiments;
 		if (path.size() > 3) {
 			while (experiments > 0) {
