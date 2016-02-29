@@ -8,6 +8,12 @@ public class CellHive extends Cell {
 
 	/**
 	 * Create a new hive cell
+	 */
+	public CellHive() {
+	}
+
+	/**
+	 * Create a new hive cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell

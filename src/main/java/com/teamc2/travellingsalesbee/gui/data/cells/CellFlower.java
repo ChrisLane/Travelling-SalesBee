@@ -8,6 +8,12 @@ public class CellFlower extends Cell {
 
 	/**
 	 * Create a new flower cell
+	 */
+	public CellFlower() {
+	}
+
+	/**
+	 * Create a new flower cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell
