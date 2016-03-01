@@ -38,36 +38,9 @@ public class Bee {
 	 * that it then returns to the hive
 	 */
 	public void naiveRun() {
-		if (!(hive == null)) {
-			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<CellFlower> flowers = map.getFlowers();
-
-			newPath.add(hive);
-			// Loop over flowers missing from path
-			CellFlower closest = null;
-
-			while (!flowers.isEmpty()) {
-				double bestDistance = Double.MAX_VALUE;
-				closest = null;
-
-
-				// Find the closest flower to the previous
-				for (CellFlower flower : flowers) {
-					double distance = flower.distance(newPath.get(newPath.size() - 1));
-					if (distance < bestDistance) {
-						closest = flower;
-						bestDistance = distance;
-					}
-				}
-				//Remove the flower that is closest from the set
-				flowers.remove(closest);
-				newPath.add(closest);
-			}
-
-			double cost = calculatePathCost(newPath);
-			setPath(newPath, cost);	
-			newPath.add(hive);
-		}
+		NearestNeighbour nearest = new NearestNeighbour(map);
+		nearest.run();
+		setPath(nearest.getPath(),nearest.getPathCost());
 	}
 
 	/**
