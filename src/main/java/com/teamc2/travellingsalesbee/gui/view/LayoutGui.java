@@ -13,9 +13,12 @@ public class LayoutGui extends GroupLayout {
 	 */
 
 	Container host;
-	JPanel panelMap, panelSettings, panelToolbox;
+	PanelMap panelMap;
+	PanelSettings panelSettings;
+	PanelToolbox panelToolbox;
+	//PanelAnimalAnimation panelAnimation;
 
-	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
+	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox/*, PanelAnimalAnimation panelAnimation*/) {
 		super(host);
 
 		this.host = host;
@@ -41,8 +44,6 @@ public class LayoutGui extends GroupLayout {
 								.addContainerGap(105, Short.MAX_VALUE))
 						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
 		);
-
-
 
 	}
 

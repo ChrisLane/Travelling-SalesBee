@@ -34,22 +34,16 @@ public class Visualiser extends JFrame {
 		PanelToolbox panelToolbox = new PanelToolbox(panelMap);
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 
-		System.out.println("this.getWidth: " + panelMap.getWidth() + ", this.getHeight: " + panelMap.getHeight());
-
 		// Add grid to the map
 		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
 
-		int panelMapWidth = (int) layoutGui.getPanelMapDimensions().getWidth();
-		int panelMapHeight = (int) layoutGui.getPanelMapDimensions().getHeight();
+		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
+		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), 789, 446);
+		panelMap.add(panelAnimation);
+		//For some reason this makes the program not work properly
+		//setComponentZOrder(panelAnimation, 0);
 
-
-		//DOESN'T WORK
-		/*System.out.println("panelMapWidth " + panelMapWidth + " panelMapHeight " + panelMapHeight);
-
-		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, panelMapWidth, panelMapWidth);
-		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), panelMapWidth, panelMapHeight);
-		add(panelAnimation);
-		setComponentZOrder(panelAnimation, 0);*/
+		System.out.println("this.getWidth: " + panelAnimation.getWidth() + ", this.getHeight: " + panelAnimation.getHeight());
 
 		contentPane.setLayout(layoutGui);
 	}
