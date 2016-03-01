@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import static java.awt.Image.SCALE_SMOOTH;
+
 import javax.swing.GroupLayout.Alignment;
 
 public class PanelToolbox extends JPanel {
