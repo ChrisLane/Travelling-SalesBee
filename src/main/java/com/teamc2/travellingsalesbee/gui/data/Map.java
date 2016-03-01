@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.data;
 
+import com.teamc2.travellingsalesbee.algorithms.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.data.cells.*;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class Map extends JPanel {
 	private final Cell[][] cells; //Will store our ElementCells
 	private int speed; //Speed of bees
 	private CellHive hive;
+	private CostMatrix costMatrix;
 
 	/**
 	 * Create a new map
@@ -77,6 +79,10 @@ public class Map extends JPanel {
 	public Cell getCell(int x, int y) {
 		return cells[x][y];
 	}
+	
+	public CostMatrix getCostMatrix() {
+		return costMatrix;
+	}
 
 	//SET METHODS
 
@@ -140,5 +146,9 @@ public class Map extends JPanel {
 	 */
 	public CellHive getHive() {
 		return hive;
+	}
+	
+	public void setCostMatrix() {
+		costMatrix = new CostMatrix(this); 
 	}
 }
