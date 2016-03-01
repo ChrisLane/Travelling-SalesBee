@@ -2,8 +2,10 @@ package com.teamc2.travellingsalesbee.gui.view;
 
 import java.awt.*;
 import java.awt.Color;
+import java.awt.Paint;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -11,6 +13,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.*;
@@ -53,7 +56,7 @@ public class PanelAnimalAnimation extends JPanel {
 
 		//Size of parent-panel
 		this.setPreferredSize(new Dimension(width, height));
-		//this.setBackground(Color.CYAN);
+		this.setOpaque(false);
 
 		Platform.runLater(new Runnable() {
 			@Override
@@ -71,8 +74,13 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private Scene initScene() {
-		Group  root  =  new  Group();
+		Pane root  =  new  Pane();
 		Scene  scene  =  new  Scene(root, width, height);
+		scene.setFill(javafx.scene.paint.Color.rgb(0,0,0,0));
+		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+		scene.getStylesheets().add(url1.toExternalForm());
+
+		root.setId("beePane");
 
 		final Circle circle = createRectangle();
 		final TranslateTransition transition = new TranslateTransition((Duration.seconds(0.25)), circle);
