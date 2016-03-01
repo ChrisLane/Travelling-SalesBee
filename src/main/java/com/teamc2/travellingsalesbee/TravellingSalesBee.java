@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee;
 
 import com.teamc2.travellingsalesbee.gui.view.pages.Menu;
+import com.teamc2.travellingsalesbee.gui.view.pages.Page;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,6 +9,8 @@ import javafx.stage.Stage;
  * Creates the main GUI menu for navigation.
  */
 public class TravellingSalesBee extends Application {
+	public static Page mainMenu;
+
 	/**
 	 * Program arguments.
 	 */
@@ -48,8 +51,8 @@ public class TravellingSalesBee extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
-		Menu page = new Menu("Travelling SalesBee", appHeight, appWidth);
-		page.bootstrap();
-		page.show();
+		TravellingSalesBee.mainMenu = new Menu("Travelling SalesBee", appHeight, appWidth);
+		TravellingSalesBee.mainMenu.bootstrap();
+		TravellingSalesBee.mainMenu.show();
 	}
 }

@@ -59,8 +59,14 @@ public class Menu extends Page {
 
 		Button simButton = createButton("Run Simulation");
 		simButton.setOnAction(event -> {
-			Visualiser.main(TravellingSalesBee.getArgs());
+			if (Visualiser.mainVisualiser == null) {
+				Visualiser.main(TravellingSalesBee.getArgs());
+			} else {
+				Visualiser.mainVisualiser.setVisible(true);
+			}
+
 			Platform.setImplicitExit(false);
+			hide();
 		});
 
 		Button docButton = createButton("Documentation");

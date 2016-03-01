@@ -1,9 +1,12 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.gui.CellDrag;
+import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+import javafx.application.Platform;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,6 +30,10 @@ public class PanelToolbox extends JPanel {
 		setBackground(Color.WHITE);
 		
 		JButton btnNewButton = new JButton("Back");
+		btnNewButton.addActionListener(event -> Platform.runLater(() -> {
+			Visualiser.mainVisualiser.setVisible(false);
+			TravellingSalesBee.mainMenu.show();
+		}));
 
 		GroupLayout gl_panel_toolbox = new GroupLayout(this);
 		gl_panel_toolbox.setHorizontalGroup(
