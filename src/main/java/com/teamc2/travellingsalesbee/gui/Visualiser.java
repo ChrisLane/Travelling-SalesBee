@@ -8,8 +8,6 @@ import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 public class Visualiser extends JFrame {
 	/**
@@ -50,48 +48,9 @@ public class Visualiser extends JFrame {
 	 * @param args The runtime arguments for the application.
 	 */
 	public static void main(String[] args) {
-		// Temporary variables, should be removed and replaced for width and height when not in static main.
-		int roundHeight = 50;
-		int roundWidth = 50;
-		EventQueue.invokeLater(() -> {
-			try {
-				Visualiser frame = new Visualiser();
-				frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);
 
-				// Listener to implement correct resizing so that the map keeps it's grid proportion
-				frame.addComponentListener(new ComponentListener() {
-					@Override
-					public void componentResized(ComponentEvent e) {
-						System.out.println("Resized");
-						// frameWidth = snap to the nearest cell width
-						int frameWidth = (frame.getWidth() / roundWidth) * roundWidth;
-
-						// frameHeight = snap to the nearest cell Height
-						int frameHeight = (frame.getHeight() / (2 * roundHeight)) * (2 * roundHeight);
-
-						// Resize frame according to the nearest possible snap
-						frame.setSize(frameWidth, frameHeight);
-					}
-
-					@Override
-					public void componentMoved(ComponentEvent e) {
-
-					}
-
-					@Override
-					public void componentShown(ComponentEvent e) {
-
-					}
-
-					@Override
-					public void componentHidden(ComponentEvent e) {
-
-					}
-				});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+		Visualiser frame = new Visualiser();
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		frame.setVisible(true);
 	}
 }
