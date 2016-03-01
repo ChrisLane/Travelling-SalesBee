@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import static java.awt.Image.SCALE_SMOOTH;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PanelToolbox extends JPanel {
 	private final JPanel panelMap;
@@ -23,24 +25,22 @@ public class PanelToolbox extends JPanel {
 		width = panelMap.getCellWidth();
 		height = panelMap.getCellHeight();
 		setBackground(Color.WHITE);
-
-		JTextArea txtDragElementsOnto = new JTextArea();
-		txtDragElementsOnto.setEditable(false);
-		txtDragElementsOnto.setWrapStyleWord(true);
-		txtDragElementsOnto.setLineWrap(true);
-		txtDragElementsOnto.setText("Toolbox");
+		
+		JButton btnNewButton = new JButton("Back");
 
 		GroupLayout gl_panel_toolbox = new GroupLayout(this);
 		gl_panel_toolbox.setHorizontalGroup(
-				gl_panel_toolbox.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addComponent(txtDragElementsOnto, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_toolbox.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnNewButton)
+					.addContainerGap(327, Short.MAX_VALUE))
 		);
 		gl_panel_toolbox.setVerticalGroup(
-				gl_panel_toolbox.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(gl_panel_toolbox.createSequentialGroup()
-								.addComponent(txtDragElementsOnto, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addContainerGap(330, Short.MAX_VALUE))
+			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_toolbox.createSequentialGroup()
+					.addComponent(btnNewButton)
+					.addContainerGap(214, Short.MAX_VALUE))
 		);
 
 		setLayout(gl_panel_toolbox);
