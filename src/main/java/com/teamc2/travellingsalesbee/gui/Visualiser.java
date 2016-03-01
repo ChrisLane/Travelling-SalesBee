@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Visualiser extends JFrame {
+	public static Visualiser mainVisualiser;
+
 	/**
 	 * Create the frame.
 	 */
@@ -22,7 +24,7 @@ public class Visualiser extends JFrame {
 			e.printStackTrace();
 		}
 
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setBounds(300, 300, 956, 689);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,8 +50,8 @@ public class Visualiser extends JFrame {
 	 * @param args The runtime arguments for the application.
 	 */
 	public static void main(String[] args) {
-
 		Visualiser frame = new Visualiser();
+		Visualiser.mainVisualiser = frame;
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
