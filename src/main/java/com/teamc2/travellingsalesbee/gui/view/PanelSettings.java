@@ -1,14 +1,12 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -74,13 +72,13 @@ public class PanelSettings extends JPanel {
 
 		JSlider slider = new JSlider();
 		slider.setValue(experimentalRuns);
-		JLabel lblExperimentRuns = new JLabel("Experiment Runs:");
+		JLabel lblExperimentRuns = new JLabel("Experiment Runs: ");
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
 		slider.addChangeListener(arg0 -> {
 			slider.setValue(slider.getValue());
-			lblNoOfRuns.setText("" + slider.getValue());
 			experimentalRuns = slider.getValue();
+			lblNoOfRuns.setText(("" + experimentalRuns));
 		});
 
 		JTextPane txtPaneTextWillAppear = new JTextPane();
@@ -98,52 +96,10 @@ public class PanelSettings extends JPanel {
 			panelMap.getPathComponent().setStepNumber(stepNum);
 		});
 
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(infoLabel, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-												.addComponent(lblExperimentRuns)
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(lblNoOfRuns))
-										.addComponent(slider, GroupLayout.PREFERRED_SIZE, 457, GroupLayout.PREFERRED_SIZE))
-								.addGap(10)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout.createSequentialGroup()
-												.addComponent(btnRun, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-												.addComponent(btnPrev)
-												.addGap(18)
-												.addComponent(btnNext))
-										.addComponent(txtPaneTextWillAppear, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
-								.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(infoLabel)
-								.addGap(18)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblExperimentRuns)
-										.addComponent(lblNoOfRuns))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(211, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnPrev, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnRun))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtPaneTextWillAppear, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-								.addGap(69))
-		);
-		setLayout(groupLayout);
+		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, lblExperimentRuns, lblNoOfRuns, slider,
+				btnRun, btnPrev, btnNext, txtPaneTextWillAppear);
+
+		setLayout(layoutSettings);
 	}
 
 	private class runActionListener implements ActionListener {
