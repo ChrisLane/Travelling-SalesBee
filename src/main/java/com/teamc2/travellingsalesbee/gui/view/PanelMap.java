@@ -24,7 +24,8 @@ public class PanelMap extends JPanel {
 		componentPath = new ComponentPath();
 		add(componentPath);
 
-		genGrid();
+		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
+		add(componentGrid);
 		setLayout(null);
 
 		//this.add(panelAnimation);
@@ -71,15 +72,6 @@ public class PanelMap extends JPanel {
 	 */
 	public int getCellWidth() {
 		return cellWidth;
-	}
-
-
-	/**
-	 * Generate the grid lines that together form the grid.
-	 */
-	public void genGrid() {
-		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
-		add(componentGrid);
 	}
 
 	public ComponentPath getPathComponent() {
