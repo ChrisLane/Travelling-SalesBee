@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui;
 
+import com.teamc2.travellingsalesbee.gui.view.LayoutGui;
 import com.teamc2.travellingsalesbee.gui.view.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
@@ -37,32 +38,14 @@ public class Visualiser extends JFrame implements Observer {
 		int width = 50;
 		int height = 50;
 		PanelMap panelMap = new PanelMap(width, height);
-		JPanel panelToolbox = new PanelToolbox(panelMap);
-		JPanel panelSettings = new PanelSettings(panelMap);
+		PanelToolbox panelToolbox = new PanelToolbox(panelMap);
+		PanelSettings panelSettings = new PanelSettings(panelMap);
 
 
 		// Add grid to the map
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
-										.addComponent(panelMap, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)))
-		);
-		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(panelMap, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(panelSettings, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(105, Short.MAX_VALUE))
-						.addComponent(panelToolbox, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-		);
+		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
 
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(layoutGui);
 	}
 
 	/**
