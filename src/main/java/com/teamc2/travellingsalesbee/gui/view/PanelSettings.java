@@ -22,14 +22,10 @@ public class PanelSettings extends JPanel {
 
 	private final PanelMap panelMap;
 
-
 	private JLabel infoLabel;
 
 	private int experimentalRuns = 26; //Set to 26 by default
 	private int stepNum = 0;
-
-	// Remove later
-	protected boolean debug = true;
 
 	/**
 	 * Create a settings panel
@@ -82,7 +78,6 @@ public class PanelSettings extends JPanel {
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
 		slider.addChangeListener(arg0 -> {
-			if (debug) System.out.println("Slider Changed");
 			slider.setValue(slider.getValue());
 			lblNoOfRuns.setText("" + slider.getValue());
 			experimentalRuns = slider.getValue();
