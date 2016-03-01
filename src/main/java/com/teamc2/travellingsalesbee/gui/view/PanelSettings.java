@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.gui.CellDrag;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 
@@ -159,10 +159,10 @@ public class PanelSettings extends JPanel {
 
 			//Add all cells to the map
 			for (Component c : panelMap.getComponents()) {
-				if (c instanceof CellDrag) {
-					if (c.isEnabled() && ((CellDrag) c).getType().equals(FLOWER)) {
+				if (c instanceof CellDraggable) {
+					if (c.isEnabled() && ((CellDraggable) c).getType().equals(FLOWER)) {
 						map.setCell(c.getX(), c.getY(), FLOWER); //Add flower positions to map
-					} else if (c.isEnabled() && ((CellDrag) c).getType().equals(HIVE)) {
+					} else if (c.isEnabled() && ((CellDraggable) c).getType().equals(HIVE)) {
 						map.setCell(c.getX(), c.getY(), HIVE); //Add hive position to map
 					}
 				}
