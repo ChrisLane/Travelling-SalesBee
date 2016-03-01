@@ -81,13 +81,10 @@ public class ComponentPath extends JComponent {
 
 			for (int i = 0; i < stepNum + 1; i++) {
 				NaiveStep step = naiveSteps.get(i);
-				System.out.println(step.getAvailable().size());
 				x1 = (int) step.getStart().x;
 				y1 = (int) step.getStart().y;
 
 				ArrayList<Cell> available = step.getAvailable();
-				System.out.println("naiveSteps.size() " + naiveSteps.size());
-				System.out.println("available size " + available.size());
 
 				if (i == stepNum) {
 					for (Cell anAvailable : available) {
@@ -101,7 +98,6 @@ public class ComponentPath extends JComponent {
 
 				g2.setStroke(new BasicStroke(6));
 				g2.setPaint(Color.green);
-				System.out.println("Green: " + step.getStart() + "->" + step.getEnd());
 				x2 = (int) step.getEnd().x;
 				y2 = (int) step.getEnd().y;
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);

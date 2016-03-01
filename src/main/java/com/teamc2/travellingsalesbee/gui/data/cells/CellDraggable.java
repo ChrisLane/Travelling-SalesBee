@@ -98,7 +98,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
-					System.out.println("PRESS GRID");
 					ImageIcon img;
 					try {
 						img = new ImageIcon(getImage(type));
