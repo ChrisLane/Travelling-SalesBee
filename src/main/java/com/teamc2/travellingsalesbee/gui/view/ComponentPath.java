@@ -80,27 +80,29 @@ public class ComponentPath extends JComponent {
 			int x1, x2, y1, y2;
 
 			for (int i = 0; i < stepNum + 1; i++) {
-				NaiveStep step = naiveSteps.get(i);
-				x1 = (int) step.getStart().x;
-				y1 = (int) step.getStart().y;
+				if (i < naiveSteps.size()) {
+					NaiveStep step = naiveSteps.get(i);
+					x1 = (int) step.getStart().x;
+					y1 = (int) step.getStart().y;
 
-				ArrayList<Cell> available = step.getAvailable();
+					ArrayList<Cell> available = step.getAvailable();
 
-				if (i == stepNum) {
-					for (Cell anAvailable : available) {
-						g2.setStroke(new BasicStroke(5));
-						g2.setPaint(Color.red);
-						x2 = (int) anAvailable.x;
-						y2 = (int) anAvailable.y;
-						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					if (i == stepNum) {
+						for (Cell anAvailable : available) {
+							g2.setStroke(new BasicStroke(5));
+							g2.setPaint(Color.red);
+							x2 = (int) anAvailable.x;
+							y2 = (int) anAvailable.y;
+							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+						}
 					}
-				}
 
-				g2.setStroke(new BasicStroke(6));
-				g2.setPaint(Color.green);
-				x2 = (int) step.getEnd().x;
-				y2 = (int) step.getEnd().y;
-				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					g2.setStroke(new BasicStroke(6));
+					g2.setPaint(Color.green);
+					x2 = (int) step.getEnd().x;
+					y2 = (int) step.getEnd().y;
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
 			}
 		}
 	}
