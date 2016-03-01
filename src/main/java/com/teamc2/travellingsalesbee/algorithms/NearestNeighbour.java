@@ -6,7 +6,7 @@ import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 
-public class NearestNeighbour extends Observable {
+public class NearestNeighbour {
 
 	private final Cell hive;
 	private final Map map;
@@ -98,9 +98,6 @@ public class NearestNeighbour extends Observable {
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
 		this.cost = cost;
-
-		setChanged();
-		notifyObservers(path);
 	}
 
 	/**
