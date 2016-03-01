@@ -1,9 +1,6 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import com.teamc2.travellingsalesbee.gui.view.LayoutGui;
-import com.teamc2.travellingsalesbee.gui.view.PanelMap;
-import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
-import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
+import com.teamc2.travellingsalesbee.gui.view.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -37,9 +34,22 @@ public class Visualiser extends JFrame {
 		PanelToolbox panelToolbox = new PanelToolbox(panelMap);
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 
+		System.out.println("this.getWidth: " + panelMap.getWidth() + ", this.getHeight: " + panelMap.getHeight());
 
 		// Add grid to the map
 		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
+
+		int panelMapWidth = (int) layoutGui.getPanelMapDimensions().getWidth();
+		int panelMapHeight = (int) layoutGui.getPanelMapDimensions().getHeight();
+
+
+		//DOESN'T WORK
+		/*System.out.println("panelMapWidth " + panelMapWidth + " panelMapHeight " + panelMapHeight);
+
+		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, panelMapWidth, panelMapWidth);
+		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), panelMapWidth, panelMapHeight);
+		add(panelAnimation);
+		setComponentZOrder(panelAnimation, 0);*/
 
 		contentPane.setLayout(layoutGui);
 	}
