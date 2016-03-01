@@ -112,9 +112,9 @@ public class PanelSettings extends JPanel {
 			Bee bee = new Bee(map, experimentalRuns);
 			BeeVisualiser visualise = new BeeVisualiser();
 			bee.naiveRun();
-			panelMap.setNaiveSteps(visualise.getNaiveSteps(bee.getPath()));
+			panelMap.getPathComponent().setNaiveSteps(visualise.getNaiveSteps(bee.getPath()));
 			bee.experimentalRun();
-			panelMap.setPath(bee.getPath());
+			panelMap.getPathComponent().setPath(bee.getPath());
 
 			//System.out.println("Naive Step 0 size: " + bee.getNaiveSteps().get(0).getAvailable().size());
 			//System.out.println("Path Cost: " + bee.getPathCost());
@@ -141,12 +141,12 @@ public class PanelSettings extends JPanel {
 		JButton btnPrev = new JButton("<-");
 		btnPrev.addActionListener(arg0 -> {
 			stepNum--;
-			panelMap.setStepNumber(stepNum);
+			panelMap.getPathComponent().setStepNumber(stepNum);
 		});
 		JButton btnNext = new JButton("->");
 		btnNext.addActionListener(arg0 -> {
 			stepNum++;
-			panelMap.setStepNumber(stepNum);
+			panelMap.getPathComponent().setStepNumber(stepNum);
 		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
