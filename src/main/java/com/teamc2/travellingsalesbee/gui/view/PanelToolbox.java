@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
-import com.teamc2.travellingsalesbee.gui.CellDrag;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
@@ -16,7 +16,6 @@ import java.io.IOException;
 
 import static java.awt.Image.SCALE_SMOOTH;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PanelToolbox extends JPanel {
 	private final JPanel panelMap;
@@ -70,8 +69,8 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDrag flowerToolCell = new CellDrag("", width, height, CellType.FLOWER);
-		CellDrag hiveToolCell = new CellDrag("", width, height, CellType.HIVE);
+		CellDraggable flowerToolCell = new CellDraggable("", width, height, CellType.FLOWER);
+		CellDraggable hiveToolCell = new CellDraggable("", width, height, CellType.HIVE);
 
 		Image flowerImg = new CellFlower().getImage();
 		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);

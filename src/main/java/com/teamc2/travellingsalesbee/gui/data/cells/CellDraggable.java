@@ -1,8 +1,4 @@
-package com.teamc2.travellingsalesbee.gui;
-
-import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+package com.teamc2.travellingsalesbee.gui.data.cells;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +8,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
 import java.io.IOException;
 
-public class CellDrag extends JButton implements Transferable, DragSourceListener, DragGestureListener {
+public class CellDraggable extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
 	private final DragSource source;
 	private final TransferHandler transHandler;
@@ -29,14 +25,14 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 * @param height Height of the cell
 	 * @param type   Type of the cell
 	 */
-	public CellDrag(String name, int width, int height, CellType type) {
+	public CellDraggable(String name, int width, int height, CellType type) {
 		super(name);
 		this.width = width;
 		this.height = height;
 		this.type = type;
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDrag(getText(), width, height, type);
+				return new CellDraggable(getText(), width, height, type);
 			}
 		};
 
@@ -65,7 +61,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public DataFlavor[] getTransferDataFlavors() {
-		return new DataFlavor[]{new DataFlavor(CellDrag.class, "JButton")};
+		return new DataFlavor[]{new DataFlavor(CellDraggable.class, "JButton")};
 	}
 
 	/**
@@ -81,13 +77,13 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDrag("", width, height, type), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable("", width, height, type), this);
 	}
 
 	/**
 	 * Method to place a draggable cell in the map
 	 *
-	 * @param arg0 Drag event initiated by the user dragging a CellDrag button.
+	 * @param arg0 Drag event initiated by the user dragging a CellDraggable button.
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
@@ -98,7 +94,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 			if (type.equals(CellType.HIVE)) {
 				deleteOldHive(panel);
 			}
-			CellDrag droppedBtn = new CellDrag("", width, height, type);
+			CellDraggable droppedBtn = new CellDraggable("", width, height, type);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
@@ -196,8 +192,8 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 	 */
 	private void deleteOldHive(JPanel panel) {
 		for (Component c : panel.getComponents()) {
-			if (c instanceof CellDrag) {
-				if (c.isEnabled() && ((CellDrag) c).getType().equals(CellType.HIVE)) {
+			if (c instanceof CellDraggable) {
+				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.HIVE)) {
 					panel.remove(c);
 					c.setEnabled(false);
 				}
@@ -207,7 +203,7 @@ public class CellDrag extends JButton implements Transferable, DragSourceListene
 
 	private void cellFull(JPanel panel, int x, int y) {
 		for (Component c : panel.getComponents()) {
-			if (c instanceof CellDrag) {
+			if (c instanceof CellDraggable) {
 				if (c.isEnabled() && c.getBounds().x == x && c.getBounds().y == y) {
 					panel.remove(c);
 					c.setEnabled(false);
