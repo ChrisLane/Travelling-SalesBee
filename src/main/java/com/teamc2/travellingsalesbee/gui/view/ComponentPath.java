@@ -46,7 +46,7 @@ public class ComponentPath extends JComponent {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		if (beePath.size() > 100) {
+		if (beePath.size() > 100 && stepNum >= naiveSteps.size()) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
@@ -76,7 +76,7 @@ public class ComponentPath extends JComponent {
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
-		} else if (naiveSteps.size() > 0) {
+		} else if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
 
 			for (int i = 0; i < stepNum + 1; i++) {
