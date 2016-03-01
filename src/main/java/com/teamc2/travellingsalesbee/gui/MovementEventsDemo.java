@@ -1,3 +1,5 @@
+package com.teamc2.travellingsalesbee.gui;
+
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
