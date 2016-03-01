@@ -9,7 +9,7 @@ import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 
-public class Bee extends Observable {
+public class Bee {
 
 	private final Map map;
 	private int experiments;
@@ -72,7 +72,6 @@ public class Bee extends Observable {
 
 	/**
 	 * Runs an experimental path improvement check
-	 * @param experiments Number of experimental runs
 	 */
 	public void experimentalRun() {
 		int experiments = this.experiments;
@@ -134,7 +133,7 @@ public class Bee extends Observable {
 		return cost;
 	}
 
-	
+
 	/**
 	 * Set the current path
 	 *
@@ -144,9 +143,6 @@ public class Bee extends Observable {
 	public void setPath(ArrayList<Cell> path, double cost) {
 		this.path = path;
 		this.cost = cost;
-
-		setChanged();
-		notifyObservers(path);
 	}
 
 	/**

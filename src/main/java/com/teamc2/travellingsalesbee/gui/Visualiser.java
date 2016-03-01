@@ -6,16 +6,12 @@ import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.util.Observable;
-import java.util.Observer;
 
-public class Visualiser extends JFrame implements Observer {
+public class Visualiser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
@@ -97,13 +93,5 @@ public class Visualiser extends JFrame implements Observer {
 				e.printStackTrace();
 			}
 		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void update(Observable o, Object arg) {
-		// There is a new path! Visualise it
 	}
 }
