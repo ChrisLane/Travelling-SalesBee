@@ -10,6 +10,7 @@ public class PanelMap extends JPanel {
 	private final int cellWidth;
 	private final int cellHeight;
 	private ComponentPath componentPath;
+	private Dimension panelSize = null;
 
 	/**
 	 * Create the map panel
@@ -27,15 +28,6 @@ public class PanelMap extends JPanel {
 		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
 		add(componentGrid);
 		setLayout(null);
-
-		//this.add(panelAnimation);
-
-		System.out.println("this.getWidth: " + this.getWidth() + ", this.getHeight: " + this.getHeight());
-		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 500, 500);
-		panelAnimation.setBounds(0, 0, 500, 500);
-		add(panelAnimation);
-		setComponentZOrder(panelAnimation, 0);
-
 	}
 
 	/**
@@ -77,4 +69,13 @@ public class PanelMap extends JPanel {
 	public ComponentPath getPathComponent() {
 		return componentPath;
 	}
+
+	public Dimension getSize() {
+		return panelSize;
+	}
+
+	public void setSize(Dimension panelSize) {
+		this.panelSize = panelSize;
+	}
+
 }
