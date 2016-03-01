@@ -96,6 +96,7 @@ public class PanelSettings extends JPanel {
 			stepNum--;
 			panelMap.getPathComponent().setStepNumber(stepNum);
 		});
+
 		JButton btnNext = new JButton("->");
 		btnNext.addActionListener(arg0 -> {
 			stepNum++;
