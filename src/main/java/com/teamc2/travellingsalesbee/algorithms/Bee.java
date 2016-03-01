@@ -70,10 +70,9 @@ public class Bee {
 
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
-					System.out.println("PATH CHANGED!");
 					setPath(testPath, testCost);
 				} else {
-					System.out.println("ERROR");
+					System.err.println("ERROR");
 				}
 				experiments--;
 			}
