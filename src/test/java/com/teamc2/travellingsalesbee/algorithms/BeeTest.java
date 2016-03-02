@@ -81,7 +81,9 @@ public class BeeTest {
 
 		// Sort the path and remove hive
 		ArrayList<Cell> path = bee.getPath();
+		// Remove start (hive)
 		path.remove(0);
+		// Remove finish (hive)
 		path.remove(path.size()-1);
 		path.sort(new CellComparator());
 
