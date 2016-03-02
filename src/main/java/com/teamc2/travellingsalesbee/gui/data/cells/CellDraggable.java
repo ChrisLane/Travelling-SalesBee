@@ -22,9 +22,10 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	/**
 	 * Create a new cell drag object
 	 *
-	 * @param width  Width of the cell
-	 * @param height Height of the cell
-	 * @param type   Type of the cell
+	 * @param width    Width of the cell
+	 * @param height   Height of the cell
+	 * @param type     Type of the cell
+	 * @param panelMap The map panel
 	 */
 	public CellDraggable(int width, int height, CellType type, PanelMap panelMap) {
 		super();
