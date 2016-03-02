@@ -30,6 +30,10 @@ public class ComponentPath extends JComponent {
 		repaint();
 	}
 
+	public ArrayList<Cell> getBeePath() {
+		return beePath;
+	}
+
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
 		naiveSteps = steps;

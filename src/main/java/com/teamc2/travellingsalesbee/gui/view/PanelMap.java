@@ -1,17 +1,21 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.gui.NaiveStep;
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelMap extends JPanel {
 	private final int cellWidth;
 	private final int cellHeight;
 	private ComponentPath componentPath;
 	private Dimension panelSize = null;
-
+	private PanelAnimalAnimation panelAnimation;
 	/**
 	 * Create the map panel
 	 *
@@ -27,6 +31,20 @@ public class PanelMap extends JPanel {
 
 		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
 		add(componentGrid);
+
+		//Initialise and set bounds
+		panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
+		panelAnimation.setBounds(this.getX(), this.getY(), 789, 446);
+
+		this.add(panelAnimation); //Add to panel map
+		this.setComponentZOrder(panelAnimation, 0); //Draw to top of screen
+
+		//Pass the beepath to the animation class
+		ArrayList<Cell> path = this.getPathComponent().getBeePath();
+		if (path.size() > 0) {
+			panelAnimation.setPath(path);
+		}
+
 		setLayout(null);
 	}
 
@@ -75,7 +93,11 @@ public class PanelMap extends JPanel {
 	}
 
 	public void setSize(Dimension panelSize) {
-		this.panelSize = panelSize;
+		panelSize = panelSize;
+	}
+
+	public PanelAnimalAnimation getPanelAnimalAnimation() {
+		return this.panelAnimation;
 	}
 
 }

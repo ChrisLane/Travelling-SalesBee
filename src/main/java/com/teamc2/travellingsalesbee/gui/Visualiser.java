@@ -1,10 +1,13 @@
 package com.teamc2.travellingsalesbee.gui;
 
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.*;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
@@ -37,13 +40,18 @@ public class Visualiser extends JFrame {
 		// Add grid to the map
 		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
 
+		/*//Initialise and set bounds
 		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
 		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), 789, 446);
-		panelMap.add(panelAnimation);
-		//For some reason this makes the program not work properly
-		//setComponentZOrder(panelAnimation, 0);
 
-		System.out.println("this.getWidth: " + panelAnimation.getWidth() + ", this.getHeight: " + panelAnimation.getHeight());
+		//Pass the beepath to the animation class
+		*//*ArrayList<Cell> path = panelMap.getPathComponent().getBeePath();
+		if(path.size() > 0) {
+			panelAnimation.setPath(panelMap.getPathComponent().getBeePath());
+		}*//*
+
+		panelMap.add(panelAnimation); //Add to panel map
+		panelMap.setComponentZOrder(panelAnimation, 0); //Draw to top of screen*/
 
 		contentPane.setLayout(layoutGui);
 	}
