@@ -76,7 +76,7 @@ public class Bee {
 					System.out.println("Not imroved");
 					intemediaryPaths.add(this.path);
 				}
-				comparedCells.add(new Comparison<Cell, Cell>(flower1,flower2));
+				comparedCells.add(new Comparison<>(flower1, flower2));
 				
 				experiments--;
 			}
