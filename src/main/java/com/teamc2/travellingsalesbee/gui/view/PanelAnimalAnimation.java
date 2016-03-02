@@ -53,6 +53,7 @@ public class PanelAnimalAnimation extends JPanel {
 
 		//Size of parent-panel
 		this.setPreferredSize(new Dimension(width, height));
+		this.setBackground(new Color(0,0,0,0));
 		this.setOpaque(false);
 
 		Platform.runLater(new Runnable() {
