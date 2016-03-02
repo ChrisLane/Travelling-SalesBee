@@ -46,19 +46,18 @@ public class Bee {
 	 * Runs an experimental path improvement check
 	 */
 	public void experimentalRun() {
-		int experiments = this.experiments;
-		if (path.size() > 3) {
+		if (path.size() > 4) {
 			while (experiments > 0) {
 				ArrayList<Cell> testPath = path;
 
 				int flowerPos1 = 0;
 				int flowerPos2 = 0;
 
-				while (flowerPos1 == flowerPos2 && (flowerPos1 == path.size()-1 || flowerPos2 == path.size()-1)) {
-					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
-					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
+				while (flowerPos1 == flowerPos2) {
+					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
+					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 				}
-
+				System.out.println(testPath.get(testPath.size()-1));
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
 
