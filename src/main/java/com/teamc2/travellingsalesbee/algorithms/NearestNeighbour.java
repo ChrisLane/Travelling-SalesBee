@@ -37,7 +37,7 @@ public class NearestNeighbour {
 			newPath.add(hive);
 			
 			// Loop over flowers missing from path
-			CellFlower closest = null;
+			CellFlower closest;
 			
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
