@@ -10,7 +10,6 @@ public class Bee {
 
 	private final Map map;
 	private int experiments;
-	private final Cell hive;
 
 	private ArrayList<Cell> path = new ArrayList<>();
 	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
@@ -26,7 +25,6 @@ public class Bee {
 	public Bee(Map map, int experiments) {
 		this.map = map;
 		this.experiments = experiments;
-		hive = map.getHive();
 	}
 
 	/**
