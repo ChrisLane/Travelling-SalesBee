@@ -131,14 +131,12 @@ public class Bee {
 	}
 	
 	public ArrayList<ArrayList<Cell>> getIntemediaryPaths(){
-		for (ArrayList<Cell> path : this.intemediaryPaths){
-			System.out.println(path);
-		}
-		return this.intemediaryPaths;
+		intemediaryPaths.forEach(System.out::println);
+		return intemediaryPaths;
 	}
 	
 	public ArrayList<Comparison<Cell,Cell>> getCellComparisons(){
-		return this.comparedCells;
+		return comparedCells;
 	}
 
 }
