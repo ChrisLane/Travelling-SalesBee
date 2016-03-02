@@ -54,7 +54,7 @@ public class Bee {
 				int flowerPos1 = 0;
 				int flowerPos2 = 0;
 
-				while (flowerPos1 == flowerPos2) {
+				while (flowerPos1 == flowerPos2 && (flowerPos1 == path.size()-1 || flowerPos2 == path.size()-1)) {
 					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size());
 					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size());
 				}
