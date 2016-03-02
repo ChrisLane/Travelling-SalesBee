@@ -1,13 +1,10 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.*;
-import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
