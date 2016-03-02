@@ -93,7 +93,7 @@ public class PanelMap extends JPanel {
 	}
 
 	public void setSize(Dimension panelSize) {
-		panelSize = panelSize;
+		this.panelSize = panelSize;
 	}
 
 	public PanelAnimalAnimation getPanelAnimalAnimation() {
