@@ -42,7 +42,7 @@ public class PanelAnimalAnimation extends JPanel {
 		initialize();
 	}
 
-	public Container initialize() {
+	public void initialize() {
 
 		final JFXPanel fxPanel = new JFXPanel();
 
@@ -55,8 +55,6 @@ public class PanelAnimalAnimation extends JPanel {
 		this.setOpaque(false);
 
 		Platform.runLater(() -> initFX(fxPanel));
-
-		return this;
 	}
 
 	private void initFX(JFXPanel fxPanel) {
