@@ -20,19 +20,18 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	/**
 	 * Create a new cell drag object
 	 *
-	 * @param name   Name of the cell
 	 * @param width  Width of the cell
 	 * @param height Height of the cell
 	 * @param type   Type of the cell
 	 */
-	public CellDraggable(String name, int width, int height, CellType type) {
-		super(name);
+	public CellDraggable(int width, int height, CellType type) {
+		super();
 		this.width = width;
 		this.height = height;
 		this.type = type;
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDraggable(getText(), width, height, type);
+				return new CellDraggable(width, height, type);
 			}
 		};
 
@@ -77,7 +76,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable("", width, height, type), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type), this);
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			if (type.equals(CellType.HIVE)) {
 				deleteOldHive(panel);
 			}
-			CellDraggable droppedBtn = new CellDraggable("", width, height, type);
+			CellDraggable droppedBtn = new CellDraggable(width, height, type);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {

@@ -16,8 +16,6 @@ import java.io.IOException;
 
 import static java.awt.Image.SCALE_SMOOTH;
 
-import javax.swing.GroupLayout.Alignment;
-
 public class PanelToolbox extends JPanel {
 	private final JPanel panelMap;
 	private final int width;
@@ -56,8 +54,8 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable flowerToolCell = new CellDraggable("", width, height, CellType.FLOWER);
-		CellDraggable hiveToolCell = new CellDraggable("", width, height, CellType.HIVE);
+		CellDraggable flowerToolCell = new CellDraggable(width, height, CellType.FLOWER);
+		CellDraggable hiveToolCell = new CellDraggable(width, height, CellType.HIVE);
 
 		Image flowerImg = new CellFlower().getImage();
 		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
