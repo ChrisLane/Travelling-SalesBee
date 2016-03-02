@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 import javax.imageio.ImageIO;
@@ -16,6 +15,7 @@ public class PanelMap extends JPanel {
 	private ComponentPath componentPath;
 	private Dimension panelSize = null;
 	private PanelAnimalAnimation panelAnimation;
+
 	/**
 	 * Create the map panel
 	 *
@@ -39,7 +39,7 @@ public class PanelMap extends JPanel {
 		this.add(panelAnimation); //Add to panel map
 		this.setComponentZOrder(panelAnimation, 0); //Draw to top of screen
 
-		//Pass the beepath to the animation class
+		//Pass the bee path to the animation class
 		ArrayList<Cell> path = this.getPathComponent().getBeePath();
 		if (path.size() > 0) {
 			panelAnimation.setPath(path);
