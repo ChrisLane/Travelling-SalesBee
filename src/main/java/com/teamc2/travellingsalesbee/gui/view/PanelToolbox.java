@@ -29,28 +29,14 @@ public class PanelToolbox extends JPanel {
 		height = panelMap.getCellHeight();
 		setBackground(Color.WHITE);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.addActionListener(event -> Platform.runLater(() -> {
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(event -> Platform.runLater(() -> {
 			Visualiser.mainVisualiser.setVisible(false);
 			TravellingSalesBee.mainMenu.show();
 		}));
 
-		GroupLayout gl_panel_toolbox = new GroupLayout(this);
-		gl_panel_toolbox.setHorizontalGroup(
-			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_toolbox.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton)
-					.addContainerGap(327, Short.MAX_VALUE))
-		);
-		gl_panel_toolbox.setVerticalGroup(
-			gl_panel_toolbox.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_toolbox.createSequentialGroup()
-					.addComponent(btnNewButton)
-					.addContainerGap(214, Short.MAX_VALUE))
-		);
-
-		setLayout(gl_panel_toolbox);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton);
+		setLayout(layoutToolbox);
 
 		addTools();
 	}
