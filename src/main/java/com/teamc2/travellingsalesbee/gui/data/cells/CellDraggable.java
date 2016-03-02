@@ -1,5 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
+import com.teamc2.travellingsalesbee.gui.view.PanelMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -15,7 +17,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private final int width;
 	private final int height;
 	private final CellType type;
-	private JPanel panel;
+	private PanelMap panelMap;
 
 	/**
 	 * Create a new cell drag object
@@ -24,14 +26,15 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 * @param height Height of the cell
 	 * @param type   Type of the cell
 	 */
-	public CellDraggable(int width, int height, CellType type) {
+	public CellDraggable(int width, int height, CellType type, PanelMap panelMap) {
 		super();
 		this.width = width;
 		this.height = height;
 		this.type = type;
+		this.panelMap = panelMap;
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDraggable(width, height, type);
+				return new CellDraggable(width, height, type, panelMap);
 			}
 		};
 
@@ -76,7 +79,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap), this);
 	}
 
 	/**
@@ -87,13 +90,13 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 		try {
-			panel.grabFocus();
+			panelMap.grabFocus();
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
 			if (type.equals(CellType.HIVE)) {
-				deleteOldHive(panel);
+				deleteOldHive(panelMap);
 			}
-			CellDraggable droppedBtn = new CellDraggable(width, height, type);
+			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
@@ -102,23 +105,25 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 				}
 			});
 
-			int x = (int) Math.round((panel.getMousePosition().getX() - (width / 2)) / width) * width;
-			int y = (int) Math.round((panel.getMousePosition().getY() - (height / 2)) / height) * height;
-			cellFull(panel, x, y);
-			// Create a button instance at x, y position of the mouse relative to the panel with the width and height set above
+			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
+			int y = (int) Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height;
+			cellFull(panelMap, x, y);
+
+
+
+			// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);
-			droppedBtn.setPanel(panel);
-			panel.add(droppedBtn);
-			panel.remove(this);
-			panel.revalidate();
+			panelMap.add(droppedBtn);
+			panelMap.remove(this);
+			panelMap.revalidate();
 			validate();
-			panel.repaint();
+			panelMap.repaint();
 		} catch (NullPointerException e) {
-			// Deletion for when the cell is dragged off the map panel
+			// Deletion for when the cell is dragged off the map panelMap
 			setEnabled(false);
-			panel.remove(this);
-			panel.revalidate();
-			panel.repaint();
+			panelMap.remove(this);
+			panelMap.revalidate();
+			panelMap.repaint();
 		}
 
 	}
@@ -149,15 +154,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	}
 
 	/**
-	 * Set the panel for the cell
-	 *
-	 * @param panel Panel to set for the cell
-	 */
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
-	/**
 	 * Get the image for this type of cell
 	 *
 	 * @param type Type of cell
@@ -180,7 +176,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	}
 
 	/**
-	 * Set the hive for a given panel
+	 * Set the hive for a given panelMap
 	 *
 	 * @param panel Panel to set the hive in
 	 */

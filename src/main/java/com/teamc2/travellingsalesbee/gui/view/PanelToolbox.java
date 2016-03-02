@@ -17,7 +17,7 @@ import java.io.IOException;
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
-	private final JPanel panelMap;
+	private final PanelMap panelMap;
 	private final int width;
 	private final int height;
 
@@ -26,7 +26,7 @@ public class PanelToolbox extends JPanel {
 		width = panelMap.getCellWidth();
 		height = panelMap.getCellHeight();
 		setBackground(Color.WHITE);
-		
+
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(event -> Platform.runLater(() -> {
 			Visualiser.mainVisualiser.setVisible(false);
@@ -54,8 +54,8 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable flowerToolCell = new CellDraggable(width, height, CellType.FLOWER);
-		CellDraggable hiveToolCell = new CellDraggable(width, height, CellType.HIVE);
+		CellDraggable flowerToolCell = new CellDraggable(width, height, CellType.FLOWER, panelMap);
+		CellDraggable hiveToolCell = new CellDraggable(width, height, CellType.HIVE, panelMap);
 
 		Image flowerImg = new CellFlower().getImage();
 		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
@@ -69,11 +69,9 @@ public class PanelToolbox extends JPanel {
 
 
 		//Add buttons to the toolbox
-		hiveToolCell.setPanel(panelMap);
 		hiveToolCell.setBounds(0, 150, 100, 100);
 		add(hiveToolCell);
 
-		flowerToolCell.setPanel(panelMap);
 		flowerToolCell.setBounds(0, 160 + height, 100, 100);
 		add(flowerToolCell);
 	}
