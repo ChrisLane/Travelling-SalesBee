@@ -41,7 +41,7 @@ public class Visualiser extends JFrame {
 		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
 		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), 789, 446);
 
-		//Pass the beepath to the animation class
+		//Pass the bee path to the animation class
 		*//*ArrayList<Cell> path = panelMap.getPathComponent().getBeePath();
 		if(path.size() > 0) {
 			panelAnimation.setPath(panelMap.getPathComponent().getBeePath());

@@ -137,7 +137,7 @@ public class PanelSettings extends JPanel {
 			bee.naiveRun();
 			panelMap.getPathComponent().setNaiveSteps(visualise.getNaiveSteps(bee.getPath()));
 			bee.experimentalRun();
-			panelMap.getPathComponent().setExperimentalSteps(visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntemediaryPaths()));
+			panelMap.getPathComponent().setExperimentalSteps(visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths()));
 			panelMap.getPathComponent().setPath(bee.getPath());
 
 			/*----------------------------------------------*/
