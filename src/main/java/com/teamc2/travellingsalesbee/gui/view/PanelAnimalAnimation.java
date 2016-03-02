@@ -99,12 +99,10 @@ public class PanelAnimalAnimation extends JPanel {
 		return circle;
 	}
 
-	private void moveFromAToB(Scene scene, Cell end, Circle circle, TranslateTransition transition) {
+	private void moveFromAToB(Cell end, Circle circle, TranslateTransition transition) {
 
-		System.out.println(this.getLocationOnScreen().getX());
-
-		transition.setToX(end.getX() - 100);
-		transition.setToY(end.getY());
+		transition.setToX(end.getX() - circle.getCenterX());
+		transition.setToY(end.getY() - circle.getCenterY());
 
 		transition.playFromStart();
 	}
@@ -124,16 +122,18 @@ public class PanelAnimalAnimation extends JPanel {
 	public void setPath(ArrayList<Cell> path) {
 		this.path = path;
 
+		circle.setCenterX(path.get(this.stepNum).getX());
+		circle.setCenterY(path.get(this.stepNum).getY());
+
 		setStepNum(stepNum);
 	}
 
 	public void setStepNum(int step) {
 		this.stepNum = step;
 
-		circle.setCenterX(path.get(this.stepNum).getX());
-		circle.setCenterY(path.get(this.stepNum).getY());
+		System.out.println(path.get(stepNum + 1));
 
-		moveFromAToB(scene, path.get(stepNum + 1), circle, transition);
+		moveFromAToB(path.get(stepNum + 1), circle, transition);
 	}
 
 
