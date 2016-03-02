@@ -19,23 +19,21 @@ import java.util.ArrayList;
 public class PanelAnimalAnimation extends JPanel {
 
 	private String url;
-	private int x, y, width, height;
+	private int width;
+	private int height;
 	private ArrayList<Cell> path;
 	private int stepNum = 0;
 	private Circle circle;
 	private TranslateTransition transition;
-	private Scene scene;
 
 	/**
-	 * @param x      X position of panel
-	 * @param y      Y position of panel
+	 * Create a new animal animation panel
+	 *
 	 * @param width  Width of panel
 	 * @param height Height of panel
 	 */
-	public PanelAnimalAnimation(int x, int y, int width, int height) {
+	public PanelAnimalAnimation(int width, int height) {
 
-		this.x = x;
-		this.y = y;
 		this.width = width;
 		this.height = height;
 
@@ -58,7 +56,7 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private void initFX(JFXPanel fxPanel) {
-		scene = initScene();
+		Scene scene = initScene();
 		fxPanel.setScene(scene);
 	}
 

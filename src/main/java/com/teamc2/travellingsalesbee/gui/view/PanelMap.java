@@ -33,7 +33,7 @@ public class PanelMap extends JPanel {
 		add(componentGrid);
 
 		//Initialise and set bounds
-		panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
+		panelAnimation = new PanelAnimalAnimation(789, 446);
 		panelAnimation.setBounds(this.getX(), this.getY(), 789, 446);
 
 		this.add(panelAnimation); //Add to panel map
