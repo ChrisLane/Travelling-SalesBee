@@ -98,13 +98,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
-					ImageIcon img;
-					try {
-						img = new ImageIcon(getImage(type));
-						setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0, 0), "c"));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					ImageIcon img = new ImageIcon(getImage(type));
+					setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0, 0), "c"));
 				}
 			});
 
@@ -120,7 +115,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			validate();
 			panel.repaint();
 			panel.setComponentZOrder(droppedBtn, 0); // Sets dropped button to be drawn last to the screen and therefor be on top of everything else
-		} catch (NullPointerException | IOException e) {
+		} catch (NullPointerException e) {
 			// Deletion for when the cell is dragged off the map panel
 			setEnabled(false);
 			panel.remove(this);
@@ -144,13 +139,16 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	}
 
 	@Override
-	public void dragExit(DragSourceEvent arg0) {}
+	public void dragExit(DragSourceEvent arg0) {
+	}
 
 	@Override
-	public void dragOver(DragSourceDragEvent arg0) {}
+	public void dragOver(DragSourceDragEvent arg0) {
+	}
 
 	@Override
-	public void dropActionChanged(DragSourceDragEvent arg0) {}
+	public void dropActionChanged(DragSourceDragEvent arg0) {
+	}
 
 	/**
 	 * Set the panel for the cell
@@ -166,9 +164,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 *
 	 * @param type Type of cell
 	 * @return The cell image
-	 * @throws IOException Exception thrown if the image cannot be retrieved
 	 */
-	public Image getImage(CellType type) throws IOException {
+	public Image getImage(CellType type) {
 		Image img = null;
 		switch (type) {
 			case FLOWER:
