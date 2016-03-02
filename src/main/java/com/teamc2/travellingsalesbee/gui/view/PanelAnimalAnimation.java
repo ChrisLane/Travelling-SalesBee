@@ -1,33 +1,31 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.*;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.*;
-import javafx.scene.image.*;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.*;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.*;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class PanelAnimalAnimation extends JPanel {
 
-	String url;
-	int x, y, width, height;
-
-
+	private String url;
+	private int x, y, width, height;
+	private ArrayList<Cell> path;
+	private int stepNum = 0;
+	private Circle circle;
+	private TranslateTransition transition;
+	private Scene scene;
 
 	/**
 	 *
@@ -68,7 +66,7 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private void initFX(JFXPanel fxPanel) {
-		Scene scene = initScene();
+		scene = initScene();
 		fxPanel.setScene(scene);
 	}
 
@@ -82,8 +80,8 @@ public class PanelAnimalAnimation extends JPanel {
 
 		root.setId("beePane");
 
-		final Circle circle = createRectangle();
-		final TranslateTransition transition = new TranslateTransition((Duration.seconds(0.25)), circle);
+		circle = createRectangle();
+		transition = new TranslateTransition((Duration.seconds(1)), circle);
 		moveCircleOnMousePress(scene, circle, transition);
 		root.getChildren().add(circle);
 
@@ -92,20 +90,23 @@ public class PanelAnimalAnimation extends JPanel {
 		Image image = new Image(url);
 		circle.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 
-		/*Text  text  =  new  Text();
-		text.setX(40);
-		text.setY(100);
-		text.setFont(new Font(25));
-		text.setText("Welcome JavaFX!");
-		root.getChildren().add(text);*/
-
 		return (scene);
 	}
 
 	private Circle createRectangle() {
-		final Circle circle = new Circle(50, 250, 80);
+		final Circle circle = new Circle(0, 0, 25);
 		circle.setOpacity(1);
 		return circle;
+	}
+
+	private void moveFromAToB(Scene scene, Cell end, Circle circle, TranslateTransition transition) {
+
+		System.out.println(this.getLocationOnScreen().getX());
+
+		transition.setToX(end.getX() - 100);
+		transition.setToY(end.getY());
+
+		transition.playFromStart();
 	}
 
 	private void moveCircleOnMousePress(Scene scene, final Circle circle, final TranslateTransition transition) {
@@ -119,4 +120,22 @@ public class PanelAnimalAnimation extends JPanel {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public void setPath(ArrayList<Cell> path) {
+		this.path = path;
+
+		setStepNum(stepNum);
+	}
+
+	public void setStepNum(int step) {
+		this.stepNum = step;
+
+		circle.setCenterX(path.get(this.stepNum).getX());
+		circle.setCenterY(path.get(this.stepNum).getY());
+
+		moveFromAToB(scene, path.get(stepNum + 1), circle, transition);
+	}
+
+
+	//public void setMoves()
 }
