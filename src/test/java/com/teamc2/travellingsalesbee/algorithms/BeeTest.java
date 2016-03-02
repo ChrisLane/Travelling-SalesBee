@@ -32,28 +32,39 @@ public class BeeTest {
 		CellFlower flower3 = flowers.get(2);
 		CellHive hive = map.getHive();
 
-		double path1Cost = 8.0;
+		double path1Cost = 14.32455532033676;
 		ArrayList<Cell> path1 = new ArrayList<>();
 		path1.add(hive);
 		path1.add(flower1); // cost 2
 		path1.add(flower2); // cost 4
 		path1.add(flower3); // cost 2
+		path1.add(hive); // cost 6.32455532033676
 
-		double path2Cost = 12.32455532033676;
+		double path2Cost = 14.32455532033676;
 		ArrayList<Cell> path2 = new ArrayList<>();
 		path2.add(hive);
 		path2.add(flower3); // cost 6.324555397033691
 		path2.add(flower2); // cost 2
 		path2.add(flower1); // cost 4
+		path2.add(hive); // cost 2
 
-		double path3Cost = 14.47213595499958;
+		double path3Cost = 20.79669127533634;
 		ArrayList<Cell> path3 = new ArrayList<>();
 		path3.add(hive);
 		path3.add(flower2); // cost 6
 		path3.add(flower1); // cost 4
 		path3.add(flower3); // cost 4.4721360206604
+		path3.add(hive); // cost 6.32455532033676
 
-		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}};
+		double path4Cost = 20.79669127533634;
+		ArrayList<Cell> path4 = new ArrayList<>();
+		path4.add(hive);
+		path4.add(flower3); // cost 6.32455532033676
+		path4.add(flower1); // cost 4.4721360206604
+		path4.add(flower2); // cost 4
+		path4.add(hive); // cost 6
+
+		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}, {path4, path4Cost}};
 	}
 
 	/**
@@ -71,6 +82,7 @@ public class BeeTest {
 		// Sort the path and remove hive
 		ArrayList<Cell> path = bee.getPath();
 		path.remove(0);
+		path.remove(path.size()-1);
 		path.sort(new CellComparator());
 
 		// Sort the flowers
