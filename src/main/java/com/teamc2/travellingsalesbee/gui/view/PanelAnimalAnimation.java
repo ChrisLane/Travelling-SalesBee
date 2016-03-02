@@ -12,7 +12,6 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import javax.swing.*;
-import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,10 +27,9 @@ public class PanelAnimalAnimation extends JPanel {
 	private Scene scene;
 
 	/**
-	 *
-	 * @param x X position of panel
-	 * @param y Y position of panel
-	 * @param width Width of panel
+	 * @param x      X position of panel
+	 * @param y      Y position of panel
+	 * @param width  Width of panel
 	 * @param height Height of panel
 	 */
 	public PanelAnimalAnimation(int x, int y, int width, int height) {
@@ -44,24 +42,19 @@ public class PanelAnimalAnimation extends JPanel {
 		initialize();
 	}
 
-	public Container initialize(){
+	public Container initialize() {
 
 		final JFXPanel fxPanel = new JFXPanel();
 
 		this.add(fxPanel);
 		this.setVisible(true);
 
-		//Size of parent-panel
+		// Size of parent-panel
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(new Color(0,0,0,0));
+		this.setBackground(new Color(0, 0, 0, 0));
 		this.setOpaque(false);
 
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				initFX(fxPanel);
-			}
-		});
+		Platform.runLater(() -> initFX(fxPanel));
 
 		return this;
 	}
@@ -75,15 +68,14 @@ public class PanelAnimalAnimation extends JPanel {
 		Pane root = new Pane();
 		root.setId("beePane");
 
-		Scene  scene  =  new  Scene(root, width, height);
-		scene.setFill(javafx.scene.paint.Color.rgb(0,0,0,0));
+		Scene scene = new Scene(root, width, height);
+		scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 		scene.getStylesheets().add(url1.toExternalForm());
 
 
 		circle = createRectangle();
-		transition = new TranslateTransition((Duration.seconds(1)), circle);
-		moveCircleOnMousePress(scene, circle, transition);
+		transition = new TranslateTransition(Duration.seconds(1), circle);
 		root.getChildren().add(circle);
 
 		url = "/assets/icons/SalesBee.png";
@@ -91,12 +83,13 @@ public class PanelAnimalAnimation extends JPanel {
 		Image image = new Image(url);
 		circle.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 
-		return (scene);
+		return scene;
 	}
 
 	private Circle createRectangle() {
 		final Circle circle = new Circle(0, 0, 25);
 		circle.setOpacity(1);
+
 		return circle;
 	}
 
@@ -108,14 +101,6 @@ public class PanelAnimalAnimation extends JPanel {
 		transition.playFromStart();
 	}
 
-	private void moveCircleOnMousePress(Scene scene, final Circle circle, final TranslateTransition transition) {
-		scene.setOnMousePressed(event -> {
-			transition.setToX(event.getSceneX() - circle.getCenterX());
-			transition.setToY(event.getSceneY() - circle.getCenterY());
-			transition.playFromStart();
-		});
-	}
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
@@ -123,8 +108,10 @@ public class PanelAnimalAnimation extends JPanel {
 	public void setPath(ArrayList<Cell> path) {
 		this.path = path;
 
-		circle.setCenterX(path.get(this.stepNum).getX());
-		circle.setCenterY(path.get(this.stepNum).getY());
+		Platform.runLater(() -> {
+			circle.setCenterX(path.get(stepNum).getX());
+			circle.setCenterY(path.get(stepNum).getY());
+		});
 
 		setStepNum(stepNum);
 	}
