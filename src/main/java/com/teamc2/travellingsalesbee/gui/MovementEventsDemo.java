@@ -48,28 +48,24 @@ public class MovementEventsDemo extends Application {
 
 	private TranslateTransition createTranslateTransition(final Circle circle) {
 		final TranslateTransition transition = new TranslateTransition(TRANSLATE_DURATION, circle);
-		transition.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent t) {
-				circle.setCenterX(circle.getTranslateX() + circle.getCenterX());
-				circle.setCenterY(circle.getTranslateY() + circle.getCenterY());
-				circle.setTranslateX(0);
-				circle.setTranslateY(0);
-			}
+		transition.setOnFinished(t -> {
+			circle.setCenterX(circle.getTranslateX() + circle.getCenterX());
+			circle.setCenterY(circle.getTranslateY() + circle.getCenterY());
+			circle.setTranslateX(0);
+			circle.setTranslateY(0);
 		});
 		return transition;
 	}
 
 	private void moveCircleOnMousePress(Scene scene, final Circle circle, final TranslateTransition transition) {
-		scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override public void handle(MouseEvent event) {
-				if (!event.isControlDown()) {
-					circle.setCenterX(event.getSceneX());
-					circle.setCenterY(event.getSceneY());
-				} else {
-					transition.setToX(event.getSceneX() - circle.getCenterX());
-					transition.setToY(event.getSceneY() - circle.getCenterY());
-					transition.playFromStart();
-				}
+		scene.setOnMousePressed(event -> {
+			if (!event.isControlDown()) {
+				circle.setCenterX(event.getSceneX());
+				circle.setCenterY(event.getSceneY());
+			} else {
+				transition.setToX(event.getSceneX() - circle.getCenterX());
+				transition.setToY(event.getSceneY() - circle.getCenterY());
+				transition.playFromStart();
 			}
 		});
 	}
