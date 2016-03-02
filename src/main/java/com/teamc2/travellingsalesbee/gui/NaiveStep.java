@@ -12,9 +12,9 @@ public class NaiveStep {
 	
 	/**
 	 * 
-	 * @param start. The start node of a step
-	 * @param available. The non chosen nodes from a given start point
-	 * @param end. The end node of a step
+	 * @param start The start node of a step
+	 * @param available The non chosen nodes from a given start point
+	 * @param end The end node of a step
 	 */
 	public NaiveStep(Cell start, ArrayList<Cell> available, Cell end) {
 		this.start = start;

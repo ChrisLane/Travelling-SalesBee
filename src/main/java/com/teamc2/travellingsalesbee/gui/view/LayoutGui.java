@@ -4,13 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LayoutGui extends GroupLayout {
-	/**
-	 * Creates a {@code GroupLayout} for the specified {@code Container}.
-	 *
-	 * @param host the {@code Container} the {@code GroupLayout} is
-	 *             the {@code LayoutManager} for
-	 * @throws IllegalArgumentException if host is {@code null}
-	 */
 
 	Container host;
 	PanelMap panelMap;
@@ -18,6 +11,14 @@ public class LayoutGui extends GroupLayout {
 	PanelToolbox panelToolbox;
 	//PanelAnimalAnimation panelAnimation;
 
+	/**
+	 * Create a layout for the GUI JPanel
+	 *
+	 * @param host The container
+	 * @param panelMap The map panel
+	 * @param panelSettings The settings panel
+	 * @param panelToolbox The toolbox panel
+	 */
 	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox/*, PanelAnimalAnimation panelAnimation*/) {
 		super(host);
 
