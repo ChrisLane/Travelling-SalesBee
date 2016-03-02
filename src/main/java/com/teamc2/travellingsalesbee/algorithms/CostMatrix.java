@@ -12,6 +12,7 @@ public class CostMatrix {
 	private ArrayList<Cell> cells2;
 	
 	public CostMatrix(Map map) {
+		costMatrix = new ArrayList<>();
 		cells1 = new ArrayList<>();
 		cells1.add(map.getHive());
 		cells1.addAll(map.getFlowers());
@@ -33,6 +34,10 @@ public class CostMatrix {
 	
 	public void put(Cell cell1, Cell cell2) {
 		double cost = cell1.distance(cell2);
+		put(cell1,cell2,cost);
+	}
+	
+	public void put(Cell cell1, Cell cell2, double cost) {
 		for (CostEntry entry : costMatrix) {
 			if (entry.isKey(cell1,cell2)) {
 				entry.setCost(cost);
