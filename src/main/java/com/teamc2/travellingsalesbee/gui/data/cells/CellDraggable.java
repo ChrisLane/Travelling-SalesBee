@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
+import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.view.PanelMap;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private final int height;
 	private final CellType type;
 	private PanelMap panelMap;
+	private Map map;
 
 	/**
 	 * Create a new cell drag object
@@ -33,6 +35,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		this.height = height;
 		this.type = type;
 		this.panelMap = panelMap;
+		map = panelMap.getMap();
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
 				return new CellDraggable(width, height, type, panelMap);
@@ -110,7 +113,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			int y = (int) Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height;
 			cellFull(panelMap, x, y);
 
-
+			// Add the cell to the map
+			map.setCell(x, y, type);
 
 			// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);

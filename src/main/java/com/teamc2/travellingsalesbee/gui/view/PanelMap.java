@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 import javax.imageio.ImageIO;
@@ -15,6 +16,7 @@ public class PanelMap extends JPanel {
 	private ComponentPath componentPath;
 	private Dimension panelSize = null;
 	private PanelAnimalAnimation panelAnimation;
+	private Map map;
 
 	/**
 	 * Create the map panel
@@ -25,6 +27,13 @@ public class PanelMap extends JPanel {
 	public PanelMap(int cellWidth, int cellHeight) {
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
+
+		// Create the map we're visualising
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
+		map = new Map(screenWidth, screenHeight);
+
 
 		componentPath = new ComponentPath();
 		add(componentPath);
@@ -100,4 +109,7 @@ public class PanelMap extends JPanel {
 		return this.panelAnimation;
 	}
 
+	public Map getMap() {
+		return map;
+	}
 }

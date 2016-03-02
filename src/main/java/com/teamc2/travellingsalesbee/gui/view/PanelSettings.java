@@ -19,6 +19,7 @@ import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.HIVE;
 public class PanelSettings extends JPanel {
 
 	private final PanelMap panelMap;
+	private Map map;
 
 	private JLabel infoLabel;
 
@@ -32,6 +33,7 @@ public class PanelSettings extends JPanel {
 	 */
 	public PanelSettings(PanelMap panelMap) {
 		this.panelMap = panelMap;
+		map = panelMap.getMap();
 
 		setBackground(Color.LIGHT_GRAY);
 		addSettingsInfo();
@@ -113,25 +115,6 @@ public class PanelSettings extends JPanel {
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
-			//Get parent width and height
-			int panelWidth = panelMap.getWidth();
-			int panelHeight = panelMap.getHeight();
-
-			//Gets the amount of cells respective to the width and height of the map
-			Map map = new Map(panelWidth, panelHeight); //Initialising Map with cellsX and cellsY as width and height of map
-
-			//Add all cells to the map
-			for (Component c : panelMap.getComponents()) {
-				if (c instanceof CellDraggable) {
-					if (c.isEnabled() && ((CellDraggable) c).getType().equals(FLOWER)) {
-						map.setCell(c.getX(), c.getY(), FLOWER); //Add flower positions to map
-					} else if (c.isEnabled() && ((CellDraggable) c).getType().equals(HIVE)) {
-						map.setCell(c.getX(), c.getY(), HIVE); //Add hive position to map
-					}
-				}
-			}
-
 			Bee bee = new Bee(map, experimentalRuns);
 			BeeVisualiser visualise = new BeeVisualiser();
 			bee.naiveRun();
