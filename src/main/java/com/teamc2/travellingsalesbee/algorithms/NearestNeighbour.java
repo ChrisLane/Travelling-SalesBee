@@ -8,10 +8,10 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 
 public class NearestNeighbour {
 
-	private final Cell hive;
-	private final Map map;
-	private ArrayList<Cell> path = new ArrayList<>();
-	private double cost = Double.MAX_VALUE;
+	protected final Map map;
+	protected final Cell hive;
+	protected ArrayList<Cell> path = new ArrayList<>();
+	protected double cost = Double.MAX_VALUE;
 
 	/**
 	 * Constructor
@@ -24,12 +24,13 @@ public class NearestNeighbour {
 	}
 
 	/**
-	 * Run the
+	 * Run a naive path find.
 	 * 
-	 * A greedy like algorithm, it visits the nearest non-visited neighbour
-	 * until every flower has been visited, following that it then returns to the hive
+	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
+	 * the nearest non-visited neighbour until every flower has been visited, following 
+	 * that it then returns to the hive
 	 */
-	public void run() {
+	public void naiveRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
@@ -69,7 +70,7 @@ public class NearestNeighbour {
 	 *
 	 * @return Cost of the current path
 	 */
-	public double getPathCost() {
+	public double getCost() {
 		return cost;
 	}
 
