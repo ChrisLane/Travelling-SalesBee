@@ -13,7 +13,7 @@ public class Bee {
 	private final Cell hive;
 
 	private ArrayList<Cell> path = new ArrayList<>();
-	private ArrayList<ArrayList<Cell>> intemediaryPaths = new ArrayList<>();
+	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
 	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
 	private double cost = Double.MAX_VALUE;
 
@@ -71,10 +71,10 @@ public class Bee {
 				if (testCost < cost) {
 					setPath(testPath, testCost);
 					System.out.println("Improved");
-					intemediaryPaths.add(testPath);
+					intermediaryPaths.add(testPath);
 				} else {
-					System.out.println("Not imroved");
-					intemediaryPaths.add(this.path);
+					System.out.println("Not improved");
+					intermediaryPaths.add(this.path);
 				}
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				
@@ -130,9 +130,9 @@ public class Bee {
 		return path;
 	}
 	
-	public ArrayList<ArrayList<Cell>> getIntemediaryPaths(){
-		intemediaryPaths.forEach(System.out::println);
-		return intemediaryPaths;
+	public ArrayList<ArrayList<Cell>> getIntermediaryPaths(){
+		intermediaryPaths.forEach(System.out::println);
+		return intermediaryPaths;
 	}
 	
 	public ArrayList<Comparison<Cell,Cell>> getCellComparisons(){
