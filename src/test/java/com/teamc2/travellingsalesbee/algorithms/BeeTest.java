@@ -97,7 +97,7 @@ public class BeeTest {
 	@Test(dataProvider = "paths", dependsOnMethods = "testSetPathCost")
 	public void testGetPathCost(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
-		Assert.assertEquals(bee.getPathCost(), cost);
+		Assert.assertEquals(bee.getCost(), cost);
 	}
 
 	@Test(dataProvider = "paths")
@@ -109,7 +109,7 @@ public class BeeTest {
 	public void testExperimentalRuns(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		bee.experimentalRun();
-		Assert.assertTrue(bee.getPathCost() <= cost);
+		Assert.assertTrue(bee.getCost() <= cost);
 	}
 
 	@Test(dataProvider = "paths")
@@ -121,6 +121,6 @@ public class BeeTest {
 	@Test(dataProvider = "paths")
 	public void testSetPathCost(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
-		Assert.assertEquals(bee.getPathCost(), cost);
+		Assert.assertEquals(bee.getCost(), cost);
 	}
 }

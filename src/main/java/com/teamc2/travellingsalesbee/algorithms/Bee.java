@@ -6,15 +6,11 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-public class Bee {
+public class Bee extends NearestNeighbour {
 
-	private final Map map;
 	private int experiments;
-
-	private ArrayList<Cell> path = new ArrayList<>();
 	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
 	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
-	private double cost = Double.MAX_VALUE;
 
 	/**
 	 * Constructor
@@ -23,21 +19,8 @@ public class Bee {
 	 * @param experiments Number of experiments to run
 	 */
 	public Bee(Map map, int experiments) {
-		this.map = map;
+		super(map);
 		this.experiments = experiments;
-	}
-
-	/**
-	 * Run a naive path find.
-	 * 
-	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
-	 * the nearest non-visited neighbour until every flower has been visited, following 
-	 * that it then returns to the hive
-	 */
-	public void naiveRun() {
-		NearestNeighbour nearest = new NearestNeighbour(map);
-		nearest.run();
-		setPath(nearest.getPath(),nearest.getPathCost());
 	}
 
 	/**
@@ -78,53 +61,6 @@ public class Bee {
 				experiments--;
 			}
 		}
-	}
-
-	/**
-	 * A method for retrieving the path of the current path
-	 *
-	 * @return Cost of the current path
-	 */
-	public double getPathCost() {
-		return cost;
-	}
-
-	/**
-	 * Calculate the cost for a given path
-	 *
-	 * @param path The path to calculate the cost for
-	 * @return Cost of the path
-	 */
-	public double calculatePathCost(ArrayList<Cell> path) {
-		double cost = 0;
-		for (int i = 0; i < path.size()-1; i++) {
-			Cell pos1 = path.get(i);
-			Cell pos2 = path.get(i + 1);
-
-			cost += map.getCostMatrix().getCost(pos1,pos2);
-		}
-		return cost;
-	}
-
-
-	/**
-	 * Set the current path
-	 *
-	 * @param path The path to be set
-	 * @param cost The total cost of the path being set
-	 */
-	public void setPath(ArrayList<Cell> path, double cost) {
-		this.path = path;
-		this.cost = cost;
-	}
-
-	/**
-	 * Return the current path
-	 *
-	 * @return path. The Current path.
-	 */
-	public ArrayList<Cell> getPath() {
-		return path;
 	}
 	
 	public ArrayList<ArrayList<Cell>> getIntermediaryPaths(){
