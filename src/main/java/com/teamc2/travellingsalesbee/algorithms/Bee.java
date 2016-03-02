@@ -101,7 +101,7 @@ public class Bee {
 			Cell pos1 = path.get(i);
 			Cell pos2 = path.get(i + 1);
 
-			cost += pos1.distance(pos2);
+			cost += map.getCostMatrix().getCost(pos1,pos2);
 		}
 		return cost;
 	}

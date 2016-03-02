@@ -45,7 +45,8 @@ public class NearestNeighbour {
 		
 				// Find the closest flower to the previous
 				for (CellFlower flower : flowers) {
-					double distance = flower.distance(newPath.get(newPath.size() - 1));
+					Cell currentCell = newPath.get(newPath.size() - 1);
+					double distance = map.getCostMatrix().getCost(currentCell,flower);
 					if (distance < bestDistance) {
 						closest = flower;
 						bestDistance = distance;
@@ -84,7 +85,7 @@ public class NearestNeighbour {
 			Cell pos1 = path.get(i);
 			Cell pos2 = path.get(i + 1);
 
-			cost += pos1.distance(pos2);
+			cost += map.getCostMatrix().getCost(pos1,pos2);
 		}
 		return cost;
 	}

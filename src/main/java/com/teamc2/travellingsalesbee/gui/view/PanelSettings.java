@@ -115,6 +115,7 @@ public class PanelSettings extends JPanel {
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			map.setCostMatrix();
 			Bee bee = new Bee(map, experimentalRuns);
 			BeeVisualiser visualise = new BeeVisualiser();
 			bee.naiveRun();
