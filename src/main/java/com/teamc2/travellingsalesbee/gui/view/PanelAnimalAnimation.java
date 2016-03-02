@@ -72,14 +72,14 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private Scene initScene() {
+		Pane root = new Pane();
+		root.setId("beePane");
 
-		Pane  root  =  new  Pane();
 		Scene  scene  =  new  Scene(root, width, height);
 		scene.setFill(javafx.scene.paint.Color.rgb(0,0,0,0));
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 		scene.getStylesheets().add(url1.toExternalForm());
 
-		root.setId("beePane");
 
 		circle = createRectangle();
 		transition = new TranslateTransition((Duration.seconds(1)), circle);
