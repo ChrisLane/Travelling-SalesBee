@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class PanelAnimalAnimation extends JPanel {
 	private int height;
 	private ArrayList<Cell> path;
 	private int stepNum = 0;
-	private Circle circle;
+	private Rectangle beeIcon;
 	private TranslateTransition transition;
 
 	/**
@@ -69,31 +69,29 @@ public class PanelAnimalAnimation extends JPanel {
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 		scene.getStylesheets().add(url1.toExternalForm());
 
-
-		circle = createRectangle();
-		transition = new TranslateTransition(Duration.seconds(1), circle);
-		root.getChildren().add(circle);
+		beeIcon = createRectangle();
+		transition = new TranslateTransition(Duration.seconds(1), beeIcon);
+		root.getChildren().add(beeIcon);
+		beeIcon.toFront();
 
 		url = "/assets/icons/SalesBee.png";
 
 		Image image = new Image(url);
-		circle.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+		beeIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 
 		return scene;
 	}
 
-	private Circle createRectangle() {
-		final Circle circle = new Circle(0, 0, 25);
-		circle.setOpacity(1);
+	private Rectangle createRectangle() {
+		final Rectangle rectangle = new Rectangle(-20, -20, 45, 45);
+		rectangle.setOpacity(1);
 
-		return circle;
+		return rectangle;
 	}
 
-	private void moveFromAToB(Cell end, Circle circle, TranslateTransition transition) {
-
-		transition.setToX(end.getX() - circle.getCenterX());
-		transition.setToY(end.getY() - circle.getCenterY());
-
+	private void moveFromAToB(Cell end, Rectangle circle, TranslateTransition transition) {
+		transition.setToX(end.getX() - circle.getX());
+		transition.setToY(end.getY() - circle.getY());
 		transition.playFromStart();
 	}
 
@@ -105,19 +103,15 @@ public class PanelAnimalAnimation extends JPanel {
 		this.path = path;
 
 		Platform.runLater(() -> {
-			circle.setCenterX(path.get(stepNum).getX());
-			circle.setCenterY(path.get(stepNum).getY());
+			beeIcon.setX(path.get(stepNum).getX());
+			beeIcon.setY(path.get(stepNum).getY());
 		});
-
-		setStepNum(stepNum);
 	}
 
 	public void setStepNum(int step) {
 		this.stepNum = step;
 
-		System.out.println(path.get(stepNum + 1));
-
-		moveFromAToB(path.get(stepNum + 1), circle, transition);
+		moveFromAToB(path.get(stepNum), beeIcon, transition);
 	}
 
 
