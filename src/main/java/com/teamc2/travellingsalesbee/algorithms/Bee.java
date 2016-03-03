@@ -40,22 +40,18 @@ public class Bee extends NearestNeighbour {
 					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 				}
 
-				System.out.println(testPath.get(testPath.size()-3));
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
 
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
-				System.out.println(testPath.get(testPath.size()-3));
 				intermediaryPaths.add(testPath);
 
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
 					setPath(testPath, testCost);
-					System.out.println("Improved");
 					intermediaryPaths.add(testPath);
 				} else {
-					System.out.println("Not improved");
 					intermediaryPaths.add(path);
 				}
 
