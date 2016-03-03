@@ -131,7 +131,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			panelMap.revalidate();
 			panelMap.repaint();
 		}
-
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -13,6 +15,7 @@ import javafx.util.Duration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -22,9 +25,11 @@ public class PanelAnimalAnimation extends JPanel {
 	private int width;
 	private int height;
 	private ArrayList<Cell> path;
+	private ArrayList<ArrayList<Cell>> pathOfPaths;
 	private int stepNum = 0;
 	private Rectangle beeIcon;
 	private TranslateTransition transition;
+	private boolean transitionPlaying = true;
 
 	/**
 	 * Create a new animal animation panel
@@ -93,6 +98,13 @@ public class PanelAnimalAnimation extends JPanel {
 		transition.setToX(end.getX() - circle.getX()-25);
 		transition.setToY(end.getY() - circle.getY()-25);
 		transition.playFromStart();
+
+		transition.setOnFinished(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent AE){
+				transitionPlaying = false;
+				System.out.println("STOPPED PLAYING");
+			}
+		});
 	}
 
 	public void setUrl(String url) {
@@ -107,6 +119,15 @@ public class PanelAnimalAnimation extends JPanel {
 			beeIcon.setY(path.get(stepNum).getY()-25);
 			beeIcon.setVisible(true);
 		});
+	}
+
+	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
+		this.pathOfPaths = path;
+
+		// 1. Get step
+		// 2. Get path.get(step)
+		// 3. Animate (path.get(step))
+		// 4. Goto step 1
 
 	}
 	
@@ -119,6 +140,19 @@ public class PanelAnimalAnimation extends JPanel {
 			beeIcon.setVisible(true);
 		});
 
+	}
+
+	public void animationPath(ArrayList<Cell> path) {
+
+		int stepNum = 0;
+
+		while(stepNum < path.size()) {
+			moveFromAToB(path.get(stepNum), beeIcon, transition);
+			while(transitionPlaying) {
+
+			}
+			stepNum++;
+		}
 	}
 
 	public void setStepNum(int step) {
