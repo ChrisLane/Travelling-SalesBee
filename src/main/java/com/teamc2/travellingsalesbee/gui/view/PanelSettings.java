@@ -95,26 +95,28 @@ public class PanelSettings extends JPanel {
 		});
 
 		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
-		this.add(txtPaneTextWillAppear);
-		this.setVisible(true);
 
 		// Size of parent-panel
-		this.setPreferredSize(new Dimension(100, 100));
-		this.setBackground(new Color(0, 0, 0, 0));
+		txtPaneTextWillAppear.setBackground(new Color(0, 0, 0, 0));
+		txtPaneTextWillAppear.setOpaque(false);
 
 		Platform.runLater(() -> {
 			Pane root = new Pane();
+			root.setId("infoboxPanel");
 
-			Scene scene = new Scene(root, 10, 10);
-			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 1));
+			Scene scene = new Scene(root);
+			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
 			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url1.toExternalForm());
 
 			Text text = new Text("\nExplanatory step-through text will appear here.");
+			text.setWrappingWidth(txtPaneTextWillAppear.getWidth());
 			root.getChildren().add(text);
 			text.setId("infobox");
 			txtPaneTextWillAppear.setScene(scene);
 		});
+
+		add(txtPaneTextWillAppear);
 
 		JButton btnPrev = new JButton("<-");
 		btnPrev.addActionListener(arg0 -> {
