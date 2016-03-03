@@ -1,5 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import javafx.embed.swing.JFXPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,7 +15,7 @@ public class LayoutSettings extends GroupLayout {
 	 * @throws IllegalArgumentException if host is {@code null}
 	 */
 	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
-						  JSlider slider, JButton btnRun, JButton btnPrev, JButton btnNext, JTextPane txtPaneTextWillAppear) {
+						  JSlider slider, JButton btnRun, JButton btnPrev, JButton btnNext, JFXPanel txtPaneTextWillAppear) {
 		super(host);
 
 		setHorizontalGroup(
