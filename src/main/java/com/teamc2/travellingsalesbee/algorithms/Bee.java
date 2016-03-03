@@ -50,7 +50,7 @@ public class Bee extends NearestNeighbour {
 				intermediaryPaths.add(testPath);
 
 				double testCost = calculatePathCost(testPath);
-				if (testCost <= cost) {
+				if (testCost < cost) {
 					setPath(testPath, testCost);
 					System.out.println("Improved");
 					intermediaryPaths.add(testPath);
