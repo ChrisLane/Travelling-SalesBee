@@ -26,8 +26,7 @@ public class CostMatrix {
 				Cell cell1 = cells1.get(i);
 				Cell cell2 = cells2.get(j);
 				double cost = cell1.distance(cell2);
-				CostEntry entry = new CostEntry(cell1, cell1, cost);
-				costMatrix.add(entry);
+				put(cell1,cell2,cost);
 			}
 		}
 	}
