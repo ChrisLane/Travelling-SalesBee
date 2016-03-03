@@ -25,8 +25,7 @@ public class CostMatrix {
 			for (int j=i; j<cells1.size(); j++) {
 				Cell cell1 = cells1.get(i);
 				Cell cell2 = cells2.get(j);
-				double cost = cell1.distance(cell2);
-				put(cell1,cell2,cost);
+				put(cell1,cell2);
 			}
 		}
 	}
