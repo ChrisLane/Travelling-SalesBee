@@ -27,9 +27,9 @@ public class Bee extends NearestNeighbour {
 	 */
 	public void experimentalRun() {
 		if (path.size() > 4) {
-			ArrayList<Cell> testPath = new ArrayList<>();
 			while (experiments > 0) {
-				testPath = path;
+				ArrayList<Cell> testPath = new ArrayList<>();
+				testPath.addAll(path);
 				intermediaryPaths.add(path);
 
 				int flowerPos1 = 0;
@@ -39,11 +39,11 @@ public class Bee extends NearestNeighbour {
 					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 				}
-				
+
 				System.out.println(testPath.get(testPath.size()-3));
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
-				
+
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
 				System.out.println(testPath.get(testPath.size()-3));
@@ -58,7 +58,7 @@ public class Bee extends NearestNeighbour {
 					System.out.println("Not improved");
 					intermediaryPaths.add(path);
 				}
-				
+
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				experiments--;
 			}
