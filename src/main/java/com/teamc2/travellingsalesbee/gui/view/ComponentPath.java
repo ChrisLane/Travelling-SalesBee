@@ -39,8 +39,8 @@ public class ComponentPath extends JComponent {
 	 * @param path Path to set in algorithms
 	 */
 	public void setPath(ArrayList<Cell> path) {
-		beePath = path;
-		repaint();
+		ArrayList<Cell> steppedPath  = new ArrayList<>();
+		
 	}
 
 	public ArrayList<Cell> getBeePath() {

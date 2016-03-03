@@ -44,17 +44,17 @@ public class PanelMap extends JPanel {
 		//Initialise and set bounds
 		panelAnimation = new PanelAnimalAnimation(789, 446);
 		panelAnimation.setBounds(this.getX(), this.getY(), 789, 446);
-
+		
 		this.add(panelAnimation); //Add to panel map
 
 		setComponentZOrder(panelAnimation, 0);
-
+		
 		//Pass the bee path to the animation class
 		ArrayList<Cell> path = this.getPathComponent().getBeePath();
 		if (path.size() > 0) {
 			panelAnimation.setPath(path);
 		}
-
+		
 		setLayout(null);
 	}
 
