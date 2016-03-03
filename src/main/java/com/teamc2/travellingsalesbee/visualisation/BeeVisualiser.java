@@ -31,13 +31,16 @@ public class BeeVisualiser {
 	public ArrayList<ExperimentalStep> getExperimentalSteps(ArrayList<Comparison<Cell,Cell>> comparedCells, ArrayList<ArrayList<Cell>> intermediaryPaths){
 		ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 		
-		for (int i=0;i<intermediaryPaths.size()-2;i++){
+		for (int i=0;i<intermediaryPaths.size()-2;i+=2){
 			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i), SwapType.INSPECTED);
 			
+			ExperimentalStep middleStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+1), SwapType.INSPECTED);
+			
 			SwapType typeOfResultingStep = getType(intermediaryPaths.get(i),intermediaryPaths.get(i+1));
-			ExperimentalStep resultingStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+1), typeOfResultingStep);
+			ExperimentalStep resultingStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+2), typeOfResultingStep);
 		
 			experimentalSteps.add(initialStep);
+			experimentalSteps.add(middleStep);
 			experimentalSteps.add(resultingStep);
 		}
 		

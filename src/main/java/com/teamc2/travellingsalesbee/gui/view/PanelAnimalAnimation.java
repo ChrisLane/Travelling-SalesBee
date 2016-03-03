@@ -109,6 +109,17 @@ public class PanelAnimalAnimation extends JPanel {
 		});
 
 	}
+	
+	public void setPath(int i) {
+		this.path = path;
+
+		Platform.runLater(() -> {
+			beeIcon.setX(path.get(stepNum).getX()-25);
+			beeIcon.setY(path.get(stepNum).getY()-25);
+			beeIcon.setVisible(true);
+		});
+
+	}
 
 	public void setStepNum(int step) {
 		this.stepNum = step;
@@ -116,6 +127,4 @@ public class PanelAnimalAnimation extends JPanel {
 		moveFromAToB(path.get(stepNum), beeIcon, transition);
 	}
 
-
-	//public void setMoves()
 }
