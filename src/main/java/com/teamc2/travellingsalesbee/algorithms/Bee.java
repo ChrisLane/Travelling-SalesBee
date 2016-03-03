@@ -10,7 +10,7 @@ public class Bee extends NearestNeighbour {
 
 	private int experiments;
 	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
-	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
+	private ArrayList<Comparison<Cell,Cell>> comparedCells = new ArrayList<>();
 
 	/**
 	 * Constructor
@@ -28,8 +28,9 @@ public class Bee extends NearestNeighbour {
 	 */
 	public void experimentalRun() {
 		if (path.size() > 4) {
+			ArrayList<Cell> testPath = new ArrayList<>();
 			while (experiments > 0) {
-				ArrayList<Cell> testPath = path;
+				testPath = path;
 
 				int flowerPos1 = 0;
 				int flowerPos2 = 0;
@@ -38,23 +39,22 @@ public class Bee extends NearestNeighbour {
 					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 				}
-				System.out.println(testPath.get(testPath.size()-1));
+				System.out.println(testPath.get(testPath.size()-2));
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
 
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
-
-				// TODO: Call a method to visualise the flower1 and flower2 swap
-
+				System.out.println(testPath.get(testPath.size()-2));
+				
 				double testCost = calculatePathCost(testPath);
-				if (testCost < cost) {
+				if (testCost <= cost) {
 					setPath(testPath, testCost);
 					System.out.println("Improved");
 					intermediaryPaths.add(testPath);
 				} else {
 					System.out.println("Not improved");
-					intermediaryPaths.add(this.path);
+					intermediaryPaths.add(path);
 				}
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				

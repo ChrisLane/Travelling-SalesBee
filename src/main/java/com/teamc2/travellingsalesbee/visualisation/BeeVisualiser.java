@@ -50,6 +50,7 @@ public class BeeVisualiser {
 				return SwapType.ACCEPTED;
 			}
 		}
+		System.out.println(path1==path2);
 		return SwapType.REJECTED;
 	}
 }
