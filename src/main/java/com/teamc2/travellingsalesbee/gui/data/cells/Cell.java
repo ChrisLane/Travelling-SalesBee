@@ -5,6 +5,11 @@ import java.awt.geom.Point2D;
 
 public abstract class Cell extends Point2D.Double {
 
+	@Override
+	public String toString() {
+		return "[(" + (int) x + ", " + (int) y + ") " + getType() + "]";
+	}
+
 	/**
 	 * Create a new cell
 	 */
