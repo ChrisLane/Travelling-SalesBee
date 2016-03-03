@@ -54,4 +54,13 @@ public class CostMatrix {
 		}
 		return 0;
 	}
+
+	public CostEntry getEntry(Cell cell1, Cell cell2) {
+		for (CostEntry entry : costMatrix) {
+			if (entry.isKey(cell1,cell2)) {
+				return entry;
+			}
+		}
+		return null;
+	}
 }

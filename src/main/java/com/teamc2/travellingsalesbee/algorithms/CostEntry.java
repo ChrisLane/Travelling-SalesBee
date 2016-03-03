@@ -7,6 +7,7 @@ public class CostEntry {
 	private Cell first;
 	private Cell second;
 	private double cost;
+	private double pheremone = 0;
 	
 	public CostEntry(Cell first, Cell second, double cost) {
 		this.first = first;
@@ -24,6 +25,18 @@ public class CostEntry {
 	
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+
+	public void plantPheremone(double pheromone) {
+		setPheremone(this.pheremone+pheremone);
+	}
+	
+	public double getPheremone() {
+		return pheremone;
+	}
+	
+	public void setPheremone(double pheremone) {
+		this.pheremone = pheremone;
 	}
 	
 }
