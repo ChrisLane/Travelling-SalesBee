@@ -92,7 +92,11 @@ public class PanelSettings extends JPanel {
 			panelMap.getPathComponent().setStepNumber(stepNum);
 
 			/*----------------------------------------------*/
-			panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
+			try{
+				panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
+			}catch(IndexOutOfBoundsException e){
+				System.out.println("exception in setting animation");
+			}
 			/*----------------------------------------------*/
 		});
 
@@ -102,7 +106,11 @@ public class PanelSettings extends JPanel {
 			panelMap.getPathComponent().setStepNumber(stepNum);
 
 			/*----------------------------------------------*/
+			try{
 				panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
+			}catch(IndexOutOfBoundsException e){
+				System.out.println("exception in setting animation");
+			}
 			/*----------------------------------------------*/
 		});
 
