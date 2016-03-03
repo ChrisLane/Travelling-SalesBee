@@ -22,7 +22,7 @@ public class CostMatrix {
 	
 	public void putAll() {
 		for (int i=0; i<cells1.size(); i++) {
-			for (int j=0; j<cells1.size(); j++) {
+			for (int j=i; j<cells1.size(); j++) {
 				Cell cell1 = cells1.get(i);
 				Cell cell2 = cells2.get(j);
 				double cost = cell1.distance(cell2);
@@ -44,7 +44,7 @@ public class CostMatrix {
 				return;
 			}
 		}
-		CostEntry entry = new CostEntry(cell1, cell1, cost);
+		CostEntry entry = new CostEntry(cell1, cell2, cost);
 		costMatrix.add(entry);
 	}
 	
