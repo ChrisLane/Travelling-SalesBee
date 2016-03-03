@@ -52,7 +52,16 @@ public class CostMatrix {
 				return entry.getCost();
 			}
 		}
-		return 0;
+		return Double.MAX_VALUE;
+	}
+	
+	public double getPheremone(Cell cell1, Cell cell2) {
+		for (CostEntry entry : costMatrix) {
+			if (entry.isKey(cell1,cell2)) {
+				return entry.getPheremone();
+			}
+		}
+		return 1;
 	}
 
 	public CostEntry getEntry(Cell cell1, Cell cell2) {

@@ -7,7 +7,7 @@ public class CostEntry {
 	private Cell first;
 	private Cell second;
 	private double cost;
-	private double pheremone = 0;
+	private double pheremone = 1;
 	
 	public CostEntry(Cell first, Cell second, double cost) {
 		this.first = first;
