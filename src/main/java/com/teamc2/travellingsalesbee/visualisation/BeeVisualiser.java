@@ -37,7 +37,7 @@ public class BeeVisualiser {
 			ExperimentalStep middleStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+1), SwapType.INSPECTED);
 			
 			SwapType typeOfResultingStep = getType(intermediaryPaths.get(i),intermediaryPaths.get(i+1));
-			ExperimentalStep resultingStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+2), typeOfResultingStep);
+			ExperimentalStep resultingStep = new ExperimentalStep(comparedCells.get(i), new ArrayList<Cell>(), typeOfResultingStep);
 		
 			experimentalSteps.add(initialStep);
 			experimentalSteps.add(middleStep);
