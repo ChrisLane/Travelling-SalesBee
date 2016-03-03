@@ -28,18 +28,17 @@ public class Ant extends NearestNeighbour {
 			
 			// Loop over flowers missing from path
 			Cell currentCell;
-			Cell next;
+			Cell next = null;
 			
 			while (!flowers.isEmpty()) {
 				currentCell = newPath.get(newPath.size() - 1);
-				next = null;
 		
 				// Find the next flower to go to
 				while(next == null) {
 					next = findNextFlower(newPath,currentCell);
 				}
 				
-				//Remove the flower that is closest from the set
+				//Remove the next flower from the set
 				//Release some pheremone
 				flowers.remove(next);
 				newPath.add(next);
@@ -47,6 +46,7 @@ public class Ant extends NearestNeighbour {
 			}
 			
 			newPath.add(hive);
+			plantPheremone(next,hive);
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
