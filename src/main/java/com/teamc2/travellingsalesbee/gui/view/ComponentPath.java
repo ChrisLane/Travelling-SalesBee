@@ -40,7 +40,6 @@ public class ComponentPath extends JComponent {
 	 */
 	public void setPath(ArrayList<Cell> path) {
 		ArrayList<Cell> steppedPath  = new ArrayList<>();
-		
 	}
 
 	public ArrayList<Cell> getBeePath() {
@@ -68,7 +67,7 @@ public class ComponentPath extends JComponent {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		if (beePath.size() > 100 && stepNum >= naiveSteps.size()) {
+		if (beePath.size() > 0 && stepNum >= (naiveSteps.size()+experimentalSteps.size())-2) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
@@ -161,6 +160,10 @@ public class ComponentPath extends JComponent {
 			g2.draw(cellCircle);
 			cellCircle = new Ellipse2D.Double(x2, y2, 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
+			
+			double cost = step.getPathCost();
+			String costString = "" + cost;
+			g2.drawString(costString, 0, 0);
 		}
 	}
 

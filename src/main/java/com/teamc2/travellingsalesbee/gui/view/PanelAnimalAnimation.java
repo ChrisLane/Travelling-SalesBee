@@ -123,7 +123,8 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
-
+		
+		
 		// 1. Get step
 		// 2. Get path.get(step)
 		// 3. Animate (path.get(step))

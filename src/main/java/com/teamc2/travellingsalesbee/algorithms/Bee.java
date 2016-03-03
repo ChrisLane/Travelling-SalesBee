@@ -10,6 +10,7 @@ public class Bee extends NearestNeighbour {
 	private int experiments;
 	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
 	private ArrayList<Comparison<Cell,Cell>> comparedCells = new ArrayList<>();
+	private ArrayList<Double> intermediaryPathCosts = new ArrayList<>();
 
 	/**
 	 * Constructor
@@ -44,17 +45,24 @@ public class Bee extends NearestNeighbour {
 
 				intermediaryPaths.add(path);
 				comparedCells.add(new Comparison<>(flower1, flower2));
+				intermediaryPathCosts.add(calculatePathCost(path));
+				
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
+				
 				intermediaryPaths.add(testPath);
 				comparedCells.add(new Comparison<>(flower1, flower2));
+				intermediaryPathCosts.add(calculatePathCost(testPath));
 
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
 					setPath(testPath, testCost);
 					intermediaryPaths.add(testPath);
+					intermediaryPathCosts.add(calculatePathCost(path));
 				} else {
 					intermediaryPaths.add(path);
+					intermediaryPathCosts.add(calculatePathCost(path));
+
 				}
 
 				comparedCells.add(new Comparison<>(flower1, flower2));
@@ -70,6 +78,10 @@ public class Bee extends NearestNeighbour {
 	
 	public ArrayList<Comparison<Cell,Cell>> getCellComparisons(){
 		return comparedCells;
+	}
+	
+	public ArrayList<Double> getIntermediaryPathCosts(){
+		return intermediaryPathCosts ;
 	}
 
 }

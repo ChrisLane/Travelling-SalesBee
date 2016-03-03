@@ -10,10 +10,12 @@ public class ExperimentalStep {
 	private SwapType type;
 	private ArrayList<Cell> path;
 	private Comparison<Cell, Cell> cellsCompared;
+	private double pathCost;
 
-	public ExperimentalStep(Comparison<Cell,Cell> cellsCompared, ArrayList<Cell> path, SwapType type){
+	public ExperimentalStep(Comparison<Cell,Cell> cellsCompared, ArrayList<Cell> path, double pathCost, SwapType type){
 		this.cellsCompared = cellsCompared;
 		this.path = path;
+		this.pathCost = pathCost;
 		this.type = type;
 	}
 	
@@ -23,6 +25,10 @@ public class ExperimentalStep {
 	
 	public ArrayList<Cell> getPath(){
 		return this.path;
+	}
+	
+	public double getPathCost(){
+		return pathCost;
 	}
 	
 	public SwapType getType(){
