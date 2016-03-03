@@ -38,6 +38,7 @@ public class NearestNeighbour {
 			newPath.add(hive);
 			
 			// Loop over flowers missing from path
+			Cell currentCell;
 			CellFlower closest;
 			
 			while (!flowers.isEmpty()) {
@@ -46,7 +47,7 @@ public class NearestNeighbour {
 		
 				// Find the closest flower to the previous
 				for (CellFlower flower : flowers) {
-					Cell currentCell = newPath.get(newPath.size() - 1);
+					currentCell = newPath.get(newPath.size() - 1);
 					double distance = map.getCostMatrix().getCost(currentCell,flower);
 					if (distance < bestDistance) {
 						closest = flower;
