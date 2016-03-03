@@ -30,7 +30,6 @@ public class Bee extends NearestNeighbour {
 			while (experiments > 0) {
 				ArrayList<Cell> testPath = new ArrayList<>();
 				testPath.addAll(path);
-				intermediaryPaths.add(path);
 
 				int flowerPos1 = 0;
 				int flowerPos2 = 0;
@@ -43,9 +42,12 @@ public class Bee extends NearestNeighbour {
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
 
+				intermediaryPaths.add(path);
+				comparedCells.add(new Comparison<>(flower1, flower2));
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
 				intermediaryPaths.add(testPath);
+				comparedCells.add(new Comparison<>(flower1, flower2));
 
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
