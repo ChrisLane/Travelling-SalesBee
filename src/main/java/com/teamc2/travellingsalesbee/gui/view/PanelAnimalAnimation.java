@@ -70,9 +70,9 @@ public class PanelAnimalAnimation extends JPanel {
 		scene.getStylesheets().add(url1.toExternalForm());
 
 		beeIcon = createRectangle();
+		beeIcon.setVisible(false);
 		transition = new TranslateTransition(Duration.seconds(1), beeIcon);
 		root.getChildren().add(beeIcon);
-		beeIcon.toFront();
 
 		url = "/assets/icons/SalesBee.png";
 
@@ -90,8 +90,8 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private void moveFromAToB(Cell end, Rectangle circle, TranslateTransition transition) {
-		transition.setToX(end.getX() - circle.getX());
-		transition.setToY(end.getY() - circle.getY());
+		transition.setToX(end.getX() - circle.getX()-25);
+		transition.setToY(end.getY() - circle.getY()-25);
 		transition.playFromStart();
 	}
 
@@ -103,9 +103,11 @@ public class PanelAnimalAnimation extends JPanel {
 		this.path = path;
 
 		Platform.runLater(() -> {
-			beeIcon.setX(path.get(stepNum).getX());
-			beeIcon.setY(path.get(stepNum).getY());
+			beeIcon.setX(path.get(stepNum).getX()-25);
+			beeIcon.setY(path.get(stepNum).getY()-25);
+			beeIcon.setVisible(true);
 		});
+
 	}
 
 	public void setStepNum(int step) {
