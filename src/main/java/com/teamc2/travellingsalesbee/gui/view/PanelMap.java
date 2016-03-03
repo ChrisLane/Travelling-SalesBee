@@ -46,7 +46,6 @@ public class PanelMap extends JPanel {
 		panelAnimation.setBounds(this.getX(), this.getY(), 789, 446);
 
 		this.add(panelAnimation); //Add to panel map
-		this.setComponentZOrder(panelAnimation, 0); //Draw to top of screen
 
 		//Pass the bee path to the animation class
 		ArrayList<Cell> path = this.getPathComponent().getBeePath();
