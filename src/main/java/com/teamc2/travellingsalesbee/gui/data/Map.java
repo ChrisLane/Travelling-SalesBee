@@ -24,7 +24,7 @@ public class Map extends JPanel {
 	public Map(int width, int height) {
 		this.width = width;
 		this.height = height;
-
+		
 		cells = new Cell[width][height];
 		setMap();
 	}
@@ -81,6 +81,9 @@ public class Map extends JPanel {
 	}
 	
 	public CostMatrix getCostMatrix() {
+		if (costMatrix == null) {
+			setCostMatrix();
+		} 
 		return costMatrix;
 	}
 
