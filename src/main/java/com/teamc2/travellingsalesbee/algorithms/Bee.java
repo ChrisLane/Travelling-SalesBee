@@ -2,7 +2,6 @@ package com.teamc2.travellingsalesbee.algorithms;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
