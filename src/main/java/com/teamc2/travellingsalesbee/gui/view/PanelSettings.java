@@ -4,14 +4,25 @@ import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.image.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.FLOWER;
 import static com.teamc2.travellingsalesbee.gui.data.cells.CellType.HIVE;
@@ -83,8 +94,27 @@ public class PanelSettings extends JPanel {
 			lblNoOfRuns.setText(("" + experimentalRuns));
 		});
 
-		JTextPane txtPaneTextWillAppear = new JTextPane();
-		txtPaneTextWillAppear.setText("Text will appear here as you step through the algorithm, explaining how it works at each step");
+		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
+		this.add(txtPaneTextWillAppear);
+		this.setVisible(true);
+
+		// Size of parent-panel
+		this.setPreferredSize(new Dimension(100, 100));
+		this.setBackground(new Color(0, 0, 0, 0));
+
+		Platform.runLater(() -> {
+			Pane root = new Pane();
+
+			Scene scene = new Scene(root, 10, 10);
+			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 1));
+			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			scene.getStylesheets().add(url1.toExternalForm());
+
+			Text text = new Text("\nExplanatory step-through text will appear here.");
+			root.getChildren().add(text);
+			text.setId("infobox");
+			txtPaneTextWillAppear.setScene(scene);
+		});
 
 		JButton btnPrev = new JButton("<-");
 		btnPrev.addActionListener(arg0 -> {
