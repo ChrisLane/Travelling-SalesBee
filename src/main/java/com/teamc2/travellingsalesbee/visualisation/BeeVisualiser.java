@@ -32,7 +32,7 @@ public class BeeVisualiser {
 		ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 		
 		for (int i=0;i<intermediaryPaths.size()-2;i+=2){
-			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i), SwapType.INSPECTED);
+			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i), new ArrayList<Cell>(), SwapType.INSPECTED);
 			
 			ExperimentalStep middleStep = new ExperimentalStep(comparedCells.get(i), intermediaryPaths.get(i+1), SwapType.INSPECTED);
 			
