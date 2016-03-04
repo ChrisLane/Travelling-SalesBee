@@ -19,7 +19,7 @@ public class Ant extends NearestNeighbour {
 		setHeuristicCost(getCost());
 	}
 	
-	private void pheremoneRun() {
+	public void pheremoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellFlower> flowers = map.getFlowers();
