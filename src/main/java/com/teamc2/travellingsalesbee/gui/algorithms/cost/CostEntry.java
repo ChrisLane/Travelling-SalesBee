@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.data.cost;
+package com.teamc2.travellingsalesbee.gui.algorithms.cost;
 
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
