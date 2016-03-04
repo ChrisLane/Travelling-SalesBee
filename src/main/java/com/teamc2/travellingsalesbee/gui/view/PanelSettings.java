@@ -173,7 +173,7 @@ public class PanelSettings extends JPanel {
 			bee.experimentalRun();
 			ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 			panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
-			panelMap.getPathComponent().setPath(bee.getPath());
+			panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
 			
 			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 			ArrayList<Cell> hive = new ArrayList<>();

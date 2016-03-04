@@ -173,6 +173,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			case HIVE:
 				img = new CellHive().getImage();
 				break;
+			default:
+				break;
 		}
 		if (img != null) {
 			return img.getScaledInstance(width - 5, height - 5, Image.SCALE_SMOOTH);
