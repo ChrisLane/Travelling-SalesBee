@@ -21,7 +21,7 @@ public class PanelMap extends JPanel {
 	/**
 	 * Create the map panel
 	 *
-	 * @param cellWidth  Width of the grid sections
+ 	 * @param cellWidth  Width of the grid sections
 	 * @param cellHeight Height of the grid sections
 	 */
 	public PanelMap(int cellWidth, int cellHeight) {

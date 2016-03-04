@@ -194,7 +194,7 @@ public class PanelSettings extends JPanel {
 		
 			/*----------------------------------------------*/
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
-				panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+				//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
 			/*----------------------------------------------*/
 		}
 	}
