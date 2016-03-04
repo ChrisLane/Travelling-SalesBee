@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.algorithms;
+package com.teamc2.travellingsalesbee.gui.data.cost;
 
 public class Comparison<Cell1, Cell2> {
 	private final Cell1 cell1;

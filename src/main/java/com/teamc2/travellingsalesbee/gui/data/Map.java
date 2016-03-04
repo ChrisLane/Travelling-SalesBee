@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.data;
 
-import com.teamc2.travellingsalesbee.algorithms.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.data.cells.*;
+import com.teamc2.travellingsalesbee.gui.data.cost.CostMatrix;
 
 import javax.swing.*;
 import java.util.ArrayList;

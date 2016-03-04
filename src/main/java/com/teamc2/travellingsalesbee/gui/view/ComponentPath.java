@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
-import com.teamc2.travellingsalesbee.algorithms.Comparison;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cost.Comparison;
 
 public class ComponentPath extends JComponent {
 

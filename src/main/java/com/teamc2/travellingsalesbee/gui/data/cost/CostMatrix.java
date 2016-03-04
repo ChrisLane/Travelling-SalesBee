@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.algorithms;
+package com.teamc2.travellingsalesbee.gui.data.cost;
 
 import java.util.ArrayList;
 
