@@ -22,7 +22,8 @@ public class Visualiser extends JFrame {
 		}
 
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-		setBounds(300, 300, 956, 689);
+		setBounds(50, 25, 1200, 650);
+		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(71, 35, 35));
