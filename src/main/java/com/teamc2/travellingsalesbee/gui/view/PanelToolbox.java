@@ -69,10 +69,10 @@ public class PanelToolbox extends JPanel {
 
 
 		//Add buttons to the toolbox
-		hiveToolCell.setBounds(0, 150, 100, 100);
+		hiveToolCell.setBounds(0, height, 100, 100);
 		add(hiveToolCell);
 
-		flowerToolCell.setBounds(0, 160 + height, 100, 100);
+		flowerToolCell.setBounds(0, height*2+10, 100, 100);
 		add(flowerToolCell);
 	}
 }

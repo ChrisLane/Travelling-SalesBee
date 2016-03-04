@@ -135,15 +135,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
-		/**
-		 try {
 		 //ImageIcon img = new ImageIcon(getImage(type));
 		 //setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
-
-		 } catch (IOException e) {
-		 e.printStackTrace();
-		 }
-		 */
 	}
 
 	@Override
