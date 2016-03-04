@@ -15,7 +15,6 @@ import javafx.util.Duration;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class PanelAnimalAnimation extends JPanel {
 	private ArrayList<Cell> path;
 	private ArrayList<ArrayList<Cell>> pathOfPaths;
 	private int stepNum = 0;
-	private Rectangle beeIcon;
+	private Rectangle animalIcon;
 	private TranslateTransition transition;
 	private boolean transitionPlaying = true;
 
@@ -74,15 +73,16 @@ public class PanelAnimalAnimation extends JPanel {
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 		scene.getStylesheets().add(url1.toExternalForm());
 
-		beeIcon = createRectangle();
-		beeIcon.setVisible(false);
-		transition = new TranslateTransition(Duration.seconds(1), beeIcon);
-		root.getChildren().add(beeIcon);
+		animalIcon = createRectangle();
+		animalIcon.setVisible(false);
+		transition = new TranslateTransition(Duration.seconds(1), animalIcon);
+		root.getChildren().add(animalIcon);
 
+		//This should be set, but for now we'll leave it hard-coded in
 		url = "/assets/icons/SalesBee.png";
 
 		Image image = new Image(url);
-		beeIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+		animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 
 		return scene;
 	}
@@ -94,9 +94,12 @@ public class PanelAnimalAnimation extends JPanel {
 		return rectangle;
 	}
 
-	private void moveFromAToB(Cell end, Rectangle circle, TranslateTransition transition) {
-		transition.setToX(end.getX() - circle.getX()-25);
-		transition.setToY(end.getY() - circle.getY()-25);
+	private void moveFromAToB(Cell end, Rectangle animal, TranslateTransition transition) {
+
+		transitionPlaying = true;
+
+		transition.setToX(end.getX() - animal.getX()-25);
+		transition.setToY(end.getY() - animal.getY()-25);
 		transition.playFromStart();
 
 		transition.setOnFinished(new EventHandler<ActionEvent>(){
@@ -115,51 +118,80 @@ public class PanelAnimalAnimation extends JPanel {
 		this.path = path;
 
 		Platform.runLater(() -> {
-			beeIcon.setX(path.get(stepNum).getX()-25);
-			beeIcon.setY(path.get(stepNum).getY()-25);
-			beeIcon.setVisible(true);
+			animalIcon.setX(path.get(stepNum).getX()-25);
+			animalIcon.setY(path.get(stepNum).getY()-25);
+			animalIcon.setVisible(true);
 		});
 	}
 
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
-		
-		
-		// 1. Get step
-		// 2. Get path.get(step)
-		// 3. Animate (path.get(step))
-		// 4. Goto step 1
-
-	}
-	
-	public void setPath(int i) {
-		this.path = path;
+		stepNum = 0;
 
 		Platform.runLater(() -> {
-			beeIcon.setX(path.get(stepNum).getX()-25);
-			beeIcon.setY(path.get(stepNum).getY()-25);
-			beeIcon.setVisible(true);
+			animalIcon.setX(path.get(0).get(0).getX()-25);
+			animalIcon.setY(path.get(0).get(0).getY()-25);
+			animalIcon.setVisible(true);
 		});
+
+		// 1. Animate (path.get(step))
+		try {
+			animatePath(path, 0, path.get(0), 0, animalIcon, transition);
+		} catch (Exception e) {
+			System.out.println("No available moves");
+			e.printStackTrace();
+		}
 
 	}
 
-	public void animationPath(ArrayList<Cell> path) {
+	private void animatePath(ArrayList<ArrayList<Cell>> superPath, int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
 
-		int stepNum = 0;
+		System.out.println(superPath.toString());
+		System.out.println(path.toString());
 
-		while(stepNum < path.size()) {
-			moveFromAToB(path.get(stepNum), beeIcon, transition);
-			while(transitionPlaying) {
+		if(superI >= superPath.size()) {
+			System.out.println("Ran out of moves");
+		}
+		else if(i >= path.size()) {
+			//Go to next element in the ArrayList of ArrayList's
+			animatePath(superPath, (superI+1), superPath.get(superI+1), 0, animal, transition);
+		} else {
 
+			final int acc = i + 1;
+
+			//Get end cell
+			if (acc < path.size()) {
+
+				//Get the next point to move to
+				Cell end = path.get(i + 1);
+
+				//Set transition position to move to
+				transition.setToX(end.getX() - animal.getX() - 25);
+				transition.setToY(end.getY() - animal.getY() - 25);
+
+				//Play transition
+				transition.playFromStart();
+
+			} else {
+				animatePath(superPath, (superI+1), superPath.get(superI+1), 0, animal, transition);
 			}
-			stepNum++;
+
+			//when animation is finished, increment through path
+			transition.setOnFinished(new EventHandler<ActionEvent>() {
+
+				public void handle(ActionEvent AE) {
+					System.out.println("Stopped playing");
+					animatePath(superPath, superI, path, acc, animal, transition);
+				}
+			});
+
 		}
 	}
 
 	public void setStepNum(int step) {
-		this.stepNum = step;
+		//this.stepNum = step;
 
-		moveFromAToB(path.get(stepNum), beeIcon, transition);
+		//moveFromAToB(path.get(stepNum), animalIcon, transition);
 	}
 
 }
