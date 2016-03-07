@@ -91,10 +91,11 @@ public class LayoutGui extends GroupLayout {
 			JLabel lbl = new JLabel("Bee");
 			lbl.setVerticalTextPosition(SwingConstants.BOTTOM);
 			lbl.setHorizontalTextPosition(SwingConstants.CENTER);
-			tabbedPane.add(getHtmlForTitle("Bee", "SalesBee.png"), panelMap);
-			tabbedPane.add(getHtmlForTitle("Ant", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("Nearest Neighbour", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("2-opt swap", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
+
+			tabbedPane.add(getHtmlForTitle("BEE", "SalesBee.png"),panelMap);
+			tabbedPane.add(getHtmlForTitle("ANT", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
+			tabbedPane.add(getHtmlForTitle("NN", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
+			tabbedPane.add(getHtmlForTitle("2-OPT", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
 
 			panelMap.setAlgorithmType(AlgorithmType.BEE);
 
