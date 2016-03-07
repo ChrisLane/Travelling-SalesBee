@@ -1,12 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
-import java.io.IOException;
 
 public class LayoutGui extends GroupLayout {
 
@@ -74,60 +70,47 @@ public class LayoutGui extends GroupLayout {
 		UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", this.backgroundColor);
 
-		// TO DO CSS FOR TABS
-		String tabCSS = "";
-
 		tabbedPane = new JTabbedPane();
 		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
 
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
 		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
 
-		try {
-			@SuppressWarnings("unused")
-			Image image;
-			image = ImageIO.read(this.getClass().getResource("/assets/icons/SalesBee.png"));
-			tabbedPane.setUI(new BasicTabbedPaneUI());
-			JLabel lbl = new JLabel("Bee");
-			lbl.setVerticalTextPosition(SwingConstants.BOTTOM);
-			lbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		tabbedPane.setUI(new BasicTabbedPaneUI());
+		JLabel lbl = new JLabel("Bee");
+		lbl.setVerticalTextPosition(SwingConstants.BOTTOM);
+		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
 
-			tabbedPane.add(getHtmlForTitle("BEE", "SalesBee.png"),panelMap);
-			tabbedPane.add(getHtmlForTitle("ANT", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("NN", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("2-OPT", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
+		tabbedPane.add(getHtmlForTitle("BEE", "SalesBee.png"),panelMap);
+		tabbedPane.add(getHtmlForTitle("ANT", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
+		tabbedPane.add(getHtmlForTitle("NN", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
+		tabbedPane.add(getHtmlForTitle("2-OPT", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
 
-			panelMap.setAlgorithmType(AlgorithmType.BEE);
+		panelMap.setAlgorithmType(AlgorithmType.BEE);
 
-			//Change listener to change algorithms when switching tabs
-			tabbedPane.addChangeListener(evt -> {
-				//TO DO - REPAINT THE PANEL WITH GIVEN ART
-				int selected = tabbedPane.getSelectedIndex();
-				AlgorithmType type = null;
-				switch (selected) {
-					case 0:
-						type = AlgorithmType.BEE;
-						break;
-					case 1:
-						type = AlgorithmType.ANT;
-						break;
-					case 2:
-						type = AlgorithmType.NEARESTNEIGHBOUR;
-						break;
-					case 3:
-						type = AlgorithmType.TWOOPT;
-						break;
-				}
-				panelMap.setAlgorithmType(type);
-				panelToolbox.setAlgorithmType(type);
-				panelMap.repaint();
-			});
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+		//Change listener to change algorithms when switching tabs
+		tabbedPane.addChangeListener(evt -> {
+			//TO DO - REPAINT THE PANEL WITH GIVEN ART
+			int selected = tabbedPane.getSelectedIndex();
+			AlgorithmType type = null;
+			switch (selected) {
+				case 0:
+					type = AlgorithmType.BEE;
+					break;
+				case 1:
+					type = AlgorithmType.ANT;
+					break;
+				case 2:
+					type = AlgorithmType.NEARESTNEIGHBOUR;
+					break;
+				case 3:
+					type = AlgorithmType.TWOOPT;
+					break;
+			}
+			panelMap.setAlgorithmType(type);
+			panelToolbox.setAlgorithmType(type);
+			panelMap.repaint();
+		});
 	}
 
 	/**
