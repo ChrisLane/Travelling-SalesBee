@@ -1,15 +1,31 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.view.PanelMap;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.*;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DragSourceDragEvent;
+import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DragSourceEvent;
+import java.awt.dnd.DragSourceListener;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.TransferHandler;
+
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
+import com.teamc2.travellingsalesbee.gui.view.PanelMap;
 
 public class CellDraggable extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
@@ -20,6 +36,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private final CellType type;
 	private PanelMap panelMap;
 	private Map map;
+	private AlgorithmType algorithmType;
 
 	/**
 	 * Create a new cell drag object
@@ -29,16 +46,17 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 * @param type     Type of the cell
 	 * @param panelMap The map panel
 	 */
-	public CellDraggable(int width, int height, CellType type, PanelMap panelMap) {
+	public CellDraggable(int width, int height, CellType type, PanelMap panelMap, AlgorithmType algorithmType) {
 		super();
 		this.width = width;
 		this.height = height;
 		this.type = type;
 		this.panelMap = panelMap;
+		this.algorithmType = algorithmType;
 		map = panelMap.getMap();
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDraggable(width, height, type, panelMap);
+				return new CellDraggable(width, height, type, panelMap, algorithmType);
 			}
 		};
 
@@ -83,7 +101,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap, algorithmType), this);
 	}
 
 	/**
@@ -100,7 +118,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			if (type.equals(CellType.HIVE)) {
 				deleteOldHive(panelMap);
 			}
-			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap);
+			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
@@ -161,10 +179,10 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		Image img = null;
 		switch (type) {
 			case FLOWER:
-				img = new CellFlower().getImage();
+				img = new CellFlower().getImage(algorithmType);
 				break;
 			case HIVE:
-				img = new CellHive().getImage();
+				img = new CellHive().getImage(algorithmType);
 				break;
 			default:
 				break;
@@ -209,5 +227,13 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	public CellType getType() {
 		return type;
+	}
+	
+	public void setImage(CellType type) {
+		this.setIcon(new ImageIcon(getImage(type)));
+	}
+	
+	public void setAlgorithmType(AlgorithmType type){
+		algorithmType = type;
 	}
 }

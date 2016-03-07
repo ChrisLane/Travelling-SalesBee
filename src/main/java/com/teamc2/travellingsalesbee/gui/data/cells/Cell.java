@@ -1,7 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.*;
+import java.awt.Image;
 import java.awt.geom.Point2D;
+
+import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
 
 public abstract class Cell extends Point2D.Double {
 
@@ -38,5 +40,5 @@ public abstract class Cell extends Point2D.Double {
 	 *
 	 * @return Cell image
 	 */
-	protected abstract Image getImage();
+	protected abstract Image getImage(AlgorithmType type);
 }
