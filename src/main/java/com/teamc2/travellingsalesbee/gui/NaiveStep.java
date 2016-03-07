@@ -9,16 +9,18 @@ public class NaiveStep {
 	private Cell end;
 	private ArrayList<Cell> available = new ArrayList<>();
 	private Cell start;
+	private String text;
 
 	/**
 	 * @param start     The start node of a step
 	 * @param available The non chosen nodes from a given start point
 	 * @param end       The end node of a step
 	 */
-	public NaiveStep(Cell start, ArrayList<Cell> available, Cell end) {
+	public NaiveStep(Cell start, ArrayList<Cell> available, Cell end, String text) {
 		this.start = start;
 		this.available = available;
 		this.end = end;
+		this.text = text;
 	}
 
 	/**
@@ -40,6 +42,10 @@ public class NaiveStep {
 	 */
 	public Cell getEnd() {
 		return end;
+	}
+	
+	public String getText() {
+		return text;
 	}
 
 }

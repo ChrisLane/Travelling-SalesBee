@@ -94,7 +94,7 @@ public class PanelSettings extends JPanel {
 		// Size of parent-panel
 		txtPaneTextWillAppear.setBackground(new Color(0, 0, 0, 0));
 		txtPaneTextWillAppear.setOpaque(false);
-
+		
 		Platform.runLater(() -> {
 			Pane root = new Pane();
 			root.setId("infoboxPanel");
