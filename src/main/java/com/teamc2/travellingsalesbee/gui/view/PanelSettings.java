@@ -56,7 +56,7 @@ public class PanelSettings extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		try {
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/GreyBack150.png"));
+			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/BrownBack150.png"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
@@ -82,6 +82,7 @@ public class PanelSettings extends JPanel {
 
 		JSlider slider = new JSlider();
 		slider.setValue(experimentalRuns);
+		slider.setOpaque(false);
 		JLabel lblExperimentRuns = new JLabel("Experiment Runs: ");
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
