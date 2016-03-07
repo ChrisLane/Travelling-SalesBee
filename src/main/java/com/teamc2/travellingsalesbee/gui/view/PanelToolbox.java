@@ -44,15 +44,9 @@ public class PanelToolbox extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		try {
-			Graphics2D g2 = (Graphics2D) g;
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/BrownBack150.png"));
-			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
-			g2.setPaint(paint);
-			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setPaint(new Color(71, 35, 30));
+		g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
 	}
 
 	public void addTools() {
