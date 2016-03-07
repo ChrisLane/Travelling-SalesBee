@@ -32,6 +32,7 @@ public class PanelSettings extends JPanel {
 	private JButton btnNext;
 
 	private int experimentalRuns = 26; //Set to 26 by default
+	private int animationSpeed = 50;
 	private int stepNum = 0;
 
 	/**
@@ -80,16 +81,28 @@ public class PanelSettings extends JPanel {
 		btnRun.addActionListener(new runActionListener());
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
-		JSlider slider = new JSlider();
-		slider.setValue(experimentalRuns);
-		slider.setOpaque(false);
+		JSlider experimentsSlider = new JSlider();
+		experimentsSlider.setValue(experimentalRuns);
+		experimentsSlider.setOpaque(false);
 		JLabel lblExperimentRuns = new JLabel("Experiment Runs: ");
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
-		slider.addChangeListener(arg0 -> {
-			slider.setValue(slider.getValue());
-			experimentalRuns = slider.getValue();
+		experimentsSlider.addChangeListener(arg0 -> {
+			experimentalRuns = experimentsSlider.getValue();
 			lblNoOfRuns.setText(("" + experimentalRuns));
+		});
+
+		JSlider speedSlider = new JSlider();
+		speedSlider.setValue(animationSpeed);
+		speedSlider.setOpaque(false);
+		JLabel lblAnimationSpeed = new JLabel("Animation Speed: ");
+		JLabel lblSpeed = new JLabel("" + animationSpeed);
+
+		speedSlider.addChangeListener(arg0 -> {
+			speedSlider.setValue(speedSlider.getValue());
+			animationSpeed = speedSlider.getValue();
+			panelMap.getAnimation().setSpeed(animationSpeed);
+			lblSpeed.setText(("" + animationSpeed));
 		});
 
 		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
@@ -156,8 +169,8 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
-		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, lblExperimentRuns, lblNoOfRuns, slider,
-				btnRun, btnPrev, btnNext, txtPaneTextWillAppear);
+		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, lblExperimentRuns, lblNoOfRuns, experimentsSlider,
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, txtPaneTextWillAppear);
 
 		setLayout(layoutSettings);
 	}
