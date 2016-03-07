@@ -53,6 +53,10 @@ public class ComponentPath extends JComponent {
 		this.stepNum = stepNum;
 		repaint();
 	}
+	
+	public String getNaiveStepText(int stepNum) {
+		return this.naiveSteps.get(stepNum).getText();
+	}
 
 	@Override
 	public void paint(Graphics g) {
