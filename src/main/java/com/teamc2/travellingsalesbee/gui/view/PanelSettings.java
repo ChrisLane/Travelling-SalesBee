@@ -28,6 +28,8 @@ public class PanelSettings extends JPanel {
 	private Map map;
 
 	private JLabel infoLabel;
+	private JButton btnPrev;
+	private JButton btnNext;
 
 	private int experimentalRuns = 26; //Set to 26 by default
 	private int stepNum = 0;
@@ -113,10 +115,17 @@ public class PanelSettings extends JPanel {
 
 		add(txtPaneTextWillAppear);
 
-		JButton btnPrev = new JButton("<-");
+		btnPrev = new JButton("<-");
+		btnNext = new JButton("->");
+		
+		btnPrev.setEnabled(false);
+		btnNext.setEnabled(false);
+		
 		btnPrev.addActionListener(arg0 -> {
 			stepNum--;
 			panelMap.getPathComponent().setStepNumber(stepNum);
+			btnPrev.setEnabled((stepNum >= 0));
+			btnNext.setEnabled(true);
 
 			/*----------------------------------------------*/
 			try {
@@ -128,14 +137,17 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
-		JButton btnNext = new JButton("->");
 		btnNext.addActionListener(arg0 -> {
 			stepNum++;
 			panelMap.getPathComponent().setStepNumber(stepNum);
+			btnPrev.setEnabled(true);
+			//btnNext.setEnabled((stepNum != experimentalRuns));
 
 			/*----------------------------------------------*/
 			try {
-				panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
+				//if (stepNum < experimentalRuns) {
+					panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
+				//}
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
 				e.printStackTrace();
@@ -152,6 +164,8 @@ public class PanelSettings extends JPanel {
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			btnNext.setEnabled(true);
+			
 			map.setCostMatrix();
 			Bee bee = new Bee(map, experimentalRuns);
 			BeeVisualiser visualise = new BeeVisualiser();
