@@ -100,29 +100,27 @@ public class LayoutGui extends GroupLayout {
 			panelMap.setAlgorithmType(AlgorithmType.BEE);
 
 			//Change listener to change algorithms when switching tabs
-			tabbedPane.addChangeListener(new ChangeListener() {
-				public void stateChanged(ChangeEvent evt) {
-					//TO DO - REPAINT THE PANEL WITH GIVEN ART
-					int selected = tabbedPane.getSelectedIndex();
-					AlgorithmType type = null;
-					switch (selected) {
-						case 0:
-							type = AlgorithmType.BEE;
-							break;
-						case 1:
-							type = AlgorithmType.ANT;
-							break;
-						case 2:
-							type = AlgorithmType.NEARESTNEIGHBOUR;
-							break;
-						case 3:
-							type = AlgorithmType.TWOOPT;
-							break;
-					}
-					panelMap.setAlgorithmType(type);
-					panelToolbox.setAlgorithmType(type);
-					panelMap.repaint();
+			tabbedPane.addChangeListener(evt -> {
+				//TO DO - REPAINT THE PANEL WITH GIVEN ART
+				int selected = tabbedPane.getSelectedIndex();
+				AlgorithmType type = null;
+				switch (selected) {
+					case 0:
+						type = AlgorithmType.BEE;
+						break;
+					case 1:
+						type = AlgorithmType.ANT;
+						break;
+					case 2:
+						type = AlgorithmType.NEARESTNEIGHBOUR;
+						break;
+					case 3:
+						type = AlgorithmType.TWOOPT;
+						break;
 				}
+				panelMap.setAlgorithmType(type);
+				panelToolbox.setAlgorithmType(type);
+				panelMap.repaint();
 			});
 
 		} catch (IOException e) {
