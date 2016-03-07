@@ -1,8 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.Image;
-
 import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
+
+import java.awt.*;
 
 public class CellEmpty extends Cell {
 

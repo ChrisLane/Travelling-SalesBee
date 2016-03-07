@@ -30,28 +30,6 @@ public class ComponentGrid extends JComponent {
 		addLines();
 	}
 
-	private static class Line {
-		int x1;
-		int y1;
-		int x2;
-		int y2;
-
-		/**
-		 * Create a new line
-		 *
-		 * @param x1 x1 position
-		 * @param y1 y1 position
-		 * @param x2 x2 position
-		 * @param y2 y2 position
-		 */
-		Line(int x1, int y1, int x2, int y2) {
-			this.x1 = x1;
-			this.y1 = y1;
-			this.x2 = x2;
-			this.y2 = y2;
-		}
-	}
-
 	/**
 	 * Collate all lines for the grid
 	 */
@@ -86,6 +64,28 @@ public class ComponentGrid extends JComponent {
 		// Draw all lines
 		for (Line line : lines) {
 			g2.drawLine(line.x1, line.y1, line.x2, line.y2);
+		}
+	}
+
+	private static class Line {
+		int x1;
+		int y1;
+		int x2;
+		int y2;
+
+		/**
+		 * Create a new line
+		 *
+		 * @param x1 x1 position
+		 * @param y1 y1 position
+		 * @param x2 x2 position
+		 * @param y2 y2 position
+		 */
+		Line(int x1, int y1, int x2, int y2) {
+			this.x1 = x1;
+			this.y1 = y1;
+			this.x2 = x2;
+			this.y2 = y2;
 		}
 	}
 }

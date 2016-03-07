@@ -1,30 +1,20 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import static java.awt.Image.SCALE_SMOOTH;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
-
 import javafx.application.Platform;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
 	private final PanelMap panelMap;
@@ -84,18 +74,17 @@ public class PanelToolbox extends JPanel {
 		originToolCell.setBounds(0, height, 100, 100);
 		add(originToolCell);
 
-		nodeToolCell.setBounds(0, height*2+10, 100, 100);
+		nodeToolCell.setBounds(0, height * 2 + 10, 100, 100);
 		add(nodeToolCell);
 	}
 
 	/**
-	 * 
 	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox
-	 * draggable cells
+	 *             draggable cells
 	 */
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
-		
+
 		for (Component c : this.getComponents()) {
 			if (c instanceof CellDraggable) {
 				((CellDraggable) c).setAlgorithmType(type);
@@ -103,6 +92,6 @@ public class PanelToolbox extends JPanel {
 			}
 		}
 	}
-	
-	
+
+
 }

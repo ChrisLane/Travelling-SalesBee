@@ -1,16 +1,11 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.Image;
-import java.awt.geom.Point2D;
-
 import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
 
-public abstract class Cell extends Point2D.Double {
+import java.awt.*;
+import java.awt.geom.Point2D;
 
-	@Override
-	public String toString() {
-		return "[(" + (int) x + ", " + (int) y + ") " + getType() + "]";
-	}
+public abstract class Cell extends Point2D.Double {
 
 	/**
 	 * Create a new cell
@@ -26,6 +21,11 @@ public abstract class Cell extends Point2D.Double {
 	 */
 	public Cell(double x, double y) {
 		super(x, y);
+	}
+
+	@Override
+	public String toString() {
+		return "[(" + (int) x + ", " + (int) y + ") " + getType() + "]";
 	}
 
 	/**
