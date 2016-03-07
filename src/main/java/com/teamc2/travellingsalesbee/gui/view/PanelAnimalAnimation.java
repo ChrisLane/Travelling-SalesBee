@@ -98,12 +98,12 @@ public class PanelAnimalAnimation extends JPanel {
 
 		transitionPlaying = true;
 
-		transition.setToX(end.getX() - animal.getX()-25);
-		transition.setToY(end.getY() - animal.getY()-25);
+		transition.setToX(end.getX() - animal.getX() - 25);
+		transition.setToY(end.getY() - animal.getY() - 25);
 		transition.playFromStart();
 
-		transition.setOnFinished(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent AE){
+		transition.setOnFinished(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent AE) {
 				transitionPlaying = false;
 				System.out.println("STOPPED PLAYING");
 			}
@@ -118,8 +118,8 @@ public class PanelAnimalAnimation extends JPanel {
 		this.path = path;
 
 		Platform.runLater(() -> {
-			animalIcon.setX(path.get(stepNum).getX()-25);
-			animalIcon.setY(path.get(stepNum).getY()-25);
+			animalIcon.setX(path.get(stepNum).getX() - 25);
+			animalIcon.setY(path.get(stepNum).getY() - 25);
 			animalIcon.setVisible(true);
 		});
 	}
@@ -129,8 +129,8 @@ public class PanelAnimalAnimation extends JPanel {
 		stepNum = 0;
 
 		Platform.runLater(() -> {
-			animalIcon.setX(path.get(0).get(0).getX()-25);
-			animalIcon.setY(path.get(0).get(0).getY()-25);
+			animalIcon.setX(path.get(0).get(0).getX() - 25);
+			animalIcon.setY(path.get(0).get(0).getY() - 25);
 			animalIcon.setVisible(true);
 		});
 
@@ -149,12 +149,11 @@ public class PanelAnimalAnimation extends JPanel {
 		System.out.println(superPath.toString());
 		System.out.println(path.toString());
 
-		if(superI >= superPath.size()) {
+		if (superI >= superPath.size()) {
 			System.out.println("Ran out of moves");
-		}
-		else if(i >= path.size()) {
+		} else if (i >= path.size()) {
 			//Go to next element in the ArrayList of ArrayList's
-			animatePath(superPath, (superI+1), superPath.get(superI+1), 0, animal, transition);
+			animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 		} else {
 
 			final int acc = i + 1;
@@ -173,7 +172,7 @@ public class PanelAnimalAnimation extends JPanel {
 				transition.playFromStart();
 
 			} else {
-				animatePath(superPath, (superI+1), superPath.get(superI+1), 0, animal, transition);
+				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			}
 
 			//when animation is finished, increment through path

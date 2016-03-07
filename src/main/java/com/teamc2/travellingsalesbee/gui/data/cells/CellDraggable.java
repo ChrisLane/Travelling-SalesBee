@@ -1,31 +1,16 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragGestureEvent;
-import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragSource;
-import java.awt.dnd.DragSourceDragEvent;
-import java.awt.dnd.DragSourceDropEvent;
-import java.awt.dnd.DragSourceEvent;
-import java.awt.dnd.DragSourceListener;
-import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.TransferHandler;
-
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.view.PanelMap;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.*;
+import java.io.IOException;
 
 public class CellDraggable extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
@@ -153,8 +138,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
-		 //ImageIcon img = new ImageIcon(getImage(type));
-		 //setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
+		//ImageIcon img = new ImageIcon(getImage(type));
+		//setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
 	}
 
 	@Override
@@ -228,12 +213,12 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	public CellType getType() {
 		return type;
 	}
-	
+
 	public void setImage(CellType type) {
 		this.setIcon(new ImageIcon(getImage(type)));
 	}
-	
-	public void setAlgorithmType(AlgorithmType type){
+
+	public void setAlgorithmType(AlgorithmType type) {
 		algorithmType = type;
 	}
 }

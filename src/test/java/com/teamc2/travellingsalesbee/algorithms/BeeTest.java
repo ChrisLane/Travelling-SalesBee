@@ -84,7 +84,7 @@ public class BeeTest {
 		// Remove start (hive)
 		path.remove(0);
 		// Remove finish (hive)
-		path.remove(path.size()-1);
+		path.remove(path.size() - 1);
 		path.sort(new CellComparator());
 
 		// Sort the flowers

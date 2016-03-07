@@ -1,17 +1,17 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Bee extends NearestNeighbour {
 
 	private int experiments;
 	private ArrayList<ArrayList<Cell>> intermediaryPaths = new ArrayList<>();
-	private ArrayList<Comparison<Cell,Cell>> comparedCells = new ArrayList<>();
+	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
 	private ArrayList<Double> intermediaryPathCosts = new ArrayList<>();
 
 	/**
@@ -48,10 +48,10 @@ public class Bee extends NearestNeighbour {
 				intermediaryPaths.add(path);
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				intermediaryPathCosts.add(calculatePathCost(path));
-				
+
 				testPath.set(flowerPos1, flower2);
 				testPath.set(flowerPos2, flower1);
-				
+
 				intermediaryPaths.add(testPath);
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				intermediaryPathCosts.add(calculatePathCost(testPath));
@@ -72,18 +72,18 @@ public class Bee extends NearestNeighbour {
 			}
 		}
 	}
-	
-	public ArrayList<ArrayList<Cell>> getIntermediaryPaths(){
+
+	public ArrayList<ArrayList<Cell>> getIntermediaryPaths() {
 		intermediaryPaths.forEach(System.out::println);
 		return intermediaryPaths;
 	}
-	
-	public ArrayList<Comparison<Cell,Cell>> getCellComparisons(){
+
+	public ArrayList<Comparison<Cell, Cell>> getCellComparisons() {
 		return comparedCells;
 	}
-	
-	public ArrayList<Double> getIntermediaryPathCosts(){
-		return intermediaryPathCosts ;
+
+	public ArrayList<Double> getIntermediaryPathCosts() {
+		return intermediaryPathCosts;
 	}
 
 }

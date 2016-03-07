@@ -24,7 +24,7 @@ public class Map extends JPanel {
 	public Map(int width, int height) {
 		this.width = width;
 		this.height = height;
-		
+
 		cells = new Cell[width][height];
 		setMap();
 	}
@@ -56,7 +56,7 @@ public class Map extends JPanel {
 		}
 		return flowers;
 	}
-	
+
 	public ArrayList<Cell> getNodes() {
 		ArrayList<Cell> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
@@ -79,11 +79,11 @@ public class Map extends JPanel {
 	public Cell getCell(int x, int y) {
 		return cells[x][y];
 	}
-	
+
 	public CostMatrix getCostMatrix() {
 		if (costMatrix == null) {
 			setCostMatrix();
-		} 
+		}
 		return costMatrix;
 	}
 
@@ -150,8 +150,8 @@ public class Map extends JPanel {
 	public CellHive getHive() {
 		return hive;
 	}
-	
+
 	public void setCostMatrix() {
-		costMatrix = new CostMatrix(this); 
+		costMatrix = new CostMatrix(this);
 	}
 }

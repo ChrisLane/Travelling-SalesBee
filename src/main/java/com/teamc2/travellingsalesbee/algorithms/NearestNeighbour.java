@@ -1,10 +1,10 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import java.util.ArrayList;
-
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+
+import java.util.ArrayList;
 
 public class NearestNeighbour {
 
@@ -16,7 +16,7 @@ public class NearestNeighbour {
 	/**
 	 * Constructor
 	 *
-	 * @param map         Map object for storing cells
+	 * @param map Map object for storing cells
 	 */
 	public NearestNeighbour(Map map) {
 		this.map = map;
@@ -25,9 +25,9 @@ public class NearestNeighbour {
 
 	/**
 	 * Run a naive path find.
-	 * 
+	 * <p>
 	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
-	 * the nearest non-visited neighbour until every flower has been visited, following 
+	 * the nearest non-visited neighbour until every flower has been visited, following
 	 * that it then returns to the hive
 	 */
 	public void naiveRun() {
@@ -36,19 +36,19 @@ public class NearestNeighbour {
 			ArrayList<CellFlower> flowers = map.getFlowers();
 
 			newPath.add(hive);
-			
+
 			// Loop over flowers missing from path
 			Cell currentCell;
 			CellFlower closest;
-			
+
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				closest = null;
-		
+
 				// Find the closest flower to the previous
 				for (CellFlower flower : flowers) {
 					currentCell = newPath.get(newPath.size() - 1);
-					double distance = map.getCostMatrix().getCost(currentCell,flower);
+					double distance = map.getCostMatrix().getCost(currentCell, flower);
 					if (distance < bestDistance) {
 						closest = flower;
 						bestDistance = distance;
@@ -58,7 +58,7 @@ public class NearestNeighbour {
 				flowers.remove(closest);
 				newPath.add(closest);
 			}
-			
+
 			newPath.add(hive);
 
 			double cost = calculatePathCost(newPath);
@@ -83,15 +83,15 @@ public class NearestNeighbour {
 	 */
 	public double calculatePathCost(ArrayList<Cell> path) {
 		double cost = 0;
-		for (int i = 0; i < path.size()-1; i++) {
+		for (int i = 0; i < path.size() - 1; i++) {
 			Cell pos1 = path.get(i);
 			Cell pos2 = path.get(i + 1);
 
-			cost += map.getCostMatrix().getCost(pos1,pos2);
+			cost += map.getCostMatrix().getCost(pos1, pos2);
 		}
 		return cost;
 	}
-	
+
 	/**
 	 * Set the current path
 	 *
@@ -111,5 +111,5 @@ public class NearestNeighbour {
 	public ArrayList<Cell> getPath() {
 		return path;
 	}
-	
+
 }

@@ -1,36 +1,26 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 
@@ -129,9 +119,9 @@ public class PanelSettings extends JPanel {
 			panelMap.getPathComponent().setStepNumber(stepNum);
 
 			/*----------------------------------------------*/
-			try{
+			try {
 				panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
-			}catch(IndexOutOfBoundsException e){
+			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
 				e.printStackTrace();
 			}
@@ -144,9 +134,9 @@ public class PanelSettings extends JPanel {
 			panelMap.getPathComponent().setStepNumber(stepNum);
 
 			/*----------------------------------------------*/
-			try{
+			try {
 				panelMap.getPanelAnimalAnimation().setStepNum(stepNum);
-			}catch(IndexOutOfBoundsException e){
+			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
 				e.printStackTrace();
 			}
@@ -168,33 +158,33 @@ public class PanelSettings extends JPanel {
 			bee.naiveRun();
 			ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
 			panelMap.getPathComponent().setNaiveSteps(naiveSteps);
-			
-			
+
+
 			bee.experimentalRun();
 			ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 			panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
 			panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
-			
+
 			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 			ArrayList<Cell> hive = new ArrayList<>();
 			hive.add(naiveSteps.get(0).getStart());
 			pathOfPaths.add(hive);
-			
-			for (int i = 0; i < naiveSteps.size(); i++){
+
+			for (int i = 0; i < naiveSteps.size(); i++) {
 				ArrayList<Cell> singlePoint = new ArrayList<>();
 				singlePoint.add(naiveSteps.get(i).getEnd());
 				pathOfPaths.add(singlePoint);
 			}
-			
-			for (int i = 0; i < experimentalSteps.size(); i++){
+
+			for (int i = 0; i < experimentalSteps.size(); i++) {
 				ArrayList<Cell> setOfPoints = new ArrayList<>();
 				setOfPoints = experimentalSteps.get(i).getPath();
 				pathOfPaths.add(setOfPoints);
 			}
 		
 			/*----------------------------------------------*/
-				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
-				//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
+			//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
 			/*----------------------------------------------*/
 		}
 	}

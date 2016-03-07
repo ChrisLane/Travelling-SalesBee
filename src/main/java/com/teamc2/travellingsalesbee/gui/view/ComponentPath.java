@@ -1,23 +1,15 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Toolkit;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-
-import javax.swing.JComponent;
-
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 public class ComponentPath extends JComponent {
 
@@ -51,13 +43,13 @@ public class ComponentPath extends JComponent {
 		naiveSteps = steps;
 		repaint();
 	}
-	
+
 	public void setExperimentalSteps(ArrayList<ExperimentalStep> experimentalSteps) {
 		this.experimentalSteps = experimentalSteps;
 		repaint();
 	}
 
-	public void setStepNumber(int stepNum){
+	public void setStepNumber(int stepNum) {
 		this.stepNum = stepNum;
 		repaint();
 	}
@@ -67,7 +59,7 @@ public class ComponentPath extends JComponent {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		if (beePath.size() > 0 && stepNum >= (naiveSteps.size()+experimentalSteps.size())-2) {
+		if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
 
 			int x1, x2 = 0, y1, y2 = 0;
 			int transparencyIncrement = Math.round(170 / beePath.size());
@@ -125,19 +117,19 @@ public class ComponentPath extends JComponent {
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 				}
 			}
-		} else if (experimentalSteps.size()>0 && stepNum >= naiveSteps.size()){
-			int x1,x2,y1,y2;
-			ExperimentalStep step = experimentalSteps.get(stepNum-naiveSteps.size());
+		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size()) {
+			int x1, x2, y1, y2;
+			ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
 			ArrayList<Cell> stepPath = step.getPath();
-			for (int i=0;i<stepPath.size() - 1; i++){
+			for (int i = 0; i < stepPath.size() - 1; i++) {
 				x1 = (int) stepPath.get(i).x;
 				y1 = (int) stepPath.get(i).y;
 				x2 = (int) stepPath.get(i + 1).x;
 				y2 = (int) stepPath.get(i + 1).y;
 				Color lineColor;
-				if (step.getType() == SwapType.INSPECTED){
+				if (step.getType() == SwapType.INSPECTED) {
 					lineColor = Color.YELLOW;
-				} else if (step.getType() == SwapType.ACCEPTED){
+				} else if (step.getType() == SwapType.ACCEPTED) {
 					lineColor = Color.GREEN;
 				} else {
 					lineColor = Color.RED;
@@ -146,26 +138,26 @@ public class ComponentPath extends JComponent {
 				g2.setStroke(new BasicStroke(5));
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 			}
-			Comparison<Cell,Cell> comparison = step.getCellsCompared();
+			Comparison<Cell, Cell> comparison = step.getCellsCompared();
 			Cell cell1 = comparison.getCell1();
 			Cell cell2 = comparison.getCell2();
-			
+
 			x1 = (int) cell1.getX();
 			y1 = (int) cell1.getY();
-			
+
 			x2 = (int) cell2.getX();
 			y2 = (int) cell2.getY();
-			
+
 			Shape cellCircle = new Ellipse2D.Double(x1, y1, 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
 			cellCircle = new Ellipse2D.Double(x2, y2, 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
-			
+
 			double cost = step.getPathCost();
 			String costString = "" + cost;
 			g2.drawString(costString, 0, 0);
 		}
 	}
 
-	
+
 }

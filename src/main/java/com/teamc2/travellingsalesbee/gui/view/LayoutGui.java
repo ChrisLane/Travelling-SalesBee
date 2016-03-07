@@ -1,28 +1,21 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Image;
-import java.awt.Insets;
-import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import java.awt.*;
+import java.io.IOException;
 
 public class LayoutGui extends GroupLayout {
 
-	JTabbedPane tabbedPane;;
+	JTabbedPane tabbedPane;
+	;
 	private PanelMap panelMap;
 	private PanelToolbox panelToolbox;
 	private Color backgroundColor = new Color(71, 35, 35);
+
 	/**
 	 * Create a layout for the GUI JPanel
 	 *
@@ -33,11 +26,11 @@ public class LayoutGui extends GroupLayout {
 	 */
 	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
 		super(host);
-		
+
 		this.panelMap = panelMap;
 		this.panelToolbox = panelToolbox;
 		initialiseTabs();
-		
+
 		/****************************************************************************/
 		/******************** Initialising of the group layout **********************/
 		/****************************************************************************/
@@ -63,33 +56,33 @@ public class LayoutGui extends GroupLayout {
 	}
 
 	private void initialiseTabs() {
-		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0,0,0,0));
-	    UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0,0,0,0));
-	    UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
-	    UIManager.getDefaults().put("TabbedPane.selected", this.backgroundColor); 
-	    UIManager.getDefaults().put("TabbedPane.tabsOpaque",false); 
-	    UIManager.getDefaults().put("TabbedPane.shadow", this.backgroundColor); 
-	    UIManager.getDefaults().put("TabbedPane.light", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.darkShadow",this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.lightHighlight", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", false);
-	    UIManager.getDefaults().put("TabbedPane.borderColor", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.highlight", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
-	    UIManager.getDefaults().put("TabbedPane.borderHightlightColor", this.backgroundColor);
-		
-	    // TO DO CSS FOR TABS
-	    String tabCSS = "";	
-	    
-	    tabbedPane = new JTabbedPane();
+		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0, 0, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
+		UIManager.getDefaults().put("TabbedPane.selected", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.tabsOpaque", false);
+		UIManager.getDefaults().put("TabbedPane.shadow", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.light", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.darkShadow", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.lightHighlight", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", false);
+		UIManager.getDefaults().put("TabbedPane.borderColor", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.highlight", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
+		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", this.backgroundColor);
+
+		// TO DO CSS FOR TABS
+		String tabCSS = "";
+
+		tabbedPane = new JTabbedPane();
 		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
-		
+
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
 		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
-		
+
 		try {
 			@SuppressWarnings("unused")
 			Image image;
@@ -98,54 +91,52 @@ public class LayoutGui extends GroupLayout {
 			JLabel lbl = new JLabel("Bee");
 			lbl.setVerticalTextPosition(SwingConstants.BOTTOM);
 			lbl.setHorizontalTextPosition(SwingConstants.CENTER);
-			tabbedPane.add(getHtmlForTitle("Bee", "SalesBee.png"),panelMap);
-			tabbedPane.add(getHtmlForTitle("Ant", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("Nearest Neighbour", "SalesBee.png"),tabbedPane.getTabComponentAt(0));
+			tabbedPane.add(getHtmlForTitle("Bee", "SalesBee.png"), panelMap);
+			tabbedPane.add(getHtmlForTitle("Ant", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
+			tabbedPane.add(getHtmlForTitle("Nearest Neighbour", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
 			tabbedPane.add(getHtmlForTitle("2-opt swap", "SalesBee.png"), tabbedPane.getTabComponentAt(0));
-			
+
 			panelMap.setAlgorithmType(AlgorithmType.BEE);
-			
+
 			//Change listener to change algorithms when switching tabs
 			tabbedPane.addChangeListener(new ChangeListener() {
-		        public void stateChanged(ChangeEvent evt) {
-		        	//TO DO - REPAINT THE PANEL WITH GIVEN ART
-		        	int selected = tabbedPane.getSelectedIndex();
-		        	AlgorithmType type = null;
-		        	switch (selected){
-		        	case 0:
-		        		type = AlgorithmType.BEE;
-		        		break;
-		        	case 1:
-		        		type = AlgorithmType.ANT;
-		        		break;
-		        	case 2:
-		        		type = AlgorithmType.NEARESTNEIGHBOUR;
-		        		break;
-		        	case 3:
-		        		type = AlgorithmType.TWOOPT;
-		        		break;
-		        	}
-		        	panelMap.setAlgorithmType(type);
-		    		panelToolbox.setAlgorithmType(type);
-		        	panelMap.repaint();
-		        }
+				public void stateChanged(ChangeEvent evt) {
+					//TO DO - REPAINT THE PANEL WITH GIVEN ART
+					int selected = tabbedPane.getSelectedIndex();
+					AlgorithmType type = null;
+					switch (selected) {
+						case 0:
+							type = AlgorithmType.BEE;
+							break;
+						case 1:
+							type = AlgorithmType.ANT;
+							break;
+						case 2:
+							type = AlgorithmType.NEARESTNEIGHBOUR;
+							break;
+						case 3:
+							type = AlgorithmType.TWOOPT;
+							break;
+					}
+					panelMap.setAlgorithmType(type);
+					panelToolbox.setAlgorithmType(type);
+					panelMap.repaint();
+				}
 			});
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
+
 	}
 
 	/**
-	 * 
-	 * @param text The text to present on the tab
+	 * @param text    The text to present on the tab
 	 * @param imgName The image to make as a tab icon
 	 * @return htmlString The html string to produce the tab
 	 */
 	private String getHtmlForTitle(String text, String imgName) {
-		return "<html><head><style></style></head><body><div class='circleBase'><center><img src='"+this.getClass().getResource("/assets/icons/"+imgName)+"' height='50' width='50'/><br/><h2 color='#ffffff'>"+text+"</h2></div></body></html>";
+		return "<html><head><style></style></head><body><div class='circleBase'><center><img src='" + this.getClass().getResource("/assets/icons/" + imgName) + "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></div></body></html>";
 	}
 }

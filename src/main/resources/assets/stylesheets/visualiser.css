@@ -1,9 +1,9 @@
 #beePane, #infoboxPanel {
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-color: rgba(0, 0, 0, 0);
 }
 
 #infobox {
-    -fx-font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    -fx-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     -fx-font-weight: 300;
     -fx-font-size: 21px;
 }
