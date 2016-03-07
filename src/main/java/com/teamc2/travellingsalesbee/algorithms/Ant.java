@@ -20,7 +20,7 @@ public class Ant extends NearestNeighbour {
 		setHeuristicCost(getCost());
 	}
 
-	public void pheremoneRun() {
+	public void pheromoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellNode> flowers = map.getFlowers();
@@ -40,19 +40,19 @@ public class Ant extends NearestNeighbour {
 				}
 
 				//Remove the next flower from the set
-				//Release some pheremone
+				//Release some pheromone
 				flowers.remove(next);
 				newPath.add(next);
-				plantPheremone(currentCell, next);
+				plantPheromone(currentCell, next);
 			}
 
 			newPath.add(hive);
-			plantPheremone(next, hive);
+			plantPheromone(next, hive);
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
 			if (cost < heuristicCost) {
-				plantAllPheremone(path);
+				plantAllPheromone(path);
 			}
 		}
 	}
@@ -73,8 +73,8 @@ public class Ant extends NearestNeighbour {
 
 		double flower1Cost = costMatrix.getCost(currentCell, flower1);
 		double flower2Cost = costMatrix.getCost(currentCell, flower2);
-		double flower1Pher = costMatrix.getPheremone(currentCell, flower1);
-		double flower2Pher = costMatrix.getPheremone(currentCell, flower2);
+		double flower1Pher = costMatrix.getPheromone(currentCell, flower1);
+		double flower2Pher = costMatrix.getPheromone(currentCell, flower2);
 
 		double r = ThreadLocalRandom.current().nextDouble(0, 1);
 
@@ -98,15 +98,15 @@ public class Ant extends NearestNeighbour {
 		heuristicCost = cost;
 	}
 
-	private void plantPheremone(Cell cell1, Cell cell2) {
-		map.getCostMatrix().getEntry(cell1, cell2).plantPheremone(pheromone);
+	private void plantPheromone(Cell cell1, Cell cell2) {
+		map.getCostMatrix().getEntry(cell1, cell2).plantPheromone(pheromone);
 	}
 
-	private void plantAllPheremone(ArrayList<Cell> path) {
+	private void plantAllPheromone(ArrayList<Cell> path) {
 		for (int i = 0; i < path.size() - 1; i++) {
 			Cell cell1 = path.get(i);
 			Cell cell2 = path.get(i + 1);
-			plantPheremone(cell1, cell2);
+			plantPheromone(cell1, cell2);
 		}
 	}
 }
