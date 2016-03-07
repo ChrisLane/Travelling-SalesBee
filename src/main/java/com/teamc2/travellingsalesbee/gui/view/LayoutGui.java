@@ -19,9 +19,10 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 public class LayoutGui extends GroupLayout {
 
-	JTabbedPane tabbedPane = new JTabbedPane();
+	JTabbedPane tabbedPane;;
 	private PanelMap panelMap;
 	private PanelToolbox panelToolbox;
+	private Color backgroundColor = new Color(71, 35, 35);
 	/**
 	 * Create a layout for the GUI JPanel
 	 *
@@ -64,12 +65,26 @@ public class LayoutGui extends GroupLayout {
 	private void initialiseTabs() {
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0,0,0,0));
 	    UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0,0,0,0));
-	    UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", true);
-	    UIManager.put("TabbedPane.contentOpaque", false);
+	    UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
+	    UIManager.getDefaults().put("TabbedPane.selected", this.backgroundColor); 
+	    UIManager.getDefaults().put("TabbedPane.tabsOpaque",false); 
+	    UIManager.getDefaults().put("TabbedPane.shadow", this.backgroundColor); 
+	    UIManager.getDefaults().put("TabbedPane.light", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.darkShadow",this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.lightHighlight", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", false);
+	    UIManager.getDefaults().put("TabbedPane.borderColor", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.highlight", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.focus", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.selectHighlight", this.backgroundColor);
+	    UIManager.getDefaults().put("TabbedPane.borderHightlightColor", this.backgroundColor);
 		
 	    // TO DO CSS FOR TABS
 	    String tabCSS = "";	
 	    
+	    tabbedPane = new JTabbedPane();
 		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
 		
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
@@ -95,7 +110,6 @@ public class LayoutGui extends GroupLayout {
 		        public void stateChanged(ChangeEvent evt) {
 		        	//TO DO - REPAINT THE PANEL WITH GIVEN ART
 		        	int selected = tabbedPane.getSelectedIndex();
-		        	System.out.println(selected);
 		        	AlgorithmType type = null;
 		        	switch (selected){
 		        	case 0:
@@ -121,10 +135,7 @@ public class LayoutGui extends GroupLayout {
 			e.printStackTrace();
 		}
 		
-		//Set background color of tabs to background color of visualiser
-		for (int i=0; i<tabbedPane.getTabCount();i++){
-			tabbedPane.setBackgroundAt(i, new Color(71, 35, 35));
-		}
+		
 		
 	}
 
