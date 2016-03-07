@@ -185,15 +185,15 @@ public class PanelSettings extends JPanel {
 			hive.add(naiveSteps.get(0).getStart());
 			pathOfPaths.add(hive);
 
-			for (int i = 0; i < naiveSteps.size(); i++) {
+			for (NaiveStep naiveStep : naiveSteps) {
 				ArrayList<Cell> singlePoint = new ArrayList<>();
-				singlePoint.add(naiveSteps.get(i).getEnd());
+				singlePoint.add(naiveStep.getEnd());
 				pathOfPaths.add(singlePoint);
 			}
 
-			for (int i = 0; i < experimentalSteps.size(); i++) {
+			for (ExperimentalStep experimentalStep : experimentalSteps) {
 				ArrayList<Cell> setOfPoints = new ArrayList<>();
-				setOfPoints = experimentalSteps.get(i).getPath();
+				setOfPoints = experimentalStep.getPath();
 				pathOfPaths.add(setOfPoints);
 			}
 		
