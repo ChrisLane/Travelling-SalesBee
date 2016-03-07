@@ -23,6 +23,7 @@ public class PanelAnimalAnimation extends JPanel {
 	private String url;
 	private int width;
 	private int height;
+	private double speed;
 	private ArrayList<Cell> path;
 	private ArrayList<ArrayList<Cell>> pathOfPaths;
 	private int stepNum = 0;
@@ -180,6 +181,11 @@ public class PanelAnimalAnimation extends JPanel {
 			});
 
 		}
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+		transition.setRate(speed);
 	}
 
 	public void setStepNum(int step) {

@@ -146,4 +146,7 @@ public class PanelMap extends JPanel {
 		}
 	}
 
+	public PanelAnimalAnimation getAnimation() {
+		return panelAnimation;
+	}
 }
