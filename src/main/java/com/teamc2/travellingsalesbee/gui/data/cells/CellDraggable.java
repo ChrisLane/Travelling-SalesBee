@@ -100,7 +100,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			panelMap.grabFocus();
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
-			if (type.equals(CellType.HIVE)) {
+			if (type.equals(CellType.ORIGIN)) {
 				deleteOldHive(panelMap);
 			}
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
@@ -163,11 +163,11 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	public Image getImage(CellType type) {
 		Image img = null;
 		switch (type) {
-			case FLOWER:
-				img = new CellFlower().getImage(algorithmType);
+			case NODE:
+				img = new CellNode().getImage(algorithmType);
 				break;
-			case HIVE:
-				img = new CellHive().getImage(algorithmType);
+			case ORIGIN:
+				img = new CellOrigin().getImage(algorithmType);
 				break;
 			default:
 				break;
@@ -186,7 +186,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private void deleteOldHive(JPanel panel) {
 		for (Component c : panel.getComponents()) {
 			if (c instanceof CellDraggable) {
-				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.HIVE)) {
+				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.ORIGIN)) {
 					panel.remove(c);
 					c.setEnabled(false);
 				}

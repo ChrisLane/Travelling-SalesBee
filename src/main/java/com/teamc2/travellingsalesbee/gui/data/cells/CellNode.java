@@ -6,21 +6,21 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public class CellHive extends Cell {
+public class CellNode extends Cell {
 
 	/**
-	 * Create a new hive cell
+	 * Create a new flower cell
 	 */
-	public CellHive() {
+	public CellNode() {
 	}
 
 	/**
-	 * Create a new hive cell
+	 * Create a new flower cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell
 	 */
-	public CellHive(double x, double y) {
+	public CellNode(double x, double y) {
 		super(x, y);
 	}
 
@@ -29,7 +29,7 @@ public class CellHive extends Cell {
 	 */
 	@Override
 	public CellType getType() {
-		return CellType.HIVE;
+		return CellType.NODE;
 	}
 
 	/**
@@ -41,16 +41,16 @@ public class CellHive extends Cell {
 		try {
 			switch (type) {
 				case BEE:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+					image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 					break;
 				case ANT:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/AntHill.png"));
+					image = ImageIO.read(this.getClass().getResource("/assets/icons/Fruit.png"));
 					break;
 				case NEARESTNEIGHBOUR:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/MailOffice.png"));
+					image = ImageIO.read(this.getClass().getResource("/assets/icons/House.png"));
 					break;
 				default:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+					image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 					break;
 			}
 		} catch (IOException e) {

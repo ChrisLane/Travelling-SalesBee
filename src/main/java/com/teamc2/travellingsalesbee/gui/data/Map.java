@@ -12,7 +12,7 @@ public class Map extends JPanel {
 	private final int height; //Height of map
 	private final Cell[][] cells; //Will store our ElementCells
 	private int speed; //Speed of bees
-	private CellHive hive;
+	private CellOrigin hive;
 	private CostMatrix costMatrix;
 
 	/**
@@ -45,12 +45,12 @@ public class Map extends JPanel {
 	 *
 	 * @return ArrayList of flowers in the map
 	 */
-	public ArrayList<CellFlower> getFlowers() {
-		ArrayList<CellFlower> flowers = new ArrayList<>();
+	public ArrayList<CellNode> getFlowers() {
+		ArrayList<CellNode> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (cells[i][j].getType().equals(CellType.FLOWER)) {
-					flowers.add((CellFlower) cells[i][j]);
+				if (cells[i][j].getType().equals(CellType.NODE)) {
+					flowers.add((CellNode) cells[i][j]);
 				}
 			}
 		}
@@ -61,7 +61,7 @@ public class Map extends JPanel {
 		ArrayList<Cell> flowers = new ArrayList<>();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (cells[i][j].getType().equals(CellType.FLOWER)) {
+				if (cells[i][j].getType().equals(CellType.NODE)) {
 					flowers.add(cells[i][j]);
 				}
 			}
@@ -101,13 +101,13 @@ public class Map extends JPanel {
 			case EMPTY:
 				cells[x][y] = new CellEmpty(x, y);
 				break;
-			case HIVE:
-				CellHive hive = new CellHive(x, y);
+			case ORIGIN:
+				CellOrigin hive = new CellOrigin(x, y);
 				cells[x][y] = hive;
 				this.hive = hive;
 				break;
-			case FLOWER:
-				cells[x][y] = new CellFlower(x, y);
+			case NODE:
+				cells[x][y] = new CellNode(x, y);
 				break;
 		}
 	}
@@ -147,7 +147,7 @@ public class Map extends JPanel {
 	 *
 	 * @return Map's hive cell
 	 */
-	public CellHive getHive() {
+	public CellOrigin getHive() {
 		return hive;
 	}
 

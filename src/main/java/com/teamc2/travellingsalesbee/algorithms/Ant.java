@@ -3,7 +3,7 @@ package com.teamc2.travellingsalesbee.algorithms;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,7 +23,7 @@ public class Ant extends NearestNeighbour {
 	public void pheremoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<CellFlower> flowers = map.getFlowers();
+			ArrayList<CellNode> flowers = map.getFlowers();
 
 			newPath.add(hive);
 
