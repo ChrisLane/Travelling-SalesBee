@@ -11,7 +11,6 @@ import java.io.IOException;
 public class LayoutGui extends GroupLayout {
 
 	JTabbedPane tabbedPane;
-	;
 	private PanelMap panelMap;
 	private PanelToolbox panelToolbox;
 	private Color backgroundColor = new Color(71, 35, 35);
