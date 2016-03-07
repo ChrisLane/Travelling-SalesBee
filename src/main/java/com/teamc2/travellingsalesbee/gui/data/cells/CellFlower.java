@@ -45,10 +45,10 @@ public class CellFlower extends Cell {
 				image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
 				break;
 			case ANT:
-				image = ImageIO.read(this.getClass().getResource("/assets/icons/Fruit.jpg"));
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/Fruit.png"));
 				break;
 			case NEARESTNEIGHBOUR:
-				image = ImageIO.read(this.getClass().getResource("/assets/icons/House.jpg"));
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/House.png"));
 				break;
 			default:
 				image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));

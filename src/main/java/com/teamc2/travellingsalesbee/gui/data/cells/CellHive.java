@@ -45,10 +45,10 @@ public class CellHive extends Cell {
 				image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
 				break;
 			case ANT:
-				image = ImageIO.read(this.getClass().getResource("/assets/icons/AntHill.jpg"));
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/AntHill.png"));
 				break;
 			case NEARESTNEIGHBOUR:
-				image = ImageIO.read(this.getClass().getResource("/assets/icons/SortingOffice.jpg"));
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/MailOffice.png"));
 				break;
 			default:
 				image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
