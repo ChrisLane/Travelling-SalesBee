@@ -1,14 +1,20 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 public class PanelMap extends JPanel {
 	private final int cellWidth;
@@ -17,6 +23,7 @@ public class PanelMap extends JPanel {
 	private Dimension panelSize = null;
 	private PanelAnimalAnimation panelAnimation;
 	private Map map;
+	private AlgorithmType type;
 
 	/**
 	 * Create the map panel
@@ -67,7 +74,21 @@ public class PanelMap extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 
 		try {
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+			BufferedImage img = null;
+			switch(this.type){
+			case BEE:
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+				 break;
+			case ANT:
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/GreyBack150.png"));
+				 break;
+			case NEARESTNEIGHBOUR:
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+				 break;
+			case TWOOPT:
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/GreyBack150.png"));
+				 break;
+			}
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
@@ -113,4 +134,9 @@ public class PanelMap extends JPanel {
 	public Map getMap() {
 		return map;
 	}
+	
+	public void setAlgorithmType(AlgorithmType type){
+		this.type = type;
+	}
+
 }
