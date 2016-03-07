@@ -102,11 +102,9 @@ public class PanelAnimalAnimation extends JPanel {
 		transition.setToY(end.getY() - animal.getY() - 25);
 		transition.playFromStart();
 
-		transition.setOnFinished(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent AE) {
-				transitionPlaying = false;
-				System.out.println("STOPPED PLAYING");
-			}
+		transition.setOnFinished(AE -> {
+			transitionPlaying = false;
+			System.out.println("STOPPED PLAYING");
 		});
 	}
 
@@ -176,12 +174,9 @@ public class PanelAnimalAnimation extends JPanel {
 			}
 
 			//when animation is finished, increment through path
-			transition.setOnFinished(new EventHandler<ActionEvent>() {
-
-				public void handle(ActionEvent AE) {
-					System.out.println("Stopped playing");
-					animatePath(superPath, superI, path, acc, animal, transition);
-				}
+			transition.setOnFinished(AE -> {
+				System.out.println("Stopped playing");
+				animatePath(superPath, superI, path, acc, animal, transition);
 			});
 
 		}
