@@ -1,30 +1,42 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.TravellingSalesBee;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
-import com.teamc2.travellingsalesbee.gui.Visualiser;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
-import javafx.application.Platform;
+import static java.awt.Image.SCALE_SMOOTH;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static java.awt.Image.SCALE_SMOOTH;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import com.teamc2.travellingsalesbee.TravellingSalesBee;
+import com.teamc2.travellingsalesbee.gui.Visualiser;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+
+import javafx.application.Platform;
 
 public class PanelToolbox extends JPanel {
 	private final PanelMap panelMap;
 	private final int width;
 	private final int height;
+	private AlgorithmType type;
 
-	public PanelToolbox(PanelMap panelMap) {
+	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
 		width = panelMap.getCellWidth();
 		height = panelMap.getCellHeight();
+		this.type = type;
 		setBackground(Color.WHITE);
 
 		JButton backButton = new JButton("Back");
@@ -54,25 +66,43 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable flowerToolCell = new CellDraggable(width, height, CellType.FLOWER, panelMap);
-		CellDraggable hiveToolCell = new CellDraggable(width, height, CellType.HIVE, panelMap);
+		CellDraggable nodeToolCell = new CellDraggable(width, height, CellType.FLOWER, panelMap, type);
+		CellDraggable originToolCell = new CellDraggable(width, height, CellType.HIVE, panelMap, type);
 
-		Image flowerImg = new CellFlower().getImage();
+		Image flowerImg = new CellFlower().getImage(type);
 		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
-		Image hiveImg = new CellHive().getImage();
+		Image hiveImg = new CellHive().getImage(type);
 		Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 
-		flowerToolCell.setIcon(new ImageIcon(scaledFlowerImg));
-		hiveToolCell.setIcon(new ImageIcon(scaledHiveImg));
+		nodeToolCell.setIcon(new ImageIcon(scaledFlowerImg));
+		originToolCell.setIcon(new ImageIcon(scaledHiveImg));
 
 
 		//Add buttons to the toolbox
-		hiveToolCell.setBounds(0, height, 100, 100);
-		add(hiveToolCell);
+		originToolCell.setBounds(0, height, 100, 100);
+		add(originToolCell);
 
-		flowerToolCell.setBounds(0, height*2+10, 100, 100);
-		add(flowerToolCell);
+		nodeToolCell.setBounds(0, height*2+10, 100, 100);
+		add(nodeToolCell);
 	}
+
+	/**
+	 * 
+	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox
+	 * draggable cells
+	 */
+	public void setAlgorithmType(AlgorithmType type) {
+		this.type = type;
+		
+		for (Component c : this.getComponents()) {
+			if (c instanceof CellDraggable) {
+				((CellDraggable) c).setAlgorithmType(type);
+				((CellDraggable) c).setImage(((CellDraggable) c).getType());
+			}
+		}
+	}
+	
+	
 }

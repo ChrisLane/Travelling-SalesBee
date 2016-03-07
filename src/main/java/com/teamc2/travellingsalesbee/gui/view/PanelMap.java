@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 
 public class PanelMap extends JPanel {
 	private final int cellWidth;
@@ -73,6 +75,7 @@ public class PanelMap extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
+		//Allowing for the correct background to be printed
 		try {
 			BufferedImage img = null;
 			switch(this.type){
@@ -80,10 +83,10 @@ public class PanelMap extends JPanel {
 				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
 				 break;
 			case ANT:
-				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/GreyBack150.png"));
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Dirt.jpg"));
 				 break;
 			case NEARESTNEIGHBOUR:
-				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				 break;
 			case TWOOPT:
 				 img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/GreyBack150.png"));
@@ -135,8 +138,20 @@ public class PanelMap extends JPanel {
 		return map;
 	}
 	
+	/**
+	 * 
+	 * @param type The type of algorithm currently being viewed to adjust the cell images on 
+	 * the panelMap accordingly
+	 */
 	public void setAlgorithmType(AlgorithmType type){
 		this.type = type;
+		
+		for (Component c : this.getComponents()) {
+			if (c instanceof CellDraggable) {
+				((CellDraggable) c).setAlgorithmType(type);
+				((CellDraggable) c).setImage(((CellDraggable) c).getType());
+			}
+		}
 	}
 
 }

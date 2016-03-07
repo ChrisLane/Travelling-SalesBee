@@ -1,6 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import java.awt.*;
+import java.awt.Image;
+
+import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
 
 public class CellEmpty extends Cell {
 
@@ -32,7 +34,7 @@ public class CellEmpty extends Cell {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Image getImage() {
+	public Image getImage(AlgorithmType type) {
 		return null;
 	}
 

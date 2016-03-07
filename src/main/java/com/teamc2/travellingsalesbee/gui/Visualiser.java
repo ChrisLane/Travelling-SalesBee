@@ -1,10 +1,18 @@
 package com.teamc2.travellingsalesbee.gui;
 
-import com.teamc2.travellingsalesbee.gui.view.*;
+import java.awt.Color;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+
+import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
+import com.teamc2.travellingsalesbee.gui.view.LayoutGui;
+import com.teamc2.travellingsalesbee.gui.view.PanelMap;
+import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
+import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
 
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
@@ -32,7 +40,7 @@ public class Visualiser extends JFrame {
 		int width = 50;
 		int height = 50;
 		PanelMap panelMap = new PanelMap(width, height);
-		PanelToolbox panelToolbox = new PanelToolbox(panelMap);
+		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 
 		// Add grid to the map

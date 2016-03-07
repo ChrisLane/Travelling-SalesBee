@@ -20,7 +20,8 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 public class LayoutGui extends GroupLayout {
 
 	JTabbedPane tabbedPane = new JTabbedPane();
-	
+	private PanelMap panelMap;
+	private PanelToolbox panelToolbox;
 	/**
 	 * Create a layout for the GUI JPanel
 	 *
@@ -32,8 +33,9 @@ public class LayoutGui extends GroupLayout {
 	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
 		super(host);
 		
-		
-		initialiseTabs(panelMap);
+		this.panelMap = panelMap;
+		this.panelToolbox = panelToolbox;
+		initialiseTabs();
 		
 		/****************************************************************************/
 		/******************** Initialising of the group layout **********************/
@@ -59,7 +61,7 @@ public class LayoutGui extends GroupLayout {
 		);
 	}
 
-	private void initialiseTabs(PanelMap panelMap) {
+	private void initialiseTabs() {
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0,0,0,0));
 	    UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0,0,0,0));
 	    UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", true);
@@ -71,6 +73,7 @@ public class LayoutGui extends GroupLayout {
 		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
 		
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
+		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
 		
 		try {
 			@SuppressWarnings("unused")
@@ -109,6 +112,7 @@ public class LayoutGui extends GroupLayout {
 		        		break;
 		        	}
 		        	panelMap.setAlgorithmType(type);
+		    		panelToolbox.setAlgorithmType(type);
 		        	panelMap.repaint();
 		        }
 			});

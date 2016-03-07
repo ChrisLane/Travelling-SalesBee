@@ -80,7 +80,7 @@ public class ComponentGrid extends JComponent {
 		g2.setStroke(new BasicStroke(5)); // Set the line thickness to 5
 
 		// Set the line colour
-		Color lineColor = new Color(255, 255, 255, 65);
+		Color lineColor = new Color(191, 191, 191, 100);
 		g2.setColor(lineColor);
 
 		// Draw all lines

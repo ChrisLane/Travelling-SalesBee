@@ -1,8 +1,11 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
 
 public class CellHive extends Cell {
 
@@ -34,10 +37,23 @@ public class CellHive extends Cell {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Image getImage() {
+	public Image getImage(AlgorithmType type) {
 		Image image = null;
 		try {
-			image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+			switch(type){
+			case BEE:
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+				break;
+			case ANT:
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/AntHill.jpg"));
+				break;
+			case NEARESTNEIGHBOUR:
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/SortingOffice.jpg"));
+				break;
+			default:
+				image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
