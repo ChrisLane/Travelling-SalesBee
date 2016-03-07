@@ -2,7 +2,7 @@ package com.teamc2.travellingsalesbee.algorithms;
 
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 
 import java.util.ArrayList;
 
@@ -33,20 +33,20 @@ public class NearestNeighbour {
 	public void naiveRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<CellFlower> flowers = map.getFlowers();
+			ArrayList<CellNode> flowers = map.getFlowers();
 
 			newPath.add(hive);
 
 			// Loop over flowers missing from path
 			Cell currentCell;
-			CellFlower closest;
+			CellNode closest;
 
 			while (!flowers.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				closest = null;
 
 				// Find the closest flower to the previous
-				for (CellFlower flower : flowers) {
+				for (CellNode flower : flowers) {
 					currentCell = newPath.get(newPath.size() - 1);
 					double distance = map.getCostMatrix().getCost(currentCell, flower);
 					if (distance < bestDistance) {

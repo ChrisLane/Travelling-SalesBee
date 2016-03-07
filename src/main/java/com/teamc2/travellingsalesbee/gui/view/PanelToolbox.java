@@ -3,8 +3,8 @@ package com.teamc2.travellingsalesbee.gui.view;
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellFlower;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellHive;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import javafx.application.Platform;
 
@@ -56,13 +56,13 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable nodeToolCell = new CellDraggable(width, height, CellType.FLOWER, panelMap, type);
-		CellDraggable originToolCell = new CellDraggable(width, height, CellType.HIVE, panelMap, type);
+		CellDraggable nodeToolCell = new CellDraggable(width, height, CellType.NODE, panelMap, type);
+		CellDraggable originToolCell = new CellDraggable(width, height, CellType.ORIGIN, panelMap, type);
 
-		Image flowerImg = new CellFlower().getImage(type);
+		Image flowerImg = new CellNode().getImage(type);
 		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
-		Image hiveImg = new CellHive().getImage(type);
+		Image hiveImg = new CellOrigin().getImage(type);
 		Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
 
 

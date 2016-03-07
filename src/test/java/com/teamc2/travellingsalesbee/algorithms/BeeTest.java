@@ -16,21 +16,21 @@ public class BeeTest {
 	@BeforeClass
 	public void initialise() {
 		map = new Map(10, 10);
-		map.setCell(0, 0, CellType.HIVE);
-		map.setCell(0, 2, CellType.FLOWER); // flower 1
-		map.setCell(0, 6, CellType.FLOWER); // flower 2
-		map.setCell(2, 6, CellType.FLOWER); // flower 3
+		map.setCell(0, 0, CellType.ORIGIN);
+		map.setCell(0, 2, CellType.NODE); // flower 1
+		map.setCell(0, 6, CellType.NODE); // flower 2
+		map.setCell(2, 6, CellType.NODE); // flower 3
 
 		bee = new Bee(map, 20);
 	}
 
 	@DataProvider(name = "paths")
 	public Object[][] path() {
-		ArrayList<CellFlower> flowers = map.getFlowers();
-		CellFlower flower1 = flowers.get(0);
-		CellFlower flower2 = flowers.get(1);
-		CellFlower flower3 = flowers.get(2);
-		CellHive hive = map.getHive();
+		ArrayList<CellNode> flowers = map.getFlowers();
+		CellNode flower1 = flowers.get(0);
+		CellNode flower2 = flowers.get(1);
+		CellNode flower3 = flowers.get(2);
+		CellOrigin hive = map.getHive();
 
 		double path1Cost = 14.32455532033676;
 		ArrayList<Cell> path1 = new ArrayList<>();
@@ -88,7 +88,7 @@ public class BeeTest {
 		path.sort(new CellComparator());
 
 		// Sort the flowers
-		ArrayList<CellFlower> flowers = map.getFlowers();
+		ArrayList<CellNode> flowers = map.getFlowers();
 		flowers.sort(new CellComparator());
 
 		Assert.assertEquals(path.equals(flowers), true);
