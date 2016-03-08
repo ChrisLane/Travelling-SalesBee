@@ -45,8 +45,6 @@ public class LayoutGui extends GroupLayout {
 								.addContainerGap(5, 5)
 								.addComponent(panelToolbox, PREFERRED_SIZE, 110, PREFERRED_SIZE)
 						)
-
-
 		);
 		setVerticalGroup(
 				createParallelGroup(Alignment.LEADING)
