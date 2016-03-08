@@ -20,7 +20,6 @@ public class Visualiser extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setBounds(50, 25, 1200, 650);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
