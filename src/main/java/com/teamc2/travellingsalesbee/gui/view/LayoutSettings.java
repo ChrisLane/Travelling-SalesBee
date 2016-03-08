@@ -73,6 +73,7 @@ public class LayoutSettings extends GroupLayout {
 										.addComponent(lblSpeed)
 								)
 								.addComponent(speedSlider)
+								.addContainerGap()
 						)
 						.addGroup(createSequentialGroup()
 								.addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
