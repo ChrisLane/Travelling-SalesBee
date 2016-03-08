@@ -30,6 +30,7 @@ public class PanelSettings extends JPanel {
 	private JLabel infoLabel;
 	private JButton btnPrev;
 	private JButton btnNext;
+	private Text text;
 
 	private int experimentalRuns = 26; //Set to 26 by default
 	private int animationSpeed = 50;
@@ -120,7 +121,7 @@ public class PanelSettings extends JPanel {
 			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url1.toExternalForm());
 
-			Text text = new Text("\nExplanatory step-through text will appear here.");
+			text = new Text("\nExplanatory step-through text will appear here.");
 			text.setWrappingWidth(txtPaneTextWillAppear.getWidth());
 			root.getChildren().add(text);
 			text.setId("infobox");
@@ -138,6 +139,9 @@ public class PanelSettings extends JPanel {
 		btnPrev.addActionListener(arg0 -> {
 			stepNum--;
 			panelMap.getPathComponent().setStepNumber(stepNum);
+			Platform.runLater(() -> {
+				text.setText(getDistance());
+			});
 			btnPrev.setEnabled((stepNum >= 0));
 			btnNext.setEnabled(true);
 
@@ -154,6 +158,9 @@ public class PanelSettings extends JPanel {
 		btnNext.addActionListener(arg0 -> {
 			stepNum++;
 			panelMap.getPathComponent().setStepNumber(stepNum);
+			Platform.runLater(() -> {
+				text.setText(getDistance());
+			});
 			btnPrev.setEnabled(true);
 			//btnNext.setEnabled((stepNum != experimentalRuns));
 
@@ -205,8 +212,7 @@ public class PanelSettings extends JPanel {
 			}
 
 			for (ExperimentalStep experimentalStep : experimentalSteps) {
-				ArrayList<Cell> setOfPoints = new ArrayList<>();
-				setOfPoints = experimentalStep.getPath();
+				ArrayList<Cell> setOfPoints = experimentalStep.getPath();
 				pathOfPaths.add(setOfPoints);
 			}
 		
@@ -215,5 +221,15 @@ public class PanelSettings extends JPanel {
 			//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
 			/*----------------------------------------------*/
 		}
+	}
+
+	private String getDistance() {
+		// this will set the distance, we just need to get the proper path here
+//		ArrayList<Cell> path = panelMap.getPathComponent().getBeePath();
+//		Cell cell1 = path.get(stepNum-1);
+//		Cell cell2 = path.get(stepNum);
+
+		//return "Distance from step " + (stepNum-1) + " to " + stepNum + " was: " + cell1.distance(cell2) + ".";
+		return "\nDistance from step " + (stepNum-1) + " to " + stepNum + " was: something.";
 	}
 }
