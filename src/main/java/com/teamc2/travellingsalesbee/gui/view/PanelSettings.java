@@ -33,7 +33,7 @@ public class PanelSettings extends JPanel {
 	private Text text;
 
 	private int experimentalRuns = 26; //Set to 26 by default
-	private int animationSpeed = 1;
+	private double animationSpeed = 10;
 	private int stepNum = 0;
 
 	/**
@@ -94,17 +94,16 @@ public class PanelSettings extends JPanel {
 		});
 
 		JSlider speedSlider = new JSlider();
-		speedSlider.setMaximum(4);
-		speedSlider.setValue(animationSpeed);
+		speedSlider.setMaximum(20);
+		speedSlider.setValue((int) animationSpeed);
 		speedSlider.setOpaque(false);
 		JLabel lblAnimationSpeed = new JLabel("Animation Speed: ");
 		JLabel lblSpeed = new JLabel("" + animationSpeed);
 
 		speedSlider.addChangeListener(arg0 -> {
-			speedSlider.setValue(speedSlider.getValue());
-			animationSpeed = speedSlider.getValue();
-			panelMap.getAnimation().setSpeed(animationSpeed);
-			lblSpeed.setText(("" + animationSpeed));
+			animationSpeed = speedSlider.getValue() / 10;
+			panelMap.getAnimation().setSpeed(animationSpeed / 10);
+			lblSpeed.setText(("" + animationSpeed / 10));
 		});
 
 		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
