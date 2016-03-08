@@ -98,12 +98,12 @@ public class PanelSettings extends JPanel {
 		speedSlider.setValue((int) animationSpeed);
 		speedSlider.setOpaque(false);
 		JLabel lblAnimationSpeed = new JLabel("Animation Speed: ");
-		JLabel lblSpeed = new JLabel("" + animationSpeed);
+		JLabel lblSpeed = new JLabel("" + animationSpeed / 10);
 
 		speedSlider.addChangeListener(arg0 -> {
 			animationSpeed = speedSlider.getValue() / 10;
-			panelMap.getAnimation().setSpeed(animationSpeed / 10);
-			lblSpeed.setText(("" + animationSpeed / 10));
+			panelMap.getAnimation().setSpeed(animationSpeed);
+			lblSpeed.setText(("" + animationSpeed));
 		});
 
 		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
