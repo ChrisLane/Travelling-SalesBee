@@ -33,7 +33,7 @@ public class PanelSettings extends JPanel {
 	private Text text;
 
 	private int experimentalRuns = 26; //Set to 26 by default
-	private int animationSpeed = 50;
+	private int animationSpeed = 1;
 	private int stepNum = 0;
 
 	/**
@@ -94,6 +94,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		JSlider speedSlider = new JSlider();
+		speedSlider.setMaximum(4);
 		speedSlider.setValue(animationSpeed);
 		speedSlider.setOpaque(false);
 		JLabel lblAnimationSpeed = new JLabel("Animation Speed: ");
