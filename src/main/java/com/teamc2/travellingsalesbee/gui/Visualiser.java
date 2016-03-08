@@ -38,19 +38,6 @@ public class Visualiser extends JFrame {
 		// Add grid to the map
 		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
 
-		/*//Initialise and set bounds
-		PanelAnimalAnimation panelAnimation = new PanelAnimalAnimation(0, 0, 789, 446);
-		panelAnimation.setBounds(panelMap.getX(), panelMap.getY(), 789, 446);
-
-		//Pass the bee path to the animation class
-		*//*ArrayList<Cell> path = panelMap.getPathComponent().getBeePath();
-		if(path.size() > 0) {
-			panelAnimation.setPath(panelMap.getPathComponent().getBeePath());
-		}*//*
-
-		panelMap.add(panelAnimation); //Add to panel map
-		panelMap.setComponentZOrder(panelAnimation, 0); //Draw to top of screen*/
-
 		contentPane.setLayout(layoutGui);
 	}
 
