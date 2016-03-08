@@ -70,7 +70,7 @@ public class PanelSettings extends JPanel {
 	 * Add information on how to use the settings panel
 	 */
 	public void addSettingsInfo() {
-		infoLabel = new JLabel("Settings box, we also need to choose a background image for this");
+		infoLabel = new JLabel("");
 	}
 
 	/**
