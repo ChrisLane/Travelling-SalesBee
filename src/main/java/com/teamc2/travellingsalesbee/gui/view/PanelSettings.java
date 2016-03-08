@@ -180,53 +180,60 @@ public class PanelSettings extends JPanel {
 		setLayout(layoutSettings);
 	}
 
-	private void setStepNum(int stepNum) {
-		this.stepNum = stepNum;
-		panelMap.getPathComponent().setStepNumber(stepNum);
-	}
-
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			setStepNum(0);
+			try {
+				setStepNum(0);
+				
+				btnPrev.setEnabled(true);
+				btnNext.setEnabled(true);
+				
+				map.setCostMatrix();
+				Bee bee = new Bee(map, experimentalRuns);
+				BeeVisualiser visualise = new BeeVisualiser();
+				bee.naiveRun();
+				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
+				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
+	
+	
+				bee.experimentalRun();
+				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
+				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
+				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
+	
+				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
+				ArrayList<Cell> hive = new ArrayList<>();
+				hive.add(naiveSteps.get(0).getStart());
+				pathOfPaths.add(hive);
+	
+				for (NaiveStep naiveStep : naiveSteps) {
+					ArrayList<Cell> singlePoint = new ArrayList<>();
+					singlePoint.add(naiveStep.getEnd());
+					pathOfPaths.add(singlePoint);
+				}
+	
+				for (ExperimentalStep experimentalStep : experimentalSteps) {
+					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
+					pathOfPaths.add(setOfPoints);
+				}
 			
-			btnPrev.setEnabled(true);
-			btnNext.setEnabled(true);
-			
-			map.setCostMatrix();
-			Bee bee = new Bee(map, experimentalRuns);
-			BeeVisualiser visualise = new BeeVisualiser();
-			bee.naiveRun();
-			ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
-			panelMap.getPathComponent().setNaiveSteps(naiveSteps);
-
-
-			bee.experimentalRun();
-			ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
-			panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
-			panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
-
-			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
-			ArrayList<Cell> hive = new ArrayList<>();
-			hive.add(naiveSteps.get(0).getStart());
-			pathOfPaths.add(hive);
-
-			for (NaiveStep naiveStep : naiveSteps) {
-				ArrayList<Cell> singlePoint = new ArrayList<>();
-				singlePoint.add(naiveStep.getEnd());
-				pathOfPaths.add(singlePoint);
+				/*----------------------------------------------*/
+				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
+				//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+				/*----------------------------------------------*/
+			} catch (NullPointerException e) {
+				// When no nodes are on the screen: disable the buttons.
+				btnPrev.setEnabled(false);
+				btnNext.setEnabled(false);
+				
 			}
-
-			for (ExperimentalStep experimentalStep : experimentalSteps) {
-				ArrayList<Cell> setOfPoints = experimentalStep.getPath();
-				pathOfPaths.add(setOfPoints);
-			}
-		
-			/*----------------------------------------------*/
-			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
-			//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
-			/*----------------------------------------------*/
 		}
+	}
+	
+	private void setStepNum(int stepNum) {
+		this.stepNum = stepNum;
+		panelMap.getPathComponent().setStepNumber(stepNum);
 	}
 
 	private String getDistance() {
