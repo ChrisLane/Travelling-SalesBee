@@ -40,22 +40,22 @@ public class LayoutGui extends GroupLayout {
 						.addGroup(createSequentialGroup()
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addGroup(createParallelGroup(Alignment.LEADING)
-										.addComponent(panelSettings, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
-										.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE))
+										.addComponent(panelSettings, DEFAULT_SIZE, 789, Short.MAX_VALUE)
+										.addComponent(tabbedPane, DEFAULT_SIZE, 789, Short.MAX_VALUE))
 								.addContainerGap(5, 5)
-								.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+								.addComponent(panelToolbox, PREFERRED_SIZE, 110, PREFERRED_SIZE))
 						
 
 		);
 		setVerticalGroup(
 				createParallelGroup(Alignment.LEADING)
 						.addGroup(createSequentialGroup()
-								.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tabbedPane, PREFERRED_SIZE, 500, PREFERRED_SIZE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addContainerGap(25, 25)
-								.addComponent(panelSettings, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panelSettings, PREFERRED_SIZE, 188, PREFERRED_SIZE)
 								)
-								.addComponent(panelToolbox, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panelToolbox, PREFERRED_SIZE, 1000, PREFERRED_SIZE)
 						
 		);
 	}
