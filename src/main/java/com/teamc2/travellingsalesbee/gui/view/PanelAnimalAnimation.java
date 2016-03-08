@@ -185,8 +185,12 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	public void setStepNum(int step) {
-		//this.stepNum = step;
-
+		this.stepNum = step;
+		if (stepNum < 0) {
+			this.setVisible(false);
+		} else {
+			this.setVisible(true);
+		}
 		//moveFromAToB(path.get(stepNum), animalIcon, transition);
 	}
 
