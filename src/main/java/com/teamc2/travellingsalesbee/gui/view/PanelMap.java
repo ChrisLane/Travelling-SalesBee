@@ -44,8 +44,8 @@ public class PanelMap extends JPanel {
 		add(componentGrid);
 
 		//Initialise and set bounds
-		panelAnimation = new PanelAnimalAnimation(789, 446);
-		panelAnimation.setBounds(this.getX(), this.getY(), 789, 446);
+		panelAnimation = new PanelAnimalAnimation(screenWidth, screenHeight);
+		panelAnimation.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
 
 		this.add(panelAnimation); //Add to panel map
 
