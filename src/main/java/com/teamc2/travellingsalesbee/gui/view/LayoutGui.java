@@ -51,7 +51,7 @@ public class LayoutGui extends GroupLayout {
 						.addComponent(tabbedPane, PREFERRED_SIZE, 500, PREFERRED_SIZE)
 						.addGroup(createSequentialGroup()
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(panelMap, 1000, PREFERRED_SIZE, PREFERRED_SIZE)
+								.addComponent(panelMap, PREFERRED_SIZE, 800, PREFERRED_SIZE)
 								.addContainerGap(25, 25)
 								.addComponent(panelSettings, PREFERRED_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
 						)
