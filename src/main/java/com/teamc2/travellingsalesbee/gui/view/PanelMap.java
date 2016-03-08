@@ -15,7 +15,6 @@ public class PanelMap extends JPanel {
 	private final int cellWidth;
 	private final int cellHeight;
 	private ComponentPath componentPath;
-	private Dimension panelSize = null;
 	private PanelAnimalAnimation panelAnimation;
 	private Map map;
 	private AlgorithmType type;
@@ -113,14 +112,6 @@ public class PanelMap extends JPanel {
 
 	public ComponentPath getPathComponent() {
 		return componentPath;
-	}
-
-	public Dimension getSize() {
-		return panelSize;
-	}
-
-	public void setSize(Dimension panelSize) {
-		this.panelSize = panelSize;
 	}
 
 	public PanelAnimalAnimation getPanelAnimalAnimation() {
