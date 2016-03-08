@@ -144,10 +144,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private void animatePath(ArrayList<ArrayList<Cell>> superPath, int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
-
-		System.out.println(superPath.toString());
-		System.out.println(path.toString());
-
 		if (superI >= superPath.size()) {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
