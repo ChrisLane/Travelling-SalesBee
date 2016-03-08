@@ -137,8 +137,7 @@ public class PanelSettings extends JPanel {
 		btnNext.setEnabled(false);
 		
 		btnPrev.addActionListener(arg0 -> {
-			stepNum--;
-			panelMap.getPathComponent().setStepNumber(stepNum);
+			setStepNum(stepNum-1);
 			Platform.runLater(() -> {
 				text.setText(getDistance());
 			});
@@ -156,8 +155,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		btnNext.addActionListener(arg0 -> {
-			stepNum++;
-			panelMap.getPathComponent().setStepNumber(stepNum);
+			setStepNum(stepNum+1);
 			Platform.runLater(() -> {
 				text.setText(getDistance());
 			});
@@ -182,9 +180,17 @@ public class PanelSettings extends JPanel {
 		setLayout(layoutSettings);
 	}
 
+	private void setStepNum(int stepNum) {
+		this.stepNum = stepNum;
+		panelMap.getPathComponent().setStepNumber(stepNum);
+	}
+
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			setStepNum(0);
+			
+			btnPrev.setEnabled(true);
 			btnNext.setEnabled(true);
 			
 			map.setCostMatrix();
