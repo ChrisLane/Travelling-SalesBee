@@ -74,7 +74,6 @@ public class Bee extends NearestNeighbour {
 	}
 
 	public ArrayList<ArrayList<Cell>> getIntermediaryPaths() {
-		intermediaryPaths.forEach(System.out::println);
 		return intermediaryPaths;
 	}
 
