@@ -106,6 +106,7 @@ public class LayoutGui extends GroupLayout {
 			tabbedPane.setBackgroundAt(0, this.tabColor);
 
 			panelMap.setAlgorithmType(AlgorithmType.BEE);
+			panelSettings.setAlgorithmType(AlgorithmType.BEE);
 
 			//Change listener to change algorithms when switching tabs
 			tabbedPane.addChangeListener(evt -> {
@@ -143,7 +144,8 @@ public class LayoutGui extends GroupLayout {
 				tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
 				panelMap.setAlgorithmType(type);
 				panelToolbox.setAlgorithmType(type);
-				panelSettings.setStepNum(0);
+				panelSettings.setStepNum(-1);
+				panelSettings.setAlgorithmType(type);
 				panelMap.repaint();
 			});
 

@@ -74,7 +74,7 @@ public class ComponentPath extends JComponent {
 			paintAntPath(g2);
 			break;
 		case NEARESTNEIGHBOUR:
-			paintAntPath(g2);
+			paintNearestNeighbourPath(g2);
 			break;
 		case TWOOPT:
 			paintAntPath(g2);
@@ -112,6 +112,39 @@ public class ComponentPath extends JComponent {
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
 		}
+	}
+
+	private void paintNearestNeighbourPath(Graphics2D g2) {
+		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
+			int x1, x2, y1, y2;
+			
+			for (int i = 0; i < stepNum + 1; i++) {
+				if (i < naiveSteps.size()) {
+					NaiveStep step = naiveSteps.get(i);
+					x1 = (int) step.getStart().x;
+					y1 = (int) step.getStart().y;
+
+					ArrayList<Cell> available = step.getAvailable();
+
+					if (i == stepNum) {
+						for (Cell anAvailable : available) {
+							g2.setStroke(new BasicStroke(5));
+							g2.setPaint(Color.red);
+							x2 = (int) anAvailable.x;
+							y2 = (int) anAvailable.y;
+							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+						}
+					}
+
+					g2.setStroke(new BasicStroke(6));
+					g2.setPaint(Color.green);
+					x2 = (int) step.getEnd().x;
+					y2 = (int) step.getEnd().y;
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
+			}
+		}
+		
 	}
 
 	public void setAlgorithmType(AlgorithmType type) {
