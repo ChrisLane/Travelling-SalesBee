@@ -6,6 +6,7 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -17,12 +18,14 @@ public class ComponentPath extends JComponent {
 	private ArrayList<NaiveStep> naiveSteps = new ArrayList<>();
 	private int stepNum = 0;
 	private ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
+	private AlgorithmType type;
 
-	public ComponentPath() {
+	public ComponentPath(AlgorithmType type) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		setBounds(0, 0, screenWidth, screenHeight);
+		this.type = type;
 	}
 
 	/**
@@ -62,7 +65,22 @@ public class ComponentPath extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-
+		
+		switch (this.type) {
+		case BEE:
+			paintBeePath(g2);
+			break;
+		case ANT:
+			paintAntPath(g2);
+			break;
+		case NEARESTNEIGHBOUR:
+			paintAntPath(g2);
+			break;
+		case TWOOPT:
+			paintAntPath(g2);
+			break;
+		}
+		
 		if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
 
 			int x1, x2 = 0, y1, y2 = 0;
@@ -93,9 +111,18 @@ public class ComponentPath extends JComponent {
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
-		} else if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
-			int x1, x2, y1, y2;
+		}
+	}
 
+	public void setAlgorithmType(AlgorithmType type) {
+		this.type = type;
+		this.repaint();
+	}
+
+	private void paintBeePath(Graphics2D g2){
+		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
+			int x1, x2, y1, y2;
+			
 			for (int i = 0; i < stepNum + 1; i++) {
 				if (i < naiveSteps.size()) {
 					NaiveStep step = naiveSteps.get(i);
@@ -161,6 +188,12 @@ public class ComponentPath extends JComponent {
 			String costString = "" + cost;
 			g2.drawString(costString, 0, 0);
 		}
+	}
+	
+	private void paintAntPath(Graphics2D g2){
+		g2.setPaint(Color.black);
+		g2.setStroke(new BasicStroke(5));
+		g2.drawLine(0, 0, 50, 50);
 	}
 
 

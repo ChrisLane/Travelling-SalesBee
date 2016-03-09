@@ -36,7 +36,7 @@ public class PanelMap extends JPanel {
 		map = new Map(screenWidth, screenHeight);
 
 
-		componentPath = new ComponentPath();
+		componentPath = new ComponentPath(AlgorithmType.BEE);
 		add(componentPath);
 
 		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
@@ -87,6 +87,8 @@ public class PanelMap extends JPanel {
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+			
+			componentPath.setAlgorithmType(type);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -139,5 +141,9 @@ public class PanelMap extends JPanel {
 
 	public PanelAnimalAnimation getAnimation() {
 		return panelAnimation;
+	}
+	
+	public AlgorithmType getAlgorithmType(){
+		return type;
 	}
 }
