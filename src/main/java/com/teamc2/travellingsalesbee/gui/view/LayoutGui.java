@@ -13,6 +13,7 @@ public class LayoutGui extends GroupLayout {
 	private PanelToolbox panelToolbox;
 	private Color backgroundColor = new Color(71, 35, 35);
 	private Color tabColor = new Color(68, 35, 35);
+	private PanelSettings panelSettings;
 
 	/**
 	 * Create a layout for the GUI JPanel
@@ -27,6 +28,7 @@ public class LayoutGui extends GroupLayout {
 
 		this.panelMap = panelMap;
 		this.panelToolbox = panelToolbox;
+		this.panelSettings = panelSettings;
 		initialiseTabs();
 
 		/****************************************************************************/
@@ -105,14 +107,14 @@ public class LayoutGui extends GroupLayout {
 
 			panelMap.setAlgorithmType(AlgorithmType.BEE);
 
-
 			//Change listener to change algorithms when switching tabs
 			tabbedPane.addChangeListener(evt -> {
-				//TO DO - IVEN ART
+				
 				int selected = tabbedPane.getSelectedIndex();
 				String text = "BEE";
 				String imgName = "SalesBee.png";
 				updateTabColours();
+				
 
 
 				AlgorithmType type = null;
@@ -141,6 +143,7 @@ public class LayoutGui extends GroupLayout {
 				tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
 				panelMap.setAlgorithmType(type);
 				panelToolbox.setAlgorithmType(type);
+				panelSettings.setStepNum(0);
 				panelMap.repaint();
 			});
 

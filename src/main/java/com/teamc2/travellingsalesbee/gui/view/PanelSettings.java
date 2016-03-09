@@ -230,7 +230,7 @@ public class PanelSettings extends JPanel {
 		}
 	}
 	
-	private void setStepNum(int stepNum) {
+	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNumber(stepNum);
 	}
