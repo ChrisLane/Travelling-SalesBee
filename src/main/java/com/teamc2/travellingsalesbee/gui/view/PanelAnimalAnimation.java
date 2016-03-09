@@ -15,6 +15,7 @@ import javafx.util.Duration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -120,35 +121,50 @@ public class PanelAnimalAnimation extends JPanel {
 			animalIcon.setX(path.get(stepNum).getX() - 25);
 			animalIcon.setY(path.get(stepNum).getY() - 25);
 			animalIcon.setVisible(true);
+			naiveRun = true;
 		});
 	}
 
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
-		stepNum = 0;
+		//setStepNum(0);
 
-		Platform.runLater(() -> {
+		System.out.println("pathOfPaths size: " + pathOfPaths.size());
+
+		//Platform.runLater(() -> {
 			animalIcon.setX(path.get(0).get(0).getX() - 25);
 			animalIcon.setY(path.get(0).get(0).getY() - 25);
 			animalIcon.setVisible(true);
-		});
+		//});
 
 		// 1. Animate (path.get(step))
-		try {
+		/*try {
 			animatePath(path, 0, path.get(0), 0, animalIcon, transition);
 		} catch (Exception e) {
 			System.out.println("No available moves");
 			e.printStackTrace();
-		}
-
+		}*/
 	}
 
-	private void animatePath(ArrayList<ArrayList<Cell>> superPath, int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
+	/**
+	 *
+	 * @param superPath Path of all paths ArrayList<ArrayList<Cell>>
+	 * @param superI superPath position (gets the current path we're working with)
+	 * @param path Current path to animate
+	 * @param i Path position
+	 * @param animal The 'animal' to move
+	 * @param transition The transition object that handles the animation itself
+	 */
+	private void animatePath(ArrayList<ArrayList<Cell>> superPath, final int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
+
+		//If there are no more paths, do nothing
 		if (superI >= superPath.size()) {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
-			//Go to next element in the ArrayList of ArrayList's
-			animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
+			//If icrement is great than size of the path, go to the next path
+			//animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
+			System.out.println("path.size() = " + path.size());
+			System.out.println("STOP");
 		} else {
 
 			final int acc = i + 1;
@@ -157,7 +173,7 @@ public class PanelAnimalAnimation extends JPanel {
 			if (acc < path.size()) {
 
 				//Get the next point to move to
-				Cell end = path.get(i + 1);
+				Cell end = path.get(acc);
 
 				//Set transition position to move to
 				transition.setToX(end.getX() - animal.getX() - 25);
@@ -181,17 +197,39 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void setSpeed(double speed) {
 		this.speed = speed;
-		transition.setRate(speed);
+
+		//THIS MAKES THE ANIMATION DISGUSTING, LET'S DO SOMETHING DIFFERENT PLZ
+		//transition.setRate(speed);
 	}
+
+	private boolean naiveRun = false;
 
 	public void setStepNum(int step) {
 		this.stepNum = step;
+		System.out.println(stepNum);
+
 		if (stepNum < 0) {
 			this.setVisible(false);
 		} else {
 			this.setVisible(true);
 		}
-		//moveFromAToB(path.get(stepNum), animalIcon, transition);
+
+		if(naiveRun) {
+			Cell end = path.get(stepNum+1);
+
+			moveFromAToB(end, animalIcon, transition);
+		}
+
+		/*try {
+			ArrayList<Cell> path = path1fPaths.get(stepNum);
+			animalIcon.setX(path.get(0).getX() - 25);
+			animalIcon.setY(path.get(0).getY() - 25);
+			System.out.println("Set animation");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+
+		//animatePath(pathOfPaths, stepNum, pathOfPaths.get(stepNum), 0, animalIcon, transition);
 	}
 
 }

@@ -196,7 +196,6 @@ public class PanelSettings extends JPanel {
 				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
 				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
 	
-	
 				bee.experimentalRun();
 				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
@@ -217,12 +216,12 @@ public class PanelSettings extends JPanel {
 					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
 					pathOfPaths.add(setOfPoints);
 				}
-			
+
 				/*----------------------------------------------*/
-				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
-				//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
-				/*----------------------------------------------*/
+				panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+				//panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPsaths);
 			} catch (NullPointerException e) {
+				/*----------------------------------------------*/
 				// When no nodes are on the screen: disable the buttons.
 				btnPrev.setEnabled(false);
 				btnNext.setEnabled(false);
