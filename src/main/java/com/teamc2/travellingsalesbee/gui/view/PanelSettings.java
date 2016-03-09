@@ -1,26 +1,37 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
-import com.teamc2.travellingsalesbee.gui.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+
+import com.teamc2.travellingsalesbee.algorithms.Bee;
+import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
+import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
+import com.teamc2.travellingsalesbee.gui.NaiveStep;
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
+
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 public class PanelSettings extends JPanel {
 
@@ -35,6 +46,7 @@ public class PanelSettings extends JPanel {
 	private int experimentalRuns = 26; //Set to 26 by default
 	private double animationSpeed = 10;
 	private int stepNum = 0;
+	private AlgorithmType type;
 
 	/**
 	 * Create a settings panel
@@ -183,6 +195,67 @@ public class PanelSettings extends JPanel {
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			switch (type) {
+			case BEE:
+				runBeeAlgorithm();
+				break;
+			case ANT:
+				runAntAlgorithm();
+				break;
+			case NEARESTNEIGHBOUR:
+				runNearestNeighbourAlgorithm();
+				break;
+			case TWOOPT:
+				
+				break;
+			}
+			
+		}
+
+		private void runNearestNeighbourAlgorithm() {
+			try {
+				setStepNum(0);
+				
+				btnPrev.setEnabled(true);
+				btnNext.setEnabled(true);
+				
+				map.setCostMatrix();
+				NearestNeighbour nearestNeighbour = new NearestNeighbour(map);
+				BeeVisualiser visualise = new BeeVisualiser();
+				nearestNeighbour.naiveRun();
+				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(nearestNeighbour.getPath());
+				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
+	
+				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
+				ArrayList<Cell> hive = new ArrayList<>();
+				hive.add(naiveSteps.get(0).getStart());
+				pathOfPaths.add(hive);
+	
+				for (NaiveStep naiveStep : naiveSteps) {
+					ArrayList<Cell> singlePoint = new ArrayList<>();
+					singlePoint.add(naiveStep.getEnd());
+					pathOfPaths.add(singlePoint);
+				}
+	
+				/*----------------------------------------------*/
+				panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
+				//panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPsaths);
+			} catch (NullPointerException e) {
+				/*----------------------------------------------*/
+				// When no nodes are on the screen: disable the buttons.
+				btnPrev.setEnabled(false);
+				btnNext.setEnabled(false);
+				
+			}
+			
+		}
+
+		private void runAntAlgorithm() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		private void runBeeAlgorithm() {
 			try {
 				setStepNum(0);
 				
@@ -225,7 +298,6 @@ public class PanelSettings extends JPanel {
 				// When no nodes are on the screen: disable the buttons.
 				btnPrev.setEnabled(false);
 				btnNext.setEnabled(false);
-				
 			}
 		}
 	}
@@ -233,6 +305,10 @@ public class PanelSettings extends JPanel {
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNumber(stepNum);
+	}
+	
+	public void setAlgorithmType(AlgorithmType type){
+		this.type = type;
 	}
 
 	private String getDistance() {
