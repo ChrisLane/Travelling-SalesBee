@@ -215,8 +215,7 @@ public class PanelAnimalAnimation extends JPanel {
 		}
 
 		if(naiveRun) {
-			Cell end = path.get(stepNum+1);
-
+			Cell end = path.get(stepNum);
 			moveFromAToB(end, animalIcon, transition);
 		}
 
