@@ -45,7 +45,7 @@ public class PanelSettings extends JPanel {
 
 	private int experimentalRuns = 26; //Set to 26 by default
 	private double animationSpeed = 10;
-	private int stepNum = 0;
+	private int stepNum;
 	private AlgorithmType type;
 
 	/**
@@ -60,6 +60,7 @@ public class PanelSettings extends JPanel {
 		setBackground(Color.LIGHT_GRAY);
 		addSettingsInfo();
 		addButtons();
+		setStepNum(-1);
 	}
 
 	/**
@@ -145,16 +146,11 @@ public class PanelSettings extends JPanel {
 		btnPrev = new JButton("<-");
 		btnNext = new JButton("->");
 		
-		btnPrev.setEnabled(false);
-		btnNext.setEnabled(false);
-		
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum-1);
 			Platform.runLater(() -> {
 				text.setText(getDistance());
 			});
-			btnPrev.setEnabled((stepNum >= 0));
-			btnNext.setEnabled(true);
 
 			/*----------------------------------------------*/
 			try {
@@ -171,8 +167,6 @@ public class PanelSettings extends JPanel {
 			Platform.runLater(() -> {
 				text.setText(getDistance());
 			});
-			btnPrev.setEnabled(true);
-			//btnNext.setEnabled((stepNum != experimentalRuns));
 
 			/*----------------------------------------------*/
 			try {
@@ -216,9 +210,6 @@ public class PanelSettings extends JPanel {
 			try {
 				setStepNum(0);
 				
-				btnPrev.setEnabled(true);
-				btnNext.setEnabled(true);
-				
 				map.setCostMatrix();
 				NearestNeighbour nearestNeighbour = new NearestNeighbour(map);
 				BeeVisualiser visualise = new BeeVisualiser();
@@ -258,9 +249,6 @@ public class PanelSettings extends JPanel {
 		private void runBeeAlgorithm() {
 			try {
 				setStepNum(0);
-				
-				btnPrev.setEnabled(true);
-				btnNext.setEnabled(true);
 				
 				map.setCostMatrix();
 				Bee bee = new Bee(map, experimentalRuns);
@@ -305,6 +293,8 @@ public class PanelSettings extends JPanel {
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNumber(stepNum);
+		btnPrev.setEnabled((stepNum > 0));
+		btnNext.setEnabled((stepNum != -1));
 	}
 	
 	public void setAlgorithmType(AlgorithmType type){
