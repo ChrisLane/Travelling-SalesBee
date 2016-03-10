@@ -47,6 +47,7 @@ public class PanelSettings extends JPanel {
 	private double animationSpeed = 10;
 	private int stepNum;
 	private AlgorithmType type;
+	private double distance;
 
 	/**
 	 * Create a settings panel
@@ -149,7 +150,7 @@ public class PanelSettings extends JPanel {
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum-1);
 			Platform.runLater(() -> {
-				text.setText(getDistance());
+				text.setText(Double.toString(this.distance));
 			});
 
 			/*----------------------------------------------*/
@@ -165,7 +166,8 @@ public class PanelSettings extends JPanel {
 		btnNext.addActionListener(arg0 -> {
 			setStepNum(stepNum+1);
 			Platform.runLater(() -> {
-				text.setText(getDistance());
+				setDistance();
+				text.setText(Double.toString(this.distance));
 			});
 
 			/*----------------------------------------------*/
@@ -200,16 +202,21 @@ public class PanelSettings extends JPanel {
 				runNearestNeighbourAlgorithm();
 				break;
 			case TWOOPT:
-				
+				runTwoOptAlgorithm();
 				break;
 			}
+			
+		}
+
+		private void runTwoOptAlgorithm() {
+			// TODO Auto-generated method stub
 			
 		}
 
 		private void runNearestNeighbourAlgorithm() {
 			try {
 				setStepNum(0);
-				
+				map = panelMap.getMap();
 				map.setCostMatrix();
 				NearestNeighbour nearestNeighbour = new NearestNeighbour(map);
 				BeeVisualiser visualise = new BeeVisualiser();
@@ -301,13 +308,24 @@ public class PanelSettings extends JPanel {
 		this.type = type;
 	}
 
-	private String getDistance() {
-		// this will set the distance, we just need to get the proper path here
-//		ArrayList<Cell> path = panelMap.getPathComponent().getBeePath();
-//		Cell cell1 = path.get(stepNum-1);
-//		Cell cell2 = path.get(stepNum);
-
-		//return "Distance from step " + (stepNum-1) + " to " + stepNum + " was: " + cell1.distance(cell2) + ".";
-		return "\nDistance from step " + (stepNum-1) + " to " + stepNum + " was: something.";
+	private void setDistance() {
+		double distance = 0;
+		switch(type){
+			case BEE:
+				if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()){
+					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
+					distance = step.getStart().distance(step.getEnd());
+				}
+				break;
+			case ANT:
+				break;
+			case NEARESTNEIGHBOUR:
+				break;
+			case TWOOPT:
+				break;
 	}
+		this.distance = distance;
+	}
+	
+	
 }

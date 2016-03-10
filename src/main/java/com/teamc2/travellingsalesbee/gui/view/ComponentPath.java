@@ -37,19 +37,23 @@ public class ComponentPath extends JComponent {
 		ArrayList<Cell> steppedPath = new ArrayList<>();
 	}
 
-	public ArrayList<Cell> getBeePath() {
-		return beePath;
-	}
-
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
 		naiveSteps = steps;
 		repaint();
 	}
+	
+	public ArrayList<NaiveStep> getNaiveSteps(){
+		return this.naiveSteps;
+	}
 
 	public void setExperimentalSteps(ArrayList<ExperimentalStep> experimentalSteps) {
 		this.experimentalSteps = experimentalSteps;
 		repaint();
+	}
+	
+	public ArrayList<ExperimentalStep> getExperimentalSteps(){
+		return this.experimentalSteps;
 	}
 
 	public void setStepNumber(int stepNum) {
@@ -57,8 +61,17 @@ public class ComponentPath extends JComponent {
 		repaint();
 	}
 	
+	public void setAlgorithmType(AlgorithmType type) {
+		this.type = type;
+		this.repaint();
+	}
+	
 	public String getNaiveStepText(int stepNum) {
 		return this.naiveSteps.get(stepNum).getText();
+	}
+	
+	public ArrayList<Cell> getBeePath() {
+		return beePath;
 	}
 
 	@Override
@@ -77,7 +90,7 @@ public class ComponentPath extends JComponent {
 			paintNearestNeighbourPath(g2);
 			break;
 		case TWOOPT:
-			paintAntPath(g2);
+			paintTwoOptSwapPath(g2);
 			break;
 		}
 		
@@ -114,6 +127,11 @@ public class ComponentPath extends JComponent {
 		}
 	}
 
+	private void paintTwoOptSwapPath(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void paintNearestNeighbourPath(Graphics2D g2) {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
@@ -145,11 +163,6 @@ public class ComponentPath extends JComponent {
 			}
 		}
 		
-	}
-
-	public void setAlgorithmType(AlgorithmType type) {
-		this.type = type;
-		this.repaint();
 	}
 
 	private void paintBeePath(Graphics2D g2){
