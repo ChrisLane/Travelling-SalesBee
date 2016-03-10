@@ -116,7 +116,6 @@ public class LayoutGui extends GroupLayout {
 				updateTabColours();
 				
 
-
 				AlgorithmType type = null;
 				switch (selected) {
 					case 0:
