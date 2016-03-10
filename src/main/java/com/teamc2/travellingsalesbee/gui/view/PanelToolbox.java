@@ -8,12 +8,8 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import javafx.application.Platform;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
