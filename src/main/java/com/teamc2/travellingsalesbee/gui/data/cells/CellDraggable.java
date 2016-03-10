@@ -22,6 +22,9 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private PanelMap panelMap;
 	private Map map;
 	private AlgorithmType algorithmType;
+	private boolean onMap = false;
+	private int prevX = 0;
+	private int prevY = 0;
 
 	/**
 	 * Create a new cell drag object
@@ -119,6 +122,11 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			// Add the cell to the map
 			map.setCell(x, y, type);
 
+			// Remove the previous location of the cell (if there is one) from the map
+			if (onMap) map.clearCell(prevX, prevY);
+			droppedBtn.onMap();
+			droppedBtn.setPrevs(x,y);
+			
 			// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);
 			panelMap.add(droppedBtn);
@@ -135,6 +143,15 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			panelMap.revalidate();
 			panelMap.repaint();
 		}
+	}
+
+	private void setPrevs(int x, int y) {
+		prevX = x;
+		prevY = y;
+	}
+
+	private void onMap() {
+		onMap = true;
 	}
 
 	@Override
