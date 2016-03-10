@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class LayoutGui extends GroupLayout {
 
-	JTabbedPane tabbedPane;
+	private JTabbedPane tabbedPane;
 	private PanelMap panelMap;
 	private PanelToolbox panelToolbox;
 	private Color backgroundColor = new Color(71, 35, 35);
@@ -130,6 +130,7 @@ public class LayoutGui extends GroupLayout {
 				default:
 					text = "Error";
 					imgName = "Error";
+					break;
 			}
 			tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
 			panelMap.setAlgorithmType(type);
