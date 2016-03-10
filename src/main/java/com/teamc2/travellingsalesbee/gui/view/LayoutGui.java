@@ -1,10 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
-import java.io.IOException;
 
 public class LayoutGui extends GroupLayout {
 
@@ -36,27 +34,24 @@ public class LayoutGui extends GroupLayout {
 		/******************** Initialising of the group layout **********************/
 		/****************************************************************************/
 
-		setHorizontalGroup(
-				createParallelGroup(Alignment.LEADING)
-						.addGroup(createSequentialGroup()
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(createParallelGroup(Alignment.LEADING)
-										.addComponent(panelSettings, DEFAULT_SIZE, 789, Short.MAX_VALUE)
-										.addComponent(tabbedPane, DEFAULT_SIZE, 789, Short.MAX_VALUE))
-								.addContainerGap(5, 5)
-								.addComponent(panelToolbox, PREFERRED_SIZE, 110, PREFERRED_SIZE))
-
-
+		setHorizontalGroup(createSequentialGroup()
+				.addComponent(tabbedPane, 0, 100, PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(createParallelGroup()
+						.addComponent(panelMap, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(panelSettings, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+				)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addComponent(panelToolbox, 0, 100, PREFERRED_SIZE)
 		);
-		setVerticalGroup(
-				createParallelGroup(Alignment.LEADING)
-						.addGroup(createSequentialGroup()
-								.addComponent(tabbedPane, PREFERRED_SIZE, 500, PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addContainerGap(25, 25)
-								.addComponent(panelSettings, PREFERRED_SIZE, 188, PREFERRED_SIZE)
-						)
-						.addComponent(panelToolbox, PREFERRED_SIZE, 1000, PREFERRED_SIZE)
+		setVerticalGroup(createParallelGroup()
+				.addComponent(tabbedPane, DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+				.addGroup(createSequentialGroup()
+						.addComponent(panelMap, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(panelSettings, DEFAULT_SIZE, 200, PREFERRED_SIZE)
+				)
+				.addComponent(panelToolbox, DEFAULT_SIZE, 1000, Short.MAX_VALUE)
 		);
 	}
 
@@ -87,71 +82,62 @@ public class LayoutGui extends GroupLayout {
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
 		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
 
-		try {
-			@SuppressWarnings("unused")
-			Image image;
-			image = ImageIO.read(this.getClass().getResource("/assets/icons/SalesBee.png"));
-			tabbedPane.setUI(new BasicTabbedPaneUI());
-			JLabel lbl = new JLabel("Bee");
-			lbl.setVerticalTextPosition(SwingConstants.BOTTOM);
-			lbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		tabbedPane.setUI(new BasicTabbedPaneUI());
 
-			tabbedPane.add(getHtmlForSelectedTitle("BEE", "SalesBeeSelected.png"), panelMap);
-			tabbedPane.add(getHtmlForTitle("ANT", "Ant.png"), tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("NN", "Mailvan.png"), tabbedPane.getTabComponentAt(0));
-			tabbedPane.add(getHtmlForTitle("2-OPT", "Mailvan.png"), tabbedPane.getTabComponentAt(0));
+		JLabel panel1 = new JLabel("Test");
+		tabbedPane.addTab(getHtmlForSelectedTitle("BEE", "SalesBeeSelected.png"), null);
+		tabbedPane.addTab(getHtmlForTitle("ANT", "Ant.png"), null);
+		tabbedPane.addTab(getHtmlForTitle("NN", "Mailvan.png"), null);
+		tabbedPane.addTab(getHtmlForTitle("2-OPT", "Mailvan.png"), null);
 
 
-			tabbedPane.setBackgroundAt(0, this.tabColor);
+		tabbedPane.setBackgroundAt(0, this.tabColor);
 
-			panelMap.setAlgorithmType(AlgorithmType.BEE);
-			panelSettings.setAlgorithmType(AlgorithmType.BEE);
+		panelMap.setAlgorithmType(AlgorithmType.BEE);
+		panelSettings.setAlgorithmType(AlgorithmType.BEE);
 
-			//Change listener to change algorithms when switching tabs
-			tabbedPane.addChangeListener(evt -> {
-				
-				int selected = tabbedPane.getSelectedIndex();
-				String text = "BEE";
-				String imgName = "SalesBee.png";
-				updateTabColours();
-				
+		//Change listener to change algorithms when switching tabs
+		tabbedPane.addChangeListener(evt -> {
 
-				AlgorithmType type = null;
-				switch (selected) {
-					case 0:
-						type = AlgorithmType.BEE;
-						text = "BEE";
-						imgName = "SalesBeeSelected.png";
-						break;
-					case 1:
-						type = AlgorithmType.ANT;
-						text = "ANT";
-						imgName = "AntSelected.png";
-						break;
-					case 2:
-						type = AlgorithmType.NEARESTNEIGHBOUR;
-						text = "NN";
-						imgName = "MailvanSelected.png";
-						break;
-					case 3:
-						type = AlgorithmType.TWOOPT;
-						text = "2-OPT";
-						imgName = "MailvanSelected.png";
-						break;
-				}
-				tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
-				panelMap.setAlgorithmType(type);
-				panelToolbox.setAlgorithmType(type);
-				panelSettings.setStepNum(-1);
-				panelSettings.setAlgorithmType(type);
-				panelMap.repaint();
-			});
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			int selected = tabbedPane.getSelectedIndex();
+			String text;
+			String imgName;
+			updateTabColours();
 
 
+			AlgorithmType type = null;
+			switch (selected) {
+				case 0:
+					type = AlgorithmType.BEE;
+					text = "BEE";
+					imgName = "SalesBeeSelected.png";
+					break;
+				case 1:
+					type = AlgorithmType.ANT;
+					text = "ANT";
+					imgName = "AntSelected.png";
+					break;
+				case 2:
+					type = AlgorithmType.NEARESTNEIGHBOUR;
+					text = "NN";
+					imgName = "MailvanSelected.png";
+					break;
+				case 3:
+					type = AlgorithmType.TWOOPT;
+					text = "2-OPT";
+					imgName = "MailvanSelected.png";
+					break;
+				default:
+					text = "Error";
+					imgName = "Error";
+			}
+			tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
+			panelMap.setAlgorithmType(type);
+			panelToolbox.setAlgorithmType(type);
+			panelSettings.setStepNum(-1);
+			panelSettings.setAlgorithmType(type);
+			panelMap.repaint();
+		});
 	}
 
 	/**
@@ -160,12 +146,11 @@ public class LayoutGui extends GroupLayout {
 	 * @return htmlString The html string to produce the tab
 	 */
 	private String getHtmlForTitle(String text, String imgName) {
-		return "<html><body><center><img src='" + this.getClass().getResource("/assets/icons/" + imgName) 
-				+ "' height='50' width='50'/><br/><h2 color='white'>" + text + "</h2></body></html>";
+		return "<html><head><style></style></head><body><div class='circleBase'><center><img src='" + this.getClass().getResource("/assets/icons/" + imgName) + "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></div></body></html>";
 	}
 
 	private String getHtmlForSelectedTitle(String text, String imgName) {
-		return "<html><body><center><img src='" + this.getClass().getResource("/assets/icons/" + imgName) 
+		return "<html><body><center><img src='" + this.getClass().getResource("/assets/icons/" + imgName)
 				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></body></html>";
 	}
 
