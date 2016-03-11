@@ -19,8 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import com.teamc2.travellingsalesbee.algorithms.Ant;
 import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
+import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
@@ -249,7 +251,16 @@ public class PanelSettings extends JPanel {
 		}
 
 		private void runAntAlgorithm() {
-			// TODO Auto-generated method stub
+			Ant ant = new Ant(map);
+			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList();
+			for (int i=0;i<10;i++){
+				ant.pheromoneRun();
+				setOfRuns.add(ant.getPath());
+			}
+			BeeVisualiser visualise = new BeeVisualiser();
+			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns);
+			panelMap.getPathComponent().setMap(map);
+			panelMap.getPathComponent().setAntSteps(antSteps);
 			
 		}
 

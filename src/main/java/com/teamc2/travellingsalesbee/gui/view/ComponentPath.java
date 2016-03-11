@@ -1,9 +1,11 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
+import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
+import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 import javax.imageio.ImageIO;
@@ -19,6 +21,8 @@ public class ComponentPath extends JComponent {
 	private int stepNum = 0;
 	private ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 	private AlgorithmType type;
+	private ArrayList<AntStep> antSteps = new ArrayList();
+	private Map map;
 
 	public ComponentPath(AlgorithmType type) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,7 +40,15 @@ public class ComponentPath extends JComponent {
 	public void setPath(ArrayList<Cell> path) {
 		ArrayList<Cell> steppedPath = new ArrayList<>();
 	}
+	
+	public void setMap(Map map){
+		this.map = map;
+	}
 
+	public void setAntSteps(ArrayList<AntStep> antSteps) {
+		this.antSteps = antSteps;
+		repaint();
+	}
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
 		naiveSteps = steps;
@@ -248,10 +260,33 @@ public class ComponentPath extends JComponent {
 	}
 	
 	private void paintAntPath(Graphics2D g2){
-		g2.setPaint(Color.black);
-		g2.setStroke(new BasicStroke(5));
-		g2.drawLine(0, 0, 50, 50);
+		if (antSteps.size() > 0){
+			g2.setPaint(Color.black);
+			g2.setStroke(new BasicStroke(5));
+			g2.drawLine(0, 0, 50, 50);
+			
+			int x1, x2, y1, y2;
+			AntStep step = antSteps.get(stepNum);
+			ArrayList<Cell> path = step.getPath();
+			
+			for (int i=0;i<path.size();i++){
+				x1 = (int) path.get(i).getX();
+				y1 = (int) path.get(i).getY();
+				for (int j=(i+1);j<path.size();j++){
+					x2 = (int) path.get(j).getX();
+					y2 = (int) path.get(j).getY();
+					Color lineColor = new Color(255, 255, 0, (int) ((255/path.size())*map.getCostMatrix().getPheromone(path.get(i), path.get(j))));
+
+					g2.setPaint(lineColor);
+					g2.setStroke(new BasicStroke(5));
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
+			}
+		}
+		
 	}
+
+	
 
 
 }

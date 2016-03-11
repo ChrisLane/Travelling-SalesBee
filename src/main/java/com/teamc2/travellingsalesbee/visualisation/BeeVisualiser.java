@@ -1,12 +1,13 @@
 package com.teamc2.travellingsalesbee.visualisation;
 
+import java.util.ArrayList;
+
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
+import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-
-import java.util.ArrayList;
 
 public class BeeVisualiser {
 
@@ -61,5 +62,15 @@ public class BeeVisualiser {
 			}
 		}
 		return SwapType.REJECTED;
+	}
+
+	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns) {
+		ArrayList<AntStep> antSteps = new ArrayList<>();
+		
+		for (int i=0;i<setOfRuns.size();i++){
+			AntStep step = new AntStep(setOfRuns.get(i));
+			antSteps.add(step);
+		}
+		return antSteps;
 	}
 }
