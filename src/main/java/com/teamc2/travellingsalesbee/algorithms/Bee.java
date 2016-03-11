@@ -59,13 +59,9 @@ public class Bee extends NearestNeighbour {
 				double testCost = calculatePathCost(testPath);
 				if (testCost < cost) {
 					setPath(testPath, testCost);
-					intermediaryPaths.add(testPath);
-					intermediaryPathCosts.add(calculatePathCost(path));
-				} else {
-					intermediaryPaths.add(path);
-					intermediaryPathCosts.add(calculatePathCost(path));
-
-				}
+				} 
+				intermediaryPaths.add(path);
+				intermediaryPathCosts.add(cost);
 
 				comparedCells.add(new Comparison<>(flower1, flower2));
 				experiments--;
