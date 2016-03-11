@@ -51,6 +51,9 @@ public class PanelSettings extends JPanel {
 	private int stepNum;
 	private AlgorithmType type;
 	private double distance;
+	private JSlider noOfRunsSlider;
+	private LayoutSettings layoutSettings;
+	private JLabel lblRunsOfType;
 
 	/**
 	 * Create a settings panel
@@ -99,14 +102,14 @@ public class PanelSettings extends JPanel {
 		btnRun.addActionListener(new runActionListener());
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
-		JSlider experimentsSlider = new JSlider();
-		experimentsSlider.setValue(experimentalRuns);
-		experimentsSlider.setOpaque(false);
-		JLabel lblExperimentRuns = new JLabel("Experiment Runs: ");
+		noOfRunsSlider = new JSlider();
+		noOfRunsSlider.setValue(experimentalRuns);
+		noOfRunsSlider.setOpaque(false);
+		lblRunsOfType = new JLabel("Experiment Runs: ");
 		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
 
-		experimentsSlider.addChangeListener(arg0 -> {
-			experimentalRuns = experimentsSlider.getValue();
+		noOfRunsSlider.addChangeListener(arg0 -> {
+			experimentalRuns = noOfRunsSlider.getValue();
 			lblNoOfRuns.setText(("" + experimentalRuns));
 		});
 
@@ -185,7 +188,7 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
-		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, lblExperimentRuns, lblNoOfRuns, experimentsSlider,
+		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
 				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, txtPaneTextWillAppear);
 
 		setLayout(layoutSettings);
@@ -343,6 +346,24 @@ public class PanelSettings extends JPanel {
 
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
+		updateSliderDetails();
+	}
+	
+	private void updateSliderDetails(){
+		switch (type) {
+		case BEE:
+			lblRunsOfType.setText("Experimental Runs:");
+			break;
+		case ANT:
+			lblRunsOfType.setText("Pheremone Runs:");
+			break;
+		case NEARESTNEIGHBOUR:
+			break;
+		case TWOOPT:
+			lblRunsOfType.setText("Swap Runs:");
+			break;
+		}
+		setLayout(layoutSettings);
 	}
 
 	private void setDistance() {
