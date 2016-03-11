@@ -58,7 +58,7 @@ public class LayoutGui extends GroupLayout {
 	private void initialiseTabs() {
 
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
-		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(0, 0, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(12, 10, 0, 0));
 		UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.tabsOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.shadow", this.backgroundColor);
