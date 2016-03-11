@@ -99,7 +99,7 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private Rectangle createRectangle() {
-		final Rectangle rectangle = new Rectangle(-20, -20, 45, 45);
+		final Rectangle rectangle = new Rectangle(-20, -20, 30, 30);
 		rectangle.setOpacity(1);
 
 		return rectangle;
@@ -109,8 +109,15 @@ public class PanelAnimalAnimation extends JPanel {
 
 		transitionPlaying = true;
 
-		transition.setToX(end.getX() - animal.getX() - 25);
-		transition.setToY(end.getY() - animal.getY() - 25);
+		if((end.getX() - animal.getX()) < 0) {
+			animal.setScaleX(-1);
+		} else {
+			animal.setScaleX(1);
+		}
+
+
+		transition.setToX(end.getX() - animal.getX() - 15);
+		transition.setToY(end.getY() - animal.getY() - 15);
 		transition.playFromStart();
 
 		transition.setOnFinished(AE -> {
@@ -140,8 +147,8 @@ public class PanelAnimalAnimation extends JPanel {
 		this.stepNum = 0;
 
 		Platform.runLater(() -> {
-			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 25);
-			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 25);
+			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 15);
+			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 15);
 			animalIcon.setVisible(true);
 			this.setVisible(true);
 		});
@@ -162,10 +169,9 @@ public class PanelAnimalAnimation extends JPanel {
 		if (superI >= superPath.size()) {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
-			//If increment is great than size of the path, go to the next path
-			//animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
-			System.out.println("path.size() = " + path.size());
-			System.out.println("STOP");
+			//Increment the global superI
+			this.popStepNum++;
+			System.out.println("popSteNum: " + popStepNum);
 		} else {
 
 			final int acc = i;
@@ -176,14 +182,8 @@ public class PanelAnimalAnimation extends JPanel {
 
 				//Get the next point to move to
 				Cell end = path.get(acc);
-				System.out.println(path.get(acc).toString());
 
-				//Set transition position to move to
-				transition.setToX(end.getX() - animal.getX() - 25);
-				transition.setToY(end.getY() - animal.getY() - 25);
-
-				//Play transition
-				transition.playFromStart();
+				moveFromAToB(end, animal, transition);
 
 			} else if (superI < superPath.size() - 1) {
 				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
@@ -220,7 +220,6 @@ public class PanelAnimalAnimation extends JPanel {
 		if (stepNum >= pathOfPaths.get(popStepNum).size()) {
 
 			stepNum = 0;
-			popStepNum++;
 
 			System.out.println("Set stepNum to 0: " + stepNum + " popSteNum++" + popStepNum);
 
