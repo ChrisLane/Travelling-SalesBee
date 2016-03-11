@@ -151,7 +151,7 @@ public class PanelSettings extends JPanel {
 		btnNext = new JButton("->");
 
 		btnPrev.addActionListener(arg0 -> {
-			setStepNum(stepNum - 1);
+			setStepNum(stepNum-1);
 			Platform.runLater(() -> {
 				text.setText(Double.toString(this.distance));
 			});
@@ -167,7 +167,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		btnNext.addActionListener(arg0 -> {
-			setStepNum(stepNum + 1);
+			setStepNum(stepNum+1);
 			Platform.runLater(() -> {
 				setDistance();
 				text.setText(Double.toString(this.distance));
@@ -334,7 +334,7 @@ public class PanelSettings extends JPanel {
 
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
-		panelMap.getPathComponent().setStepNumber(stepNum);
+		panelMap.getPathComponent().setStepNum(stepNum);
 		btnPrev.setEnabled((stepNum > 0));
 		btnNext.setEnabled((stepNum != -1));
 	}
