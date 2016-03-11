@@ -4,8 +4,6 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -15,22 +13,29 @@ import javafx.util.Duration;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class PanelAnimalAnimation extends JPanel {
 
 	private String url;
+
 	private int width;
 	private int height;
+	private int stepNum = 0;
+	private int popStepNum = 0;
+
 	private double speed;
+
 	private ArrayList<Cell> path;
 	private ArrayList<ArrayList<Cell>> pathOfPaths;
-	private int stepNum = 0;
+
 	private Rectangle animalIcon;
 	private TranslateTransition transition;
+
 	private boolean transitionPlaying = true;
+	private boolean singlePath = true; //Single path
+	private boolean poPaths = false; //path of Paths
 
 	/**
 	 * Create a new animal animation panel
@@ -117,33 +122,27 @@ public class PanelAnimalAnimation extends JPanel {
 	public void setPath(ArrayList<Cell> path) {
 		this.path = path;
 
-		Platform.runLater(() -> {
-			animalIcon.setX(path.get(stepNum).getX() - 25);
-			animalIcon.setY(path.get(stepNum).getY() - 25);
-			animalIcon.setVisible(true);
-			naiveRun = true;
-		});
+
 	}
 
+	/**
+	 *
+	 * @param path Path of type: ArrayList<ArrayList<Cell>>
+	 *
+	 * Gets the first position from the first path in the list and sets the bee to that position
+	 * If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
-		//setStepNum(0);
+		this.popStepNum = 0;
+		this.stepNum = 0;
 
-		System.out.println("pathOfPaths size: " + pathOfPaths.size());
-
-		//Platform.runLater(() -> {
-			animalIcon.setX(path.get(0).get(0).getX() - 25);
-			animalIcon.setY(path.get(0).get(0).getY() - 25);
+		Platform.runLater(() -> {
+			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 25);
+			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 25);
 			animalIcon.setVisible(true);
-		//});
-
-		// 1. Animate (path.get(step))
-		/*try {
-			animatePath(path, 0, path.get(0), 0, animalIcon, transition);
-		} catch (Exception e) {
-			System.out.println("No available moves");
-			e.printStackTrace();
-		}*/
+			this.setVisible(true);
+		});
 	}
 
 	/**
@@ -202,10 +201,8 @@ public class PanelAnimalAnimation extends JPanel {
 		//transition.setRate(speed);
 	}
 
-	private boolean naiveRun = false;
-
 	public void setStepNum(int step) {
-		this.stepNum = step;
+		this.stepNum++;
 		System.out.println(stepNum);
 
 		if (stepNum < 0) {
@@ -214,21 +211,31 @@ public class PanelAnimalAnimation extends JPanel {
 			this.setVisible(true);
 		}
 
-		if(naiveRun) {
-			Cell end = path.get(stepNum);
-			moveFromAToB(end, animalIcon, transition);
+		//If single path
+		if(singlePath)
+			System.out.println("popStepNum: " + popStepNum);
+			System.out.println("stepNum: " + stepNum);
+			System.out.println("pathOfPaths.get(popStepNum).size()" + pathOfPaths.get(popStepNum).size());
+
+			if (pathOfPaths.get(popStepNum).size() <= stepNum) { //When we've stepped through all of the naive path, animate the rest as entire paths and not separate steps
+				singlePath = false;
+				poPaths = true;
+				popStepNum++;
+			} else {
+				Cell end = pathOfPaths.get(popStepNum).get(stepNum);
+				moveFromAToB(end, animalIcon, transition);
+			}
+
+		if(poPaths) {
+			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(stepNum), 0, animalIcon, transition);
 		}
-
-		/*try {
-			ArrayList<Cell> path = path1fPaths.get(stepNum);
-			animalIcon.setX(path.get(0).getX() - 25);
-			animalIcon.setY(path.get(0).getY() - 25);
-			System.out.println("Set animation");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-
-		//animatePath(pathOfPaths, stepNum, pathOfPaths.get(stepNum), 0, animalIcon, transition);
 	}
 
+	public void animateSteps(boolean bool) {
+		this.singlePath = bool;
+	}
+
+	public void animatePath(boolean bool) {
+		this.poPaths = bool;
+	}
 }
