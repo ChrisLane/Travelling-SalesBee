@@ -181,7 +181,7 @@ public class PanelAnimalAnimation extends JPanel {
 				//Play transition
 				transition.playFromStart();
 
-			} else {
+			} else if (superI < superPath.size() - 1) {
 				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			}
 
