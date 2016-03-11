@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
+import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
@@ -9,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TwoOptSwap extends NearestNeighbour {
 
 	private int swaps;
+	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
+	private ArrayList<Double> intermediaryPathCosts = new ArrayList<>();
 
 	/**
 	 * Constructor
