@@ -158,7 +158,7 @@ public class PanelSettings extends JPanel {
 
 			/*----------------------------------------------*/
 			try {
-				panelMap.getPanelAnimalAnimation().incrStepNum(stepNum);
+				panelMap.getPanelAnimalAnimation().incrStepNum();
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
 				e.printStackTrace();
@@ -176,7 +176,7 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 			try {
 				//if (stepNum < experimentalRuns) {
-				panelMap.getPanelAnimalAnimation().incrStepNum(stepNum);
+				panelMap.getPanelAnimalAnimation().incrStepNum();
 				//}
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
