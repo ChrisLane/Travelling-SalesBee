@@ -201,7 +201,7 @@ public class PanelAnimalAnimation extends JPanel {
 		//transition.setRate(speed);
 	}
 
-	public void setStepNum(int step) {
+	public void incrStepNum() {
 		this.stepNum++;
 		System.out.println(stepNum);
 
