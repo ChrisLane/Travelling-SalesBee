@@ -229,13 +229,13 @@ public class PanelSettings extends JPanel {
 				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 				ArrayList<Cell> hive = new ArrayList<>();
 				hive.add(naiveSteps.get(0).getStart());
-				pathOfPaths.add(hive);
+
 	
 				for (NaiveStep naiveStep : naiveSteps) {
-					ArrayList<Cell> singlePoint = new ArrayList<>();
-					singlePoint.add(naiveStep.getEnd());
-					pathOfPaths.add(singlePoint);
+					hive.add(naiveStep.getEnd());
+					
 				}
+				pathOfPaths.add(hive);
 	
 				/*----------------------------------------------*/
 				//panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
@@ -283,13 +283,12 @@ public class PanelSettings extends JPanel {
 				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 				ArrayList<Cell> hive = new ArrayList<>();
 				hive.add(naiveSteps.get(0).getStart());
-				pathOfPaths.add(hive);
 	
 				for (NaiveStep naiveStep : naiveSteps) {
-					ArrayList<Cell> singlePoint = new ArrayList<>();
-					singlePoint.add(naiveStep.getEnd());
-					pathOfPaths.add(singlePoint);
+					hive.add(naiveStep.getEnd());
+					
 				}
+				pathOfPaths.add(hive);
 	
 				for (ExperimentalStep experimentalStep : experimentalSteps) {
 					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
