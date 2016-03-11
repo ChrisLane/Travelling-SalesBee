@@ -88,7 +88,6 @@ public class PanelMap extends JPanel {
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
 			
-			componentPath.setAlgorithmType(type);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
