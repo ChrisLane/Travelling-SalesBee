@@ -38,8 +38,8 @@ public class Bee extends NearestNeighbour {
 				int flowerPos2 = 0;
 
 				while (flowerPos1 == flowerPos2) {
-					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
-					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
+					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
+					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 1);
 				}
 
 				Cell flower1 = testPath.get(flowerPos1);
