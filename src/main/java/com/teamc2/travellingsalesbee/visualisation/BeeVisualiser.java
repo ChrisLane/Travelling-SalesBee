@@ -19,7 +19,7 @@ public class BeeVisualiser {
 			Cell end = naiveRun.get(i + 1);
 			ArrayList<Cell> naiveComparisons = new ArrayList<>();
 
-			String text = null;
+			String text = "";
 			text += "Node " + i + " chosen because it has the smallest distance of " + start.distance(end) + "m";
 			
 			for (int j = i; j < naiveRun.size() - 1; j++) {
