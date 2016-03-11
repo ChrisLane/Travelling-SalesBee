@@ -212,11 +212,7 @@ public class PanelAnimalAnimation extends JPanel {
 		}
 
 		//If single path
-		if(singlePath)
-			System.out.println("popStepNum: " + popStepNum);
-			System.out.println("stepNum: " + stepNum);
-			System.out.println("pathOfPaths.get(popStepNum).size()" + pathOfPaths.get(popStepNum).size());
-
+		if(singlePath) {
 			if (pathOfPaths.get(popStepNum).size() <= stepNum) { //When we've stepped through all of the naive path, animate the rest as entire paths and not separate steps
 				singlePath = false;
 				poPaths = true;
@@ -225,6 +221,7 @@ public class PanelAnimalAnimation extends JPanel {
 				Cell end = pathOfPaths.get(popStepNum).get(stepNum);
 				moveFromAToB(end, animalIcon, transition);
 			}
+		}
 
 		if(poPaths) {
 			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(stepNum), 0, animalIcon, transition);
