@@ -69,7 +69,7 @@ public class ComponentPath extends JComponent {
 		return this.experimentalSteps;
 	}
 
-	public void setStepNumber(int stepNum) {
+	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		repaint();
 	}

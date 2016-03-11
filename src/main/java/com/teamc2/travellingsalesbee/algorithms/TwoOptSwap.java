@@ -1,17 +1,13 @@
 package com.teamc2.travellingsalesbee.algorithms;
 
-import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TwoOptSwap extends NearestNeighbour {
 
 	private int swaps;
-	private ArrayList<Comparison<Cell, Cell>> comparedCells = new ArrayList<>();
-	private ArrayList<Double> intermediaryPathCosts = new ArrayList<>();
 
 	/**
 	 * Constructor
@@ -29,37 +25,32 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	public void swapRun() {
 		if (path.size() > 4) {
-			while (swaps > 0) {
-				ArrayList<Cell> testPath = new ArrayList<>();
-				testPath.addAll(path);
+			ArrayList<Cell> testPath = new ArrayList<>();
+			testPath.addAll(path);
 
-				int flowerPos1 = 0;
-				int flowerPos2 = 0;
+			int flowerPos1 = 0;
+			int flowerPos2 = 0;
 
-				while (flowerPos1 >= flowerPos2) {
-					flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
-					flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
-				}
+			while (flowerPos1 >= flowerPos2) {
+				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
+				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
+			}
 
-				while (flowerPos1 < flowerPos2) {
-					Cell flower1 = testPath.get(flowerPos1);
-					Cell flower2 = testPath.get(flowerPos2);
+			while (flowerPos1 < flowerPos2) {
+				Cell flower1 = testPath.get(flowerPos1);
+				Cell flower2 = testPath.get(flowerPos2);
 
-					testPath.set(flowerPos1, flower2);
-					testPath.set(flowerPos2, flower1);
+				testPath.set(flowerPos1, flower2);
+				testPath.set(flowerPos2, flower1);
 
-					flowerPos1++;
-					flowerPos2--;
-				}
+				flowerPos1++;
+				flowerPos2--;
+			}
 
-				double testCost = calculatePathCost(testPath);
-				if (testCost < cost) {
-					setPath(testPath, testCost);
-				}
-
-				swaps--;
+			double testCost = calculatePathCost(testPath);
+			if (testCost < cost) {
+				setPath(testPath, testCost);
 			}
 		}
 	}
-
 }

@@ -202,7 +202,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	public void setStepNum(int step) {
-		this.stepNum++;
 		System.out.println(stepNum);
 
 		if (stepNum < 0) {
