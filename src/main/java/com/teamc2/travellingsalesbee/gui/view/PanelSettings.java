@@ -277,7 +277,7 @@ public class PanelSettings extends JPanel {
 
 		private void runAntAlgorithm() {
 			Ant ant = new Ant(map);
-			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList();
+			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
 			for (int i = 0; i < 10; i++) {
 				ant.pheromoneRun();
 				setOfRuns.add(ant.getPath());
