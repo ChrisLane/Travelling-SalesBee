@@ -236,8 +236,8 @@ public class PanelSettings extends JPanel {
 				}
 	
 				/*----------------------------------------------*/
-				panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
-				//panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPsaths);
+				//panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
+				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				/*----------------------------------------------*/
 				// When no nodes are on the screen: disable the buttons.
