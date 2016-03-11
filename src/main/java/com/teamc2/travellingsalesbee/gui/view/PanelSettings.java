@@ -276,9 +276,10 @@ public class PanelSettings extends JPanel {
 		}
 
 		private void runAntAlgorithm() {
+			setStepNum(0);
 			Ant ant = new Ant(map);
 			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 100; i++) {
 				ant.pheromoneRun();
 				setOfRuns.add(ant.getPath());
 			}
@@ -301,7 +302,8 @@ public class PanelSettings extends JPanel {
 				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
 
 				bee.experimentalRun();
-				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
+				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(
+						bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
 				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
 

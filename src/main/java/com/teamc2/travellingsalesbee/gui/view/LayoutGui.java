@@ -135,6 +135,7 @@ public class LayoutGui extends GroupLayout {
 			tabbedPane.setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
 			panelMap.setAlgorithmType(type);
 			panelToolbox.setAlgorithmType(type);
+			panelMap.getPathComponent().setAlgorithmType(type);
 			panelSettings.setStepNum(-1);
 			panelSettings.setAlgorithmType(type);
 			panelMap.repaint();

@@ -21,7 +21,7 @@ public class ComponentPath extends JComponent {
 	private int stepNum = 0;
 	private ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 	private AlgorithmType type;
-	private ArrayList<AntStep> antSteps = new ArrayList();
+	private ArrayList<AntStep> antSteps = new ArrayList<>();
 	private Map map;
 
 	public ComponentPath(AlgorithmType type) {
@@ -290,13 +290,14 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void paintAntPath(Graphics2D g2) {
-		if (antSteps.size() > 0) {
+		if (this.antSteps.size() > 0) {
 			g2.setPaint(Color.black);
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(0, 0, 50, 50);
 
 			int x1, x2, y1, y2;
-			AntStep step = antSteps.get(stepNum);
+			//Fix this stepNum + 1 it thinks it's -1 so had to add 1
+			AntStep step = antSteps.get(stepNum + 1);
 			ArrayList<Cell> path = step.getPath();
 
 			for (int i = 0; i < path.size(); i++) {
@@ -305,7 +306,7 @@ public class ComponentPath extends JComponent {
 				for (int j = (i + 1); j < path.size(); j++) {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
-					Color lineColor = new Color(255, 255, 0, (int) ((255 / path.size()) * map.getCostMatrix().getPheromone(path.get(i), path.get(j))));
+					Color lineColor = new Color(255, 255, 0, (int) (50 + (205 / path.size()) * map.getCostMatrix().getPheromone(path.get(i), path.get(j))));
 
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
