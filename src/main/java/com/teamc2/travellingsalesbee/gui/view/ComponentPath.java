@@ -199,18 +199,29 @@ public class ComponentPath extends JComponent {
 			ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
 			ArrayList<Cell> stepPath = step.getPath();
 			for (int i = 0; i < stepPath.size() - 1; i++) {
-				x1 = (int) stepPath.get(i).x;
-				y1 = (int) stepPath.get(i).y;
-				x2 = (int) stepPath.get(i + 1).x;
-				y2 = (int) stepPath.get(i + 1).y;
 				Color lineColor;
 				if (step.getType() == SwapType.INSPECTED) {
 					lineColor = Color.YELLOW;
+					x1 = (int) stepPath.get(i).x;
+					y1 = (int) stepPath.get(i).y;
+					x2 = (int) stepPath.get(i + 1).x;
+					y2 = (int) stepPath.get(i + 1).y;
 				} else if (step.getType() == SwapType.ACCEPTED) {
 					lineColor = Color.GREEN;
+					x1 = (int) stepPath.get(i).x;
+					y1 = (int) stepPath.get(i).y;
+					x2 = (int) stepPath.get(i + 1).x;
+					y2 = (int) stepPath.get(i + 1).y;
 				} else {
 					lineColor = Color.RED;
+					ExperimentalStep step2 = experimentalSteps.get(stepNum - naiveSteps.size() -1);
+					ArrayList<Cell> stepPath2 = step2.getPath();
+					x1 = (int) stepPath2.get(i).x;
+					y1 = (int) stepPath2.get(i).y;
+					x2 = (int) stepPath2.get(i + 1).x;
+					y2 = (int) stepPath2.get(i + 1).y;
 				}
+				
 				g2.setPaint(lineColor);
 				g2.setStroke(new BasicStroke(5));
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);

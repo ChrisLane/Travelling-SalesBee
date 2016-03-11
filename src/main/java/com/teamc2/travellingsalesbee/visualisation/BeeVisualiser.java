@@ -38,7 +38,7 @@ public class BeeVisualiser {
 	public ArrayList<ExperimentalStep> getExperimentalSteps(ArrayList<Comparison<Cell, Cell>> comparedCells, ArrayList<ArrayList<Cell>> intermediaryPaths, ArrayList<Double> intermediaryPathCosts) {
 		ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 
-		for (int i = 0; i < intermediaryPaths.size() - 2; i += 2) {
+		for (int i = 0; i < intermediaryPaths.size() - 2; i += 3) {
 			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i + 1), intermediaryPaths.get(i), intermediaryPathCosts.get(i), SwapType.INSPECTED);
 
 			ExperimentalStep middleStep = new ExperimentalStep(comparedCells.get(i + 1), intermediaryPaths.get(i + 1), intermediaryPathCosts.get(i + 1), SwapType.INSPECTED);
