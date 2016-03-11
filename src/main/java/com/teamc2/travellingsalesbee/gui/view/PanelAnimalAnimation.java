@@ -16,6 +16,9 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Author: Melvyn Mathews
+ */
 public class PanelAnimalAnimation extends JPanel {
 
 	private String url;
@@ -36,6 +39,7 @@ public class PanelAnimalAnimation extends JPanel {
 	private boolean transitionPlaying = true;
 	private boolean singlePath = true; //Single path
 	private boolean poPaths = false; //path of Paths
+	private boolean stepThroughAllPaths = false; //set to true to step through each step in every path
 
 	/**
 	 * Create a new animal animation panel
@@ -121,8 +125,6 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void setPath(ArrayList<Cell> path) {
 		this.path = path;
-
-
 	}
 
 	/**
@@ -160,19 +162,21 @@ public class PanelAnimalAnimation extends JPanel {
 		if (superI >= superPath.size()) {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
-			//If icrement is great than size of the path, go to the next path
+			//If increment is great than size of the path, go to the next path
 			//animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			System.out.println("path.size() = " + path.size());
 			System.out.println("STOP");
 		} else {
 
-			final int acc = i + 1;
+			final int acc = i;
+			final int accp1 = i + 1;
 
 			//Get end cell
 			if (acc < path.size()) {
 
 				//Get the next point to move to
 				Cell end = path.get(acc);
+				System.out.println(path.get(acc).toString());
 
 				//Set transition position to move to
 				transition.setToX(end.getX() - animal.getX() - 25);
@@ -188,7 +192,7 @@ public class PanelAnimalAnimation extends JPanel {
 			//when animation is finished, increment through path
 			transition.setOnFinished(AE -> {
 				System.out.println("Stopped playing");
-				animatePath(superPath, superI, path, acc, animal, transition);
+				animatePath(superPath, superI, path, accp1, animal, transition);
 			});
 
 		}
@@ -203,36 +207,59 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void incrStepNum() {
 		this.stepNum++;
-		System.out.println(stepNum);
+		System.out.println("Step num: " + stepNum);
 
+		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
 			this.setVisible(false);
 		} else {
 			this.setVisible(true);
 		}
 
-		//If single path
-		if(singlePath) {
-			if (pathOfPaths.get(popStepNum).size() <= stepNum) { //When we've stepped through all of the naive path, animate the rest as entire paths and not separate steps
+		//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
+		if (stepNum >= pathOfPaths.get(popStepNum).size()) {
+
+			stepNum = 0;
+			popStepNum++;
+
+			System.out.println("Set stepNum to 0: " + stepNum + " popSteNum++" + popStepNum);
+
+			if(singlePath && !stepThroughAllPaths) {
 				singlePath = false;
 				poPaths = true;
-				popStepNum++;
-			} else {
-				Cell end = pathOfPaths.get(popStepNum).get(stepNum);
-				moveFromAToB(end, animalIcon, transition);
+				popStepNum ++;
 			}
 		}
 
+		//If animating a single step at a time, ensure singlePath is set to true
+		if(singlePath) {
+			Cell end = pathOfPaths.get(popStepNum).get(stepNum);
+			moveFromAToB(end, animalIcon, transition);
+		}
+
+		//if animating an entire path at a time, set poPaths to true
 		if(poPaths) {
-			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(stepNum), 0, animalIcon, transition);
+			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
 		}
 	}
 
+	/**
+	 *
+	 * @param bool True to animate each step at a time
+	 *             Sets poPaths to !bool
+	 */
 	public void animateSteps(boolean bool) {
 		this.singlePath = bool;
+		this.poPaths = !bool;
 	}
 
+	/**
+	 *
+	 * @param bool True to animate entire paths at a time
+	 *             Sets singlePath to !bool
+	 */
 	public void animatePath(boolean bool) {
 		this.poPaths = bool;
+		this.singlePath = !bool;
 	}
 }
