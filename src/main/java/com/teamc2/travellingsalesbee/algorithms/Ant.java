@@ -23,6 +23,7 @@ public class Ant extends NearestNeighbour {
 	public void pheromoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
+			newPath.addAll(path);
 			ArrayList<CellNode> flowers = map.getFlowers();
 
 			newPath.add(hive);
@@ -62,8 +63,8 @@ public class Ant extends NearestNeighbour {
 		int flowerPos2 = 0;
 
 		while (flowerPos1 == flowerPos2) {
-			flowerPos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
-			flowerPos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
+			flowerPos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 1);
+			flowerPos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 1);
 		}
 
 		Cell flower1 = newPath.get(flowerPos1);

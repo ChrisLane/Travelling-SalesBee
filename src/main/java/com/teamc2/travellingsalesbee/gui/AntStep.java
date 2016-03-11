@@ -13,7 +13,7 @@ public class AntStep {
 	}
 	
 	public ArrayList<Cell> getPath() {
-		return this.path;
+		return path;
 	}
 
 }
