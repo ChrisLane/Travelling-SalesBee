@@ -23,7 +23,6 @@ public class Ant extends NearestNeighbour {
 	public void pheromoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
-			newPath.addAll(path);
 			ArrayList<CellNode> flowers = map.getFlowers();
 
 			newPath.add(hive);
@@ -36,17 +35,19 @@ public class Ant extends NearestNeighbour {
 				currentCell = newPath.get(newPath.size() - 1);
 
 				// Find the next flower to go to
-				while (next == null) {
-					next = findNextFlower(newPath, currentCell);
+				if (flowers.size() > 1) {
+					next = findNextFlower(flowers, currentCell);
+				} else {
+					next = flowers.get(0);
 				}
-
+				
 				//Remove the next flower from the set
 				//Release some pheromone
 				flowers.remove(next);
 				newPath.add(next);
 				plantPheromone(currentCell, next);
 			}
-
+			
 			newPath.add(hive);
 			plantPheromone(next, hive);
 
@@ -58,17 +59,17 @@ public class Ant extends NearestNeighbour {
 		}
 	}
 
-	private Cell findNextFlower(ArrayList<Cell> newPath, Cell currentCell) {
+	private Cell findNextFlower(ArrayList<CellNode> flowers, Cell currentCell) {
 		int flowerPos1 = 0;
 		int flowerPos2 = 0;
 
 		while (flowerPos1 == flowerPos2) {
-			flowerPos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 1);
-			flowerPos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 1);
+			flowerPos1 = ThreadLocalRandom.current().nextInt(0, flowers.size());
+			flowerPos2 = ThreadLocalRandom.current().nextInt(0, flowers.size());
 		}
 
-		Cell flower1 = newPath.get(flowerPos1);
-		Cell flower2 = newPath.get(flowerPos2);
+		Cell flower1 = flowers.get(flowerPos1);
+		Cell flower2 = flowers.get(flowerPos2);
 
 		CostMatrix costMatrix = map.getCostMatrix();
 
