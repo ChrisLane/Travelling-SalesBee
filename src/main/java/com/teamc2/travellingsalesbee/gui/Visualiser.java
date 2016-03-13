@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui;
 
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.view.*;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutGui;
 

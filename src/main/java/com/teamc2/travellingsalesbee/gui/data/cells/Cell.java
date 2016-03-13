@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

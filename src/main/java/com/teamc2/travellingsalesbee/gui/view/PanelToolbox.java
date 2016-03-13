@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;

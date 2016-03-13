@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.algorithms;
 
 public enum AlgorithmType {
 	BEE,
