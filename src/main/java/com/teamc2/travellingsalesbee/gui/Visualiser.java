@@ -25,6 +25,7 @@ public class Visualiser extends JFrame {
 
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setBounds(50, 25, 1200, 650);
+		setMinimumSize(new Dimension(800, 600));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

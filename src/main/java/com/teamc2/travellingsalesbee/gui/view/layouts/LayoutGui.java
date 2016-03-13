@@ -40,23 +40,23 @@ public class LayoutGui extends GroupLayout {
 		/****************************************************************************/
 
 		setHorizontalGroup(createSequentialGroup()
-				.addComponent(tabbedPane, 0, 100, PREFERRED_SIZE)
+				.addComponent(tabbedPane, 100, 100, PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
-						.addComponent(panelMap, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(panelMap, 0, PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(panelSettings, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(panelToolbox, 0, 100, PREFERRED_SIZE)
+				.addComponent(panelToolbox, 100, 100, PREFERRED_SIZE)
 		);
 		setVerticalGroup(createParallelGroup()
-				.addComponent(tabbedPane, DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+				.addComponent(tabbedPane, 500, PREFERRED_SIZE, Short.MAX_VALUE)
 				.addGroup(createSequentialGroup()
-						.addComponent(panelMap, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(panelMap, 0, PREFERRED_SIZE, Short.MAX_VALUE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addComponent(panelSettings, DEFAULT_SIZE, 200, PREFERRED_SIZE)
 				)
-				.addComponent(panelToolbox, DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+				.addComponent(panelToolbox, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 		);
 	}
 
