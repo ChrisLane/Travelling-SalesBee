@@ -19,11 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import com.teamc2.travellingsalesbee.algorithms.Ant;
-import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
+import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.gui.AntStep;
-import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;

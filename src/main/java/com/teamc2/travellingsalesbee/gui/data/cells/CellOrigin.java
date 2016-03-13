@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.data.cells;
 
-import com.teamc2.travellingsalesbee.gui.view.AlgorithmType;
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

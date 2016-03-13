@@ -1,5 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -8,7 +9,6 @@ import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
