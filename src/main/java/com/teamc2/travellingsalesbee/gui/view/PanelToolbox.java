@@ -6,6 +6,7 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutToolbox;
 import javafx.application.Platform;
 
 import javax.swing.*;
