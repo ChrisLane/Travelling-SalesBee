@@ -12,6 +12,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
@@ -35,6 +36,7 @@ public class ComponentPath extends JComponent {
 	private ArrayList<AntStep> antSteps = new ArrayList<>();
 	private Map map;
 	private TwoOptSwap tos;
+	private ArrayList<JLabel> distanceBoxes = new ArrayList<>();
 
 	public ComponentPath(AlgorithmType type) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,6 +105,7 @@ public class ComponentPath extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
+		clearLabels();
 
 		switch (this.type) {
 			case BEE:
@@ -150,6 +153,13 @@ public class ComponentPath extends JComponent {
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
 
 		}
+	}
+
+	private void clearLabels() {
+		for (JLabel label : this.distanceBoxes){
+			this.remove(label);
+		}
+		
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
@@ -241,10 +251,21 @@ public class ComponentPath extends JComponent {
 								x2 = (int) anAvailable.x;
 								y2 = (int) anAvailable.y;
 								g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+								String Distance = Integer.toString((int)Math.round((step.getStart().distance(anAvailable))*100)/100);
+								if (!(available.contains(step.getStart()))){
+									if (step.getEnd()==anAvailable){
+										printDistance(Distance,anAvailable,g2, true);
+									}else{
+										printDistance(Distance,anAvailable,g2, false);
+									}
+								}else{
+									printDistance(Distance,anAvailable,g2, false);
+
+								}
 							}
 						}
-						
 					}
+					
 					if (!(available.contains(step.getStart()))){
 						g2.setStroke(new BasicStroke(6));
 						g2.setPaint(Color.green);
@@ -347,6 +368,20 @@ public class ComponentPath extends JComponent {
 			}
 		}
 
+	}
+	
+	private void printDistance(String text, Cell end, Graphics2D g2, Boolean printOnTopOfLine){
+		JLabel distance = new JLabel(text);
+		distance.setBackground(Color.white);
+		distance.setOpaque(true);
+		if (printOnTopOfLine){
+			distance.setForeground(Color.green);
+		}else{
+			distance.setForeground(Color.red);	
+		}
+		distance.setBounds((int)(end.x+15),(int)(end.y)+50, 30, 30);
+		this.add(distance);
+		this.distanceBoxes.add(distance);
 	}
 
 	public void setTosObject(TwoOptSwap tos)
