@@ -1,24 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-
 import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -28,7 +9,6 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 import javafx.application.Platform;
-import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,7 +28,6 @@ public class PanelSettings extends JPanel {
 	private JButton btnPrev;
 	private JButton btnPlay;
 	private JButton btnNext;
-	private Text text;
 
 	private boolean playing = false;
 	private int experimentalRuns = 26; // Set to 26 by default
@@ -64,8 +43,7 @@ public class PanelSettings extends JPanel {
 	/**
 	 * Create a settings panel
 	 *
-	 * @param panelMap
-	 *            Map JPanel
+	 * @param panelMap Map JPanel
 	 */
 	public PanelSettings(PanelMap panelMap) {
 		this.panelMap = panelMap;
@@ -203,18 +181,18 @@ public class PanelSettings extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch (type) {
-			case BEE:
-				runBeeAlgorithm();
-				break;
-			case ANT:
-				runAntAlgorithm();
-				break;
-			case NEARESTNEIGHBOUR:
-				runNearestNeighbourAlgorithm();
-				break;
-			case TWOOPT:
-				runTwoOptAlgorithm();
-				break;
+				case BEE:
+					runBeeAlgorithm();
+					break;
+				case ANT:
+					runAntAlgorithm();
+					break;
+				case NEARESTNEIGHBOUR:
+					runNearestNeighbourAlgorithm();
+					break;
+				case TWOOPT:
+					runTwoOptAlgorithm();
+					break;
 			}
 		}
 
@@ -315,7 +293,7 @@ public class PanelSettings extends JPanel {
 						bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
 				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES
-																	// NOTHING
+				// NOTHING
 
 				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 				ArrayList<Cell> hive = new ArrayList<>();
@@ -360,17 +338,17 @@ public class PanelSettings extends JPanel {
 
 	private void updateSliderDetails() {
 		switch (type) {
-		case BEE:
-			lblRunsOfType.setText("Experimental Runs:");
-			break;
-		case ANT:
-			lblRunsOfType.setText("Pheremone Runs:");
-			break;
-		case NEARESTNEIGHBOUR:
-			break;
-		case TWOOPT:
-			lblRunsOfType.setText("Swap Runs:");
-			break;
+			case BEE:
+				lblRunsOfType.setText("Experimental Runs:");
+				break;
+			case ANT:
+				lblRunsOfType.setText("Pheremone Runs:");
+				break;
+			case NEARESTNEIGHBOUR:
+				break;
+			case TWOOPT:
+				lblRunsOfType.setText("Swap Runs:");
+				break;
 		}
 		setLayout(layoutSettings);
 	}
@@ -378,18 +356,18 @@ public class PanelSettings extends JPanel {
 	private void setDistance() {
 		double distance = 0;
 		switch (type) {
-		case BEE:
-			if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
-				NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
-				distance = step.getStart().distance(step.getEnd());
-			}
-			break;
-		case ANT:
-			break;
-		case NEARESTNEIGHBOUR:
-			break;
-		case TWOOPT:
-			break;
+			case BEE:
+				if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
+					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
+					distance = step.getStart().distance(step.getEnd());
+				}
+				break;
+			case ANT:
+				break;
+			case NEARESTNEIGHBOUR:
+				break;
+			case TWOOPT:
+				break;
 		}
 		this.distance = distance;
 	}
