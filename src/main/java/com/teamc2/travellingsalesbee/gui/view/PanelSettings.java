@@ -350,7 +350,7 @@ public class PanelSettings extends JPanel {
 				lblRunsOfType.setText("Experimental Runs:");
 				break;
 			case ANT:
-				lblRunsOfType.setText("Pheremone Runs:");
+				lblRunsOfType.setText("Pheromone Runs:");
 				break;
 			case NEARESTNEIGHBOUR:
 				break;
