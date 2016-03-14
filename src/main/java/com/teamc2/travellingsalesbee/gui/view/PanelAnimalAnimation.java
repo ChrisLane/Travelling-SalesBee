@@ -136,7 +136,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 *
 	 * @param superPath Path of all paths ArrayList<ArrayList<Cell>>
 	 * @param superI superPath position (gets the current path we're working with)
 	 * @param path Current path to animate
@@ -247,7 +246,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 *
 	 * @param bool True to animate each step at a time
 	 *             Sets poPaths to !bool
 	 */
@@ -257,7 +255,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 *
 	 * @param bool True to animate entire paths at a time
 	 *             Sets singlePath to !bool
 	 */
