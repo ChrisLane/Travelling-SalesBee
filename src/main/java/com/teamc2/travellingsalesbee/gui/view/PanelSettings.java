@@ -283,7 +283,13 @@ public class PanelSettings extends JPanel {
 				setOfRuns.add(ant.getPath());
 			}
 
+
+			/*
+
+			Below is an example of how to pass through the url name and set the pathOfPaths
+
 			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
+			panelMap.getPanelAnimalAnimation().setPathofPaths(antSteps);*/
 
 			BeeVisualiser visualise = new BeeVisualiser();
 			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
