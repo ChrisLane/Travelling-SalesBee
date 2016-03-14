@@ -10,6 +10,6 @@ public class TextArea {
 	}
 
 	public void setText(String text) {
-		editorPane.setText(editorPane.getText() + text);
+		editorPane.setText(editorPane.getText() + text + "\n");
 	}
 }
