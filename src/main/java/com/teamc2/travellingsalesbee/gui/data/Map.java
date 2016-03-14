@@ -93,6 +93,7 @@ public class Map extends JPanel {
 	 * @param type Type of cell
 	 */
 	public void setCell(int x, int y, CellType type) {
+		cells.remove(getCell(x,y));
 		switch (type) {
 		case EMPTY:
 			cells.add(new CellEmpty(x,y));
