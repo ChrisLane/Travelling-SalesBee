@@ -1,21 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
 import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -24,12 +8,17 @@ import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 
@@ -125,7 +114,7 @@ public class PanelSettings extends JPanel {
 		btnNext = new JButton("->");
 
 		btnPrev.addActionListener(arg0 -> {
-			setStepNum(stepNum-1);
+			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
 				text.setText(Double.toString(this.distance));
 			});
@@ -141,7 +130,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		btnNext.addActionListener(arg0 -> {
-			setStepNum(stepNum+1);
+			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
 				setDistance();
 				text.setText(Double.toString(this.distance));
@@ -322,20 +311,20 @@ public class PanelSettings extends JPanel {
 		this.type = type;
 		updateSliderDetails();
 	}
-	
-	private void updateSliderDetails(){
+
+	private void updateSliderDetails() {
 		switch (type) {
-		case BEE:
-			lblRunsOfType.setText("Experimental Runs:");
-			break;
-		case ANT:
-			lblRunsOfType.setText("Pheremone Runs:");
-			break;
-		case NEARESTNEIGHBOUR:
-			break;
-		case TWOOPT:
-			lblRunsOfType.setText("Swap Runs:");
-			break;
+			case BEE:
+				lblRunsOfType.setText("Experimental Runs:");
+				break;
+			case ANT:
+				lblRunsOfType.setText("Pheremone Runs:");
+				break;
+			case NEARESTNEIGHBOUR:
+				break;
+			case TWOOPT:
+				lblRunsOfType.setText("Swap Runs:");
+				break;
 		}
 		setLayout(layoutSettings);
 	}
