@@ -283,11 +283,12 @@ public class PanelSettings extends JPanel {
 				setOfRuns.add(ant.getPath());
 			}
 
+			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
+
 			BeeVisualiser visualise = new BeeVisualiser();
 			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
 			panelMap.getPathComponent().setMap(map);
 			panelMap.getPathComponent().setAntSteps(antSteps);
-			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
 		}
 
 		private void runBeeAlgorithm() {
