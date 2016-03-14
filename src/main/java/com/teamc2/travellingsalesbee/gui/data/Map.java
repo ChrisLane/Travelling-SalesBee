@@ -16,9 +16,6 @@ public class Map extends JPanel {
 
 	/**
 	 * Create a new map
-	 *
-	 * @param width  Width of the map
-	 * @param height Height of the map
 	 */
 	public Map() {
 		cells = new ArrayList<>();
