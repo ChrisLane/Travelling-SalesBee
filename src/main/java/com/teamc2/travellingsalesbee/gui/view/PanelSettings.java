@@ -7,7 +7,6 @@ import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 import javafx.application.Platform;
@@ -271,31 +270,24 @@ public class PanelSettings extends JPanel {
 		}
 
 		private void runAntAlgorithm() {
+			setStepNum(0);
+			Ant ant = new Ant(map);
+			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
+			ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
+			CostMatrix initialMatrix;
+			initialMatrix = map.getCostMatrix().copy();
 
-			try {
-				setStepNum(0);
-				Ant ant = new Ant(map);
-				ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
-				ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
-				CostMatrix initialMatrix;
-				initialMatrix = (CostMatrix) map.getCostMatrix().clone();
-
-				for (int i = 0; i < 100; i++) {
-					ant.pheromoneRun();
-					CostMatrix updatedMatrix = new CostMatrix(map);
-					updatedMatrix = (CostMatrix) map.getCostMatrix().clone();
-					setOfMatrices.add(updatedMatrix);
-					setOfRuns.add(ant.getPath());
-				}
-
-				BeeVisualiser visualise = new BeeVisualiser();
-				ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
-				panelMap.getPathComponent().setMap(map);
-				panelMap.getPathComponent().setAntSteps(antSteps);
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			for (int i = 0; i < 100; i++) {
+				ant.pheromoneRun();
+				CostMatrix updatedMatrix = map.getCostMatrix().copy();
+				setOfMatrices.add(updatedMatrix);
+				setOfRuns.add(ant.getPath());
 			}
+
+			BeeVisualiser visualise = new BeeVisualiser();
+			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
+			panelMap.getPathComponent().setMap(map);
+			panelMap.getPathComponent().setAntSteps(antSteps);
 		}
 
 		private void runBeeAlgorithm() {

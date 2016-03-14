@@ -2,7 +2,9 @@ package com.teamc2.travellingsalesbee.algorithms.cost;
 
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-public class CostEntry {
+import java.io.Serializable;
+
+public class CostEntry implements Serializable {
 
 	private Cell first;
 	private Cell second;
