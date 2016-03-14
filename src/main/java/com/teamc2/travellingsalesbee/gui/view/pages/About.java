@@ -5,6 +5,8 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * A class for generating and viewing the about page.
+ *
+ * @author Neil Farrington (npf489)
  */
 public class About extends Page {
 
