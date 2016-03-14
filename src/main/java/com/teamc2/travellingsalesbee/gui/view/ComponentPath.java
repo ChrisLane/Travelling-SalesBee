@@ -1,19 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Toolkit;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
@@ -25,6 +11,11 @@ import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 public class ComponentPath extends JComponent {
 
@@ -157,7 +148,7 @@ public class ComponentPath extends JComponent {
 
 	private void clearLabels() {
 		distanceBoxes.forEach(this::remove);
-		
+
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
@@ -169,62 +160,36 @@ public class ComponentPath extends JComponent {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
 			tos.setStepNum(stepNum);
-
-			for (int i = 0; i < stepNum + 1; i++) {
-				if (i < naiveSteps.size()) {
-					NaiveStep step = naiveSteps.get(i);
-					x1 = (int) step.getStart().x;
-					y1 = (int) step.getStart().y;
-
-					ArrayList<Cell> available = step.getAvailable();
-
-					if (i == stepNum) {
-						for (Cell anAvailable : available) {
-							g2.setStroke(new BasicStroke(5));
-							g2.setPaint(Color.red);
-							x2 = (int) anAvailable.x;
-							y2 = (int) anAvailable.y;
-							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-						}
-					}
-
-					g2.setStroke(new BasicStroke(6));
-					g2.setPaint(Color.green);
-					x2 = (int) step.getEnd().x;
-					y2 = (int) step.getEnd().y;
-					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-				}
-			}
 		} else if (stepNum >= naiveSteps.size()) {
 			tos.swap(stepNum);
 			naiveSteps = (new BeeVisualiser()).getNaiveSteps(tos.getPath());
 			setPath(tos.getPath());
+		}
 
-			int x1, x2, y1, y2;
-			for (int i = 0; i < stepNum + 1; i++) {
-				if (i < naiveSteps.size()) {
-					NaiveStep step = naiveSteps.get(i);
-					x1 = (int) step.getStart().x;
-					y1 = (int) step.getStart().y;
+		int x1, x2, y1, y2;
+		for (int i = 0; i < stepNum + 1; i++) {
+			if (i < naiveSteps.size()) {
+				NaiveStep step = naiveSteps.get(i);
+				x1 = (int) step.getStart().x;
+				y1 = (int) step.getStart().y;
 
-					ArrayList<Cell> available = step.getAvailable();
+				ArrayList<Cell> available = step.getAvailable();
 
-					if (i == stepNum) {
-						for (Cell anAvailable : available) {
-							g2.setStroke(new BasicStroke(5));
-							g2.setPaint(Color.red);
-							x2 = (int) anAvailable.x;
-							y2 = (int) anAvailable.y;
-							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-						}
+				if (i == stepNum) {
+					for (Cell anAvailable : available) {
+						g2.setStroke(new BasicStroke(5));
+						g2.setPaint(Color.red);
+						x2 = (int) anAvailable.x;
+						y2 = (int) anAvailable.y;
+						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 					}
-
-					g2.setStroke(new BasicStroke(6));
-					g2.setPaint(Color.green);
-					x2 = (int) step.getEnd().x;
-					y2 = (int) step.getEnd().y;
-					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 				}
+
+				g2.setStroke(new BasicStroke(6));
+				g2.setPaint(Color.green);
+				x2 = (int) step.getEnd().x;
+				y2 = (int) step.getEnd().y;
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 			}
 		}
 	}
@@ -242,35 +207,35 @@ public class ComponentPath extends JComponent {
 					ArrayList<Cell> available = step.getAvailable();
 
 					if (i == stepNum) {
-						if (available.size()>0){
+						if (available.size() > 0) {
 							for (Cell anAvailable : available) {
 								g2.setStroke(new BasicStroke(5));
 								g2.setPaint(Color.red);
 								x2 = (int) anAvailable.x;
 								y2 = (int) anAvailable.y;
 								g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-								String Distance = Integer.toString((int)Math.round((step.getStart().distance(anAvailable))*100)/100);
-								if (!(available.contains(step.getStart()))){
-									if (step.getEnd()==anAvailable){
-										printDistance(Distance,anAvailable,g2, true);
-									}else{
-										printDistance(Distance,anAvailable,g2, false);
+								String Distance = Integer.toString((int) Math.round((step.getStart().distance(anAvailable)) * 100) / 100);
+								if (!(available.contains(step.getStart()))) {
+									if (step.getEnd() == anAvailable) {
+										printDistance(Distance, anAvailable, g2, true);
+									} else {
+										printDistance(Distance, anAvailable, g2, false);
 									}
-								}else{
-									printDistance(Distance,anAvailable,g2, false);
+								} else {
+									printDistance(Distance, anAvailable, g2, false);
 
 								}
 							}
 						}
 					}
-					
-					if (!(available.contains(step.getStart()))){
+
+					if (!(available.contains(step.getStart()))) {
 						g2.setStroke(new BasicStroke(6));
 						g2.setPaint(Color.green);
 						x2 = (int) step.getEnd().x;
 						y2 = (int) step.getEnd().y;
 						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-					}else{
+					} else {
 						g2.setStroke(new BasicStroke(5));
 						g2.setPaint(Color.red);
 						x2 = (int) step.getEnd().x;
@@ -348,7 +313,7 @@ public class ComponentPath extends JComponent {
 			//Fix this stepNum + 1 it thinks it's -1 so had to add 1
 			AntStep step = antSteps.get(stepNum + 1);
 			ArrayList<Cell> path = step.getPath();
-			
+
 			CostMatrix matrix = step.getCostMatrix();
 
 			for (int i = 0; i < path.size(); i++) {
@@ -367,24 +332,23 @@ public class ComponentPath extends JComponent {
 		}
 
 	}
-	
-	private void printDistance(String text, Cell end, Graphics2D g2, Boolean printOnTopOfLine){
+
+	private void printDistance(String text, Cell end, Graphics2D g2, Boolean printOnTopOfLine) {
 		JLabel distance = new JLabel(text);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
-		if (printOnTopOfLine){
+		if (printOnTopOfLine) {
 			distance.setForeground(Color.green);
-		}else{
-			distance.setForeground(Color.red);	
+		} else {
+			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int)(end.x+15),(int)(end.y)+50, 30, 30);
+		distance.setBounds((int) (end.x + 15), (int) (end.y) + 50, 30, 30);
 		this.add(distance);
 		this.distanceBoxes.add(distance);
 	}
 
-	public void setTosObject(TwoOptSwap tos)
-	{
+	public void setTosObject(TwoOptSwap tos) {
 		this.tos = tos;
 	}
-	
+
 }
