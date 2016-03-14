@@ -21,22 +21,20 @@ import java.util.ArrayList;
  */
 public class PanelAnimalAnimation extends JPanel {
 
-	private String url;
+	private String url; //The URL string for the image
 
-	private int width;
-	private int height;
-	private int stepNum = 0;
-	private int popStepNum = 0;
+	private int width; //Width of the panel
+	private int height; //height of the panel
+	private int stepNum = 0; //Step number for the path
+	private int popStepNum = 0; //Step number for the path of paths
 
-	private double speed;
+	private double speed; //Speed of the bee
 
-	private ArrayList<Cell> path;
 	private ArrayList<ArrayList<Cell>> pathOfPaths;
 
 	private Rectangle animalIcon;
 	private TranslateTransition transition;
 
-	private boolean transitionPlaying = true;
 	private boolean singlePath = true; //Single path
 	private boolean poPaths = false; //path of Paths
 	private boolean stepThroughAllPaths = false; //set to true to step through each step in every path
@@ -105,9 +103,14 @@ public class PanelAnimalAnimation extends JPanel {
 		return rectangle;
 	}
 
+	/**
+	 *
+	 * @param end End position for which the animal will move to
+	 * @param animal Animal image
+	 * @param transition TranslateTransition transition for animation
+	 */
 	private void moveFromAToB(Cell end, Rectangle animal, TranslateTransition transition) {
 		Platform.runLater(() -> {
-			transitionPlaying = true;
 
 			if((end.getX() - animal.getX()) < 0) {
 				animal.setScaleX(-1);
@@ -115,13 +118,12 @@ public class PanelAnimalAnimation extends JPanel {
 				animal.setScaleX(1);
 			}
 
-
+			//Set where to animate to and play the animation
 			transition.setToX(end.getX() - animal.getX() - 15);
 			transition.setToY(end.getY() - animal.getY() - 15);
 			transition.playFromStart();
 
 			transition.setOnFinished(AE -> {
-				transitionPlaying = false;
 				System.out.println("STOPPED PLAYING");
 			});
 		});
@@ -129,10 +131,6 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public void setPath(ArrayList<Cell> path) {
-		this.path = path;
 	}
 
 	/**
