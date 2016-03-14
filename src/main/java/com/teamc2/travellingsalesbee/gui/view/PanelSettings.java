@@ -32,6 +32,7 @@ public class PanelSettings extends JPanel {
 	private JButton btnNext;
 	private JButton btnRun;
 
+	private Timer timer;
 	private boolean playing = false;
 	private int experimentalRuns = 26; // Set to 26 by default
 	private double animationSpeed = 10;
@@ -131,7 +132,7 @@ public class PanelSettings extends JPanel {
 	private void createPlayButton() {
 		btnPlay = new JButton("►");
 
-		Timer timer = new Timer(150, arg0 -> {
+		timer = new Timer(150, arg0 -> {
 			setStepNum(stepNum + 1);
 			panelMap.getPathComponent().repaint();
 			// panelMap.getPanelAnimalAnimation().incrStepNum();
@@ -347,6 +348,11 @@ public class PanelSettings extends JPanel {
 		btnPrev.setEnabled((stepNum > 0));
 		btnPlay.setEnabled((stepNum != -1));
 		btnNext.setEnabled((stepNum != -1));
+		if (stepNum == -1) {
+			timer.stop();
+			btnPlay.setText("►");
+			playing = false;
+		}
 	}
 
 	public void setAlgorithmType(AlgorithmType type) {
