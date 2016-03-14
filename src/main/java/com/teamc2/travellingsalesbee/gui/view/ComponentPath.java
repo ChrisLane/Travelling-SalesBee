@@ -267,20 +267,31 @@ public class ComponentPath extends JComponent {
 					ArrayList<Cell> available = step.getAvailable();
 
 					if (i == stepNum) {
-						for (Cell anAvailable : available) {
-							g2.setStroke(new BasicStroke(5));
-							g2.setPaint(Color.red);
-							x2 = (int) anAvailable.x;
-							y2 = (int) anAvailable.y;
-							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+						if (available.size()>0){
+							for (Cell anAvailable : available) {
+								g2.setStroke(new BasicStroke(5));
+								g2.setPaint(Color.red);
+								x2 = (int) anAvailable.x;
+								y2 = (int) anAvailable.y;
+								g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+							}
 						}
+						
 					}
-
-					g2.setStroke(new BasicStroke(6));
-					g2.setPaint(Color.green);
-					x2 = (int) step.getEnd().x;
-					y2 = (int) step.getEnd().y;
-					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					if (!(available.contains(step.getStart()))){
+						g2.setStroke(new BasicStroke(6));
+						g2.setPaint(Color.green);
+						x2 = (int) step.getEnd().x;
+						y2 = (int) step.getEnd().y;
+						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					}else{
+						g2.setStroke(new BasicStroke(5));
+						g2.setPaint(Color.red);
+						x2 = (int) step.getEnd().x;
+						y2 = (int) step.getEnd().y;
+						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					}
+					
 				}
 			}
 		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size()) {
