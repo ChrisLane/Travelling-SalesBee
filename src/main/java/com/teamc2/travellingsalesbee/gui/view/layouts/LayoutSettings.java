@@ -60,7 +60,7 @@ public class LayoutSettings extends GroupLayout {
 						)
 		);
 		setVerticalGroup(
-				createParallelGroup(Alignment.TRAILING)
+				createParallelGroup(Alignment.LEADING)
 						.addGroup(createSequentialGroup()
 								.addContainerGap()
 								.addComponent(infoLabel)
