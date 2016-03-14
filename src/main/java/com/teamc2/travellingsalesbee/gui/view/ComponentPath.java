@@ -262,6 +262,12 @@ public class ComponentPath extends JComponent {
 					y1 = (int) stepPath.get(i).y;
 					x2 = (int) stepPath.get(i + 1).x;
 					y2 = (int) stepPath.get(i + 1).y;
+				} else if (step.getType() == SwapType.BEST){
+					lineColor = Color.WHITE;
+					x1 = (int) stepPath.get(i).x;
+					y1 = (int) stepPath.get(i).y;
+					x2 = (int) stepPath.get(i + 1).x;
+					y2 = (int) stepPath.get(i + 1).y;
 				} else if (step.getType() == SwapType.ACCEPTED) {
 					lineColor = Color.GREEN;
 					x1 = (int) stepPath.get(i).x;
@@ -323,7 +329,7 @@ public class ComponentPath extends JComponent {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
 					System.out.println(i + " -> " + j + " " + matrix.getPheromone(path.get(i), path.get(j)));
-					Color lineColor = new Color(255, 255, 0, (int) (50 + ((205 / matrix.getMaxPheromone())) * matrix.getPheromone(path.get(i), path.get(j))));
+					Color lineColor = new Color(255, 255, 0, (int) (((255 / matrix.getMaxPheromone())) * matrix.getPheromone(path.get(i), path.get(j))));
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
@@ -333,6 +339,7 @@ public class ComponentPath extends JComponent {
 
 	}
 
+	//Code to print the distance boxes on top of flowers
 	private void printDistance(String text, Cell end, Graphics2D g2, Boolean printOnTopOfLine) {
 		JLabel distance = new JLabel(text);
 		distance.setBackground(Color.white);
@@ -342,7 +349,7 @@ public class ComponentPath extends JComponent {
 		} else {
 			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int) (end.x + 15), (int) (end.y) + 50, 30, 30);
+		distance.setBounds((int) (end.x)+15, (int) (end.y) + 15, 30, 20);
 		this.add(distance);
 		this.distanceBoxes.add(distance);
 	}

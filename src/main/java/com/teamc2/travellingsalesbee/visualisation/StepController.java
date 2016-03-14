@@ -46,7 +46,7 @@ public class StepController {
 		ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 
 		for (int i = 0; i < intermediaryPaths.size() - 2; i += 3) {
-			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i + 1), intermediaryPaths.get(i), intermediaryPathCosts.get(i), SwapType.INSPECTED);
+			ExperimentalStep initialStep = new ExperimentalStep(comparedCells.get(i + 1), intermediaryPaths.get(i), intermediaryPathCosts.get(i), SwapType.BEST);
 
 			ExperimentalStep middleStep = new ExperimentalStep(comparedCells.get(i + 1), intermediaryPaths.get(i + 1), intermediaryPathCosts.get(i + 1), SwapType.INSPECTED);
 
