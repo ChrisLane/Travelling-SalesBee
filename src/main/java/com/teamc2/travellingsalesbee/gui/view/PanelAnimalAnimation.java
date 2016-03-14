@@ -90,12 +90,6 @@ public class PanelAnimalAnimation extends JPanel {
 		transition = new TranslateTransition(Duration.seconds(1), animalIcon);
 		root.getChildren().add(animalIcon);
 
-		//This should be set, but for now we'll leave it hard-coded in
-		url = "/assets/icons/SalesBee.png";
-
-		Image image = new Image(url);
-		animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
-
 		return scene;
 	}
 
@@ -127,12 +121,21 @@ public class PanelAnimalAnimation extends JPanel {
 
 			transition.setOnFinished(AE -> {
 				System.out.println("STOPPED PLAYING");
+				if(!singlePath) {
+					System.out.println("Calling animatePath");
+					stepNum++;
+					animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), stepNum, animal, transition);
+				}
 			});
 		});
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+
+		System.out.println(url);
+		Image image = new Image(url);
+		animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
 	}
 
 	/**
@@ -168,12 +171,6 @@ public class PanelAnimalAnimation extends JPanel {
 				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			}
 
-			//when animation is finished, increment through path
-			transition.setOnFinished(AE -> {
-				System.out.println("Stopped playing");
-				animatePath(superPath, superI, path, accp1, animal, transition);
-			});
-
 		}
 	}
 
@@ -205,12 +202,47 @@ public class PanelAnimalAnimation extends JPanel {
 			stepNum = 0;
 
 			System.out.println("Set stepNum to 0: " + stepNum + " popSteNum++" + popStepNum);
+			System.out.println("singlePath: " + singlePath);
+			System.out.println("stepThroughAllPaths: " + stepThroughAllPaths);
+			System.out.println("poPaths: " + poPaths);
 
 			if(singlePath && !stepThroughAllPaths) {
 				singlePath = false;
 				poPaths = true;
 				popStepNum ++;
 			}
+		}
+
+		//If animating a single step at a time, ensure singlePath is set to true
+		if(singlePath) {
+			Cell end = pathOfPaths.get(popStepNum).get(stepNum);
+			moveFromAToB(end, animalIcon, transition);
+		}
+
+		//if animating an entire path at a time, set poPaths to true
+		if(poPaths) {
+			System.out.println("poPaths should be animating");
+			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
+		}
+	}
+
+	/**
+	 * Decrement Step Number
+	 */
+	public void decrStepNum() {
+		this.stepNum --;
+
+		//Un/Show bee based on a positive stepNum
+		if (stepNum < 0) {
+			this.setVisible(false);
+		} else {
+			this.setVisible(true);
+		}
+
+		if(stepNum <= 0) {
+			stepNum = 0;
+
+			popStepNum--;
 		}
 
 		//If animating a single step at a time, ensure singlePath is set to true
