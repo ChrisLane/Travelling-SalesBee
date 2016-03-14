@@ -27,6 +27,7 @@ public class Visualiser extends JFrame {
 		setBounds(50, 25, 1200, 650);
 		setMinimumSize(new Dimension(800, 600));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(71, 35, 35));
@@ -39,9 +40,7 @@ public class Visualiser extends JFrame {
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
 
-		// Add grid to the map
 		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox, componentTabs);
-
 		contentPane.setLayout(layoutGui);
 	}
 
