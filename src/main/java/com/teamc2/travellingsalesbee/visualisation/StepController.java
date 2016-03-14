@@ -10,7 +10,7 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-public class BeeVisualiser {
+public class StepController {
 
 
 	public ArrayList<NaiveStep> getNaiveSteps(ArrayList<Cell> naiveRun) {

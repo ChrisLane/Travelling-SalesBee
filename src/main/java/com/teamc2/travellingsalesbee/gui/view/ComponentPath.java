@@ -10,7 +10,7 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
+import com.teamc2.travellingsalesbee.visualisation.StepController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -162,7 +162,7 @@ public class ComponentPath extends JComponent {
 			tos.setStepNum(stepNum);
 		} else if (stepNum >= naiveSteps.size()) {
 			tos.swap(stepNum);
-			naiveSteps = (new BeeVisualiser()).getNaiveSteps(tos.getPath());
+			naiveSteps = (new StepController()).getNaiveSteps(tos.getPath());
 			setPath(tos.getPath());
 		}
 
