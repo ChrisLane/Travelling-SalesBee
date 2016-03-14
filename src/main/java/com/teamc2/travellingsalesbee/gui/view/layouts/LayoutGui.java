@@ -30,7 +30,7 @@ public class LayoutGui extends GroupLayout {
 						.addComponent(panelSettings, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(panelToolbox, 200, 200, PREFERRED_SIZE)
+				.addComponent(panelToolbox, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
 		);
 		setVerticalGroup(createParallelGroup()
 				.addComponent(componentTabs, 500, PREFERRED_SIZE, Short.MAX_VALUE)
