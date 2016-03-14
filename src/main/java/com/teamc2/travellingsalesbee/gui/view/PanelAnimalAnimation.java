@@ -154,14 +154,13 @@ public class PanelAnimalAnimation extends JPanel {
 			System.out.println("popSteNum: " + popStepNum);
 		} else {
 
-			final int acc = i;
 			final int accp1 = i + 1;
 
 			//Get end cell
-			if (acc < path.size()) {
+			if (i < path.size()) {
 
 				//Get the next point to move to
-				Cell end = path.get(acc);
+				Cell end = path.get(i);
 
 				moveFromAToB(end, animal, transition);
 
