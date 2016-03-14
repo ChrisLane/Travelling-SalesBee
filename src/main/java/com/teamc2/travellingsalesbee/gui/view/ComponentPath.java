@@ -234,39 +234,6 @@ public class ComponentPath extends JComponent {
 					ArrayList<Cell> available = step.getAvailable();
 
 					if (i == stepNum) {
-						for (Cell anAvailable : available) {
-							g2.setStroke(new BasicStroke(5));
-							g2.setPaint(Color.red);
-							x2 = (int) anAvailable.x;
-							y2 = (int) anAvailable.y;
-							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-						}
-					}
-
-					g2.setStroke(new BasicStroke(6));
-					g2.setPaint(Color.green);
-					x2 = (int) step.getEnd().x;
-					y2 = (int) step.getEnd().y;
-					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-				}
-			}
-		}
-
-	}
-
-	private void paintBeePath(Graphics2D g2) {
-		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
-			int x1, x2, y1, y2;
-
-			for (int i = 0; i < stepNum + 1; i++) {
-				if (i < naiveSteps.size()) {
-					NaiveStep step = naiveSteps.get(i);
-					x1 = (int) step.getStart().x;
-					y1 = (int) step.getStart().y;
-
-					ArrayList<Cell> available = step.getAvailable();
-
-					if (i == stepNum) {
 						if (available.size()>0){
 							for (Cell anAvailable : available) {
 								g2.setStroke(new BasicStroke(5));
@@ -291,9 +258,14 @@ public class ComponentPath extends JComponent {
 						y2 = (int) step.getEnd().y;
 						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 					}
-					
 				}
 			}
+		}
+	}
+
+	private void paintBeePath(Graphics2D g2) {
+		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
+			paintNearestNeighbourPath(g2);
 		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size()) {
 			int x1, x2, y1, y2;
 			ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
@@ -381,4 +353,5 @@ public class ComponentPath extends JComponent {
 	{
 		this.tos = tos;
 	}
+	
 }
