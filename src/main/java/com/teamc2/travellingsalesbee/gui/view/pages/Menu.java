@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * A class for generating and viewing the menu page.
+ *
+ * @author Neil Farrington (npf489)
  */
 public class Menu extends Page {
 

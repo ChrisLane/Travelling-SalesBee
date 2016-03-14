@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 /**
  * Creates the main GUI menu for navigation.
+ *
+ * @author Neil Farrington (npf489)
  */
 public class TravellingSalesBee extends Application {
 	public static Page mainMenu;
@@ -46,7 +48,7 @@ public class TravellingSalesBee extends Application {
 	}
 
 	/**
-	 * <p>Start the program, showing the main menu.</p>
+	 * Start the program, showing the main menu.
 	 * {@inheritDoc}
 	 */
 	@Override

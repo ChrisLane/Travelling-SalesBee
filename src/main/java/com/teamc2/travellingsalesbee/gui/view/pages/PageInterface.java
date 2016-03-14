@@ -2,6 +2,8 @@ package com.teamc2.travellingsalesbee.gui.view.pages;
 
 /**
  * Interface for all menu pages.
+ *
+ * @author Neil Farrington (npf489)
  */
 public interface PageInterface {
 

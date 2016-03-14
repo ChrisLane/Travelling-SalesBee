@@ -2,6 +2,8 @@ package com.teamc2.travellingsalesbee.gui.view.pages;
 
 /**
  * A class for generating and viewing the documentation page.
+ *
+ * @author Neil Farrington (npf489)
  */
 public class Documentation extends Page {
 

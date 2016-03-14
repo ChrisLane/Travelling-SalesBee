@@ -6,41 +6,52 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Model for Two-Opt Swap Algorithm
+ *
+ * @author Neil Farrington (npf489)
+ */
 public class TwoOptSwap extends NearestNeighbour {
 
 	private int stepNum;
-	private ArrayList<int[]> swapLog;
+	private ArrayList<int[]> swapLog = new ArrayList<>();
 
 	/**
-	 * Constructor
+	 * Construct the algorithm.
 	 *
-	 * @param map Map object for storing cells
+	 * @param map Map object for storing cells.
 	 */
 	public TwoOptSwap(Map map) {
 		super(map);
-		swapLog = new ArrayList<>();
 	}
 
+	/**
+	 * Perform the swap.
+	 *
+	 * @param stepNum The step number to step to.
+	 */
 	public void swap(int stepNum) {
-
+		// if the step number we need to get to is forwards, perform the next swap
 		while (stepNum > this.stepNum) {
 			nextSwap();
 			this.stepNum++;
 		}
 
+		// if the step number we need to get to is backwards, perform the previous swap
 		while (stepNum < this.stepNum) {
 			previousSwap();
 			this.stepNum--;
 		}
 
+		// set the target step as the current step
 		this.stepNum = stepNum;
 	}
 
 	/**
-	 * Runs a two-opt swap improvement check
+	 * Run the next swap.
 	 */
-	public void nextSwap() {
-		if (path.size() > 4) {
+	protected void nextSwap() {
+		if (path.size() >= 2) {
 			ArrayList<Cell> testPath = new ArrayList<>();
 			testPath.addAll(path);
 
@@ -70,7 +81,10 @@ public class TwoOptSwap extends NearestNeighbour {
 		}
 	}
 
-	public void previousSwap() {
+	/**
+	 * Reverse the last swap that was carried out.
+	 */
+	protected void previousSwap() {
 		ArrayList<Cell> path = new ArrayList<>();
 		path.addAll(this.path);
 
@@ -86,6 +100,11 @@ public class TwoOptSwap extends NearestNeighbour {
 		setPath(path, getCost());
 	}
 
+	/**
+	 * Set the step number without cycling to it.
+	 *
+	 * @param stepNum The step number to set.
+	 */
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 	}

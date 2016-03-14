@@ -8,6 +8,8 @@ import java.net.URL;
 
 /**
  * Base page class.
+ *
+ * @author Neil Farrington (npf489)
  */
 public abstract class Page extends Stage implements PageInterface {
 	protected final int height;
