@@ -73,7 +73,7 @@ public class BeeVisualiser {
 	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns, ArrayList<CostMatrix> setOfMatrices, CostMatrix initialMatrix) {
 		ArrayList<AntStep> antSteps = new ArrayList<>();
 		
-		//Add an initial step so route can be printed with equal pheremones
+		//Add an initial step so route can be printed with equal pheromones
 		AntStep initialStep = new AntStep(setOfRuns.get(0),initialMatrix);
 		antSteps.add(initialStep);
 		
