@@ -323,7 +323,7 @@ public class ComponentPath extends JComponent {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
 					System.out.println(i + " -> " + j + " " + matrix.getPheromone(path.get(i), path.get(j)));
-					Color lineColor = new Color(255, 255, 0, (int) (50 + (205 / matrix.getMaxPheromone()) * matrix.getPheromone(path.get(i), path.get(j))));
+					Color lineColor = new Color(255, 255, 0, (int) (50 + ((205 / matrix.getMaxPheromone())) * matrix.getPheromone(path.get(i), path.get(j))));
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
