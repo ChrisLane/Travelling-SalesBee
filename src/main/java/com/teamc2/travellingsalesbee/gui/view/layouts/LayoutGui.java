@@ -22,10 +22,6 @@ public class LayoutGui extends GroupLayout {
 	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox, ComponentTabs componentTabs) {
 		super(host);
 
-		/****************************************************************************/
-		/******************** Initialising of the group layout **********************/
-		/****************************************************************************/
-
 		setHorizontalGroup(createSequentialGroup()
 				.addComponent(componentTabs, 100, 100, PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
