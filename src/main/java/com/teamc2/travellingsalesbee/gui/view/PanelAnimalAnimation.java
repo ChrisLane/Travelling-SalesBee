@@ -106,23 +106,24 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	private void moveFromAToB(Cell end, Rectangle animal, TranslateTransition transition) {
+		Platform.runLater(() -> {
+			transitionPlaying = true;
 
-		transitionPlaying = true;
-
-		if((end.getX() - animal.getX()) < 0) {
-			animal.setScaleX(-1);
-		} else {
-			animal.setScaleX(1);
-		}
+			if((end.getX() - animal.getX()) < 0) {
+				animal.setScaleX(-1);
+			} else {
+				animal.setScaleX(1);
+			}
 
 
-		transition.setToX(end.getX() - animal.getX() - 15);
-		transition.setToY(end.getY() - animal.getY() - 15);
-		transition.playFromStart();
+			transition.setToX(end.getX() - animal.getX() - 15);
+			transition.setToY(end.getY() - animal.getY() - 15);
+			transition.playFromStart();
 
-		transition.setOnFinished(AE -> {
-			transitionPlaying = false;
-			System.out.println("STOPPED PLAYING");
+			transition.setOnFinished(AE -> {
+				transitionPlaying = false;
+				System.out.println("STOPPED PLAYING");
+			});
 		});
 	}
 
