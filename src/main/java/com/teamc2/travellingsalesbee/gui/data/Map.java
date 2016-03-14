@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 public class Map extends JPanel {
 
-	private final int width; //Width of map
-	private final int height; //Height of map
-	private final Cell[][] cells; //Will store our ElementCells
+	private ArrayList<Cell> cells; //Will store our ElementCells
 	private int speed; //Speed of bees
 	private CellOrigin hive;
 	private CostMatrix costMatrix;
@@ -21,11 +19,8 @@ public class Map extends JPanel {
 	 * @param width  Width of the map
 	 * @param height Height of the map
 	 */
-	public Map(int width, int height) {
-		this.width = width;
-		this.height = height;
-
-		cells = new Cell[width][height];
+	public Map() {
+		cells = new ArrayList<>();
 		setMap();
 	}
 
@@ -36,7 +31,7 @@ public class Map extends JPanel {
 	 *
 	 * @return 2D array of cells in the map
 	 */
-	public Cell[][] getCells() {
+	public ArrayList<Cell> getCells() {
 		return cells;
 	}
 
@@ -47,11 +42,9 @@ public class Map extends JPanel {
 	 */
 	public ArrayList<CellNode> getFlowers() {
 		ArrayList<CellNode> flowers = new ArrayList<>();
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				if (cells[i][j].getType().equals(CellType.NODE)) {
-					flowers.add((CellNode) cells[i][j]);
-				}
+		for (Cell c : cells) {
+			if (c.getType().equals(CellType.NODE)) {
+				flowers.add((CellNode) c);
 			}
 		}
 		return flowers;
@@ -59,11 +52,9 @@ public class Map extends JPanel {
 
 	public ArrayList<Cell> getNodes() {
 		ArrayList<Cell> flowers = new ArrayList<>();
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				if (cells[i][j].getType().equals(CellType.NODE)) {
-					flowers.add(cells[i][j]);
-				}
+		for (Cell c : cells) {
+			if (c.getType().equals(CellType.NODE)) {
+				flowers.add(c);
 			}
 		}
 		return flowers;
@@ -77,7 +68,12 @@ public class Map extends JPanel {
 	 * @return Cell at (x, y)
 	 */
 	public Cell getCell(int x, int y) {
-		return cells[x][y];
+		for (Cell c : cells) {
+			if (c.getX() == x && c.getY() == y) {
+				return c;
+			}
+		}
+		return null;
 	}
 
 	public CostMatrix getCostMatrix() {
@@ -98,17 +94,17 @@ public class Map extends JPanel {
 	 */
 	public void setCell(int x, int y, CellType type) {
 		switch (type) {
-			case EMPTY:
-				cells[x][y] = new CellEmpty(x, y);
-				break;
-			case ORIGIN:
-				CellOrigin hive = new CellOrigin(x, y);
-				cells[x][y] = hive;
-				this.hive = hive;
-				break;
-			case NODE:
-				cells[x][y] = new CellNode(x, y);
-				break;
+		case EMPTY:
+			cells.add(new CellEmpty(x,y));
+			break;
+		case ORIGIN:
+			CellOrigin hive = new CellOrigin(x,y);
+			cells.add(hive);
+			this.hive = hive;
+			break;
+		case NODE:
+			cells.add(new CellNode(x,y));
+			break;
 		}
 	}
 
@@ -135,11 +131,7 @@ public class Map extends JPanel {
 	 * Fill the map will empty cells
 	 */
 	public void setMap() {
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				clearCell(i, j);
-			}
-		}
+		cells = new ArrayList<>();
 	}
 
 	/**
