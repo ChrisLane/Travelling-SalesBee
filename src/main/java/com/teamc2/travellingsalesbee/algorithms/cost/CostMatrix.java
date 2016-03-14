@@ -63,6 +63,17 @@ public class CostMatrix {
 		}
 		return 1;
 	}
+	
+	public double getMaxPheromone() {
+		double maxPheromone = 0;
+		for (CostEntry entry : costMatrix) {
+			double currentPheromone = entry.getPheromone();
+			if (currentPheromone > maxPheromone) {
+				maxPheromone = currentPheromone;
+			}
+		}
+		return maxPheromone;
+	}
 
 	public CostEntry getEntry(Cell cell1, Cell cell2) {
 		for (CostEntry entry : costMatrix) {
