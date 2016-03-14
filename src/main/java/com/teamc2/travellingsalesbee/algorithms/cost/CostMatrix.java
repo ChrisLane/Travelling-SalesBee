@@ -1,11 +1,12 @@
 package com.teamc2.travellingsalesbee.algorithms.cost;
 
-import java.util.ArrayList;
-
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-public class CostMatrix implements Cloneable{
+import java.io.*;
+import java.util.ArrayList;
+
+public class CostMatrix implements Serializable {
 
 	private ArrayList<CostEntry> costMatrix;
 	private ArrayList<Cell> cells1;
@@ -63,7 +64,7 @@ public class CostMatrix implements Cloneable{
 		}
 		return 1;
 	}
-	
+
 	public double getMaxPheromone() {
 		double maxPheromone = 0;
 		for (CostEntry entry : costMatrix) {
@@ -83,8 +84,23 @@ public class CostMatrix implements Cloneable{
 		}
 		return null;
 	}
-	
-	public Object clone() throws CloneNotSupportedException {
-		 return super.clone();
+
+	public CostMatrix copy() {
+		ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+		ObjectOutputStream objectOutputStream;
+		try {
+			objectOutputStream = new ObjectOutputStream(byteOutputStream);
+			objectOutputStream.writeObject(this);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+			byteOutputStream.close();
+			byte[] byteData = byteOutputStream.toByteArray();
+
+			ByteArrayInputStream byteInputStream = new ByteArrayInputStream(byteData);
+			return (CostMatrix) new ObjectInputStream(byteInputStream).readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
