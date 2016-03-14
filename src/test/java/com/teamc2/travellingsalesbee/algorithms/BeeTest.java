@@ -15,7 +15,7 @@ public class BeeTest {
 
 	@BeforeClass
 	public void initialise() {
-		map = new Map(10, 10);
+		map = new Map();
 		map.setCell(0, 0, CellType.ORIGIN);
 		map.setCell(0, 2, CellType.NODE); // flower 1
 		map.setCell(0, 6, CellType.NODE); // flower 2
