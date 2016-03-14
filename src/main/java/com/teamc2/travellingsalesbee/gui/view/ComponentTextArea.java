@@ -1,8 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.gui.data.TextArea;
+
 import javax.swing.*;
 import java.awt.*;
-import com.teamc2.travellingsalesbee.gui.data.TextArea;
 
 
 public class ComponentTextArea extends JScrollPane {

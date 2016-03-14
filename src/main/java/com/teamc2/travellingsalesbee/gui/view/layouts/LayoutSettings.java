@@ -83,7 +83,7 @@ public class LayoutSettings extends GroupLayout {
 										.addComponent(btnRun)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 								.addGap(20)
 						)
 		);
