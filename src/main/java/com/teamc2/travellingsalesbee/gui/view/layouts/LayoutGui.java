@@ -23,7 +23,7 @@ public class LayoutGui extends GroupLayout {
 		super(host);
 
 		setHorizontalGroup(createSequentialGroup()
-				.addComponent(componentTabs, 200, 200, PREFERRED_SIZE)
+				.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
 						.addComponent(panelMap, 0, PREFERRED_SIZE, Short.MAX_VALUE)
