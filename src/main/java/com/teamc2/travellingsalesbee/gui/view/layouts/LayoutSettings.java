@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view.layouts;
 
-import javafx.embed.swing.JFXPanel;
+import com.teamc2.travellingsalesbee.gui.view.ComponentTextArea;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class LayoutSettings extends GroupLayout {
 	 */
 	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
 						  JSlider experimentsSlider, JLabel lblAnimationSpeed, JLabel lblSpeed, JSlider speedSlider,
-						  JButton btnRun, JButton btnPrev, JButton btnNext, JFXPanel txtPaneTextWillAppear) {
+						  JButton btnRun, JButton btnPrev, JButton btnNext, ComponentTextArea textArea) {
 		super(host);
 
 		setHorizontalGroup(
@@ -51,7 +51,7 @@ public class LayoutSettings extends GroupLayout {
 												.addGap(18)
 												.addComponent(btnNext)
 										)
-										.addComponent(txtPaneTextWillAppear)
+										.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 								.addContainerGap()
 						)
@@ -83,8 +83,8 @@ public class LayoutSettings extends GroupLayout {
 										.addComponent(btnRun)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(txtPaneTextWillAppear)
-								.addGap(69)
+						.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+								.addGap(20)
 						)
 		);
 	}

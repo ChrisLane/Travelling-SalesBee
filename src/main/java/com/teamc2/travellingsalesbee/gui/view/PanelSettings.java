@@ -14,10 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.*;
 
 import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.gui.AntStep;
@@ -124,30 +121,6 @@ public class PanelSettings extends JPanel {
 			lblSpeed.setText(("" + animationSpeed));
 		});
 
-		final JFXPanel txtPaneTextWillAppear = new JFXPanel();
-
-		// Size of parent-panel
-		txtPaneTextWillAppear.setBackground(new Color(0, 0, 0, 0));
-		txtPaneTextWillAppear.setOpaque(false);
-
-		Platform.runLater(() -> {
-			Pane root = new Pane();
-			root.setId("infoboxPanel");
-
-			Scene scene = new Scene(root);
-			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
-			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
-			scene.getStylesheets().add(url1.toExternalForm());
-
-			text = new Text("\nExplanatory step-through text will appear here.");
-			text.setWrappingWidth(txtPaneTextWillAppear.getWidth());
-			root.getChildren().add(text);
-			text.setId("infobox");
-			txtPaneTextWillAppear.setScene(scene);
-		});
-
-		add(txtPaneTextWillAppear);
-
 		btnPrev = new JButton("<-");
 		btnNext = new JButton("->");
 
@@ -186,8 +159,11 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
+		JEditorPane editorPane = new JEditorPane();
+		ComponentTextArea textArea = new ComponentTextArea(editorPane);
+
 		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
-				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, txtPaneTextWillAppear);
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, textArea);
 
 		setLayout(layoutSettings);
 	}
