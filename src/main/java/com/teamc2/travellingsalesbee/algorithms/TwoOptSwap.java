@@ -33,8 +33,14 @@ public class TwoOptSwap extends NearestNeighbour {
 	public void swap(int stepNum) {
 		// if the step number we need to get to is forwards, perform the next swap
 		while (stepNum > this.stepNum) {
-			nextSwap();
+			int count = 0;
+			while (!nextSwap() && count < path.size()*3) {
+				nextSwap();
+				count++;
+			}
+
 			this.stepNum++;
+			System.out.println(count);
 		}
 
 		// if the step number we need to get to is backwards, perform the previous swap
@@ -50,7 +56,7 @@ public class TwoOptSwap extends NearestNeighbour {
 	/**
 	 * Run the next swap.
 	 */
-	protected void nextSwap() {
+	protected boolean nextSwap() {
 		if (path.size() >= 2) {
 			ArrayList<Cell> testPath = new ArrayList<>();
 			testPath.addAll(path);
@@ -75,10 +81,19 @@ public class TwoOptSwap extends NearestNeighbour {
 			}
 
 			double testCost = calculatePathCost(testPath);
-			setPath(testPath, testCost);
-			int[] swap = new int[]{flowerPos1, flowerPos2};
-			swapLog.add(swap);
+			if (testCost < cost) {
+				System.out.println("Swapped to a better position.");
+				setPath(testPath, testCost);
+				int[] swap = new int[]{flowerPos1, flowerPos2};
+				swapLog.add(swap);
+
+				return true;
+			} else {
+				return false;
+			}
 		}
+
+		return false;
 	}
 
 	/**
