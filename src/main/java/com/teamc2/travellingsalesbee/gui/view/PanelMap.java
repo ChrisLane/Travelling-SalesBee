@@ -15,12 +15,15 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PanelMap extends JPanel {
+	
 	private final int cellWidth;
 	private final int cellHeight;
 	private ComponentPath componentPath;
 	private PanelAnimalAnimation panelAnimation;
 	private Map map;
 	private AlgorithmType type;
+	private int screenWidth;
+	private int screenHeight;
 
 	/**
 	 * Create the map panel
@@ -34,9 +37,9 @@ public class PanelMap extends JPanel {
 
 		// Create the map we're visualising
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;
-		map = new Map(screenWidth, screenHeight);
+		screenWidth = screenSize.width;
+		screenHeight = screenSize.height;
+		map = new Map();
 
 
 		componentPath = new ComponentPath(AlgorithmType.BEE);
@@ -178,5 +181,13 @@ public class PanelMap extends JPanel {
 				map.setCell(x,y,CellType.EMPTY);
 			}
 		}
+	}
+	
+	public int getScreenWidth() {
+		return screenWidth;
+	}
+
+	public int getScreenHeight() {
+		return screenHeight;
 	}
 }
