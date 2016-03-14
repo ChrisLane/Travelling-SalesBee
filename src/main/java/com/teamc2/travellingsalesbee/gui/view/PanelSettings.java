@@ -1,30 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.Timer;
-
-import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
-import com.teamc2.travellingsalesbee.algorithms.Ant;
-import com.teamc2.travellingsalesbee.algorithms.Bee;
-import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
-import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
+import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -33,8 +9,16 @@ import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-
 import javafx.application.Platform;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelSettings extends JPanel {
 
@@ -45,6 +29,7 @@ public class PanelSettings extends JPanel {
 	private JButton btnPrev;
 	private JButton btnPlay;
 	private JButton btnNext;
+	private JButton btnRun;
 
 	private boolean playing = false;
 	private int experimentalRuns = 26; // Set to 26 by default
@@ -100,9 +85,10 @@ public class PanelSettings extends JPanel {
 	 * Add the settings buttons to the panel
 	 */
 	public void addButtons() {
-		JButton btnRun = new JButton("RUN");
-		btnRun.addActionListener(new runActionListener());
-		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		createRunButton();
+		createPlayButton();
+		createPreviousButton();
+		createNextButton();
 
 		noOfRunsSlider = new JSlider();
 		noOfRunsSlider.setValue(experimentalRuns);
@@ -128,44 +114,21 @@ public class PanelSettings extends JPanel {
 			lblSpeed.setText(("" + animationSpeed));
 		});
 
-		btnPrev = new JButton("<-");
+		JEditorPane editorPane = new JEditorPane();
+		textArea = new ComponentTextArea(editorPane);
+		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext, textArea);
+		setLayout(layoutSettings);
+	}
+
+	private void createRunButton() {
+		btnRun = new JButton("RUN");
+		btnRun.addActionListener(new runActionListener());
+		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
+	}
+
+	private void createPlayButton() {
 		btnPlay = new JButton("►");
-		btnNext = new JButton("->");
-
-		btnPrev.addActionListener(arg0 -> {
-			setStepNum(stepNum - 1);
-			Platform.runLater(() -> {
-				textArea.setText("Distance: " + distance);
-			});
-
-			/*----------------------------------------------*/
-			try {
-				panelMap.getPanelAnimalAnimation().incrStepNum();
-			} catch (IndexOutOfBoundsException e) {
-				System.err.println("Exception in setting animation");
-				e.printStackTrace();
-			}
-			/*----------------------------------------------*/
-		});
-
-		btnNext.addActionListener(arg0 -> {
-			setStepNum(stepNum + 1);
-			Platform.runLater(() -> {
-				setDistance();
-				textArea.setText("Distance: " + distance);
-			});
-
-			/*----------------------------------------------*/
-			try {
-				// if (stepNum < experimentalRuns) {
-				panelMap.getPanelAnimalAnimation().incrStepNum();
-				// }
-			} catch (IndexOutOfBoundsException e) {
-				System.err.println("Exception in setting animation");
-				e.printStackTrace();
-			}
-			/*----------------------------------------------*/
-		});
 
 		Timer timer = new Timer(150, arg0 -> {
 			setStepNum(stepNum + 1);
@@ -184,12 +147,43 @@ public class PanelSettings extends JPanel {
 				playing = false;
 			}
 		});
+	}
 
-		JEditorPane editorPane = new JEditorPane();
-		textArea = new ComponentTextArea(editorPane);
-		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
-				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext, textArea);
-		setLayout(layoutSettings);
+	private void createPreviousButton() {
+		btnPrev = new JButton("<-");
+		btnPrev.addActionListener(arg0 -> {
+			setStepNum(stepNum - 1);
+			Platform.runLater(() -> {
+				textArea.setText("Distance: " + distance);
+			});
+
+			try {
+				panelMap.getPanelAnimalAnimation().incrStepNum();
+			} catch (IndexOutOfBoundsException e) {
+				System.err.println("Exception in setting animation");
+				e.printStackTrace();
+			}
+		});
+	}
+
+	private void createNextButton() {
+		btnNext = new JButton("->");
+		btnNext.addActionListener(arg0 -> {
+			setStepNum(stepNum + 1);
+			Platform.runLater(() -> {
+				setDistance();
+				textArea.setText("Distance: " + distance);
+			});
+
+			try {
+				// if (stepNum < experimentalRuns) {
+				panelMap.getPanelAnimalAnimation().incrStepNum();
+				// }
+			} catch (IndexOutOfBoundsException e) {
+				System.err.println("Exception in setting animation");
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private class runActionListener implements ActionListener {
@@ -276,8 +270,8 @@ public class PanelSettings extends JPanel {
 
 		}
 
-		private void runAntAlgorithm(){
-			
+		private void runAntAlgorithm() {
+
 			try {
 				setStepNum(0);
 				Ant ant = new Ant(map);
@@ -285,7 +279,7 @@ public class PanelSettings extends JPanel {
 				ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
 				CostMatrix initialMatrix;
 				initialMatrix = (CostMatrix) map.getCostMatrix().clone();
-				
+
 				for (int i = 0; i < 100; i++) {
 					ant.pheromoneRun();
 					CostMatrix updatedMatrix = new CostMatrix(map);
@@ -293,7 +287,7 @@ public class PanelSettings extends JPanel {
 					setOfMatrices.add(updatedMatrix);
 					setOfRuns.add(ant.getPath());
 				}
-				
+
 				BeeVisualiser visualise = new BeeVisualiser();
 				ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
 				panelMap.getPathComponent().setMap(map);
