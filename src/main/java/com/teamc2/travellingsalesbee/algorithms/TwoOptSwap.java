@@ -58,17 +58,19 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	protected boolean nextSwap() {
 		if (path.size() >= 2) {
+			// create a new test path
 			ArrayList<Cell> testPath = new ArrayList<>();
 			testPath.addAll(path);
 
+			// choose two random flowers
 			int flowerPos1 = 0;
 			int flowerPos2 = 0;
-
 			while (flowerPos1 >= flowerPos2) {
 				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
 			}
 
+			// swap the flowers
 			while (flowerPos1 < flowerPos2) {
 				Cell flower1 = testPath.get(flowerPos1);
 				Cell flower2 = testPath.get(flowerPos2);
@@ -80,6 +82,7 @@ public class TwoOptSwap extends NearestNeighbour {
 				flowerPos2--;
 			}
 
+			// if the swap was beneficial, update and return true
 			double testCost = calculatePathCost(testPath);
 			if (testCost < cost) {
 				System.out.println("Swapped to a better position.");
@@ -100,19 +103,17 @@ public class TwoOptSwap extends NearestNeighbour {
 	 * Reverse the last swap that was carried out.
 	 */
 	protected void previousSwap() {
-		ArrayList<Cell> path = new ArrayList<>();
-		path.addAll(this.path);
-
+		// get the last swap
 		int[] swap = swapLog.get(swapLog.size() - 1);
 		swapLog.remove(swapLog.size() - 1);
 
+		// perform the swap reversal and recalculate
 		Cell flower1 = path.get(swap[1]);
 		Cell flower2 = path.get(swap[0]);
-
 		path.set(swap[0], flower1);
 		path.set(swap[1], flower2);
 
-		setPath(path, getCost());
+		setPath(path, calculatePathCost(path));
 	}
 
 	/**
