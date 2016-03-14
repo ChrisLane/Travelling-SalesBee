@@ -91,12 +91,13 @@ public class ComponentTabs extends JTabbedPane {
 	 * @return htmlString The html string to produce the tab
 	 */
 	private String getHtmlForTitle(String text, String imgName) {
-		return "<html><head><style></style></head><body><img src='" + this.getClass().getResource("/assets/icons/" + imgName) + "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></body></html>";
+		return "<html><img src='" + this.getClass().getResource("/assets/icons/" + imgName)
+				+ "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></html>";
 	}
 
 	private String getHtmlForSelectedTitle(String text, String imgName) {
-		return "<html><body><img src='" + this.getClass().getResource("/assets/icons/" + imgName)
-				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></body></html>";
+		return "<html><img src='" + this.getClass().getResource("/assets/icons/" + imgName)
+				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></html>";
 	}
 
 	private void updateTabColours() {
