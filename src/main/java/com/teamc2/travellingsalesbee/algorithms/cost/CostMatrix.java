@@ -1,11 +1,11 @@
 package com.teamc2.travellingsalesbee.algorithms.cost;
 
+import java.util.ArrayList;
+
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
-import java.util.ArrayList;
-
-public class CostMatrix {
+public class CostMatrix implements Cloneable{
 
 	private ArrayList<CostEntry> costMatrix;
 	private ArrayList<Cell> cells1;
@@ -82,5 +82,9 @@ public class CostMatrix {
 			}
 		}
 		return null;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		 return super.clone();
 	}
 }
