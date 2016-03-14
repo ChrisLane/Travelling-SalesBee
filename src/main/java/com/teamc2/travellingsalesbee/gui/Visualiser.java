@@ -37,9 +37,10 @@ public class Visualiser extends JFrame {
 		PanelMap panelMap = new PanelMap(width, height);
 		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
 		PanelSettings panelSettings = new PanelSettings(panelMap);
+		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
 
 		// Add grid to the map
-		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox);
+		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox, componentTabs);
 
 		contentPane.setLayout(layoutGui);
 	}
