@@ -172,6 +172,8 @@ public class PanelMap extends JPanel {
 	}
 
 	public void clear() {
+		getPathComponent().setStepNum(-1);
+		//getPanelAnimalAnimation().setStepNum(-1);
 		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				int x = c.getX();
