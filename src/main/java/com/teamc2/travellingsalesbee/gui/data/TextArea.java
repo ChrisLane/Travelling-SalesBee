@@ -9,7 +9,7 @@ public class TextArea {
 		this.editorPane = editorPane;
 	}
 
-	public void setText(String text) {
+	public void addText(String text) {
 		editorPane.setText(editorPane.getText() + text + "\n");
 	}
 }

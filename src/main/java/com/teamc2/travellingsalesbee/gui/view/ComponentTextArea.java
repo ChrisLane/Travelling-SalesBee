@@ -20,7 +20,7 @@ public class ComponentTextArea extends JScrollPane {
 	}
 
 	public void setText(String text) {
-		textArea.setText(text);
+		textArea.addText(text);
 		repaint();
 	}
 }
