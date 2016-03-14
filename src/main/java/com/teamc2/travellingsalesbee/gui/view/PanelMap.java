@@ -51,12 +51,6 @@ public class PanelMap extends JPanel {
 
 		setComponentZOrder(panelAnimation, 0);
 
-		//Pass the bee path to the animation class
-		ArrayList<Cell> path = this.getPathComponent().getBeePath();
-		if (path.size() > 0) {
-			panelAnimation.setPath(path);
-		}
-
 		setLayout(null);
 	}
 
