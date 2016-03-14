@@ -2,6 +2,7 @@ package com.teamc2.travellingsalesbee.algorithms;
 
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,8 +14,7 @@ public class TwoOptSwap extends NearestNeighbour {
 	/**
 	 * Constructor
 	 *
-	 * @param map   Map object for storing cells
-	 * @param swaps Number of swaps to run
+	 * @param map Map object for storing cells
 	 */
 	public TwoOptSwap(Map map) {
 		super(map);
@@ -65,7 +65,7 @@ public class TwoOptSwap extends NearestNeighbour {
 
 			double testCost = calculatePathCost(testPath);
 			setPath(testPath, testCost);
-			int[] swap = new int[] {flowerPos1, flowerPos2};
+			int[] swap = new int[]{flowerPos1, flowerPos2};
 			swapLog.add(swap);
 		}
 	}
@@ -86,8 +86,7 @@ public class TwoOptSwap extends NearestNeighbour {
 		setPath(path, getCost());
 	}
 
-	public void setStepNum(int stepNum)
-	{
+	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 	}
 }

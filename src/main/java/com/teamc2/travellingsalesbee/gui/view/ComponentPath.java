@@ -153,15 +153,10 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
-		StackTraceElement[] es = Thread.currentThread().getStackTrace();
-		for (StackTraceElement e : es) {
-			System.out.println(e);
+
+		if (tos == null) {
+			return;
 		}
-		System.out.println("===================================================================");
-		System.out.println("===================================================================");
-		System.out.println("===================================================================");
-		System.out.println("===================================================================");
-		System.out.println("===================================================================");
 
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
@@ -194,9 +189,8 @@ public class ComponentPath extends JComponent {
 			}
 		} else if (stepNum >= naiveSteps.size()) {
 			tos.swap(stepNum);
-			setNaiveSteps((new BeeVisualiser()).getNaiveSteps(tos.getPath()));
+			naiveSteps = (new BeeVisualiser()).getNaiveSteps(tos.getPath());
 			setPath(tos.getPath());
-			System.out.println(tos.getPath());
 
 			int x1, x2, y1, y2;
 			for (int i = 0; i < stepNum + 1; i++) {
@@ -376,6 +370,4 @@ public class ComponentPath extends JComponent {
 	{
 		this.tos = tos;
 	}
-
-
 }
