@@ -7,6 +7,7 @@ import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 import javafx.application.Platform;
@@ -256,6 +257,7 @@ public class PanelSettings extends JPanel {
 
 				/*----------------------------------------------*/
 				// panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
+				panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Mailvan.png");
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				/*----------------------------------------------*/
@@ -275,17 +277,27 @@ public class PanelSettings extends JPanel {
 			CostMatrix initialMatrix;
 			initialMatrix = map.getCostMatrix().copy();
 
-			for (int i = 0; i < 100; i++) {
-				ant.pheromoneRun();
-				CostMatrix updatedMatrix = map.getCostMatrix().copy();
-				setOfMatrices.add(updatedMatrix);
-				setOfRuns.add(ant.getPath());
-			}
+				for (int i = 0; i < 100; i++) {
+					ant.pheromoneRun();
+					CostMatrix updatedMatrix = new CostMatrix(map);
+					updatedMatrix = (CostMatrix) map.getCostMatrix().clone();
+					setOfMatrices.add(updatedMatrix);
+					setOfRuns.add(ant.getPath());
+				}
 
 			BeeVisualiser visualise = new BeeVisualiser();
 			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
 			panelMap.getPathComponent().setMap(map);
 			panelMap.getPathComponent().setAntSteps(antSteps);
+				BeeVisualiser visualise = new BeeVisualiser();
+				panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
+				ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
+				panelMap.getPathComponent().setMap(map);
+				panelMap.getPathComponent().setAntSteps(antSteps);
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		private void runBeeAlgorithm() {
@@ -319,7 +331,7 @@ public class PanelSettings extends JPanel {
 				}
 
 				/*----------------------------------------------*/
-				// panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+				panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/SalesBee.png");
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				/*----------------------------------------------*/
