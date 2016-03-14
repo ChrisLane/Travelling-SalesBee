@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class PanelSettings extends JPanel {
 
@@ -250,10 +251,7 @@ public class PanelSettings extends JPanel {
 				ArrayList<Cell> hive = new ArrayList<>();
 				hive.add(naiveSteps.get(0).getStart());
 
-				for (NaiveStep naiveStep : naiveSteps) {
-					hive.add(naiveStep.getEnd());
-
-				}
+				hive.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
 				pathOfPaths.add(hive);
 
 				/*----------------------------------------------*/
@@ -312,10 +310,7 @@ public class PanelSettings extends JPanel {
 				ArrayList<Cell> hive = new ArrayList<>();
 				hive.add(naiveSteps.get(0).getStart());
 
-				for (NaiveStep naiveStep : naiveSteps) {
-					hive.add(naiveStep.getEnd());
-
-				}
+				hive.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
 				pathOfPaths.add(hive);
 
 				for (ExperimentalStep experimentalStep : experimentalSteps) {

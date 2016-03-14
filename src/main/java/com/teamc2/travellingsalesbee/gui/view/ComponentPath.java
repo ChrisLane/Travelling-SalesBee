@@ -156,9 +156,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void clearLabels() {
-		for (JLabel label : this.distanceBoxes){
-			this.remove(label);
-		}
+		distanceBoxes.forEach(this::remove);
 		
 	}
 

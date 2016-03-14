@@ -5,6 +5,7 @@ import com.teamc2.travellingsalesbee.gui.data.cells.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Map extends JPanel {
 
@@ -41,23 +42,11 @@ public class Map extends JPanel {
 	 * @return ArrayList of flowers in the map
 	 */
 	public ArrayList<CellNode> getFlowers() {
-		ArrayList<CellNode> flowers = new ArrayList<>();
-		for (Cell c : cells) {
-			if (c.getType().equals(CellType.NODE)) {
-				flowers.add((CellNode) c);
-			}
-		}
-		return flowers;
+		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).map(c -> (CellNode) c).collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public ArrayList<Cell> getNodes() {
-		ArrayList<Cell> flowers = new ArrayList<>();
-		for (Cell c : cells) {
-			if (c.getType().equals(CellType.NODE)) {
-				flowers.add(c);
-			}
-		}
-		return flowers;
+		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	/**
