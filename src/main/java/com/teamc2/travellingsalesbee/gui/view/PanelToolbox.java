@@ -101,20 +101,17 @@ public class PanelToolbox extends JPanel {
 	public void randomise() {
 		panelMap.clear();
 		
-		int x = ThreadLocalRandom.current().nextInt(0, 15) * cellWidth;
-		int y = ThreadLocalRandom.current().nextInt(0, 8) * cellHeight;
+		int maxX = (panelMap.getWidth()) / cellWidth;
+		int maxY = (panelMap.getHeight()) / cellHeight;
 		
-		CellDraggable newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
-		newCell.setIcon(new ImageIcon(scaledHiveImg));
-		newCell.setBounds(x, y, cellWidth, cellHeight);
-		panelMap.add(newCell);
-		
-		panelMap.getMap().setCell(x,y,CellType.ORIGIN);
+		int x = 0;
+		int y = 0;
+		CellDraggable newCell = null;
 
 		int nodesPlaced = 0;
 		while(nodesPlaced != 10) {
-			x = ThreadLocalRandom.current().nextInt(0, 15) * cellWidth;
-			y = ThreadLocalRandom.current().nextInt(0, 8) * cellHeight;
+			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
+			y = ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight;
 			
 			newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
 			newCell.setIcon(new ImageIcon(scaledFlowerImg));
@@ -126,6 +123,17 @@ public class PanelToolbox extends JPanel {
 			
 			nodesPlaced++;
 		} 
+		
+		x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
+		y = ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight;
+		
+		newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
+		newCell.setIcon(new ImageIcon(scaledHiveImg));
+		newCell.setBounds(x, y, cellWidth, cellHeight);
+		panelMap.cellFull(x,y);
+		panelMap.add(newCell);
+		
+		panelMap.getMap().setCell(x,y,CellType.ORIGIN);
 		
 		panelMap.repaint();
 	}
