@@ -1,8 +1,22 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
+import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
@@ -10,11 +24,6 @@ import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
 
 public class ComponentPath extends JComponent {
 
@@ -343,6 +352,8 @@ public class ComponentPath extends JComponent {
 			//Fix this stepNum + 1 it thinks it's -1 so had to add 1
 			AntStep step = antSteps.get(stepNum + 1);
 			ArrayList<Cell> path = step.getPath();
+			
+			CostMatrix matrix = step.getCostMatrix();
 
 			for (int i = 0; i < path.size(); i++) {
 				x1 = (int) path.get(i).getX();
@@ -350,8 +361,8 @@ public class ComponentPath extends JComponent {
 				for (int j = (i + 1); j < path.size(); j++) {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
-					Color lineColor = new Color(255, 255, 0, (int) (50 + (205 / path.size()) * map.getCostMatrix().getPheromone(path.get(i), path.get(j))));
-
+					System.out.println(i + " -> " + j + " " + matrix.getPheromone(path.get(i), path.get(j)));
+					Color lineColor = new Color(255, 255, 0, (int) (50 + (205 / matrix.getMaxPheromone()) * matrix.getPheromone(path.get(i), path.get(j))));
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);

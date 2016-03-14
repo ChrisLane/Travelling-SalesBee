@@ -3,6 +3,7 @@ package com.teamc2.travellingsalesbee.visualisation;
 import java.util.ArrayList;
 
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
+import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
@@ -64,11 +65,15 @@ public class BeeVisualiser {
 		return SwapType.REJECTED;
 	}
 
-	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns) {
+	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns, ArrayList<CostMatrix> setOfMatrices, CostMatrix initialMatrix) {
 		ArrayList<AntStep> antSteps = new ArrayList<>();
 		
+		//Add an initial step so route can be printed with equal pheremones
+		AntStep initialStep = new AntStep(setOfRuns.get(0),initialMatrix);
+		antSteps.add(initialStep);
+		
 		for (int i=0;i<setOfRuns.size();i++){
-			AntStep step = new AntStep(setOfRuns.get(i));
+			AntStep step = new AntStep(setOfRuns.get(i), setOfMatrices.get(i));
 			antSteps.add(step);
 		}
 		return antSteps;

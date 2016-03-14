@@ -28,7 +28,7 @@ public class CostEntry {
 	}
 
 	public void plantPheromone(double pheromone) {
-		setPheromone(this.pheromone * this.pheromone);
+		setPheromone(this.pheromone * pheromone);
 	}
 
 	public double getPheromone() {

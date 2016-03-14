@@ -1,6 +1,31 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.algorithms.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.Timer;
+
+import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import com.teamc2.travellingsalesbee.algorithms.Ant;
+import com.teamc2.travellingsalesbee.algorithms.Bee;
+import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
+import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
+import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
@@ -8,16 +33,8 @@ import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
-import javafx.application.Platform;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
+import javafx.application.Platform;
 
 public class PanelSettings extends JPanel {
 
@@ -261,19 +278,32 @@ public class PanelSettings extends JPanel {
 
 		}
 
-		private void runAntAlgorithm() {
-			setStepNum(0);
-			Ant ant = new Ant(map);
-			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
-			for (int i = 0; i < 100; i++) {
-				ant.pheromoneRun();
-				setOfRuns.add(ant.getPath());
+		private void runAntAlgorithm(){
+			
+			try {
+				setStepNum(0);
+				Ant ant = new Ant(map);
+				ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
+				ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
+				CostMatrix initialMatrix;
+				initialMatrix = (CostMatrix) map.getCostMatrix().clone();
+				
+				for (int i = 0; i < 100; i++) {
+					ant.pheromoneRun();
+					CostMatrix updatedMatrix = new CostMatrix(map);
+					updatedMatrix = (CostMatrix) map.getCostMatrix().clone();
+					setOfMatrices.add(updatedMatrix);
+					setOfRuns.add(ant.getPath());
+				}
+				
+				BeeVisualiser visualise = new BeeVisualiser();
+				ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
+				panelMap.getPathComponent().setMap(map);
+				panelMap.getPathComponent().setAntSteps(antSteps);
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			BeeVisualiser visualise = new BeeVisualiser();
-			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns);
-			panelMap.getPathComponent().setMap(map);
-			panelMap.getPathComponent().setAntSteps(antSteps);
-
 		}
 
 		private void runBeeAlgorithm() {
