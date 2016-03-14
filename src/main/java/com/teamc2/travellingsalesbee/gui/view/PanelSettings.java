@@ -38,6 +38,7 @@ public class PanelSettings extends JPanel {
 	private JSlider noOfRunsSlider;
 	private LayoutSettings layoutSettings;
 	private JLabel lblRunsOfType;
+	private ComponentTextArea textArea;
 
 	/**
 	 * Create a settings panel
@@ -116,7 +117,7 @@ public class PanelSettings extends JPanel {
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
-				text.setText(Double.toString(this.distance));
+				textArea.setText(Double.toString(this.distance));
 			});
 
 			/*----------------------------------------------*/
@@ -133,7 +134,7 @@ public class PanelSettings extends JPanel {
 			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
 				setDistance();
-				text.setText(Double.toString(this.distance));
+				textArea.setText(Double.toString(this.distance));
 			});
 
 			/*----------------------------------------------*/
@@ -149,7 +150,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		JEditorPane editorPane = new JEditorPane();
-		ComponentTextArea textArea = new ComponentTextArea(editorPane);
+		textArea = new ComponentTextArea(editorPane);
 
 		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
 				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, textArea);
