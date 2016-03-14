@@ -53,6 +53,9 @@ public class PanelAnimalAnimation extends JPanel {
 		initialize();
 	}
 
+	/**
+	 * Initialises the JFXPanel
+	 */
 	public void initialize() {
 
 		final JFXPanel fxPanel = new JFXPanel();
@@ -104,7 +107,6 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 *
 	 * @param end End position for which the animal will move to
 	 * @param animal Animal image
 	 * @param transition TranslateTransition transition for animation
@@ -131,26 +133,6 @@ public class PanelAnimalAnimation extends JPanel {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	/**
-	 *
-	 * @param path Path of type: ArrayList<ArrayList<Cell>>
-	 *
-	 * Gets the first position from the first path in the list and sets the bee to that position
-	 * If the path needs to be stepped through the entire path, set the singlePath boolean to true
-	 */
-	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
-		this.pathOfPaths = path;
-		this.popStepNum = 0;
-		this.stepNum = 0;
-
-		Platform.runLater(() -> {
-			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 15);
-			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 15);
-			animalIcon.setVisible(true);
-			this.setVisible(true);
-		});
 	}
 
 	/**
@@ -204,6 +186,10 @@ public class PanelAnimalAnimation extends JPanel {
 		//transition.setRate(speed);
 	}
 
+	/**
+	 * Increment Step Number
+	 * If stepNum goes out of bounds of the current path, then stepNum is set to 0 and popStemNum is incremented
+	 */
 	public void incrStepNum() {
 		this.stepNum++;
 		System.out.println("Step num: " + stepNum);
@@ -239,6 +225,25 @@ public class PanelAnimalAnimation extends JPanel {
 		if(poPaths) {
 			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
 		}
+	}
+
+	/**
+	 * @param path Path of type: ArrayList<ArrayList<Cell>>
+	 *
+	 * Gets the first position from the first path in the list and sets the bee to that position
+	 * If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 */
+	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
+		this.pathOfPaths = path;
+		this.popStepNum = 0;
+		this.stepNum = 0;
+
+		Platform.runLater(() -> {
+			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 15);
+			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 15);
+			animalIcon.setVisible(true);
+			this.setVisible(true);
+		});
 	}
 
 	/**
