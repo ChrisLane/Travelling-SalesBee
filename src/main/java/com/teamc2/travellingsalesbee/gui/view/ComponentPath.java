@@ -144,6 +144,16 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
+		StackTraceElement[] es = Thread.currentThread().getStackTrace();
+		for (StackTraceElement e : es) {
+			System.out.println(e);
+		}
+		System.out.println("===================================================================");
+		System.out.println("===================================================================");
+		System.out.println("===================================================================");
+		System.out.println("===================================================================");
+		System.out.println("===================================================================");
+
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
 			tos.setStepNum(stepNum);

@@ -16,7 +16,7 @@ public class TwoOptSwap extends NearestNeighbour {
 	 * @param map   Map object for storing cells
 	 * @param swaps Number of swaps to run
 	 */
-	public TwoOptSwap(Map map, int swaps) {
+	public TwoOptSwap(Map map) {
 		super(map);
 		swapLog = new ArrayList<>();
 	}

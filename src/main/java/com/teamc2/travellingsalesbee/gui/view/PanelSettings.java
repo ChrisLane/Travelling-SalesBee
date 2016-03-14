@@ -198,10 +198,9 @@ public class PanelSettings extends JPanel {
 
 		private void runTwoOptAlgorithm() {
 			try {
-				System.out.println("RUNNING TOS PANEL SETTINGS");
 				setStepNum(0);
 				map.setCostMatrix();
-				TwoOptSwap tos = new TwoOptSwap(map, 2);
+				TwoOptSwap tos = new TwoOptSwap(map);
 				BeeVisualiser visualise = new BeeVisualiser();
 				tos.naiveRun();
 				ArrayList<NaiveStep> steps = visualise.getNaiveSteps(tos.getPath());
