@@ -167,12 +167,10 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
-		Timer timer = new Timer(150, new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setStepNum(stepNum + 1);
-				panelMap.getPathComponent().repaint();
-				// panelMap.getPanelAnimalAnimation().incrStepNum();
-			}
+		Timer timer = new Timer(150, arg0 -> {
+			setStepNum(stepNum + 1);
+			panelMap.getPathComponent().repaint();
+			// panelMap.getPanelAnimalAnimation().incrStepNum();
 		});
 
 		btnPlay.addActionListener(arg0 -> {
