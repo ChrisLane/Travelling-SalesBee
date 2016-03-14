@@ -19,20 +19,25 @@ public class BeeVisualiser {
 		for (int i = 0; i < naiveRun.size() - 1; i++) {
 			Cell start = naiveRun.get(i);
 			Cell end = naiveRun.get(i + 1);
+			ArrayList<Cell> ResultingNaiveComparisons = new ArrayList<>();
 			ArrayList<Cell> naiveComparisons = new ArrayList<>();
 
 			String text = "";
 			text += "Node " + i + " chosen because it has the smallest distance of " + start.distance(end) + "m";
 			
+			
 			for (int j = i; j < naiveRun.size() - 1; j++) {
-				naiveComparisons.add(naiveRun.get(j));
+				if (j != (i)) {
+					ResultingNaiveComparisons.add(naiveRun.get(j));
+				}
 				text += "Node " + j + " not chosen because it has the smallest distance of " + start.distance(end) + "m";
+				naiveComparisons.add(naiveRun.get(j));
 			}
 			
-			
-			
 			NaiveStep step = new NaiveStep(start, naiveComparisons, end, text);
+			NaiveStep ResultingStep = new NaiveStep(start, ResultingNaiveComparisons, end, text);
 			listOfSteps.add(step);
+			listOfSteps.add(ResultingStep);
 		}
 		return listOfSteps;
 	}
