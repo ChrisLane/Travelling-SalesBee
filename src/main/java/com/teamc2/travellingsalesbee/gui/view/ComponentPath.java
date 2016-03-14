@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -8,6 +9,7 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +25,7 @@ public class ComponentPath extends JComponent {
 	private AlgorithmType type;
 	private ArrayList<AntStep> antSteps = new ArrayList<>();
 	private Map map;
+	private TwoOptSwap tos;
 
 	public ComponentPath(AlgorithmType type) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -143,6 +146,7 @@ public class ComponentPath extends JComponent {
 	private void paintTwoOptSwapPath(Graphics2D g2) {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			int x1, x2, y1, y2;
+			tos.setStepNum(stepNum);
 
 			for (int i = 0; i < stepNum + 1; i++) {
 				if (i < naiveSteps.size()) {
@@ -170,7 +174,37 @@ public class ComponentPath extends JComponent {
 				}
 			}
 		} else if (stepNum >= naiveSteps.size()) {
-			System.out.println("Do swaps");
+			tos.swap(stepNum);
+			setNaiveSteps((new BeeVisualiser()).getNaiveSteps(tos.getPath()));
+			setPath(tos.getPath());
+			System.out.println(tos.getPath());
+
+			int x1, x2, y1, y2;
+			for (int i = 0; i < stepNum + 1; i++) {
+				if (i < naiveSteps.size()) {
+					NaiveStep step = naiveSteps.get(i);
+					x1 = (int) step.getStart().x;
+					y1 = (int) step.getStart().y;
+
+					ArrayList<Cell> available = step.getAvailable();
+
+					if (i == stepNum) {
+						for (Cell anAvailable : available) {
+							g2.setStroke(new BasicStroke(5));
+							g2.setPaint(Color.red);
+							x2 = (int) anAvailable.x;
+							y2 = (int) anAvailable.y;
+							g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+						}
+					}
+
+					g2.setStroke(new BasicStroke(6));
+					g2.setPaint(Color.green);
+					x2 = (int) step.getEnd().x;
+					y2 = (int) step.getEnd().y;
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
+			}
 		}
 	}
 
@@ -315,6 +349,11 @@ public class ComponentPath extends JComponent {
 			}
 		}
 
+	}
+
+	public void setTosObject(TwoOptSwap tos)
+	{
+		this.tos = tos;
 	}
 
 
