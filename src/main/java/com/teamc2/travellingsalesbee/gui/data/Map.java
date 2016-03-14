@@ -45,10 +45,6 @@ public class Map extends JPanel {
 		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).map(c -> (CellNode) c).collect(Collectors.toCollection(ArrayList::new));
 	}
 
-	public ArrayList<Cell> getNodes() {
-		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).collect(Collectors.toCollection(ArrayList::new));
-	}
-
 	/**
 	 * Get the cell at position (x, y)
 	 *
