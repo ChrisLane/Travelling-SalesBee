@@ -10,15 +10,16 @@ public class LayoutToolbox extends GroupLayout {
 	 * @param host       Container for the layout to be applied to
 	 * @param backButton Back button for the toolbox
 	 * @param randomiseButton 
-	 * @param randomiseSpinner 
+	 * @param randomiseButton 
 	 */
-	public LayoutToolbox(Container host, JButton backButton, JSpinner randomiseSpinner, JButton randomiseButton) {
+	public LayoutToolbox(Container host, JButton backButton, JButton randomiseButton, JButton clearButton) {
 		super(host);
 
 		setHorizontalGroup(
 				createParallelGroup(Alignment.LEADING)
 					.addComponent(backButton)
 					.addComponent(randomiseButton)
+					.addComponent(clearButton)
 		);
 		setVerticalGroup(
 				createParallelGroup(Alignment.LEADING)
@@ -26,6 +27,8 @@ public class LayoutToolbox extends GroupLayout {
 								.addComponent(backButton)
 								.addGap(18)
 								.addComponent(randomiseButton)
+								.addGap(18)
+								.addComponent(clearButton)
 								.addContainerGap(500, Short.MAX_VALUE))
 		);
 	}

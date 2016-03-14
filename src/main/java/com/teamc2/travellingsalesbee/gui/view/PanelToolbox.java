@@ -41,15 +41,19 @@ public class PanelToolbox extends JPanel {
 			Visualiser.mainVisualiser.setVisible(false);
 			TravellingSalesBee.mainMenu.show();
 		}));
-	
-		JSpinner randomiseSpinner = new JSpinner();
 		
 		JButton randomiseButton = new JButton("Randomise Map");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
 		});
+		
+		JButton clearButton = new JButton("Clear Map");
+		clearButton.addActionListener(arg0 -> {
+			panelMap.clear();
+			panelMap.repaint();
+		});
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseSpinner, randomiseButton);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
 		setLayout(layoutToolbox);
 
 		addTools();
