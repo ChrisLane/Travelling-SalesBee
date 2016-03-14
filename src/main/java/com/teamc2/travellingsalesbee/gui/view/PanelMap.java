@@ -4,6 +4,7 @@ import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PanelMap extends JPanel {
 	private final int cellWidth;
@@ -66,23 +68,23 @@ public class PanelMap extends JPanel {
 		try {
 			BufferedImage img = null;
 			switch (this.type) {
-				case BEE:
-					img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
-					break;
-				case ANT:
-					img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Dirt.jpg"));
-					break;
-				case NEARESTNEIGHBOUR:
-					img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
-					break;
-				case TWOOPT:
-					img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
-					break;
+			case BEE:
+				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+				break;
+			case ANT:
+				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Dirt.jpg"));
+				break;
+			case NEARESTNEIGHBOUR:
+				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+				break;
+			case TWOOPT:
+				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+				break;
 			}
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -136,8 +138,45 @@ public class PanelMap extends JPanel {
 	public PanelAnimalAnimation getAnimation() {
 		return panelAnimation;
 	}
-	
+
 	public AlgorithmType getAlgorithmType(){
 		return type;
+	}
+
+	public void cellFull(int x, int y) {
+		for (Component c : getComponents()) {
+			if (c instanceof CellDraggable) {
+				if (c.isEnabled() && c.getBounds().x == x && c.getBounds().y == y) {
+					remove(c);
+					c.setEnabled(false);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Set the hive for the panelMap
+	 */
+	public void deleteOldHive() {
+		for (Component c : getComponents()) {
+			if (c instanceof CellDraggable) {
+				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.ORIGIN)) {
+					remove(c);
+					c.setEnabled(false);
+				}
+			}
+		}
+	}
+
+	public void clear() {
+		for (Component c : getComponents()) {
+			if (c instanceof CellDraggable) {
+				int x = c.getX();
+				int y = c.getY();
+				remove(c);
+				c.setEnabled(false);
+				map.setCell(x,y,CellType.EMPTY);
+			}
+		}
 	}
 }

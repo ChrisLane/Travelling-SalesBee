@@ -104,7 +104,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
 			if (type.equals(CellType.ORIGIN)) {
-				deleteOldHive(panelMap);
+				panelMap.deleteOldHive();
 			}
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
@@ -117,7 +117,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 
 			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
 			int y = (int) Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height;
-			cellFull(panelMap, x, y);
+			panelMap.cellFull(x,y);
 
 			// Add the cell to the map
 			map.setCell(x, y, type);
@@ -194,33 +194,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			return img.getScaledInstance(width - 5, height - 5, Image.SCALE_SMOOTH);
 		}
 		return null;
-	}
-
-	/**
-	 * Set the hive for a given panelMap
-	 *
-	 * @param panel Panel to set the hive in
-	 */
-	private void deleteOldHive(JPanel panel) {
-		for (Component c : panel.getComponents()) {
-			if (c instanceof CellDraggable) {
-				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.ORIGIN)) {
-					panel.remove(c);
-					c.setEnabled(false);
-				}
-			}
-		}
-	}
-
-	private void cellFull(JPanel panel, int x, int y) {
-		for (Component c : panel.getComponents()) {
-			if (c instanceof CellDraggable) {
-				if (c.isEnabled() && c.getBounds().x == x && c.getBounds().y == y) {
-					panel.remove(c);
-					c.setEnabled(false);
-				}
-			}
-		}
 	}
 
 	/**

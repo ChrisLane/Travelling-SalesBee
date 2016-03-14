@@ -7,6 +7,7 @@ import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
 import javafx.application.Platform;
