@@ -267,7 +267,6 @@ public class PanelSettings extends JPanel {
 				btnNext.setEnabled(false);
 
 			}
-
 		}
 
 		private void runAntAlgorithm() {
