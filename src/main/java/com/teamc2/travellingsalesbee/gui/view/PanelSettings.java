@@ -1,5 +1,24 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+
 import com.teamc2.travellingsalesbee.algorithms.*;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
@@ -27,10 +46,12 @@ public class PanelSettings extends JPanel {
 
 	private JLabel infoLabel;
 	private JButton btnPrev;
+	private JButton btnPlay;
 	private JButton btnNext;
 	private Text text;
 
-	private int experimentalRuns = 26; //Set to 26 by default
+	private boolean playing = false;
+	private int experimentalRuns = 26; // Set to 26 by default
 	private double animationSpeed = 10;
 	private int stepNum;
 	private AlgorithmType type;
@@ -43,7 +64,8 @@ public class PanelSettings extends JPanel {
 	/**
 	 * Create a settings panel
 	 *
-	 * @param panelMap Map JPanel
+	 * @param panelMap
+	 *            Map JPanel
 	 */
 	public PanelSettings(PanelMap panelMap) {
 		this.panelMap = panelMap;
@@ -112,6 +134,7 @@ public class PanelSettings extends JPanel {
 		});
 
 		btnPrev = new JButton("<-");
+		btnPlay = new JButton("►");
 		btnNext = new JButton("->");
 
 		btnPrev.addActionListener(arg0 -> {
@@ -139,9 +162,9 @@ public class PanelSettings extends JPanel {
 
 			/*----------------------------------------------*/
 			try {
-				//if (stepNum < experimentalRuns) {
+				// if (stepNum < experimentalRuns) {
 				panelMap.getPanelAnimalAnimation().incrStepNum();
-				//}
+				// }
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
 				e.printStackTrace();
@@ -149,12 +172,30 @@ public class PanelSettings extends JPanel {
 			/*----------------------------------------------*/
 		});
 
+		Timer timer = new Timer(150, new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setStepNum(stepNum + 1);
+				panelMap.getPathComponent().repaint();
+				// panelMap.getPanelAnimalAnimation().incrStepNum();
+			}
+		});
+
+		btnPlay.addActionListener(arg0 -> {
+			if (!playing) {
+				timer.start();
+				btnPlay.setText("||");
+				playing = true;
+			} else {
+				timer.stop();
+				btnPlay.setText("►");
+				playing = false;
+			}
+		});
+
 		JEditorPane editorPane = new JEditorPane();
 		textArea = new ComponentTextArea(editorPane);
-
 		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
-				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnNext, textArea);
-
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext, textArea);
 		setLayout(layoutSettings);
 	}
 
@@ -162,18 +203,18 @@ public class PanelSettings extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch (type) {
-				case BEE:
-					runBeeAlgorithm();
-					break;
-				case ANT:
-					runAntAlgorithm();
-					break;
-				case NEARESTNEIGHBOUR:
-					runNearestNeighbourAlgorithm();
-					break;
-				case TWOOPT:
-					runTwoOptAlgorithm();
-					break;
+			case BEE:
+				runBeeAlgorithm();
+				break;
+			case ANT:
+				runAntAlgorithm();
+				break;
+			case NEARESTNEIGHBOUR:
+				runNearestNeighbourAlgorithm();
+				break;
+			case TWOOPT:
+				runTwoOptAlgorithm();
+				break;
 			}
 		}
 
@@ -203,6 +244,7 @@ public class PanelSettings extends JPanel {
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				btnPrev.setEnabled(false);
+				btnPlay.setEnabled(false);
 				btnNext.setEnabled(false);
 			}
 		}
@@ -222,20 +264,20 @@ public class PanelSettings extends JPanel {
 				ArrayList<Cell> hive = new ArrayList<>();
 				hive.add(naiveSteps.get(0).getStart());
 
-
 				for (NaiveStep naiveStep : naiveSteps) {
 					hive.add(naiveStep.getEnd());
 
 				}
 				pathOfPaths.add(hive);
-	
+
 				/*----------------------------------------------*/
-				//panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
+				// panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				/*----------------------------------------------*/
 				// When no nodes are on the screen: disable the buttons.
 				btnPrev.setEnabled(false);
+				btnPlay.setEnabled(false);
 				btnNext.setEnabled(false);
 
 			}
@@ -269,10 +311,11 @@ public class PanelSettings extends JPanel {
 				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
 
 				bee.experimentalRun();
-				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(
-						bee.getCellComparisons(), bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
+				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(),
+						bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
-				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES NOTHING
+				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES
+																	// NOTHING
 
 				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 				ArrayList<Cell> hive = new ArrayList<>();
@@ -290,12 +333,13 @@ public class PanelSettings extends JPanel {
 				}
 
 				/*----------------------------------------------*/
-				//panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
+				// panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				/*----------------------------------------------*/
 				// When no nodes are on the screen: disable the buttons.
 				btnPrev.setEnabled(false);
+				btnPlay.setEnabled(false);
 				btnNext.setEnabled(false);
 			}
 		}
@@ -305,6 +349,7 @@ public class PanelSettings extends JPanel {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNum(stepNum);
 		btnPrev.setEnabled((stepNum > 0));
+		btnPlay.setEnabled((stepNum != -1));
 		btnNext.setEnabled((stepNum != -1));
 	}
 
@@ -315,17 +360,17 @@ public class PanelSettings extends JPanel {
 
 	private void updateSliderDetails() {
 		switch (type) {
-			case BEE:
-				lblRunsOfType.setText("Experimental Runs:");
-				break;
-			case ANT:
-				lblRunsOfType.setText("Pheremone Runs:");
-				break;
-			case NEARESTNEIGHBOUR:
-				break;
-			case TWOOPT:
-				lblRunsOfType.setText("Swap Runs:");
-				break;
+		case BEE:
+			lblRunsOfType.setText("Experimental Runs:");
+			break;
+		case ANT:
+			lblRunsOfType.setText("Pheremone Runs:");
+			break;
+		case NEARESTNEIGHBOUR:
+			break;
+		case TWOOPT:
+			lblRunsOfType.setText("Swap Runs:");
+			break;
 		}
 		setLayout(layoutSettings);
 	}
@@ -333,21 +378,20 @@ public class PanelSettings extends JPanel {
 	private void setDistance() {
 		double distance = 0;
 		switch (type) {
-			case BEE:
-				if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
-					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
-					distance = step.getStart().distance(step.getEnd());
-				}
-				break;
-			case ANT:
-				break;
-			case NEARESTNEIGHBOUR:
-				break;
-			case TWOOPT:
-				break;
+		case BEE:
+			if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
+				NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
+				distance = step.getStart().distance(step.getEnd());
+			}
+			break;
+		case ANT:
+			break;
+		case NEARESTNEIGHBOUR:
+			break;
+		case TWOOPT:
+			break;
 		}
 		this.distance = distance;
 	}
-
 
 }
