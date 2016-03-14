@@ -11,15 +11,13 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Author: Melvyn Mathews
  */
-public class PanelAnimalAnimation extends JPanel {
+public class PanelAnimalAnimation extends JFXPanel {
 
 	private String url; //The URL string for the image
 
@@ -50,30 +48,8 @@ public class PanelAnimalAnimation extends JPanel {
 		this.width = width;
 		this.height = height;
 
-		initialize();
-	}
-
-	/**
-	 * Initialises the JFXPanel
-	 */
-	public void initialize() {
-
-		final JFXPanel fxPanel = new JFXPanel();
-
-		this.add(fxPanel);
-		this.setVisible(true);
-
-		// Size of parent-panel
-		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(new Color(0, 0, 0, 0));
-		this.setOpaque(false);
-
-		Platform.runLater(() -> initFX(fxPanel));
-	}
-
-	private void initFX(JFXPanel fxPanel) {
 		Scene scene = initScene();
-		fxPanel.setScene(scene);
+		setScene(scene);
 	}
 
 	private Scene initScene() {
@@ -101,14 +77,14 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 * @param end End position for which the animal will move to
-	 * @param animal Animal image
+	 * @param end        End position for which the animal will move to
+	 * @param animal     Animal image
 	 * @param transition TranslateTransition transition for animation
 	 */
 	private void moveFromAToB(Cell end, Rectangle animal, TranslateTransition transition) {
 		Platform.runLater(() -> {
 
-			if((end.getX() - animal.getX()) < 0) {
+			if ((end.getX() - animal.getX()) < 0) {
 				animal.setScaleX(-1);
 			} else {
 				animal.setScaleX(1);
@@ -121,7 +97,7 @@ public class PanelAnimalAnimation extends JPanel {
 
 			transition.setOnFinished(AE -> {
 				System.out.println("STOPPED PLAYING");
-				if(!singlePath) {
+				if (!singlePath) {
 					System.out.println("Calling animatePath");
 					stepNum++;
 					animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), stepNum, animal, transition);
@@ -139,11 +115,11 @@ public class PanelAnimalAnimation extends JPanel {
 	}
 
 	/**
-	 * @param superPath Path of all paths ArrayList<ArrayList<Cell>>
-	 * @param superI superPath position (gets the current path we're working with)
-	 * @param path Current path to animate
-	 * @param i Path position
-	 * @param animal The 'animal' to move
+	 * @param superPath  Path of all paths ArrayList<ArrayList<Cell>>
+	 * @param superI     superPath position (gets the current path we're working with)
+	 * @param path       Current path to animate
+	 * @param i          Path position
+	 * @param animal     The 'animal' to move
 	 * @param transition The transition object that handles the animation itself
 	 */
 	private void animatePath(ArrayList<ArrayList<Cell>> superPath, final int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
@@ -157,8 +133,6 @@ public class PanelAnimalAnimation extends JPanel {
 			System.out.println("popSteNum: " + popStepNum);
 		} else {
 
-			final int accp1 = i + 1;
-
 			//Get end cell
 			if (i < path.size()) {
 
@@ -170,7 +144,6 @@ public class PanelAnimalAnimation extends JPanel {
 			} else if (superI < superPath.size() - 1) {
 				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			}
-
 		}
 	}
 
@@ -206,21 +179,21 @@ public class PanelAnimalAnimation extends JPanel {
 			System.out.println("stepThroughAllPaths: " + stepThroughAllPaths);
 			System.out.println("poPaths: " + poPaths);
 
-			if(singlePath && !stepThroughAllPaths) {
+			if (singlePath && !stepThroughAllPaths) {
 				singlePath = false;
 				poPaths = true;
-				popStepNum ++;
+				popStepNum++;
 			}
 		}
 
 		//If animating a single step at a time, ensure singlePath is set to true
-		if(singlePath) {
+		if (singlePath) {
 			Cell end = pathOfPaths.get(popStepNum).get(stepNum);
 			moveFromAToB(end, animalIcon, transition);
 		}
 
 		//if animating an entire path at a time, set poPaths to true
-		if(poPaths) {
+		if (poPaths) {
 			System.out.println("poPaths should be animating");
 			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
 		}
@@ -230,7 +203,7 @@ public class PanelAnimalAnimation extends JPanel {
 	 * Decrement Step Number
 	 */
 	public void decrStepNum() {
-		this.stepNum --;
+		this.stepNum--;
 
 		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
@@ -239,29 +212,29 @@ public class PanelAnimalAnimation extends JPanel {
 			this.setVisible(true);
 		}
 
-		if(stepNum <= 0) {
+		if (stepNum <= 0) {
 			stepNum = 0;
 
 			popStepNum--;
 		}
 
 		//If animating a single step at a time, ensure singlePath is set to true
-		if(singlePath) {
+		if (singlePath) {
 			Cell end = pathOfPaths.get(popStepNum).get(stepNum);
 			moveFromAToB(end, animalIcon, transition);
 		}
 
 		//if animating an entire path at a time, set poPaths to true
-		if(poPaths) {
+		if (poPaths) {
 			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
 		}
 	}
 
 	/**
 	 * @param path Path of type: ArrayList<ArrayList<Cell>>
-	 *
-	 * Gets the first position from the first path in the list and sets the bee to that position
-	 * If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 *             <p>
+	 *             Gets the first position from the first path in the list and sets the bee to that position
+	 *             If the path needs to be stepped through the entire path, set the singlePath boolean to true
 	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
