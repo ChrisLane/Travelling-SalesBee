@@ -12,28 +12,44 @@ import javafx.application.Platform;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
 	private final PanelMap panelMap;
-	private final int width;
-	private final int height;
+	private final int cellWidth;
+	private final int cellHeight;
 	private AlgorithmType type;
+	private Image scaledFlowerImg;
+	private Image scaledHiveImg;
 
 	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
-		width = panelMap.getCellWidth();
-		height = panelMap.getCellHeight();
+		cellWidth = panelMap.getCellWidth();
+		cellHeight = panelMap.getCellHeight();
 		this.type = type;
 		setBackground(Color.WHITE);
+		
+		Image flowerImg = new CellNode().getImage(type);
+		scaledFlowerImg = flowerImg.getScaledInstance(cellWidth, cellHeight, SCALE_SMOOTH);
+		Image hiveImg = new CellOrigin().getImage(type);
+		scaledHiveImg = hiveImg.getScaledInstance(cellWidth, cellHeight, SCALE_SMOOTH);
 
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(event -> Platform.runLater(() -> {
 			Visualiser.mainVisualiser.setVisible(false);
 			TravellingSalesBee.mainMenu.show();
 		}));
+	
+		JSpinner randomiseSpinner = new JSpinner();
+		
+		JButton randomiseButton = new JButton("Randomise Map");
+		randomiseButton.addActionListener(arg0 -> {
+			randomise();
+		});
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseSpinner, randomiseButton);
 		setLayout(layoutToolbox);
 
 		addTools();
@@ -48,25 +64,18 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable nodeToolCell = new CellDraggable(width, height, CellType.NODE, panelMap, type);
-		CellDraggable originToolCell = new CellDraggable(width, height, CellType.ORIGIN, panelMap, type);
-
-		Image flowerImg = new CellNode().getImage(type);
-		Image scaledFlowerImg = flowerImg.getScaledInstance(width, height, SCALE_SMOOTH);
-
-		Image hiveImg = new CellOrigin().getImage(type);
-		Image scaledHiveImg = hiveImg.getScaledInstance(width, height, SCALE_SMOOTH);
-
+		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
+		CellDraggable originToolCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
 
 		nodeToolCell.setIcon(new ImageIcon(scaledFlowerImg));
 		originToolCell.setIcon(new ImageIcon(scaledHiveImg));
 
 
 		//Add buttons to the toolbox
-		originToolCell.setBounds(0, height, 100, 100);
+		originToolCell.setBounds(0, cellHeight * 3, 100, 100);
 		add(originToolCell);
 
-		nodeToolCell.setBounds(0, height * 2 + 10, 100, 100);
+		nodeToolCell.setBounds(0, cellHeight * 4 + 10, 100, 100);
 		add(nodeToolCell);
 	}
 
@@ -85,5 +94,36 @@ public class PanelToolbox extends JPanel {
 		}
 	}
 
+	public void randomise() {
+		panelMap.clear();
+		
+		int x = ThreadLocalRandom.current().nextInt(0, 15) * cellWidth;
+		int y = ThreadLocalRandom.current().nextInt(0, 8) * cellHeight;
+		
+		CellDraggable newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
+		newCell.setIcon(new ImageIcon(scaledHiveImg));
+		newCell.setBounds(x, y, cellWidth, cellHeight);
+		panelMap.add(newCell);
+		
+		panelMap.getMap().setCell(x,y,CellType.ORIGIN);
 
+		int nodesPlaced = 0;
+		while(nodesPlaced != 10) {
+			x = ThreadLocalRandom.current().nextInt(0, 15) * cellWidth;
+			y = ThreadLocalRandom.current().nextInt(0, 8) * cellHeight;
+			
+			newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
+			newCell.setIcon(new ImageIcon(scaledFlowerImg));
+			newCell.setBounds(x, y, cellWidth, cellHeight);
+			panelMap.cellFull(x,y);
+			panelMap.add(newCell);
+			
+			panelMap.getMap().setCell(x,y,CellType.NODE);
+			
+			nodesPlaced++;
+		} 
+		
+		panelMap.repaint();
+	}
+	
 }
