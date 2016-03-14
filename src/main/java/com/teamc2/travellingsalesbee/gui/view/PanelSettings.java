@@ -8,7 +8,7 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
-import com.teamc2.travellingsalesbee.visualisation.BeeVisualiser;
+import com.teamc2.travellingsalesbee.visualisation.StepController;
 import javafx.application.Platform;
 
 import javax.imageio.ImageIO;
@@ -211,7 +211,7 @@ public class PanelSettings extends JPanel {
 				setStepNum(0);
 				map.setCostMatrix();
 				TwoOptSwap tos = new TwoOptSwap(map);
-				BeeVisualiser visualise = new BeeVisualiser();
+				StepController visualise = new StepController();
 				tos.naiveRun();
 				ArrayList<NaiveStep> steps = visualise.getNaiveSteps(tos.getPath());
 				panelMap.getPathComponent().setTosObject(tos);
@@ -242,7 +242,7 @@ public class PanelSettings extends JPanel {
 				map = panelMap.getMap();
 				map.setCostMatrix();
 				NearestNeighbour nearestNeighbour = new NearestNeighbour(map);
-				BeeVisualiser visualise = new BeeVisualiser();
+				StepController visualise = new StepController();
 				nearestNeighbour.naiveRun();
 				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(nearestNeighbour.getPath());
 				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
@@ -291,7 +291,7 @@ public class PanelSettings extends JPanel {
 			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(antSteps);*/
 
-			BeeVisualiser visualise = new BeeVisualiser();
+			StepController visualise = new StepController();
 			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
 			panelMap.getPathComponent().setMap(map);
 			panelMap.getPathComponent().setAntSteps(antSteps);
@@ -303,7 +303,7 @@ public class PanelSettings extends JPanel {
 
 				map.setCostMatrix();
 				Bee bee = new Bee(map, experimentalRuns);
-				BeeVisualiser visualise = new BeeVisualiser();
+				StepController visualise = new StepController();
 				bee.naiveRun();
 				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
 				panelMap.getPathComponent().setNaiveSteps(naiveSteps);
