@@ -291,8 +291,8 @@ public class PanelSettings extends JPanel {
 			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(antSteps);*/
 
-			StepController visualise = new StepController();
-			ArrayList<AntStep> antSteps = visualise.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
+			StepController stepController = new StepController();
+			ArrayList<AntStep> antSteps = stepController.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
 			panelMap.getPathComponent().setMap(map);
 			panelMap.getPathComponent().setAntSteps(antSteps);
 		}
