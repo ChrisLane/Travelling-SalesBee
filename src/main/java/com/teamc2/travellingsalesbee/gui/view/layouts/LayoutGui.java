@@ -23,14 +23,14 @@ public class LayoutGui extends GroupLayout {
 		super(host);
 
 		setHorizontalGroup(createSequentialGroup()
-				.addComponent(componentTabs, 100, 100, PREFERRED_SIZE)
+				.addComponent(componentTabs, 200, 200, PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
 						.addComponent(panelMap, 0, PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(panelSettings, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(panelToolbox, 100, 100, PREFERRED_SIZE)
+				.addComponent(panelToolbox, 200, 200, PREFERRED_SIZE)
 		);
 		setVerticalGroup(createParallelGroup()
 				.addComponent(componentTabs, 500, PREFERRED_SIZE, Short.MAX_VALUE)
