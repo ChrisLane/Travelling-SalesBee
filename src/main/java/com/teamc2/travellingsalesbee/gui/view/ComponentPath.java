@@ -76,12 +76,10 @@ public class ComponentPath extends JComponent {
 
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
-		repaint();
 	}
 
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
-		this.repaint();
 	}
 
 	public String getNaiveStepText(int stepNum) {
