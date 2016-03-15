@@ -25,9 +25,10 @@ public class PanelToolbox extends JPanel {
 
 	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
+		this.type = type;
 		cellWidth = panelMap.getCellWidth();
 		cellHeight = panelMap.getCellHeight();
-		this.type = type;
+		GuiContainer guiContainer = (GuiContainer) getRootPane();
 
 		setName(name);
 		setBackground(Color.WHITE);
@@ -41,14 +42,14 @@ public class PanelToolbox extends JPanel {
 		JButton randomiseButton = new JButton("Randomise Map");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
-			((GuiContainer) getRootPane()).getComponentTextArea().addText("Map Randomised!");
+			guiContainer.getComponentTextArea().addText("Map Randomised!");
 		});
 		
 		JButton clearButton = new JButton("Clear Map");
 		clearButton.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
-			((GuiContainer) getRootPane()).getComponentTextArea().addText("Map Cleared!");
+			guiContainer.getComponentTextArea().addText("Map Cleared!");
 		});
 
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
