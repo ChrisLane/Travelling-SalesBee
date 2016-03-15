@@ -28,20 +28,24 @@ public class Visualiser extends JFrame {
 		setMinimumSize(new Dimension(800, 600));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
+		int width = 50;
+		int height = 50;
 		GuiContainer container = new GuiContainer();
+		PanelMap panelMap = new PanelMap(width, height);
+		PanelSettings panelSettings = new PanelSettings(panelMap);
+		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
+		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
+		container.add(panelMap);
+		container.add(panelSettings);
+		container.add(panelToolbox);
+		container.add(componentTabs);
+
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
 		container.setBackground(new Color(71, 35, 35));
 		container.setOpaque(true);
 		setContentPane(container);
 
-		int width = 50;
-		int height = 50;
-		PanelMap panelMap = new PanelMap(width, height);
-		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
-		PanelSettings panelSettings = new PanelSettings(panelMap);
-		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
-
-		LayoutGui layoutGui = new LayoutGui(container, panelMap, panelSettings, panelToolbox, componentTabs);
+		LayoutGui layoutGui = new LayoutGui(container);
 		container.setLayout(layoutGui);
 	}
 

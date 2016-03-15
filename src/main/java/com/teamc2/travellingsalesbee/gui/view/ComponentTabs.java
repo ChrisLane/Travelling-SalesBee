@@ -1,13 +1,17 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 
 public class ComponentTabs extends JTabbedPane {
+	public final static String name = "ComponentTabs";
+
 	public ComponentTabs(PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
+		setName(name);
 		Color backgroundColor = new Color(71, 35, 35);
 		Color tabColor = new Color(68, 35, 35);
 

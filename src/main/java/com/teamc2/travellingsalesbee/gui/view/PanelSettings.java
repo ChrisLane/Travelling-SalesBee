@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 public class PanelSettings extends JPanel {
 
+	public final static String name = "PanelSettings";
 	private final PanelMap panelMap;
 	private Map map;
 
@@ -53,7 +54,7 @@ public class PanelSettings extends JPanel {
 		this.panelMap = panelMap;
 		map = panelMap.getMap();
 
-		setName("PanelSettings");
+		setName(name);
 		setBackground(Color.LIGHT_GRAY);
 		addSettingsInfo();
 		addButtons();

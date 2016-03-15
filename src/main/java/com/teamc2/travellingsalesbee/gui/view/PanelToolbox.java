@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
+	public final static String name = "PanelToolbox";
 	private final PanelMap panelMap;
 	private final int cellWidth;
 	private final int cellHeight;
@@ -27,6 +28,8 @@ public class PanelToolbox extends JPanel {
 		cellWidth = panelMap.getCellWidth();
 		cellHeight = panelMap.getCellHeight();
 		this.type = type;
+
+		setName(name);
 		setBackground(Color.WHITE);
 	
 		JButton backButton = new JButton("Back");
