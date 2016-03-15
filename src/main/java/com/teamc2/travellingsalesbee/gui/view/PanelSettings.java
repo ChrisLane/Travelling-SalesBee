@@ -205,12 +205,9 @@ public class PanelSettings extends JPanel {
 	 * Sets the text for the textbox related to the Bee
 	 */
 	public void setBeeText() {
-
-		if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 == 0) {
-			textArea.addText("LOOKING FOR NEAREST FLOWER");
-		} else if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 != 0) {
-			textArea.addText("FOUND CLOSEST FLOWER");
-		} else if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
+		setNNText();
+		
+		if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
 			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("INSPECTED");
 			}
@@ -244,7 +241,12 @@ public class PanelSettings extends JPanel {
 	 * Sets the text for the textbox related to the NN
 	 */
 	public void setNNText() {
-
+		ArrayList<NaiveStep> nearestNeighbourSteps = this.panelMap.getPathComponent().getNaiveSteps();
+		if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
+			textArea.addText("LOOKING FOR NEAREST NODE");
+		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
+			textArea.addText("FOUND CLOSEST FLOWER");
+		}
 	}
 
 	/**
