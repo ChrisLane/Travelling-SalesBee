@@ -117,11 +117,11 @@ public class PanelToolbox extends JPanel {
 			
 			if(nodesPlaced < 11) {
 				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
-				newCell.setIcon(new ImageIcon(scaledFlowerImg));
+				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
 				panelMap.getMap().setCell(x,y,CellType.NODE);
 			} else {
 				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
-				newCell.setIcon(new ImageIcon(scaledHiveImg));
+				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
 				panelMap.getMap().setCell(x,y,CellType.ORIGIN);
 			}
 			
