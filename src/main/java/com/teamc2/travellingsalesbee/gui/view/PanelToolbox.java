@@ -21,8 +21,6 @@ public class PanelToolbox extends JPanel {
 	private final int cellWidth;
 	private final int cellHeight;
 	private AlgorithmType type;
-	private Image scaledFlowerImg;
-	private Image scaledHiveImg;
 
 	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
@@ -30,12 +28,7 @@ public class PanelToolbox extends JPanel {
 		cellHeight = panelMap.getCellHeight();
 		this.type = type;
 		setBackground(Color.WHITE);
-		
-		Image flowerImg = new CellNode().getImage(type);
-		scaledFlowerImg = flowerImg.getScaledInstance(cellWidth, cellHeight, SCALE_SMOOTH);
-		Image hiveImg = new CellOrigin().getImage(type);
-		scaledHiveImg = hiveImg.getScaledInstance(cellWidth, cellHeight, SCALE_SMOOTH);
-
+	
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(event -> Platform.runLater(() -> {
 			Visualiser.mainVisualiser.setVisible(false);
@@ -71,8 +64,8 @@ public class PanelToolbox extends JPanel {
 		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
 		CellDraggable originToolCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
 
-		nodeToolCell.setIcon(new ImageIcon(scaledFlowerImg));
-		originToolCell.setIcon(new ImageIcon(scaledHiveImg));
+		nodeToolCell.setIcon(new ImageIcon(nodeToolCell.getImage(CellType.NODE)));
+		originToolCell.setIcon(new ImageIcon(originToolCell.getImage(CellType.ORIGIN)));
 
 
 		//Add buttons to the toolbox
