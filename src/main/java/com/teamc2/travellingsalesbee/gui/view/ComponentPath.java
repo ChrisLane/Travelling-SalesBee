@@ -249,63 +249,86 @@ public class ComponentPath extends JComponent {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			paintNearestNeighbourPath(g2);
 		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size()) {
-			int x1, x2, y1, y2;
-			ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
-			ArrayList<Cell> stepPath = step.getPath();
-			for (int i = 0; i < stepPath.size() - 1; i++) {
-				Color lineColor;
-				if (step.getType() == SwapType.INSPECTED) {
-					lineColor = Color.YELLOW;
-					x1 = (int) stepPath.get(i).x;
-					y1 = (int) stepPath.get(i).y;
-					x2 = (int) stepPath.get(i + 1).x;
-					y2 = (int) stepPath.get(i + 1).y;
-				} else if (step.getType() == SwapType.BEST){
-					lineColor = Color.WHITE;
-					x1 = (int) stepPath.get(i).x;
-					y1 = (int) stepPath.get(i).y;
-					x2 = (int) stepPath.get(i + 1).x;
-					y2 = (int) stepPath.get(i + 1).y;
-				} else if (step.getType() == SwapType.ACCEPTED) {
-					lineColor = Color.GREEN;
-					x1 = (int) stepPath.get(i).x;
-					y1 = (int) stepPath.get(i).y;
-					x2 = (int) stepPath.get(i + 1).x;
-					y2 = (int) stepPath.get(i + 1).y;
-				} else {
-					lineColor = Color.RED;
-					ExperimentalStep step2 = experimentalSteps.get(stepNum - naiveSteps.size() - 1);
-					ArrayList<Cell> stepPath2 = step2.getPath();
-					x1 = (int) stepPath2.get(i).x;
-					y1 = (int) stepPath2.get(i).y;
-					x2 = (int) stepPath2.get(i + 1).x;
-					y2 = (int) stepPath2.get(i + 1).y;
+			try{
+				int x1, x2, y1, y2;
+				ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
+				ArrayList<Cell> stepPath = step.getPath();
+				for (int i = 0; i < stepPath.size() - 1; i++) {
+					Color lineColor;
+					if (step.getType() == SwapType.INSPECTED) {
+						lineColor = Color.YELLOW;
+						x1 = (int) stepPath.get(i).x;
+						y1 = (int) stepPath.get(i).y;
+						x2 = (int) stepPath.get(i + 1).x;
+						y2 = (int) stepPath.get(i + 1).y;
+					} else if (step.getType() == SwapType.BEST){
+						lineColor = Color.WHITE;
+						x1 = (int) stepPath.get(i).x;
+						y1 = (int) stepPath.get(i).y;
+						x2 = (int) stepPath.get(i + 1).x;
+						y2 = (int) stepPath.get(i + 1).y;
+					} else if (step.getType() == SwapType.ACCEPTED) {
+						lineColor = Color.GREEN;
+						x1 = (int) stepPath.get(i).x;
+						y1 = (int) stepPath.get(i).y;
+						x2 = (int) stepPath.get(i + 1).x;
+						y2 = (int) stepPath.get(i + 1).y;
+					} else {
+						lineColor = Color.RED;
+						ExperimentalStep step2 = experimentalSteps.get(stepNum - naiveSteps.size() - 1);
+						ArrayList<Cell> stepPath2 = step2.getPath();
+						x1 = (int) stepPath2.get(i).x;
+						y1 = (int) stepPath2.get(i).y;
+						x2 = (int) stepPath2.get(i + 1).x;
+						y2 = (int) stepPath2.get(i + 1).y;
+						
+						
+					}
+
+					g2.setPaint(lineColor);
+					g2.setStroke(new BasicStroke(5));
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+					
+					Comparison<Cell, Cell> comparison = step.getCellsCompared();
+					Cell cell1 = comparison.getCell1();
+					Cell cell2 = comparison.getCell2();
+
+					x1 = (int) cell1.getX();
+					y1 = (int) cell1.getY();
+
+					x2 = (int) cell2.getX();
+					y2 = (int) cell2.getY();
+
+					Shape cellCircle = new Ellipse2D.Double(x1, y1, 2.0 * 25, 2.0 * 25);
+					g2.draw(cellCircle);
+					cellCircle = new Ellipse2D.Double(x2, y2, 2.0 * 25, 2.0 * 25);
+					g2.draw(cellCircle);
+
+					double cost = step.getPathCost();
+					String costString = "" + cost;
+					g2.drawString(costString, 0, 0);
 				}
-
-				g2.setPaint(lineColor);
-				g2.setStroke(new BasicStroke(5));
-				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+			}catch (IndexOutOfBoundsException e){
+				stepNum = ((naiveSteps.size()-1) + (experimentalSteps.size()-1))-1;
+				int x1, x2, y1, y2;
+				ExperimentalStep step = experimentalSteps.get((stepNum-1) - naiveSteps.size());
+				ArrayList<Cell> stepPath = step.getPath();
+				for (int i=0;i<stepPath.size();i++){
+					x1 = (int) stepPath.get(i).x;
+					y1 = (int) stepPath.get(i).y;
+					x2 = (int) stepPath.get(i + 1).x;
+					y2 = (int) stepPath.get(i + 1).y;
+					g2.setPaint(Color.white);
+					g2.setStroke(new BasicStroke(5));
+					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				}
+				
 			}
-			Comparison<Cell, Cell> comparison = step.getCellsCompared();
-			Cell cell1 = comparison.getCell1();
-			Cell cell2 = comparison.getCell2();
-
-			x1 = (int) cell1.getX();
-			y1 = (int) cell1.getY();
-
-			x2 = (int) cell2.getX();
-			y2 = (int) cell2.getY();
-
-			Shape cellCircle = new Ellipse2D.Double(x1, y1, 2.0 * 25, 2.0 * 25);
-			g2.draw(cellCircle);
-			cellCircle = new Ellipse2D.Double(x2, y2, 2.0 * 25, 2.0 * 25);
-			g2.draw(cellCircle);
-
-			double cost = step.getPathCost();
-			String costString = "" + cost;
-			g2.drawString(costString, 0, 0);
+			
 		}
+			
 	}
+	
 
 	private void paintAntPath(Graphics2D g2) {
 		if (this.antSteps.size() > 0) {
