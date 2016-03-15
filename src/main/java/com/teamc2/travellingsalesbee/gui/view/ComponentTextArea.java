@@ -19,8 +19,7 @@ public class ComponentTextArea extends JScrollPane {
 		setMinimumSize(new Dimension(10, 10));
 	}
 
-	public void setText(String text) {
+	public void addText(String text) {
 		textArea.addText(text);
-		repaint();
 	}
 }

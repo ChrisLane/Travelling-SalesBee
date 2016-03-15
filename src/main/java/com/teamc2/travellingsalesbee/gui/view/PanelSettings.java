@@ -158,7 +158,7 @@ public class PanelSettings extends JPanel {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
 				if (distance > 0) {
-					textArea.setText("Distance: " + distance);
+					textArea.addText("Distance: " + distance);
 				}
 			});
 
@@ -178,7 +178,7 @@ public class PanelSettings extends JPanel {
 			Platform.runLater(() -> {
 				setDistance();
 				if (distance > 0) {
-					textArea.setText("Distance: " + distance);
+					textArea.addText("Distance: " + distance);
 				}
 			});
 
