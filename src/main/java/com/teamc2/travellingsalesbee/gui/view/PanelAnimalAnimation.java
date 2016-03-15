@@ -32,6 +32,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	private Rectangle animalIcon;
 	private TranslateTransition transition;
+	private Scene scene;
 
 	private boolean singlePath = true; //Single path
 	private boolean poPaths = false; //path of Paths
@@ -48,15 +49,15 @@ public class PanelAnimalAnimation extends JFXPanel {
 		this.width = width;
 		this.height = height;
 
-		Scene scene = initScene();
+		Platform.runLater(this::initScene);
 		setScene(scene);
 	}
 
-	private Scene initScene() {
+	private void initScene() {
 		Pane root = new Pane();
 		root.setId("beePane");
 
-		Scene scene = new Scene(root, width, height);
+		scene = new Scene(root, width, height);
 		scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
 		scene.getStylesheets().add(url1.toExternalForm());
@@ -65,8 +66,6 @@ public class PanelAnimalAnimation extends JFXPanel {
 		animalIcon.setVisible(false);
 		transition = new TranslateTransition(Duration.seconds(1), animalIcon);
 		root.getChildren().add(animalIcon);
-
-		return scene;
 	}
 
 	private Rectangle createRectangle() {
