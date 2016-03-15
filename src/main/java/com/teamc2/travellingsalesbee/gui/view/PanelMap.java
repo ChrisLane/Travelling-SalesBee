@@ -12,7 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class PanelMap extends JPanel {
-	
+
+	public final static String name = "PanelMap";
 	private final int cellWidth;
 	private final int cellHeight;
 	private ComponentPath componentPath;
@@ -32,7 +33,7 @@ public class PanelMap extends JPanel {
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
 
-		setName("PanelMap");
+		setName(name);
 
 		// Create the map we're visualising
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

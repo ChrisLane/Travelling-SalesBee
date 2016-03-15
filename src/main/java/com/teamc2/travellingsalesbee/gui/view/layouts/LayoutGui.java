@@ -1,26 +1,23 @@
 package com.teamc2.travellingsalesbee.gui.view.layouts;
 
-import com.teamc2.travellingsalesbee.gui.view.ComponentTabs;
-import com.teamc2.travellingsalesbee.gui.view.PanelMap;
-import com.teamc2.travellingsalesbee.gui.view.PanelSettings;
-import com.teamc2.travellingsalesbee.gui.view.PanelToolbox;
+import com.teamc2.travellingsalesbee.gui.view.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class LayoutGui extends GroupLayout {
 
 	/**
 	 * Create a layout for the GUI JPanel
 	 *
-	 * @param host          The container
-	 * @param panelMap      The map panel
-	 * @param panelSettings The settings panel
-	 * @param panelToolbox  The toolbox panel
-	 * @param componentTabs The tab pane
+	 * @param host The container
 	 */
-	public LayoutGui(Container host, PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox, ComponentTabs componentTabs) {
+	public LayoutGui(GuiContainer host) {
 		super(host);
+
+		PanelMap panelMap = (PanelMap) host.getComponentByName("PanelMap");
+		PanelSettings panelSettings = (PanelSettings) host.getComponentByName("PanelSettings");
+		PanelToolbox panelToolbox = (PanelToolbox) host.getComponentByName("PanelToolbox");
+		ComponentTabs componentTabs = (ComponentTabs) host.getComponentByName("ComponentTabs");
 
 		setHorizontalGroup(createSequentialGroup()
 				.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)

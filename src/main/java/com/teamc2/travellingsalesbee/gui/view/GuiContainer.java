@@ -16,4 +16,20 @@ public class GuiContainer extends JRootPane {
 		}
 		return null;
 	}
+
+	public PanelMap getPanelMap() {
+		return (PanelMap) getComponentByName(PanelMap.name);
+	}
+
+	public PanelSettings getPanelSettings() {
+		return (PanelSettings) getComponentByName(PanelSettings.name);
+	}
+
+	public PanelToolbox getPanelToolbox() {
+		return (PanelToolbox) getComponentByName(PanelToolbox.name);
+	}
+
+	public ComponentTabs getComponentTabs() {
+		return (ComponentTabs) getComponentByName(ComponentTabs.name);
+	}
 }
