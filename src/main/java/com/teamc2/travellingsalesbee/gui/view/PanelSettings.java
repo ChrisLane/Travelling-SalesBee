@@ -36,7 +36,13 @@ public class PanelSettings extends JPanel {
 
 	private Timer timer;
 	private boolean playing = false;
-	private int experimentalRuns = 26; // Set to 26 by default
+	
+	// Number of runs for a given algorithm
+		//For BEE this is the number of experimental runs
+		//For ANT this is the number of pheremone runs
+		//For TWOOPT this is the number of swap runs
+	private int noOfRunsValue = 26; 
+	
 	private double animationSpeed = 10;
 	private int stepNum;
 	private AlgorithmType type;
@@ -97,14 +103,14 @@ public class PanelSettings extends JPanel {
 		createNextButton();
 
 		noOfRunsSlider = new JSlider();
-		noOfRunsSlider.setValue(experimentalRuns);
+		noOfRunsSlider.setValue(noOfRunsValue);
 		noOfRunsSlider.setOpaque(false);
 		lblRunsOfType = new JLabel("Experiment Runs: ");
-		JLabel lblNoOfRuns = new JLabel("" + experimentalRuns);
+		JLabel lblNoOfRuns = new JLabel("" + noOfRunsValue);
 
 		noOfRunsSlider.addChangeListener(arg0 -> {
-			experimentalRuns = noOfRunsSlider.getValue();
-			lblNoOfRuns.setText(("" + experimentalRuns));
+			noOfRunsValue = noOfRunsSlider.getValue();
+			lblNoOfRuns.setText(("" + noOfRunsValue));
 		});
 
 		JSlider speedSlider = new JSlider();
@@ -138,6 +144,7 @@ public class PanelSettings extends JPanel {
 
 		timer = new Timer(150, arg0 -> {
 			setStepNum(stepNum + 1);
+			setDistance();
 			panelMap.getPathComponent().repaint();
 			// panelMap.getPanelAnimalAnimation().incrStepNum();
 		});
@@ -202,7 +209,7 @@ public class PanelSettings extends JPanel {
 		if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 == 0) {
 			textArea.addText("LOOKING FOR NEAREST FLOWER");
 		} else if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 != 0) {
-			textArea.addText("FOUND CLOSEST FLOWER, LET'S SMOKE A FAT JOINT");
+			textArea.addText("FOUND CLOSEST FLOWER");
 		} else if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
 			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("INSPECTED");
@@ -221,9 +228,16 @@ public class PanelSettings extends JPanel {
 
 	/**
 	 * Sets the text for the textbox related to the Ant
+	 * 	//Text is set at each step
 	 */
 	public void setAntText() {
-
+		ArrayList<AntStep> antSteps = this.panelMap.getPathComponent().getAntSteps();
+		if (stepNum < antSteps.size()){
+			textArea.addText("Pheremone run " + stepNum + " complete");
+			JButton test = new JButton("test");
+			test.setVisible(true);
+			textArea.add(test);
+		}
 	}
 
 	/**
@@ -335,7 +349,7 @@ public class PanelSettings extends JPanel {
 			CostMatrix initialMatrix;
 			initialMatrix = map.getCostMatrix().copy();
 
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < noOfRunsValue; i++) {
 				ant.pheromoneRun();
 				CostMatrix updatedMatrix = map.getCostMatrix().copy();
 				setOfMatrices.add(updatedMatrix);
@@ -361,7 +375,7 @@ public class PanelSettings extends JPanel {
 				setStepNum(0);
 
 				map.setCostMatrix();
-				Bee bee = new Bee(map, experimentalRuns);
+				Bee bee = new Bee(map, noOfRunsValue);
 				StepController visualise = new StepController();
 				bee.naiveRun();
 				ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(bee.getPath());
@@ -446,10 +460,13 @@ public class PanelSettings extends JPanel {
 				setBeeText();
 				break;
 			case ANT:
+				setAntText();
 				break;
 			case NEARESTNEIGHBOUR:
+				setNNText();
 				break;
 			case TWOOPT:
+				setTOText();
 				break;
 		}
 		this.distance = distance;

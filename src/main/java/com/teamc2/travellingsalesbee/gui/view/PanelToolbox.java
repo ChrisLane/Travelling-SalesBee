@@ -42,7 +42,7 @@ public class PanelToolbox extends JPanel {
 		JButton randomiseButton = new JButton("Randomise Map");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
-			guiContainer.getComponentTextArea().addText("Map Randomised!");
+			//WHY ARE YOU ADDING TEXT? guiContainer.getComponentTextArea().addText("Map Randomised!");
 		});
 		
 		JButton clearButton = new JButton("Clear Map");
