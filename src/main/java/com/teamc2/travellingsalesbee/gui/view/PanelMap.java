@@ -32,6 +32,8 @@ public class PanelMap extends JPanel {
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
 
+		setName("PanelMap");
+
 		// Create the map we're visualising
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		screenWidth = screenSize.width;
