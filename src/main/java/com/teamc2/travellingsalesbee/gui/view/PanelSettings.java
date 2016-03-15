@@ -5,6 +5,7 @@ import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
+import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
@@ -40,6 +41,7 @@ public class PanelSettings extends JPanel {
 	private int stepNum;
 	private AlgorithmType type;
 	private double distance;
+	private double oldDistance;
 	private JSlider noOfRunsSlider;
 	private LayoutSettings layoutSettings;
 	private JLabel lblRunsOfType;
@@ -178,14 +180,12 @@ public class PanelSettings extends JPanel {
 			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
 				setDistance();
-				if (distance > 0) {
-					textArea.addText("Distance: " + distance);
-				}
 			});
 
 			try {
 				// if (stepNum < experimentalRuns) {
 				panelMap.getPanelAnimalAnimation().incrStepNum();
+				oldDistance = distance;
 				// }
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Exception in setting animation");
@@ -194,21 +194,73 @@ public class PanelSettings extends JPanel {
 		});
 	}
 
+	/**
+	 * Sets the text for the textbox related to the Bee
+	 */
+	public void setBeeText() {
+
+		if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 == 0) {
+			textArea.addText("LOOKING FOR NEAREST FLOWER");
+		} else if(stepNum < this.panelMap.getPathComponent().getNaiveSteps().size() && stepNum > 0 && stepNum % 2 != 0) {
+			textArea.addText("FOUND CLOSEST FLOWER, LET'S SMOKE A FAT JOINT");
+		} else if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
+			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
+				textArea.addText("INSPECTED");
+			}
+			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
+				textArea.addText("ACCEPTED");
+			}
+			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
+				textArea.addText("BEST");
+			}
+			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
+				textArea.addText("REJECTED");
+			}
+		}
+	}
+
+	/**
+	 * Sets the text for the textbox related to the Ant
+	 */
+	public void setAntText() {
+
+	}
+
+	/**
+	 * Sets the text for the textbox related to the NN
+	 */
+	public void setNNText() {
+
+	}
+
+	/**
+	 * Sets the text for the textbox related to the Two-Opt
+	 */
+	public void setTOText() {
+
+	}
+
+
+
 	private class runActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch (type) {
 				case BEE:
 					runBeeAlgorithm();
+					textArea.addText("Naive Path - Travel through the algorithm step-by-step");
 					break;
 				case ANT:
 					runAntAlgorithm();
+					textArea.addText("Ant Algorithm");
 					break;
 				case NEARESTNEIGHBOUR:
 					runNearestNeighbourAlgorithm();
+					textArea.addText("Nearest Neighbour");
 					break;
 				case TWOOPT:
 					runTwoOptAlgorithm();
+					textArea.addText("Two Opt Swap");
 					break;
 			}
 		}
@@ -391,6 +443,7 @@ public class PanelSettings extends JPanel {
 					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
 					distance = step.getStart().distance(step.getEnd());
 				}
+				setBeeText();
 				break;
 			case ANT:
 				break;
