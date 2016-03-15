@@ -75,11 +75,30 @@ public class CostMatrix implements Serializable {
 		}
 		return maxPheromone;
 	}
+	
+	public double getMeanPheromone() {
+		double totalPheromone = 0;
+		int i = 0;
+		for (CostEntry entry : costMatrix) {
+			i++;
+			totalPheromone += entry.getPheromone();
+		}
+		return totalPheromone/i;
+	}
 
 	public CostEntry getEntry(Cell cell1, Cell cell2) {
 		for (CostEntry entry : costMatrix) {
 			if (entry.isKey(cell1, cell2)) {
 				return entry;
+			}
+		}
+		return null;
+	}
+	
+	public Cell getCell(double x, double y) {
+		for (Cell c : cells1) {
+			if (c.x == x && c.y == y) {
+				return c;
 			}
 		}
 		return null;
@@ -103,4 +122,5 @@ public class CostMatrix implements Serializable {
 			return null;
 		}
 	}
+	
 }

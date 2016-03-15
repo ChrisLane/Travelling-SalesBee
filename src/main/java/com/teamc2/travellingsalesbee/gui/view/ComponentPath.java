@@ -339,25 +339,28 @@ public class ComponentPath extends JComponent {
 
 	private void paintAntPath(Graphics2D g2) {
 		if (this.antSteps.size() > 0) {
-			g2.setPaint(Color.black);
-			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(0, 0, 50, 50);
-
 			int x1, x2, y1, y2;
 			//Fix this stepNum + 1 it thinks it's -1 so had to add 1
 			AntStep step = antSteps.get(stepNum + 1);
 			ArrayList<Cell> path = step.getPath();
 
 			CostMatrix matrix = step.getCostMatrix();
+			double threshold = stepNum/2;
 
 			for (int i = 0; i < path.size(); i++) {
 				x1 = (int) path.get(i).getX();
 				y1 = (int) path.get(i).getY();
-				for (int j = (i + 1); j < path.size(); j++) {
+				for (int j = (i+1); j < path.size(); j++) {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
-					System.out.println(i + " -> " + j + " " + matrix.getPheromone(path.get(i), path.get(j)));
-					Color lineColor = new Color(255, 255, 0, (int) (((255 / matrix.getMaxPheromone())) * matrix.getPheromone(path.get(i), path.get(j))));
+					Cell cell1 = matrix.getCell(path.get(i).getX(), path.get(i).getY());
+					Cell cell2 = matrix.getCell(path.get(j).getX(), path.get(j).getY());
+					System.out.println(i + " -> " + j + " " + matrix.getPheromone(cell1, cell2));
+					Color lineColor = new Color(255, 255, 0, 0);
+					if (!(matrix.getPheromone(cell1, cell2) < threshold)) {
+						lineColor = new Color(255, 255, 0, (int) (Math.min(255, 
+								((255 / matrix.getMaxPheromone()) * matrix.getPheromone(cell1, cell2)))));
+					}
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);

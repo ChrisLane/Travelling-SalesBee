@@ -29,16 +29,11 @@ public class CostEntry implements Serializable {
 		this.cost = cost;
 	}
 
-	public void plantPheromone(double pheromone) {
-		setPheromone(this.pheromone * pheromone);
+	public void plantPheromone() {
+		pheromone++;
 	}
 
 	public double getPheromone() {
 		return pheromone;
 	}
-
-	public void setPheromone(double pheromone) {
-		this.pheromone = pheromone;
-	}
-
 }
