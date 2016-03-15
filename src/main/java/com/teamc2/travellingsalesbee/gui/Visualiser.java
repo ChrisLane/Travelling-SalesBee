@@ -28,10 +28,11 @@ public class Visualiser extends JFrame {
 		setMinimumSize(new Dimension(800, 600));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
-		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(new Color(71, 35, 35));
-		setContentPane(contentPane);
+		GuiContainer container = new GuiContainer();
+		container.setBorder(new EmptyBorder(5, 5, 5, 5));
+		container.setBackground(new Color(71, 35, 35));
+		container.setOpaque(true);
+		setContentPane(container);
 
 		int width = 50;
 		int height = 50;
@@ -40,8 +41,8 @@ public class Visualiser extends JFrame {
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
 
-		LayoutGui layoutGui = new LayoutGui(contentPane, panelMap, panelSettings, panelToolbox, componentTabs);
-		contentPane.setLayout(layoutGui);
+		LayoutGui layoutGui = new LayoutGui(container, panelMap, panelSettings, panelToolbox, componentTabs);
+		container.setLayout(layoutGui);
 	}
 
 	/**

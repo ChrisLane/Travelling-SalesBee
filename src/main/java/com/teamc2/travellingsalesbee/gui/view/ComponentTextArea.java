@@ -13,8 +13,8 @@ public class ComponentTextArea extends JScrollPane {
 		super(editorPane);
 		textArea = new TextArea(editorPane);
 
-		setVerticalScrollBarPolicy(
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		setName("ComponentTextArea");
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		setPreferredSize(new Dimension(350, 200));
 		setMinimumSize(new Dimension(10, 10));
 	}

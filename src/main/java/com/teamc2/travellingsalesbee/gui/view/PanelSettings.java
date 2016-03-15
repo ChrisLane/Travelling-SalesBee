@@ -53,6 +53,7 @@ public class PanelSettings extends JPanel {
 		this.panelMap = panelMap;
 		map = panelMap.getMap();
 
+		setName("PanelSettings");
 		setBackground(Color.LIGHT_GRAY);
 		addSettingsInfo();
 		addButtons();
@@ -156,7 +157,9 @@ public class PanelSettings extends JPanel {
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
-				textArea.setText("Distance: " + distance);
+				if (distance > 0) {
+					textArea.setText("Distance: " + distance);
+				}
 			});
 
 			try {
@@ -174,7 +177,9 @@ public class PanelSettings extends JPanel {
 			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
 				setDistance();
-				textArea.setText("Distance: " + distance);
+				if (distance > 0) {
+					textArea.setText("Distance: " + distance);
+				}
 			});
 
 			try {
@@ -396,4 +401,7 @@ public class PanelSettings extends JPanel {
 		this.distance = distance;
 	}
 
+	public ComponentTextArea getTextArea() {
+		return textArea;
+	}
 }
