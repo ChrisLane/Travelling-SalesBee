@@ -32,4 +32,8 @@ public class GuiContainer extends JRootPane {
 	public ComponentTabs getComponentTabs() {
 		return (ComponentTabs) getComponentByName(ComponentTabs.name);
 	}
+
+	public ComponentTextArea getComponentTextArea() {
+		return getPanelSettings().getTextArea();
+	}
 }
