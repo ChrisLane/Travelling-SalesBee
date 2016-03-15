@@ -48,6 +48,7 @@ public class PanelToolbox extends JPanel {
 		clearButton.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
+			((GuiContainer) getRootPane()).getComponentTextArea().addText("Map Cleared!");
 		});
 
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
