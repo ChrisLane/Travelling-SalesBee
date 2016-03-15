@@ -238,7 +238,7 @@ public class PanelSettings extends JPanel {
 	}
 
 	/**
-	 * Sets the text for the textbox related to the NN
+	 * Sets the text for the textbox related to the NN or for the naive Section of BEE algorithm
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = this.panelMap.getPathComponent().getNaiveSteps();
