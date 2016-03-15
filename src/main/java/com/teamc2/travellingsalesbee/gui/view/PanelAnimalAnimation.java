@@ -50,6 +50,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 		this.height = height;
 
 		Platform.runLater(this::initScene);
+		//this.initScene();
 		setScene(scene);
 	}
 
@@ -68,6 +69,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 		root.getChildren().add(animalIcon);
 	}
 
+	/**
+	 * @return Rectangle of size 30, 30
+	 */
 	private Rectangle createRectangle() {
 		final Rectangle rectangle = new Rectangle(-20, -20, 30, 30);
 		rectangle.setOpacity(1);
@@ -231,9 +235,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	/**
 	 * @param path Path of type: ArrayList<ArrayList<Cell>>
-	 *             <p>
-	 *             Gets the first position from the first path in the list and sets the bee to that position
-	 *             If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 * 			   Gets the first position from the first path in the list and sets the bee to that position
+	 * 			   If the path needs to be stepped through the entire path, set the singlePath boolean to true
 	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		this.pathOfPaths = path;
