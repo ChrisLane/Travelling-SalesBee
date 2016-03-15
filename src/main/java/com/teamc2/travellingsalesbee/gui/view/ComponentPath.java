@@ -374,6 +374,7 @@ public class ComponentPath extends JComponent {
 		}
 		distance.setBounds((int) (end.x)+15, (int) (end.y) + 15, 30, 20);
 		this.add(distance);
+		this.setComponentZOrder(distance, 1);
 		this.distanceBoxes.add(distance);
 	}
 
