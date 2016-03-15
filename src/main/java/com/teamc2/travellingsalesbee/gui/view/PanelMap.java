@@ -80,7 +80,7 @@ public class PanelMap extends JPanel {
 				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				break;
 			case TWOOPT:
-				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Sand.jpg"));
+				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				break;
 			}
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
