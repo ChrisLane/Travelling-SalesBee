@@ -54,6 +54,10 @@ public class ComponentPath extends JComponent {
 		this.antSteps = antSteps;
 		repaint();
 	}
+	
+	public ArrayList<AntStep> getAntSteps(){
+		return this.antSteps;
+	}
 
 	//Naive visualisation
 	public void setNaiveSteps(ArrayList<NaiveStep> steps) {
@@ -147,8 +151,9 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void clearLabels() {
-		distanceBoxes.forEach(this::remove);
-
+		for (JLabel label : distanceBoxes){
+			this.remove(label);
+		}
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
