@@ -18,6 +18,7 @@ public class PanelMap extends JPanel {
 	private final int cellHeight;
 	private ComponentPath componentPath;
 	private PanelAnimalAnimation panelAnimation;
+	private PanelOverlyingText panelOverlyingText;
 	private Map map;
 	private AlgorithmType type;
 	private int screenWidth;
@@ -51,8 +52,11 @@ public class PanelMap extends JPanel {
 		//Initialise and set bounds
 		panelAnimation = new PanelAnimalAnimation(screenWidth, screenHeight);
 		panelAnimation.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
-
 		this.add(panelAnimation); //Add to panel map
+
+		panelOverlyingText = new PanelOverlyingText(screenWidth, screenHeight);
+		panelOverlyingText.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
+		this.add(panelOverlyingText);
 
 		setComponentZOrder(panelAnimation, 0);
 
