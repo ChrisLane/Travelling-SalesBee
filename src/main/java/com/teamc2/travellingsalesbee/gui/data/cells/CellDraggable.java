@@ -108,6 +108,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			}
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
+			droppedBtn.setText("HELLO");
+
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
 					ImageIcon img = new ImageIcon(getImage(type));

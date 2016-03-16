@@ -45,7 +45,8 @@ public class PanelMap extends JPanel {
 
 		componentPath = new ComponentPath(AlgorithmType.BEE);
 		add(componentPath);
-
+		
+		
 		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
 		add(componentGrid);
 
@@ -59,6 +60,7 @@ public class PanelMap extends JPanel {
 		this.add(panelOverlyingText);
 
 		setLayout(null);
+		
 	}
 
 	/**
