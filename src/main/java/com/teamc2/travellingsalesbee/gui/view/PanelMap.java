@@ -91,7 +91,7 @@ public class PanelMap extends JPanel {
 			}
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
-			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+			g2.fill(new Rectangle(0, 70, getWidth(), getHeight()));
 
 		} catch (IOException e) {
 			e.printStackTrace();

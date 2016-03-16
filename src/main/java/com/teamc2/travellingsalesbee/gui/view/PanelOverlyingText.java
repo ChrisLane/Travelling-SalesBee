@@ -46,7 +46,7 @@ public class PanelOverlyingText extends JFXPanel {
 			// Initialising the text, settings its font and initial text and giving it a drop shadow
 			text = new Text();
 			setSize(15);
-			setTextColor(Color.color(1.0, 1.0, 1.0, 1.0));
+			setTextColor(Color.color(0, 0, 0, 1.0));
 			setDropShadow(true);
 			setTextXandY(0, 20);
 			setText("Initial text");
@@ -90,7 +90,7 @@ public class PanelOverlyingText extends JFXPanel {
 			if(bool) {
 				DropShadow ds = new DropShadow();
 				ds.setOffsetY(3.0f);
-				ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+				ds.setColor(Color.color(1.0f, 1.0f, 1.0f));
 				text.setEffect(ds);
 			}
 		});
