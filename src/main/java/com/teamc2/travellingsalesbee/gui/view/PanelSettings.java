@@ -163,7 +163,7 @@ public class PanelSettings extends JPanel {
 	}
 
 	private void createPreviousButton() {
-		btnPrev = new JButton("<-");
+		btnPrev = new JButton("<=");
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
@@ -182,7 +182,7 @@ public class PanelSettings extends JPanel {
 	}
 
 	private void createNextButton() {
-		btnNext = new JButton("->");
+		btnNext = new JButton("=>");
 		btnNext.addActionListener(arg0 -> {
 			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
@@ -406,6 +406,8 @@ public class PanelSettings extends JPanel {
 					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
 					pathOfPaths.add(setOfPoints);
 				}
+				
+				panelMap.getPathComponent().setBeePath(bee.getPath());
 
 				/*----------------------------------------------*/
 				// panelMap.getPanelAnimalAnimation().setPath(bee.getPath());

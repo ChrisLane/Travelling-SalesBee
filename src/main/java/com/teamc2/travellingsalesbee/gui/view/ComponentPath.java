@@ -1,5 +1,19 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
@@ -8,14 +22,8 @@ import com.teamc2.travellingsalesbee.gui.AntStep;
 import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
-import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.visualisation.StepController;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
 
 public class ComponentPath extends JComponent {
 
@@ -66,6 +74,7 @@ public class ComponentPath extends JComponent {
 
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
+		clearLabels();
 		repaint();
 	}
 
@@ -81,12 +90,15 @@ public class ComponentPath extends JComponent {
 	public ArrayList<Cell> getBeePath() {
 		return beePath;
 	}
+	
+	public void setBeePath(ArrayList<Cell> beePath) {
+		this.beePath = beePath;
+	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-		clearLabels();
 
 		switch (this.type) {
 			case BEE:
@@ -103,43 +115,15 @@ public class ComponentPath extends JComponent {
 				break;
 		}
 
-		if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
-
-			int x1, x2 = 0, y1, y2 = 0;
-			int transparencyIncrement = Math.round(170 / beePath.size());
-			int transparency = 0;
-			int lineThicknessIncrement = Math.round(4 / beePath.size());
-			int lineThickness = 5;
-			for (int i = 0; i < beePath.size() - 1; i++) {
-
-				x1 = (int) beePath.get(i).x;
-				y1 = (int) beePath.get(i).y;
-				x2 = (int) beePath.get(i + 1).x;
-				y2 = (int) beePath.get(i + 1).y;
-				Color lineColor = new Color(255, 255, 0, 75 + transparency);
-
-				g2.setPaint(lineColor);
-				g2.setStroke(new BasicStroke(lineThickness));
-				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-				String position = Integer.toString(i);
-				g2.setPaint(Color.white);
-				g2.setFont(new Font(null, Font.PLAIN, 15));
-				g2.drawString(position, x1 + (50 / 12), y1 + (50 / 4));
-
-				lineThickness = lineThickness - lineThicknessIncrement;
-				transparency += transparencyIncrement;
-			}
-			g2.setPaint(new Color(255, 255, 0, 75 + transparency + 10));
-			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
-
-		}
+		
 	}
 
 	private void clearLabels() {
 		for (JLabel label : distanceBoxes){
+			label.setVisible(false);
 			this.remove(label);
 		}
+		distanceBoxes.clear();
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
@@ -206,13 +190,9 @@ public class ComponentPath extends JComponent {
 								g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 								String Distance = Integer.toString((int) Math.round((step.getStart().distance(anAvailable)) * 100) / 100);
 								if (!(available.contains(step.getStart()))) {
-									if (step.getEnd() == anAvailable) {
-										printDistance(Distance, anAvailable, g2, true);
-									} else {
-										printDistance(Distance, anAvailable, g2, false);
-									}
+									printDistance(Distance, anAvailable, g2, step.getEnd() == anAvailable);
 								} else {
-									printDistance(Distance, anAvailable, g2, false);
+										printDistance(Distance, anAvailable, g2, false);
 
 								}
 							}
@@ -240,7 +220,7 @@ public class ComponentPath extends JComponent {
 	private void paintBeePath(Graphics2D g2) {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			paintNearestNeighbourPath(g2);
-		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size()) {
+		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size() && stepNum < (naiveSteps.size() + experimentalSteps.size())) {
 			try{
 				int x1, x2, y1, y2;
 				ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
@@ -317,8 +297,32 @@ public class ComponentPath extends JComponent {
 				
 			}
 			
-		}
+		//print the final path if at the end of the bee path process
+		}else if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
+
+			int x1, x2 = 0, y1, y2 = 0;
 			
+			
+			for (int i = 0; i < beePath.size() - 1; i++) {
+
+				x1 = (int) beePath.get(i).x;
+				y1 = (int) beePath.get(i).y;
+				x2 = (int) beePath.get(i + 1).x;
+				y2 = (int) beePath.get(i + 1).y;
+				
+				g2.setPaint(Color.white);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
+				String position = Integer.toString(i);
+				g2.setPaint(Color.white);
+				g2.setFont(new Font(null, Font.PLAIN, 15));
+				g2.drawString(position, x1 + (50 / 12), y1 + (50 / 4));
+				
+			}
+			g2.setPaint(new Color(255, 255, 0, 255));
+			g2.setStroke(new BasicStroke(5));
+			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
+		}	
 	}
 	
 
@@ -356,13 +360,17 @@ public class ComponentPath extends JComponent {
 	}
 
 	//Code to print the distance boxes on top of flowers
-	private void printDistance(String text, Cell end, Graphics2D g2, Boolean printOnTopOfLine) {
+	private void printDistance(String text, Cell end, Graphics2D g2, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
-		if (printOnTopOfLine) {
+		if (isChosenCell) {
+			//If the distance to be printed is the end cell of a step (Cell chosen) then print the text
+			//with the colour green
 			distance.setForeground(Color.green);
 		} else {
+			//If the distance to be printed is not the end cell of a step then print the text with the 
+			//colour red
 			distance.setForeground(Color.red);
 		}
 		distance.setBounds((int) (end.x)+15, (int) (end.y) + 15, 30, 20);
