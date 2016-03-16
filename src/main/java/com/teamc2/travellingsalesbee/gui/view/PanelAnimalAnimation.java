@@ -49,8 +49,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 		this.width = width;
 		this.height = height;
 
-		Platform.runLater(this::initScene);
+		//Platform.runLater(this::initScene);
 		//this.initScene();
+		this.initScene();
 		setScene(scene);
 	}
 
