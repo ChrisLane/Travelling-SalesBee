@@ -123,6 +123,8 @@ public class PanelMap extends JPanel {
 		return this.panelAnimation;
 	}
 
+	public PanelOverlyingText getPanelOverlyingText() { return this.panelOverlyingText; }
+
 	public Map getMap() {
 		return map;
 	}
