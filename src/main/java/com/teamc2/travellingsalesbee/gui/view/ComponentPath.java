@@ -362,7 +362,7 @@ public class ComponentPath extends JComponent {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
-		Color translucentBg = new Color(180, 180, 180, 0.5f);
+		Color translucentBg = new Color(180f, 180f, 180f, 0.5f);
 		LineBorder border = new LineBorder(translucentBg, 2, true);
 		distance.setBorder(border);
 		if (isChosenCell) {
