@@ -11,8 +11,7 @@ import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.metal.MetalBorders;
@@ -362,10 +361,10 @@ public class ComponentPath extends JComponent {
 
 	//Code to print the distance boxes on top of flowers
 	private void printDistance(String text, Cell end, Graphics2D g2, Boolean isChosenCell) {
-		JLabel distance = new JLabel(text);
+		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
-		LineBorder border = new LineBorder(new Color(180, 180, 180, 1), 5, true);
+		LineBorder border = new LineBorder(new Color(180, 180, 180, 1), 2, true);
 		distance.setBorder(border);
 		if (isChosenCell) {
 			//If the distance to be printed is the end cell of a step (Cell chosen) then print the text
@@ -376,7 +375,7 @@ public class ComponentPath extends JComponent {
 			//colour red
 			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int) (end.x)+15, (int) (end.y) + 15, 30, 20);
+		distance.setBounds((int) (end.x) + 15, (int) (end.y)+30, 80, 20);
 		this.add(distance);
 		this.distanceBoxes.add(distance);
 	}
