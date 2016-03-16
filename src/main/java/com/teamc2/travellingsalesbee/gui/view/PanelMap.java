@@ -59,6 +59,7 @@ public class PanelMap extends JPanel {
 		panelOverlyingText.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
 		add(panelOverlyingText);
 
+		setComponentZOrder(panelAnimation, 1);
 		setLayout(null);
 		
 	}
