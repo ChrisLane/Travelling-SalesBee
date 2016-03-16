@@ -168,7 +168,7 @@ public class PanelSettings extends JPanel {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
 				if (distance > 0) {
-					textArea.addText("Distance: " + distance);
+					textArea.addText("<p><b>Distance: </b>" + distance + "</p>");
 				}
 			});
 
@@ -209,19 +209,19 @@ public class PanelSettings extends JPanel {
 		
 		if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
 			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-				textArea.addText("INSPECTED");
+				textArea.addText("<p>INSPECTED");
 				this.panelMap.getPanelOverlyingText().setText("INSPECTED");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
-				textArea.addText("ACCEPTED");
+				textArea.addText("<p>ACCEPTED");
 				this.panelMap.getPanelOverlyingText().setText("ACCEPTED");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
-				textArea.addText("BEST");
+				textArea.addText("<p>BEST");
 				this.panelMap.getPanelOverlyingText().setText("BEST");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
-				textArea.addText("REJECTED");
+				textArea.addText("<p>REJECTED");
 				this.panelMap.getPanelOverlyingText().setText("REJECTED");
 			}
 		}
@@ -234,7 +234,7 @@ public class PanelSettings extends JPanel {
 	public void setAntText() {
 		ArrayList<AntStep> antSteps = this.panelMap.getPathComponent().getAntSteps();
 		if (stepNum < antSteps.size()){
-			textArea.addText("Pheremone run " + stepNum + " complete");
+			textArea.addText("<p>Pheremone run " + stepNum + " complete");
 			JButton test = new JButton("test");
 			test.setVisible(true);
 			textArea.add(test);
@@ -247,9 +247,9 @@ public class PanelSettings extends JPanel {
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = this.panelMap.getPathComponent().getNaiveSteps();
 		if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
-			textArea.addText("LOOKING FOR NEAREST NODE");
+			textArea.addText("<p>LOOKING FOR NEAREST NODE");
 		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
-			textArea.addText("FOUND CLOSEST FLOWER");
+			textArea.addText("<p>FOUND CLOSEST FLOWER");
 		}
 	}
 
@@ -268,22 +268,22 @@ public class PanelSettings extends JPanel {
 			switch (type) {
 				case BEE:
 					runBeeAlgorithm();
-					textArea.addText("Naive Path - Travel through the algorithm step-by-step");
+					textArea.addText("<p>Naive Path - Travel through the algorithm step-by-step");
 					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 				case ANT:
 					runAntAlgorithm();
-					textArea.addText("Ant Algorithm");
+					textArea.addText("<p>Ant Algorithm");
 					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 				case NEARESTNEIGHBOUR:
 					runNearestNeighbourAlgorithm();
-					textArea.addText("Nearest Neighbour");
+					textArea.addText("<p>Nearest Neighbour");
 					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 				case TWOOPT:
 					runTwoOptAlgorithm();
-					textArea.addText("Two Opt Swap");
+					textArea.addText("<p>Two Opt Swap");
 					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 			}

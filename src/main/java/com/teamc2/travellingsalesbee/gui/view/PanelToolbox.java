@@ -28,27 +28,27 @@ public class PanelToolbox extends JPanel {
 		this.type = type;
 		cellWidth = panelMap.getCellWidth();
 		cellHeight = panelMap.getCellHeight();
-		GuiContainer guiContainer = (GuiContainer) getRootPane();
 
 		setName(name);
 		setBackground(Color.WHITE);
-	
+
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(event -> Platform.runLater(() -> {
 			Visualiser.mainVisualiser.setVisible(false);
 			TravellingSalesBee.mainMenu.show();
 		}));
-		
+
 		JButton randomiseButton = new JButton("Randomise Map");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
+			((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
 		});
-		
+
 		JButton clearButton = new JButton("Clear Map");
 		clearButton.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
-			guiContainer.getComponentTextArea().addText("Map Cleared!");
+			((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
 		});
 
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
@@ -98,21 +98,21 @@ public class PanelToolbox extends JPanel {
 
 	public void randomise() {
 		panelMap.clear();
-		
+
 		int maxX = (panelMap.getWidth()) / cellWidth;
 		int maxY = (panelMap.getHeight()) / cellHeight;
-		
+
 		int x = 0;
 		int y = 0;
 		CellDraggable newCell = null;
 
 		int nodesPlaced = 0;
 		while(nodesPlaced < 12) {
-			
+
 			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
 			y = ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight;
 			panelMap.cellFull(x,y);
-			
+
 			if(nodesPlaced < 11) {
 				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
@@ -122,18 +122,18 @@ public class PanelToolbox extends JPanel {
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
 				panelMap.getMap().setCell(x,y,CellType.ORIGIN);
 			}
-			
+
 			newCell.setBounds(x, y, cellWidth, cellHeight);
 			newCell.onMap();
 			newCell.setPrevs(x,y);
 			newCell.setEnabled(true);
 			panelMap.add(newCell);
 			panelMap.setComponentZOrder(newCell, 0);
-			
+
 			nodesPlaced++;
-		} 
-		
+		}
+
 		panelMap.repaint();
 	}
-	
+
 }
