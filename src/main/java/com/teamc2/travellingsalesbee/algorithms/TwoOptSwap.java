@@ -40,7 +40,6 @@ public class TwoOptSwap extends NearestNeighbour {
 			}
 
 			this.stepNum++;
-			System.out.println(count);
 		}
 
 		// if the step number we need to get to is backwards, perform the previous swap

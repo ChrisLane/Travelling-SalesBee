@@ -37,7 +37,7 @@ public abstract class Page extends Stage implements PageInterface {
 	 */
 	protected Scene createScene(BorderPane borderPane) {
 		Scene scene = new Scene(borderPane, width, height);
-		URL url = this.getClass().getResource("/assets/stylesheets/menu.css");
+		URL url = getClass().getResource("/assets/stylesheets/menu.css");
 		scene.getStylesheets().add(url.toExternalForm());
 
 		return scene;

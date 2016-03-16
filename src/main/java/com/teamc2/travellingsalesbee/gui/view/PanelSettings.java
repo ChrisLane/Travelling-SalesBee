@@ -77,7 +77,7 @@ public class PanelSettings extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		try {
-			BufferedImage img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/BrownBack150.png"));
+			BufferedImage img = ImageIO.read(getClass().getResource("/assets/backgrounds/BrownBack150.png"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
@@ -207,22 +207,22 @@ public class PanelSettings extends JPanel {
 	public void setBeeText() {
 		setNNText();
 		
-		if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
-			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
+		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
+			if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("<p>INSPECTED");
-				this.panelMap.getPanelOverlyingText().setText("INSPECTED");
+				panelMap.getPanelOverlyingText().setText("INSPECTED");
 			}
-			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
+			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
 				textArea.addText("<p>ACCEPTED");
-				this.panelMap.getPanelOverlyingText().setText("ACCEPTED");
+				panelMap.getPanelOverlyingText().setText("ACCEPTED");
 			}
-			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
+			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 				textArea.addText("<p>BEST");
-				this.panelMap.getPanelOverlyingText().setText("BEST");
+				panelMap.getPanelOverlyingText().setText("BEST");
 			}
-			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
+			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
 				textArea.addText("<p>REJECTED");
-				this.panelMap.getPanelOverlyingText().setText("REJECTED");
+				panelMap.getPanelOverlyingText().setText("REJECTED");
 			}
 		}
 	}
@@ -232,7 +232,7 @@ public class PanelSettings extends JPanel {
 	 * 	//Text is set at each step
 	 */
 	public void setAntText() {
-		ArrayList<AntStep> antSteps = this.panelMap.getPathComponent().getAntSteps();
+		ArrayList<AntStep> antSteps = panelMap.getPathComponent().getAntSteps();
 		if (stepNum < antSteps.size()){
 			textArea.addText("<p>Pheremone run " + stepNum + " complete");
 			JButton test = new JButton("test");
@@ -245,7 +245,7 @@ public class PanelSettings extends JPanel {
 	 * Sets the text for the textbox related to the NN or for the naive Section of BEE algorithm
 	 */
 	public void setNNText() {
-		ArrayList<NaiveStep> nearestNeighbourSteps = this.panelMap.getPathComponent().getNaiveSteps();
+		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
 		if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
 			textArea.addText("<p>LOOKING FOR NEAREST NODE");
 		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {

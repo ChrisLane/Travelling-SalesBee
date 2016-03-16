@@ -28,7 +28,7 @@ public class PanelOverlyingText extends JFXPanel {
 		this.width = width;
 		this.height = height;
 
-		this.initScene();
+		initScene();
 	}
 
 	/**
@@ -50,10 +50,10 @@ public class PanelOverlyingText extends JFXPanel {
 			setTextColor(Color.color(1.0, 1.0, 1.0, 1.0));
 			setDropShadow(true);
 			setTextXandY(0, 95);
-			this.setText("Initial text");
+			setText("Initial text");
 
 			//Set the stylesheet for the scene (make textPane transparent)
-			URL url = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			URL url = getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url.toExternalForm());
 
 			root.getChildren().add(text);

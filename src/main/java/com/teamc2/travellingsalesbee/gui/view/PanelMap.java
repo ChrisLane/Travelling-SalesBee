@@ -52,11 +52,11 @@ public class PanelMap extends JPanel {
 		
 		//Initialise and set bounds
 		panelAnimation = new PanelAnimalAnimation(screenWidth, screenHeight);
-		panelAnimation.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
+		panelAnimation.setBounds(getX(), getY(), screenWidth, screenHeight);
 		add(panelAnimation); //Add to panel map
 
 		panelOverlyingText = new PanelOverlyingText(screenWidth, screenHeight);
-		panelOverlyingText.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
+		panelOverlyingText.setBounds(getX(), getY(), screenWidth, screenHeight);
 		add(panelOverlyingText);
 
 		setComponentZOrder(panelAnimation, 1);
@@ -75,18 +75,18 @@ public class PanelMap extends JPanel {
 		//Allowing for the correct background to be printed
 		try {
 			BufferedImage img = null;
-			switch (this.type) {
+			switch (type) {
 			case BEE:
-				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Grass.jpg"));
+				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Grass.jpg"));
 				break;
 			case ANT:
-				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Dirt.jpg"));
+				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Dirt.jpg"));
 				break;
 			case NEARESTNEIGHBOUR:
-				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				break;
 			case TWOOPT:
-				img = ImageIO.read(this.getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				break;
 			}
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
@@ -121,10 +121,10 @@ public class PanelMap extends JPanel {
 	}
 
 	public PanelAnimalAnimation getPanelAnimalAnimation() {
-		return this.panelAnimation;
+		return panelAnimation;
 	}
 
-	public PanelOverlyingText getPanelOverlyingText() { return this.panelOverlyingText; }
+	public PanelOverlyingText getPanelOverlyingText() { return panelOverlyingText; }
 
 	public Map getMap() {
 		return map;
@@ -137,7 +137,7 @@ public class PanelMap extends JPanel {
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
 
-		for (Component c : this.getComponents()) {
+		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				((CellDraggable) c).setAlgorithmType(type);
 				((CellDraggable) c).setImage(((CellDraggable) c).getType());

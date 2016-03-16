@@ -41,16 +41,16 @@ public class CellOrigin extends Cell {
 		try {
 			switch (type) {
 				case BEE:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Hive.png"));
 					break;
 				case ANT:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/AntHill.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/AntHill.png"));
 					break;
 				case NEARESTNEIGHBOUR:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/MailOffice.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/MailOffice.png"));
 					break;
 				default:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Hive.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Hive.png"));
 					break;
 			}
 		} catch (IOException e) {

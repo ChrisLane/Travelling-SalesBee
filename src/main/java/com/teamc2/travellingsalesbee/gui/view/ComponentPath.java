@@ -52,7 +52,7 @@ public class ComponentPath extends JComponent {
 	}
 	
 	public ArrayList<AntStep> getAntSteps(){
-		return this.antSteps;
+		return antSteps;
 	}
 
 	//Naive visualisation
@@ -62,7 +62,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	public ArrayList<NaiveStep> getNaiveSteps() {
-		return this.naiveSteps;
+		return naiveSteps;
 	}
 
 	public void setExperimentalSteps(ArrayList<ExperimentalStep> experimentalSteps) {
@@ -71,7 +71,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	public ArrayList<ExperimentalStep> getExperimentalSteps() {
-		return this.experimentalSteps;
+		return experimentalSteps;
 	}
 
 	public void setStepNum(int stepNum) {
@@ -82,11 +82,11 @@ public class ComponentPath extends JComponent {
 
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
-		this.repaint();
+		repaint();
 	}
 
 	public String getNaiveStepText(int stepNum) {
-		return this.naiveSteps.get(stepNum).getText();
+		return naiveSteps.get(stepNum).getText();
 	}
 
 	public ArrayList<Cell> getBeePath() {
@@ -102,7 +102,7 @@ public class ComponentPath extends JComponent {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		if (stepNum != -1){
-			switch (this.type) {
+			switch (type) {
 				case BEE:
 					paintBeePath(g2);
 					break;
@@ -122,7 +122,7 @@ public class ComponentPath extends JComponent {
 	private void clearLabels() {
 		for (JLabel label : distanceBoxes){
 			label.setVisible(false);
-			this.remove(label);
+			remove(label);
 		}
 		distanceBoxes.clear();
 	}
@@ -328,7 +328,7 @@ public class ComponentPath extends JComponent {
 	
 
 	private void paintAntPath(Graphics2D g2) {
-		if (this.antSteps.size() > 0) {
+		if (antSteps.size() > 0) {
 			int x1, x2, y1, y2;
 			
 			AntStep step = antSteps.get(stepNum);
@@ -376,8 +376,8 @@ public class ComponentPath extends JComponent {
 			distance.setForeground(Color.red);
 		}
 		distance.setBounds((int) (end.x)-15, (int) (end.y)+50, 80, 20);
-		this.add(distance);
-		this.distanceBoxes.add(distance);
+		add(distance);
+		distanceBoxes.add(distance);
 	}
 
 	public void setTosObject(TwoOptSwap tos) {
