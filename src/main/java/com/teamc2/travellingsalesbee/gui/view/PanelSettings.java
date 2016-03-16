@@ -291,23 +291,16 @@ public class PanelSettings extends JPanel {
 			switch (type) {
 				case BEE:
 					runBeeAlgorithm();
-					textArea.addText("<p>Naive Path - Travel through the algorithm step-by-step");
-					panelMap.getPanelOverlyingText().setText("INSPECTED");
+					setDistance();
 					break;
 				case ANT:
 					runAntAlgorithm();
-					textArea.addText("<p>Ant Algorithm");
-					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 				case NEARESTNEIGHBOUR:
 					runNearestNeighbourAlgorithm();
-					textArea.addText("<p>Nearest Neighbour");
-					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 				case TWOOPT:
 					runTwoOptAlgorithm();
-					textArea.addText("<p>Two Opt Swap");
-					panelMap.getPanelOverlyingText().setText("INSPECTED");
 					break;
 			}
 		}
