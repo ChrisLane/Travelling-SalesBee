@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.metal.MetalBorders;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
@@ -362,6 +365,8 @@ public class ComponentPath extends JComponent {
 		JLabel distance = new JLabel(text);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
+		LineBorder border = new LineBorder(new Color(180, 180, 180, 1), 5, true);
+		distance.setBorder(border);
 		if (isChosenCell) {
 			//If the distance to be printed is the end cell of a step (Cell chosen) then print the text
 			//with the colour green
