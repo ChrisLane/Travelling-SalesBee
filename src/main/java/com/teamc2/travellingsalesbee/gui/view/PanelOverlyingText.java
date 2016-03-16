@@ -43,7 +43,6 @@ public class PanelOverlyingText extends JFXPanel {
 		scene = new Scene(root, width, height);
 		scene.setFill(javafx.scene.paint.Color.rgb(0,0,0,0)); //Set it to transparent
 		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
-		scene.getStylesheets().add(url1.toExternalForm());
 
 		// Initialising the text, settings its font and initial text
 		text = new Text();
@@ -51,6 +50,8 @@ public class PanelOverlyingText extends JFXPanel {
 		text.setId("panelText");
 		setTextXandY(0, 95);
 		this.setText("Initial text");
+
+		scene.getStylesheets().add(url1.toExternalForm());
 
 		root.getChildren().add(text);
 	}
