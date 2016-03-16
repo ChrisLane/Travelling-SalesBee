@@ -368,7 +368,6 @@ public class PanelSettings extends JPanel {
 
 			StepController stepController = new StepController();
 			ArrayList<AntStep> antSteps = stepController.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
-			panelMap.getPathComponent().setMap(map);
 			panelMap.getPathComponent().setAntSteps(antSteps);
 		}
 
@@ -387,8 +386,6 @@ public class PanelSettings extends JPanel {
 				ArrayList<ExperimentalStep> experimentalSteps = visualise.getExperimentalSteps(bee.getCellComparisons(),
 						bee.getIntermediaryPaths(), bee.getIntermediaryPathCosts());
 				panelMap.getPathComponent().setExperimentalSteps(experimentalSteps);
-				panelMap.getPathComponent().setPath(bee.getPath()); // THIS DOES
-				// NOTHING
 
 				ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 				ArrayList<Cell> hive = new ArrayList<>();
