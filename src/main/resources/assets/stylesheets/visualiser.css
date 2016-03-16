@@ -7,3 +7,12 @@
     -fx-font-weight: 300;
     -fx-font-size: 21px;
 }
+
+#panelText {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -webkit-fx-color: #FFF;
+    -moz-fx-color: #FFF;
+    -ms-fx-color: #FFF;
+    -o-fx-color: #FFF;
+    fx-color: #FFF;
+}
