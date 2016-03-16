@@ -170,6 +170,7 @@ public class PanelSettings extends JPanel {
 				if (distance > 0) {
 					textArea.addText("<p><b>Distance: </b>" + distance + "</p>");
 				}
+				setDistance();
 			});
 
 			try {
@@ -203,26 +204,39 @@ public class PanelSettings extends JPanel {
 
 	/**
 	 * Sets the text for the textbox related to the Bee
+	 * @param nn 
 	 */
-	public void setBeeText() {
+	public void setBeeText(NearestNeighbour nn) {
 		setNNText();
 		
 		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
 			if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("<p>INSPECTED");
-				panelMap.getPanelOverlyingText().setText("INSPECTED");
+				panelMap.getPanelOverlyingText().setText("The Bee travels a new path by switching the order it visits two flowers in the path");
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
 				textArea.addText("<p>ACCEPTED");
-				panelMap.getPanelOverlyingText().setText("ACCEPTED");
+				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-2).getPath());
+				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath());
+				panelMap.getPanelOverlyingText().setText("Previous Best Distance: " + bestDistance + "\nNew Best Distance: " + newDistance + "\nThe new path travelled by the Bee has a lower cost than the bee's previous best, it now remembers this as it's current best path");
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath()));
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size()-1)).getPath()));
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-2).getPath()));
+
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 				textArea.addText("<p>BEST");
-				panelMap.getPanelOverlyingText().setText("BEST");
+				panelMap.getPanelOverlyingText().setText("The best path the bee has found up to now");
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
 				textArea.addText("<p>REJECTED");
-				panelMap.getPanelOverlyingText().setText("REJECTED");
+				ArrayList<ExperimentalStep> expSteps = panelMap.getPathComponent().getExperimentalSteps();
+				for (ExperimentalStep step : expSteps){
+					System.out.println(nn.calculatePathCost(step.getPath()));
+				}
+				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath());
+				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-1).getPath());
+				panelMap.getPanelOverlyingText().setText("Best Distance: " + bestDistance + "\nNew Distance: " + newDistance + "\nThe new path travelled by the Bee has a higher cost than the bee's previous best, it ignores this path");
 			}
 		}
 	}
@@ -460,13 +474,14 @@ public class PanelSettings extends JPanel {
 
 	private void setDistance() {
 		double distance = 0;
+		NearestNeighbour nn = new NearestNeighbour(map);
 		switch (type) {
 			case BEE:
 				if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
 					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
 					distance = step.getStart().distance(step.getEnd());
 				}
-				setBeeText();
+				setBeeText(nn);
 				break;
 			case ANT:
 				setAntText();
