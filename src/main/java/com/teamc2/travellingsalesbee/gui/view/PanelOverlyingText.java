@@ -16,7 +16,8 @@ public class PanelOverlyingText extends JFXPanel {
 
 	private int width, height;
 	private Text text;
-
+	
+	private Pane root;
 	private Scene scene;
 
 	/**
@@ -36,8 +37,7 @@ public class PanelOverlyingText extends JFXPanel {
 	private void initScene() {
 		Platform.runLater(() -> {
 			// Make a new pane and give it an ID
-			Pane root = new Pane();
-			root.setOpacity(0);
+			root = new Pane();
 			root.setId("textPane");
 
 			// Initialising the scene
