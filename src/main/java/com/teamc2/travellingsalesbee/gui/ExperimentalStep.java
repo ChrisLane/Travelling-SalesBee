@@ -20,11 +20,11 @@ public class ExperimentalStep {
 	}
 
 	public Comparison<Cell, Cell> getCellsCompared() {
-		return this.cellsCompared;
+		return cellsCompared;
 	}
 
 	public ArrayList<Cell> getPath() {
-		return this.path;
+		return path;
 	}
 
 	public double getPathCost() {
@@ -32,7 +32,7 @@ public class ExperimentalStep {
 	}
 
 	public SwapType getType() {
-		return this.type;
+		return type;
 	}
 
 

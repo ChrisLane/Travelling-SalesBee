@@ -88,7 +88,7 @@ public class PanelToolbox extends JPanel {
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
 
-		for (Component c : this.getComponents()) {
+		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				((CellDraggable) c).setAlgorithmType(type);
 				((CellDraggable) c).setImage(((CellDraggable) c).getType());

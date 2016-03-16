@@ -52,7 +52,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 		//Platform.runLater(this::initScene);
 		//this.initScene();
-		this.initScene();
+		initScene();
 	}
 
 	private void initScene() {
@@ -61,7 +61,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 			root.setId("beePane");
 			scene = new Scene(root, width, height);
 			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
-			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			URL url1 = getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url1.toExternalForm());
 			animalIcon = createRectangle();
 			animalIcon.setVisible(false);
@@ -133,7 +133,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
 			//Increment the global superI
-			this.popStepNum++;
+			popStepNum++;
 			System.out.println("popSteNum: " + popStepNum);
 		} else {
 
@@ -163,14 +163,14 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 * If stepNum goes out of bounds of the current path, then stepNum is set to 0 and popStemNum is incremented
 	 */
 	public void incrStepNum() {
-		this.stepNum++;
+		stepNum++;
 		System.out.println("Step num: " + stepNum);
 
 		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
-			this.setVisible(false);
+			setVisible(false);
 		} else {
-			this.setVisible(true);
+			setVisible(true);
 		}
 
 		//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
@@ -207,13 +207,13 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 * Decrement Step Number
 	 */
 	public void decrStepNum() {
-		this.stepNum--;
+		stepNum--;
 
 		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
-			this.setVisible(false);
+			setVisible(false);
 		} else {
-			this.setVisible(true);
+			setVisible(true);
 		}
 
 		if (stepNum <= 0) {
@@ -240,15 +240,15 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 * 			   If the path needs to be stepped through the entire path, set the singlePath boolean to true
 	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
-		this.pathOfPaths = path;
-		this.popStepNum = 0;
-		this.stepNum = 0;
+		pathOfPaths = path;
+		popStepNum = 0;
+		stepNum = 0;
 
 		Platform.runLater(() -> {
 			animalIcon.setX(pathOfPaths.get(0).get(0).getX() - 15);
 			animalIcon.setY(pathOfPaths.get(0).get(0).getY() - 15);
 			animalIcon.setVisible(true);
-			this.setVisible(true);
+			setVisible(true);
 		});
 	}
 
@@ -257,8 +257,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 *             Sets poPaths to !bool
 	 */
 	public void animateSteps(boolean bool) {
-		this.singlePath = bool;
-		this.poPaths = !bool;
+		singlePath = bool;
+		poPaths = !bool;
 	}
 
 	/**
@@ -266,7 +266,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 *             Sets singlePath to !bool
 	 */
 	public void animatePath(boolean bool) {
-		this.poPaths = bool;
-		this.singlePath = !bool;
+		poPaths = bool;
+		singlePath = !bool;
 	}
 }

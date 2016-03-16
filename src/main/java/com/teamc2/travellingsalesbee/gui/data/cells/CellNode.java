@@ -41,16 +41,16 @@ public class CellNode extends Cell {
 		try {
 			switch (type) {
 				case BEE:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Flower.png"));
 					break;
 				case ANT:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Fruit.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Fruit.png"));
 					break;
 				case NEARESTNEIGHBOUR:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/House.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/House.png"));
 					break;
 				default:
-					image = ImageIO.read(this.getClass().getResource("/assets/icons/Flower.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Flower.png"));
 					break;
 			}
 		} catch (IOException e) {

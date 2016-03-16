@@ -204,7 +204,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	}
 
 	public void setImage(CellType type) {
-		this.setIcon(new ImageIcon(getImage(type)));
+		setIcon(new ImageIcon(getImage(type)));
 	}
 
 	public void setAlgorithmType(AlgorithmType type) {
