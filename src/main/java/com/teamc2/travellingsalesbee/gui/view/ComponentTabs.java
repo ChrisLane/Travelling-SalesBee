@@ -41,6 +41,9 @@ public class ComponentTabs extends JTabbedPane {
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
 		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
 		panelSettings.setAlgorithmType(AlgorithmType.BEE);
+		
+		panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
+				+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 
 		//Change listener to change algorithms when switching tabs
 		addChangeListener(evt -> {
