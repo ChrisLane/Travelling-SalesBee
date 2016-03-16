@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;

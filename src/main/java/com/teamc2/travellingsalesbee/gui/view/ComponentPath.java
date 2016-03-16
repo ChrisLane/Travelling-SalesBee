@@ -12,9 +12,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.border.AbstractBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.metal.MetalBorders;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
