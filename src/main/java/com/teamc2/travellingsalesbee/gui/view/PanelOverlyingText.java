@@ -48,7 +48,7 @@ public class PanelOverlyingText extends JFXPanel {
 		// Initialising the text, settings its font and initial text
 		text = new Text();
 		text.setFont(new Font(200));
-		setTextXandY(0, 0);
+		setTextXandY(0, 200);
 		this.setText("Initial text");
 
 		root.getChildren().add(text);
