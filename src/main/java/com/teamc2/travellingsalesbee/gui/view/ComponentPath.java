@@ -99,23 +99,22 @@ public class ComponentPath extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-
-		switch (this.type) {
-			case BEE:
-				paintBeePath(g2);
-				break;
-			case ANT:
-				paintAntPath(g2);
-				break;
-			case NEARESTNEIGHBOUR:
-				paintNearestNeighbourPath(g2);
-				break;
-			case TWOOPT:
-				paintTwoOptSwapPath(g2);
-				break;
+		if (stepNum != -1){
+			switch (this.type) {
+				case BEE:
+					paintBeePath(g2);
+					break;
+				case ANT:
+					paintAntPath(g2);
+					break;
+				case NEARESTNEIGHBOUR:
+					paintNearestNeighbourPath(g2);
+					break;
+				case TWOOPT:
+					paintTwoOptSwapPath(g2);
+					break;
+			}
 		}
-
-		
 	}
 
 	private void clearLabels() {
@@ -329,8 +328,8 @@ public class ComponentPath extends JComponent {
 	private void paintAntPath(Graphics2D g2) {
 		if (this.antSteps.size() > 0) {
 			int x1, x2, y1, y2;
-			//Fix this stepNum + 1 it thinks it's -1 so had to add 1
-			AntStep step = antSteps.get(stepNum + 1);
+			
+			AntStep step = antSteps.get(stepNum);
 			ArrayList<Cell> path = step.getPath();
 
 			CostMatrix matrix = step.getCostMatrix();
@@ -356,7 +355,6 @@ public class ComponentPath extends JComponent {
 				}
 			}
 		}
-
 	}
 
 	//Code to print the distance boxes on top of flowers
