@@ -25,7 +25,6 @@ public class ComponentPath extends JComponent {
 	private ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 	private AlgorithmType type;
 	private ArrayList<AntStep> antSteps = new ArrayList<>();
-	private Map map;
 	private TwoOptSwap tos;
 	private ArrayList<JLabel> distanceBoxes = new ArrayList<>();
 
@@ -35,19 +34,6 @@ public class ComponentPath extends JComponent {
 		int screenHeight = screenSize.height;
 		setBounds(0, 0, screenWidth, screenHeight);
 		this.type = type;
-	}
-
-	/**
-	 * Set the path in algorithms
-	 *
-	 * @param path Path to set in algorithms
-	 */
-	public void setPath(ArrayList<Cell> path) {
-		ArrayList<Cell> steppedPath = new ArrayList<>();
-	}
-
-	public void setMap(Map map) {
-		this.map = map;
 	}
 
 	public void setAntSteps(ArrayList<AntStep> antSteps) {
@@ -168,7 +154,6 @@ public class ComponentPath extends JComponent {
 		} else if (stepNum >= naiveSteps.size()) {
 			tos.swap(stepNum);
 			naiveSteps = (new StepController()).getNaiveSteps(tos.getPath());
-			setPath(tos.getPath());
 		}
 
 		int x1, x2, y1, y2;
