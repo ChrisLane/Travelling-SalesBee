@@ -375,7 +375,7 @@ public class ComponentPath extends JComponent {
 			//colour red
 			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int) (end.x) + 15, (int) (end.y)+30, 80, 20);
+		distance.setBounds((int) (end.x) + 5, (int) (end.y)+30, 80, 20);
 		this.add(distance);
 		this.distanceBoxes.add(distance);
 	}
