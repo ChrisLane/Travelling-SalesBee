@@ -1,6 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,11 @@ public class PanelOverlyingText extends JFXPanel {
 	public PanelOverlyingText(int width, int height) {
 		this.width = width;
 		this.height = height;
+
+		//Platform.runLater(this::initScene);
+
+		this.initScene();
+		setScene(scene);
 	}
 
 	/**
@@ -41,8 +47,11 @@ public class PanelOverlyingText extends JFXPanel {
 
 		// Initialising the text, settings its font and initial text
 		text = new Text();
-		text.setFont(new Font(20));
+		text.setFont(new Font(200));
+		setTextXandY(0, 0);
 		this.setText("Initial text");
+
+		root.getChildren().add(text);
 	}
 
 	public void setText(String str) {
