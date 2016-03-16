@@ -311,12 +311,7 @@ public class ComponentPath extends JComponent {
 				
 				g2.setPaint(Color.white);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-				String position = Integer.toString(i);
-				g2.setPaint(Color.white);
-				g2.setFont(new Font(null, Font.PLAIN, 15));
-				g2.drawString(position, x1 + (50 / 12), y1 + (50 / 4));
-				
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);				
 			}
 			g2.setPaint(new Color(255, 255, 0, 255));
 			g2.setStroke(new BasicStroke(5));
