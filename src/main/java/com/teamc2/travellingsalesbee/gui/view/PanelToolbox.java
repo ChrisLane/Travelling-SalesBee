@@ -4,8 +4,6 @@ import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutToolbox;
 import javafx.application.Platform;
@@ -13,8 +11,6 @@ import javafx.application.Platform;
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static java.awt.Image.SCALE_SMOOTH;
 
 public class PanelToolbox extends JPanel {
 	public final static String name = "PanelToolbox";
