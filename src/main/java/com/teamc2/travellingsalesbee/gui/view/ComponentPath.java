@@ -360,9 +360,9 @@ public class ComponentPath extends JComponent {
 	//Code to print the distance boxes on top of flowers
 	private void printDistance(String text, Cell end, Graphics2D g2, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
-		distance.setBackground(Color.white);
+		Color translucentBg = new Color(0.82f, 0.82f, 0.82f, 0.8f);
+		distance.setBackground(translucentBg);
 		distance.setOpaque(false);
-		Color translucentBg = new Color(0.7f, 0.7f, 0.7f, 0.9f);
 		LineBorder border = new LineBorder(translucentBg, 2, true);
 		distance.setBorder(border);
 		if (isChosenCell) {
