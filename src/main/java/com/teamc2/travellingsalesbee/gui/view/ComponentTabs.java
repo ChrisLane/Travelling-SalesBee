@@ -57,25 +57,31 @@ public class ComponentTabs extends JTabbedPane {
 					type = AlgorithmType.BEE;
 					text = "BEE";
 					imgName = "SalesBeeSelected.png";
-					panelMap.getPanelOverlyingText().setText("");
+					panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
+							+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 					break;
 				case 1:
 					type = AlgorithmType.ANT;
 					text = "ANT";
 					imgName = "AntSelected.png";
-					panelMap.getPanelOverlyingText().setText("");
+					panelMap.getPanelOverlyingText().setText("ANT ALGORITHM\n"
+							+ "The ants .................");
 					break;
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
 					text = "NN";
 					imgName = "MailvanSelected.png";
-					panelMap.getPanelOverlyingText().setText("");
+					panelMap.getPanelOverlyingText().setText("NEAREST NEIGHBOUR ALGORITHM\n"
+							+ "At each house the mailvan chooses shortest edge from current position to an unvisited house\n"
+							+ "until there are no unvisted houses so the edge to starting mail office is chosen");
 					break;
 				case 3:
 					type = AlgorithmType.TWOOPT;
 					text = "2-OPT";
 					imgName = "MailvanSelected.png";
-					panelMap.getPanelOverlyingText().setText("");
+					panelMap.getPanelOverlyingText().setText("TWO OPT SWAP\n"
+							+ "An initial path is created using nearest neighbour\n"
+							+ "For each swap run two nodes are swapped so that the order of which they are visited in the path is switched");
 					break;
 				default:
 					text = "Error";
