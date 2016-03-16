@@ -8,8 +8,9 @@
     -fx-font-size: 21px;
 }
 
-#panelText {
+#textPane {
     -fx-background-color: rgba(0, 0, 0, 0);
+
     -webkit-fx-color: #FFF;
     -moz-fx-color: #FFF;
     -ms-fx-color: #FFF;
