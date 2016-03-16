@@ -361,8 +361,8 @@ public class ComponentPath extends JComponent {
 	private void printDistance(String text, Cell end, Graphics2D g2, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		distance.setBackground(Color.white);
-		distance.setOpaque(true);
-		Color translucentBg = new Color(0.7f, 0.7f, 0.7f, 0.5f);
+		distance.setOpaque(false);
+		Color translucentBg = new Color(0.7f, 0.7f, 0.7f, 0.9f);
 		LineBorder border = new LineBorder(translucentBg, 2, true);
 		distance.setBorder(border);
 		if (isChosenCell) {
