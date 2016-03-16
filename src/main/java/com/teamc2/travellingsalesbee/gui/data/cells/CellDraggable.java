@@ -100,7 +100,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
 		try {
-			panelMap.grabFocus();
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
 			if (type.equals(CellType.ORIGIN)) {
@@ -134,6 +133,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			panelMap.add(droppedBtn);
 			panelMap.remove(this);
 			panelMap.repaint();
+			panelMap.setComponentZOrder(droppedBtn, 1);
 		} catch (NullPointerException e) {
 			// Deletion for when the cell is dragged off the map panelMap
 			map.clearCell(getX(), getY());

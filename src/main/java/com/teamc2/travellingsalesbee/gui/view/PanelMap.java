@@ -43,22 +43,23 @@ public class PanelMap extends JPanel {
 		map = new Map();
 
 
+		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
+		add(componentGrid);
+
 		componentPath = new ComponentPath(AlgorithmType.BEE);
 		add(componentPath);
 		
 		
-		ComponentGrid componentGrid = new ComponentGrid(cellWidth, cellHeight);
-		add(componentGrid);
-
 		//Initialise and set bounds
 		panelAnimation = new PanelAnimalAnimation(screenWidth, screenHeight);
 		panelAnimation.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
-		this.add(panelAnimation); //Add to panel map
+		add(panelAnimation); //Add to panel map
 
 		panelOverlyingText = new PanelOverlyingText(screenWidth, screenHeight);
 		panelOverlyingText.setBounds(this.getX(), this.getY(), screenWidth, screenHeight);
-		this.add(panelOverlyingText);
+		add(panelOverlyingText);
 
+		setComponentZOrder(componentGrid, 3);
 		setLayout(null);
 		
 	}
