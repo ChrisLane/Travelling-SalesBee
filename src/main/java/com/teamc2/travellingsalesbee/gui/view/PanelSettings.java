@@ -210,7 +210,10 @@ public class PanelSettings extends JPanel {
 		setNNText();
 		
 		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
-			if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
+			if(stepNum - panelMap.getPathComponent().getNaiveSteps().size() == panelMap.getPathComponent().getExperimentalSteps().size()){
+				panelMap.getPanelOverlyingText().setText("Final path produced by bee in " + noOfRunsValue + " experimental runs");
+			}
+			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("<p>INSPECTED");
 				panelMap.getPanelOverlyingText().setText("The Bee travels a new path by switching the order it visits two flowers in the path");
 			}
@@ -248,7 +251,9 @@ public class PanelSettings extends JPanel {
 	public void setAntText() {
 		ArrayList<AntStep> antSteps = panelMap.getPathComponent().getAntSteps();
 		if (stepNum < antSteps.size()){
-			textArea.addText("<p>Pheremone run " + stepNum + " complete");
+			panelMap.getPanelOverlyingText().setText("Pheremone run " + stepNum + " complete\n"
+					+ "Opacity of edges have been adjusted to the new pheremone level of each edge\n"
+					+ "The more opaque and edge is, the more effcient the edge is");
 			JButton test = new JButton("test");
 			test.setVisible(true);
 			textArea.add(test);
@@ -260,10 +265,14 @@ public class PanelSettings extends JPanel {
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
-		if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
-			textArea.addText("<p>LOOKING FOR NEAREST NODE");
+		if (stepNum == nearestNeighbourSteps.size()){
+			panelMap.getPanelOverlyingText().setText("All nodes visited, now returning to start");
+		}if (stepNum == nearestNeighbourSteps.size()-2){
+			panelMap.getPanelOverlyingText().setText("All nodes visited, finding start point");
+		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
+			panelMap.getPanelOverlyingText().setText("LOOKING FOR NEAREST NODE");
 		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
-			textArea.addText("<p>FOUND CLOSEST FLOWER");
+			panelMap.getPanelOverlyingText().setText("FOUND CLOSEST FLOWER");
 		}
 	}
 
