@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
+
 /**
  * A class for generating and viewing the menu page.
  *
@@ -61,11 +63,13 @@ public class Menu extends Page {
 
 		Button simButton = createButton("Run Simulation");
 		simButton.setOnAction(event -> {
-			if (Visualiser.mainVisualiser == null) {
-				Visualiser.main(TravellingSalesBee.getArgs());
-			} else {
-				Visualiser.mainVisualiser.setVisible(true);
-			}
+			SwingUtilities.invokeLater(() -> {
+				if (Visualiser.mainVisualiser == null) {
+					Visualiser.main(TravellingSalesBee.getArgs());
+				} else {
+					Visualiser.mainVisualiser.setVisible(true);
+				}
+			});
 
 			Platform.setImplicitExit(false);
 			hide();

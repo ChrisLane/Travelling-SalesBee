@@ -1,6 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
-import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -25,47 +24,53 @@ public class PanelOverlyingText extends JFXPanel {
 		this.width = width;
 		this.height = height;
 
-		//Platform.runLater(this::initScene);
-
 		this.initScene();
-		setScene(scene);
 	}
 
 	/**
 	 * Initialise the scene
 	 */
 	private void initScene() {
-		// Make a new pane and give it an ID
-		Pane root = new Pane();
-		root.setId("textPane");
+		Platform.runLater(() -> {
+			// Make a new pane and give it an ID
+			Pane root = new Pane();
+			root.setOpacity(0);
+			root.setId("textPane");
 
-		// Initialising the scene
-		scene = new Scene(root, width, height);
-		scene.setFill(javafx.scene.paint.Color.rgb(0,0,0,0)); //Set it to transparent
-		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			// Initialising the scene
+			scene = new Scene(root, width, height);
+			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0)); //Set it to transparent
+			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			scene.getStylesheets().add(url1.toExternalForm());
 
-		// Initialising the text, settings its font and initial text
-		text = new Text();
-		setSize(80);
-		text.setId("panelText");
-		setTextXandY(0, 95);
-		this.setText("Initial text");
+			// Initialising the text, settings its font and initial text
+			text = new Text();
+			setSize(80);
+			text.setId("panelText");
+			setTextXandY(0, 95);
+			this.setText("Initial text");
 
-		scene.getStylesheets().add(url1.toExternalForm());
-
-		root.getChildren().add(text);
+			root.getChildren().add(text);
+			setScene(scene);
+		});
 	}
 
 	public void setSize(int size) {
-		text.setFont(new Font(size));
+		Platform.runLater(() -> {
+			text.setFont(new Font(size));
+		});
 	}
 
 	public void setText(String str) {
-		this.text.setText(str);
+		Platform.runLater(() -> {
+			text.setText(str);
+		});
 	}
 
 	public void setTextXandY(int x, int y) {
-		text.setX(x);
-		text.setY(y);
+		Platform.runLater(() -> {
+			text.setX(x);
+			text.setY(y);
+		});
 	}
 }

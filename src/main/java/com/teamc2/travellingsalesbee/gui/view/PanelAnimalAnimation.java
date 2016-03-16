@@ -33,6 +33,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 	private Rectangle animalIcon;
 	private TranslateTransition transition;
 	private Scene scene;
+	private Pane root;
 
 	private boolean singlePath = true; //Single path
 	private boolean poPaths = false; //path of Paths
@@ -52,22 +53,22 @@ public class PanelAnimalAnimation extends JFXPanel {
 		//Platform.runLater(this::initScene);
 		//this.initScene();
 		this.initScene();
-		setScene(scene);
 	}
 
 	private void initScene() {
-		Pane root = new Pane();
-		root.setId("beePane");
-
-		scene = new Scene(root, width, height);
-		scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
-		URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
-		scene.getStylesheets().add(url1.toExternalForm());
-
-		animalIcon = createRectangle();
-		animalIcon.setVisible(false);
-		transition = new TranslateTransition(Duration.seconds(1), animalIcon);
-		root.getChildren().add(animalIcon);
+		Platform.runLater(() -> {
+			root = new Pane();
+			root.setId("beePane");
+			scene = new Scene(root, width, height);
+			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0));
+			URL url1 = this.getClass().getResource("/assets/stylesheets/visualiser.css");
+			scene.getStylesheets().add(url1.toExternalForm());
+			animalIcon = createRectangle();
+			animalIcon.setVisible(false);
+			transition = new TranslateTransition(Duration.seconds(1), animalIcon);
+			root.getChildren().add(animalIcon);
+			setScene(scene);
+		});
 	}
 
 	/**
@@ -112,10 +113,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	public void setUrl(String url) {
 		this.url = url;
-
 		System.out.println(url);
 		Image image = new Image(url);
-		animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+		Platform.runLater(() -> animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true)));
 	}
 
 	/**
