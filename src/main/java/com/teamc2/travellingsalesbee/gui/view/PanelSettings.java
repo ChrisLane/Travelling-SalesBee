@@ -210,15 +210,19 @@ public class PanelSettings extends JPanel {
 		if(stepNum >= this.panelMap.getPathComponent().getNaiveSteps().size()) {
 			if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
 				textArea.addText("INSPECTED");
+				this.panelMap.getPanelOverlyingText().setText("INSPECTED");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
 				textArea.addText("ACCEPTED");
+				this.panelMap.getPanelOverlyingText().setText("ACCEPTED");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 				textArea.addText("BEST");
+				this.panelMap.getPanelOverlyingText().setText("BEST");
 			}
 			else if(this.panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(this.panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
 				textArea.addText("REJECTED");
+				this.panelMap.getPanelOverlyingText().setText("REJECTED");
 			}
 		}
 	}
