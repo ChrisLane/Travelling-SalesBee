@@ -362,7 +362,8 @@ public class ComponentPath extends JComponent {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		distance.setBackground(Color.white);
 		distance.setOpaque(true);
-		LineBorder border = new LineBorder(new Color(180, 180, 180, 1), 2, true);
+		Color translucentBg = new Color(180, 180, 180, 0.5f);
+		LineBorder border = new LineBorder(translucentBg, 2, true);
 		distance.setBorder(border);
 		if (isChosenCell) {
 			//If the distance to be printed is the end cell of a step (Cell chosen) then print the text
@@ -373,7 +374,7 @@ public class ComponentPath extends JComponent {
 			//colour red
 			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int) (end.x)-15, (int) (end.y)+50, 80, 20);
+		distance.setBounds((int) (end.x)-5, (int) (end.y)+50, 60, 20);
 		add(distance);
 		distanceBoxes.add(distance);
 	}
