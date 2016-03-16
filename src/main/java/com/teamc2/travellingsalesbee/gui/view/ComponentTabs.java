@@ -57,21 +57,25 @@ public class ComponentTabs extends JTabbedPane {
 					type = AlgorithmType.BEE;
 					text = "BEE";
 					imgName = "SalesBeeSelected.png";
+					panelMap.getPanelOverlyingText().setText("");
 					break;
 				case 1:
 					type = AlgorithmType.ANT;
 					text = "ANT";
 					imgName = "AntSelected.png";
+					panelMap.getPanelOverlyingText().setText("");
 					break;
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
 					text = "NN";
 					imgName = "MailvanSelected.png";
+					panelMap.getPanelOverlyingText().setText("");
 					break;
 				case 3:
 					type = AlgorithmType.TWOOPT;
 					text = "2-OPT";
 					imgName = "MailvanSelected.png";
+					panelMap.getPanelOverlyingText().setText("");
 					break;
 				default:
 					text = "Error";

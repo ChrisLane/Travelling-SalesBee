@@ -265,7 +265,7 @@ public class PanelSettings extends JPanel {
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
-		if (stepNum == nearestNeighbourSteps.size()){
+		if (stepNum == nearestNeighbourSteps.size()-1){
 			panelMap.getPanelOverlyingText().setText("All nodes visited, now returning to start");
 		}if (stepNum == nearestNeighbourSteps.size()-2){
 			panelMap.getPanelOverlyingText().setText("All nodes visited, finding start point");
