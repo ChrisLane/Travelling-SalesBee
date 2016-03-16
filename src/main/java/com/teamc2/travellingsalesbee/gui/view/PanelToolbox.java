@@ -128,7 +128,6 @@ public class PanelToolbox extends JPanel {
 			newCell.setPrevs(x,y);
 			newCell.setEnabled(true);
 			panelMap.add(newCell);
-			panelMap.setComponentZOrder(newCell, 0);
 
 			nodesPlaced++;
 		}

@@ -130,7 +130,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
 			droppedBtn.setBounds(x, y, width, height);
 			panelMap.add(droppedBtn);
-			panelMap.setComponentZOrder(droppedBtn, 0);
 			panelMap.remove(this);
 			panelMap.repaint();
 		} catch (NullPointerException e) {
@@ -138,7 +137,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			map.clearCell(getX(), getY());
 			setEnabled(false);
 			panelMap.remove(this);
-			//panelMap.revalidate();
 			panelMap.repaint();
 		}
 	}
