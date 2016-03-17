@@ -2,6 +2,7 @@ package com.teamc2.travellingsalesbee.gui.view.layouts;
 
 import com.teamc2.travellingsalesbee.gui.view.*;
 
+import javax.print.attribute.standard.SheetCollate;
 import javax.swing.*;
 
 public class LayoutGui extends GroupLayout {
