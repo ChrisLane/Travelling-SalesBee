@@ -37,15 +37,11 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	public void swap(int stepNum) {
 		// if the step number we need to get to is forwards, perform the next swap
+		// else if the step number we need to get to is backwards, perform the previous swap
 		if (stepNum > this.stepNum) {
 			nextSwap();
-			this.stepNum = stepNum;
-		}
-
-		// if the step number we need to get to is backwards, perform the previous swap
-		while (stepNum < this.stepNum) {
+		} else if (stepNum < this.stepNum) {
 			previousSwap();
-			this.stepNum--;
 		}
 
 		// set the target step as the current step
@@ -119,6 +115,7 @@ public class TwoOptSwap extends NearestNeighbour {
 		path.set(swap[1], flower2);
 
 		setPath(path, calculatePathCost(path));
+		newPath = path;
 	}
 
 	/**
