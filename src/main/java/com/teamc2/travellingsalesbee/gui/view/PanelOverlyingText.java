@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextBoundsType;
+import javafx.scene.text.*;
 
 import java.net.URL;
 
@@ -51,6 +48,8 @@ public class PanelOverlyingText extends JFXPanel {
 
 			setSize(12);
 			setTextColor(Color.color(0, 0, 0, 1.0));
+
+			setTextBold(true);
 			setDropShadow(true);
 			setTextXandY(0, 13);
 			text.setTextAlignment(TextAlignment.CENTER);
@@ -65,6 +64,14 @@ public class PanelOverlyingText extends JFXPanel {
 		});
 	}
 
+	public void setTextBold(boolean bool) {
+		if(bool) {
+			text.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+		} else {
+			text.setFont(Font.font("Verdana", FontWeight.NORMAL, 12));
+		}
+
+	}
 	public void setSize(int size) {
 		Platform.runLater(() -> {
 			text.setFont(new Font(size));

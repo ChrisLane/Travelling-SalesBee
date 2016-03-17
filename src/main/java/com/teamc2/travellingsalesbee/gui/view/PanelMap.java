@@ -8,6 +8,8 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -31,6 +33,7 @@ public class PanelMap extends JPanel {
 	 * @param cellHeight Height of the grid sections
 	 */
 	public PanelMap(int cellWidth, int cellHeight) {
+
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
 
@@ -72,9 +75,27 @@ public class PanelMap extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
+		Point2D center = new Point2D.Float(this.getWidth()/2, 0);
+		float radius = this.getWidth()/2;
+		Point2D focus = new Point2D.Float((this.getWidth()/2), 1000);
+		float[] dist = {0.0f, 0.3f, 1.0f};
+		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
+		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
+
+		//GradientPaint redtowhite = new GradientPaint(0, 50, new Color(71, 35, 35), 0, 0, new Color(134, 93, 93));
+		//this.setBackground(new Color(71, 35, 35));
+
+		g2.setPaint(p);
+		g2.fill(new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 0, 0));
+		g2.setPaint(Color.black);
+
 		//Allowing for the correct background to be printed
 		try {
+
 			BufferedImage img = null;
+
+			TexturePaint paint;
+
 			switch (type) {
 			case BEE:
 				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Grass.jpg"));
@@ -89,9 +110,12 @@ public class PanelMap extends JPanel {
 				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 				break;
 			}
-			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
+
+			paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
 			g2.fill(new Rectangle(0, 50, getWidth(), getHeight()));
+
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -154,6 +178,7 @@ public class PanelMap extends JPanel {
 	}
 
 	public void cellFull(int x, int y) {
+
 		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				if (c.isEnabled() && c.getBounds().x == x && c.getBounds().y == y) {
@@ -162,6 +187,7 @@ public class PanelMap extends JPanel {
 				}
 			}
 		}
+
 	}
 
 	/**
