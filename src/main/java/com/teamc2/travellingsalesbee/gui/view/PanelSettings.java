@@ -245,7 +245,7 @@ public class PanelSettings extends JPanel {
 				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 2).getPath()));
 
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
-				panelMap.getPanelOverlyingText().setText("The best path the bee has found up to now");
+				panelMap.getPanelOverlyingText().setText("\nThe best path the bee has found up to now");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
 				ArrayList<ExperimentalStep> expSteps = panelMap.getPathComponent().getExperimentalSteps();
 				for (ExperimentalStep step : expSteps) {
@@ -316,6 +316,7 @@ public class PanelSettings extends JPanel {
 					runTwoOptAlgorithm();
 					break;
 			}
+			panelMap.getPathComponent().setStepNum(0);
 		}
 
 		private void runTwoOptAlgorithm() {
