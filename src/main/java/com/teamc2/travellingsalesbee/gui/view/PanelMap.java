@@ -83,6 +83,12 @@ public class PanelMap extends JPanel {
 		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
 		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
 
+		// Set the location of the panelOverlyingText text. We take into account the tab and toolbox panel widths.
+		GuiContainer guiContainer = (GuiContainer) getRootPane();
+		int tabsWidth = guiContainer.getComponentTabs().getWidth();
+		int toolboxWidth = guiContainer.getPanelToolbox().getWidth();
+		panelOverlyingText.setTextXandY((getWidth() / 2) - tabsWidth - toolboxWidth, 13);
+
 		//GradientPaint redtowhite = new GradientPaint(0, 50, new Color(71, 35, 35), 0, 0, new Color(134, 93, 93));
 		//this.setBackground(new Color(71, 35, 35));
 

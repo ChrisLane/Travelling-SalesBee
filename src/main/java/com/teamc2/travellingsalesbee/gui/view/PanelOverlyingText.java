@@ -51,7 +51,6 @@ public class PanelOverlyingText extends JFXPanel {
 
 			setTextBold(true);
 			setDropShadow(true);
-			setTextXandY(0, 13);
 			text.setTextAlignment(TextAlignment.CENTER);
 			setText("Initial text");
 			
