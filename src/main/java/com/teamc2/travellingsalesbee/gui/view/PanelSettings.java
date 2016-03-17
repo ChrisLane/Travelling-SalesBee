@@ -51,7 +51,6 @@ public class PanelSettings extends JPanel {
 	private JSlider noOfRunsSlider;
 	private LayoutSettings layoutSettings;
 	private JLabel lblRunsOfType;
-	private ComponentTextArea textArea;
 
 	/**
 	 * Create a settings panel
@@ -127,9 +126,8 @@ public class PanelSettings extends JPanel {
 		});
 
 		JEditorPane editorPane = new JEditorPane();
-		textArea = new ComponentTextArea(editorPane);
 		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
-				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext, textArea);
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext);
 		setLayout(layoutSettings);
 	}
 
@@ -167,9 +165,6 @@ public class PanelSettings extends JPanel {
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
-				if (distance > 0) {
-					textArea.addText("<p><b>Distance: </b>" + distance + "</p>");
-				}
 				setDistance();
 			});
 
@@ -214,11 +209,9 @@ public class PanelSettings extends JPanel {
 				panelMap.getPanelOverlyingText().setText("Final path produced by bee in " + noOfRunsValue + " experimental runs");
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-				textArea.addText("<p>INSPECTED");
 				panelMap.getPanelOverlyingText().setText("The Bee travels a new path by switching the order it visits two flowers in the path");
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
-				textArea.addText("<p>ACCEPTED");
 				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-2).getPath());
 				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath());
 				panelMap.getPanelOverlyingText().setText("Previous Best Distance: " + bestDistance + "\nNew Best Distance: " + newDistance + "\nThe new path travelled by the Bee has a lower cost than the bee's previous best, it now remembers this as it's current best path");
@@ -228,11 +221,9 @@ public class PanelSettings extends JPanel {
 
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
-				textArea.addText("<p>BEST");
 				panelMap.getPanelOverlyingText().setText("The best path the bee has found up to now");
 			}
 			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
-				textArea.addText("<p>REJECTED");
 				ArrayList<ExperimentalStep> expSteps = panelMap.getPathComponent().getExperimentalSteps();
 				for (ExperimentalStep step : expSteps){
 					System.out.println(nn.calculatePathCost(step.getPath()));
@@ -256,7 +247,6 @@ public class PanelSettings extends JPanel {
 					+ "The more opaque and edge is, the more effcient the edge is");
 			JButton test = new JButton("test");
 			test.setVisible(true);
-			textArea.add(test);
 		}
 	}
 
@@ -498,7 +488,4 @@ public class PanelSettings extends JPanel {
 		this.distance = distance;
 	}
 
-	public ComponentTextArea getTextArea() {
-		return textArea;
-	}
 }

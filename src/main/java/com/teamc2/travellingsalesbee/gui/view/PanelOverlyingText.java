@@ -2,12 +2,15 @@ package com.teamc2.travellingsalesbee.gui.view;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextBoundsType;
 
 import java.net.URL;
 
@@ -45,10 +48,12 @@ public class PanelOverlyingText extends JFXPanel {
 
 			// Initialising the text, settings its font and initial text and giving it a drop shadow
 			text = new Text();
-			setSize(15);
+
+			setSize(12);
 			setTextColor(Color.color(0, 0, 0, 1.0));
 			setDropShadow(true);
-			setTextXandY(0, 20);
+			setTextXandY(0, 13);
+			text.setTextAlignment(TextAlignment.CENTER);
 			setText("Initial text");
 
 			//Set the stylesheet for the scene (make textPane transparent)

@@ -37,14 +37,14 @@ public class PanelToolbox extends JPanel {
 		JButton randomiseButton = new JButton("Randomise Map");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
-			((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
+			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
 		});
 
 		JButton clearButton = new JButton("Clear Map");
 		clearButton.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
-			((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
+			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
 		});
 
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
