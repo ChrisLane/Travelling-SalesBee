@@ -13,17 +13,12 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class TwoOptSwap extends NearestNeighbour {
 
-	public static final int NEW = 0;
-	public static final int INPROGRESS = 1;
-	public static final int COMPLETE = 2;
-
 	private int stepNum;
 	private int runs;
 	private int flowerPos1, flowerPos2;
 	private double[] flower1, flower2;
 	private ArrayList<int[]> swapLog = new ArrayList<>();
 	private ArrayList<Cell> newPath = new ArrayList<>();
-	private int status;
 
 	/**
 	 * Construct the algorithm.
@@ -61,7 +56,6 @@ public class TwoOptSwap extends NearestNeighbour {
 	 * Run the next swap.
 	 */
 	protected boolean nextSwap() {
-		status = INPROGRESS;
 		if (path.size() >= 2) {
 			// create a new test path
 			newPath = new ArrayList<>();
@@ -96,12 +90,7 @@ public class TwoOptSwap extends NearestNeighbour {
 		return false;
 	}
 
-	public void setComplete() {
-		status = COMPLETE;
-	}
-
 	public boolean swapSuccessful() {
-		status = NEW;
 		// if the swap was beneficial, update and return true
 		double testCost = calculatePathCost(newPath);
 		if (testCost < cost) {
@@ -151,10 +140,6 @@ public class TwoOptSwap extends NearestNeighbour {
 
 	public double[] getFlower2() {
 		return flower2;
-	}
-
-	public int getStatus() {
-		return status;
 	}
 
 	public ArrayList<Cell> getNewPath() {
