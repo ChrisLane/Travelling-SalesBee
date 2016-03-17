@@ -48,8 +48,8 @@ public class ComponentPath extends JComponent {
 		this.antSteps = antSteps;
 		repaint();
 	}
-	
-	public ArrayList<AntStep> getAntSteps(){
+
+	public ArrayList<AntStep> getAntSteps() {
 		return antSteps;
 	}
 
@@ -90,7 +90,7 @@ public class ComponentPath extends JComponent {
 	public ArrayList<Cell> getBeePath() {
 		return beePath;
 	}
-	
+
 	public void setBeePath(ArrayList<Cell> beePath) {
 		this.beePath = beePath;
 	}
@@ -99,7 +99,7 @@ public class ComponentPath extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-		if (stepNum != -1){
+		if (stepNum != -1) {
 			switch (type) {
 				case BEE:
 					paintBeePath(g2);
@@ -118,7 +118,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void clearLabels() {
-		for (JLabel label : distanceBoxes){
+		for (JLabel label : distanceBoxes) {
 			label.setVisible(false);
 			remove(label);
 		}
@@ -126,40 +126,47 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void paintTwoOptSwapPath(Graphics2D g2) {
-
 		if (tos == null) {
 			return;
 		}
 
+		Color lineColor = Color.blue;
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
-			int x1, x2, y1, y2;
 			tos.setStepNum(stepNum);
-		} else if (stepNum >= naiveSteps.size()) {
-			tos.swap(stepNum);
-			naiveSteps = (new StepController()).getNaiveSteps(tos.getPath());
-		}
+			paintNearestNeighbourPath(g2);
+		} else if (stepNum >= naiveSteps.size() && tos.getRuns() > (stepNum - naiveSteps.size()) / 3.0) {
+			if ((stepNum - naiveSteps.size()) % 3 == 0) {
+				lineColor = Color.blue;
+				tos.swap(stepNum);
+				naiveSteps = (new StepController()).getNaiveSteps(tos.getPath());
+			} else if ((stepNum - naiveSteps.size()) % 3 == 1) {
+				lineColor = Color.yellow;
+				naiveSteps = (new StepController()).getNaiveSteps(tos.getNewPath());
+			} else if ((stepNum - naiveSteps.size()) % 3 == 2) {
+				if (tos.swapSuccessful()) {
+					lineColor = Color.green;
+				} else {
+					lineColor = Color.red;
+				}
+				naiveSteps = (new StepController()).getNaiveSteps(tos.getNewPath());
+			}
 
-		int x1, x2, y1, y2;
-		for (int i = 0; i < stepNum + 1; i++) {
-			if (i < naiveSteps.size()) {
+
+			g2.setPaint(lineColor);
+			g2.setStroke(new BasicStroke(5));
+
+			Shape cellCircle = new Ellipse2D.Double(tos.getFlower1()[0], tos.getFlower1()[1], 2.0 * 25, 2.0 * 25);
+			g2.draw(cellCircle);
+			cellCircle = new Ellipse2D.Double(tos.getFlower2()[0], tos.getFlower2()[1], 2.0 * 25, 2.0 * 25);
+			g2.draw(cellCircle);
+			System.out.println((tos.getFlower2()[0] + " " + tos.getFlower2()[1]));
+
+			int x1, x2, y1, y2;
+			for (int i = 0; i < naiveSteps.size(); i++) {
 				NaiveStep step = naiveSteps.get(i);
 				x1 = (int) step.getStart().x;
 				y1 = (int) step.getStart().y;
-
-				ArrayList<Cell> available = step.getAvailable();
-
-				if (i == stepNum) {
-					for (Cell anAvailable : available) {
-						g2.setStroke(new BasicStroke(5));
-						g2.setPaint(Color.red);
-						x2 = (int) anAvailable.x;
-						y2 = (int) anAvailable.y;
-						g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-					}
-				}
-
-				g2.setStroke(new BasicStroke(6));
-				g2.setPaint(Color.green);
+//				g2.setStroke(new BasicStroke(6));
 				x2 = (int) step.getEnd().x;
 				y2 = (int) step.getEnd().y;
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
@@ -220,7 +227,7 @@ public class ComponentPath extends JComponent {
 		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
 			paintNearestNeighbourPath(g2);
 		} else if (experimentalSteps.size() > 0 && stepNum >= naiveSteps.size() && stepNum < (naiveSteps.size() + experimentalSteps.size())) {
-			try{
+			try {
 				int x1, x2, y1, y2;
 				ExperimentalStep step = experimentalSteps.get(stepNum - naiveSteps.size());
 				ArrayList<Cell> stepPath = step.getPath();
@@ -232,7 +239,7 @@ public class ComponentPath extends JComponent {
 						y1 = (int) stepPath.get(i).y;
 						x2 = (int) stepPath.get(i + 1).x;
 						y2 = (int) stepPath.get(i + 1).y;
-					} else if (step.getType() == SwapType.BEST){
+					} else if (step.getType() == SwapType.BEST) {
 						lineColor = Color.WHITE;
 						x1 = (int) stepPath.get(i).x;
 						y1 = (int) stepPath.get(i).y;
@@ -252,14 +259,14 @@ public class ComponentPath extends JComponent {
 						y1 = (int) stepPath2.get(i).y;
 						x2 = (int) stepPath2.get(i + 1).x;
 						y2 = (int) stepPath2.get(i + 1).y;
-						
-						
+
+
 					}
 
 					g2.setPaint(lineColor);
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
-					
+
 					Comparison<Cell, Cell> comparison = step.getCellsCompared();
 					Cell cell1 = comparison.getCell1();
 					Cell cell2 = comparison.getCell2();
@@ -279,12 +286,12 @@ public class ComponentPath extends JComponent {
 					String costString = "" + cost;
 					g2.drawString(costString, 0, 0);
 				}
-			}catch (IndexOutOfBoundsException e){
-				stepNum = ((naiveSteps.size()-1) + (experimentalSteps.size()-1))-1;
+			} catch (IndexOutOfBoundsException e) {
+				stepNum = ((naiveSteps.size() - 1) + (experimentalSteps.size() - 1)) - 1;
 				int x1, x2, y1, y2;
-				ExperimentalStep step = experimentalSteps.get((stepNum-1) - naiveSteps.size());
+				ExperimentalStep step = experimentalSteps.get((stepNum - 1) - naiveSteps.size());
 				ArrayList<Cell> stepPath = step.getPath();
-				for (int i=0;i<stepPath.size();i++){
+				for (int i = 0; i < stepPath.size(); i++) {
 					x1 = (int) stepPath.get(i).x;
 					y1 = (int) stepPath.get(i).y;
 					x2 = (int) stepPath.get(i + 1).x;
@@ -293,47 +300,47 @@ public class ComponentPath extends JComponent {
 					g2.setStroke(new BasicStroke(5));
 					g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 				}
-				
+
 			}
-			
-		//print the final path if at the end of the bee path process
-		}else if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
+
+			//print the final path if at the end of the bee path process
+		} else if (beePath.size() > 0 && stepNum >= (naiveSteps.size() + experimentalSteps.size()) - 2) {
 
 			int x1, x2 = 0, y1, y2 = 0;
-			
-			
+
+
 			for (int i = 0; i < beePath.size() - 1; i++) {
 
 				x1 = (int) beePath.get(i).x;
 				y1 = (int) beePath.get(i).y;
 				x2 = (int) beePath.get(i + 1).x;
 				y2 = (int) beePath.get(i + 1).y;
-				
+
 				g2.setPaint(Color.white);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);				
+				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 			}
 			g2.setPaint(new Color(255, 255, 0, 255));
 			g2.setStroke(new BasicStroke(5));
 			g2.drawLine(x2 + (50 / 2), y2 + (50 / 2), (int) beePath.get(0).x + (50 / 2), (int) beePath.get(0).y + (50 / 2));
-		}	
+		}
 	}
-	
+
 
 	private void paintAntPath(Graphics2D g2) {
 		if (antSteps.size() > 0) {
 			int x1, x2, y1, y2;
-			
+
 			AntStep step = antSteps.get(stepNum);
 			ArrayList<Cell> path = step.getPath();
 
 			CostMatrix matrix = step.getCostMatrix();
-			double threshold = stepNum/2;
+			double threshold = stepNum / 2;
 
 			for (int i = 0; i < path.size(); i++) {
 				x1 = (int) path.get(i).getX();
 				y1 = (int) path.get(i).getY();
-				for (int j = (i+1); j < path.size(); j++) {
+				for (int j = (i + 1); j < path.size(); j++) {
 					x2 = (int) path.get(j).getX();
 					y2 = (int) path.get(j).getY();
 					Cell cell1 = matrix.getCell(path.get(i).getX(), path.get(i).getY());
@@ -341,7 +348,7 @@ public class ComponentPath extends JComponent {
 					System.out.println(i + " -> " + j + " " + matrix.getPheromone(cell1, cell2));
 					Color lineColor = new Color(255, 255, 0, 0);
 					if (!(matrix.getPheromone(cell1, cell2) < threshold)) {
-						lineColor = new Color(255, 255, 0, (int) (Math.min(255, 
+						lineColor = new Color(255, 255, 0, (int) (Math.min(255,
 								((255 / matrix.getMaxPheromone()) * matrix.getPheromone(cell1, cell2)))));
 					}
 					g2.setPaint(lineColor);
@@ -369,7 +376,7 @@ public class ComponentPath extends JComponent {
 			//colour red
 			distance.setForeground(Color.red);
 		}
-		distance.setBounds((int) (end.x)-5, (int) (end.y)+50, 60, 20);
+		distance.setBounds((int) (end.x) - 5, (int) (end.y) + 50, 60, 20);
 		add(distance);
 		distanceBoxes.add(distance);
 	}

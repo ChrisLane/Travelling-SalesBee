@@ -13,16 +13,26 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class TwoOptSwap extends NearestNeighbour {
 
+	public static final int NEW = 0;
+	public static final int INPROGRESS = 1;
+	public static final int COMPLETE = 2;
+
 	private int stepNum;
+	private int runs;
+	private int flowerPos1, flowerPos2;
+	private double[] flower1, flower2;
 	private ArrayList<int[]> swapLog = new ArrayList<>();
+	private ArrayList<Cell> newPath = new ArrayList<>();
+	private int status;
 
 	/**
 	 * Construct the algorithm.
 	 *
 	 * @param map Map object for storing cells.
 	 */
-	public TwoOptSwap(Map map) {
+	public TwoOptSwap(Map map, int runs) {
 		super(map);
+		this.runs = runs;
 	}
 
 	/**
@@ -32,14 +42,9 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	public void swap(int stepNum) {
 		// if the step number we need to get to is forwards, perform the next swap
-		while (stepNum > this.stepNum) {
-			int count = 0;
-			while (!nextSwap() && count < path.size()*3) {
-				nextSwap();
-				count++;
-			}
-
-			this.stepNum++;
+		if (stepNum > this.stepNum) {
+			nextSwap();
+			this.stepNum = stepNum;
 		}
 
 		// if the step number we need to get to is backwards, perform the previous swap
@@ -56,46 +61,58 @@ public class TwoOptSwap extends NearestNeighbour {
 	 * Run the next swap.
 	 */
 	protected boolean nextSwap() {
+		status = INPROGRESS;
 		if (path.size() >= 2) {
 			// create a new test path
-			ArrayList<Cell> testPath = new ArrayList<>();
-			testPath.addAll(path);
+			newPath = new ArrayList<>();
+			newPath.addAll(path);
 
+			flowerPos1 = 0;
+			flowerPos2 = 0;
 			// choose two random flowers
-			int flowerPos1 = 0;
-			int flowerPos2 = 0;
 			while (flowerPos1 >= flowerPos2) {
-				flowerPos1 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
-				flowerPos2 = ThreadLocalRandom.current().nextInt(1, testPath.size() - 2);
+				flowerPos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
+				flowerPos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
 			}
+
+			flower1 = new double[]{path.get(flowerPos1).getX(), path.get(flowerPos1).getY()};
+			flower2 = new double[]{path.get(flowerPos2).getX(), path.get(flowerPos2).getY()};
 
 			// swap the flowers
-			while (flowerPos1 < flowerPos2) {
-				Cell flower1 = testPath.get(flowerPos1);
-				Cell flower2 = testPath.get(flowerPos2);
+			int tmpPos1 = flowerPos1;
+			int tmpPos2 = flowerPos2;
+			while (tmpPos1 < tmpPos2) {
+				Cell flower1 = newPath.get(tmpPos1);
+				Cell flower2 = newPath.get(tmpPos2);
 
-				testPath.set(flowerPos1, flower2);
-				testPath.set(flowerPos2, flower1);
+				newPath.set(tmpPos1, flower2);
+				newPath.set(tmpPos2, flower1);
 
-				flowerPos1++;
-				flowerPos2--;
-			}
-
-			// if the swap was beneficial, update and return true
-			double testCost = calculatePathCost(testPath);
-			if (testCost < cost) {
-				System.out.println("Swapped to a better position.");
-				setPath(testPath, testCost);
-				int[] swap = new int[]{flowerPos1, flowerPos2};
-				swapLog.add(swap);
-
-				return true;
-			} else {
-				return false;
+				tmpPos1++;
+				tmpPos2--;
 			}
 		}
 
 		return false;
+	}
+
+	public void setComplete() {
+		status = COMPLETE;
+	}
+
+	public boolean swapSuccessful() {
+		status = NEW;
+		// if the swap was beneficial, update and return true
+		double testCost = calculatePathCost(newPath);
+		if (testCost < cost) {
+			setPath(newPath, testCost);
+			int[] swap = new int[]{flowerPos1, flowerPos2};
+			swapLog.add(swap);
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -122,5 +139,25 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
+	}
+
+	public int getRuns() {
+		return runs;
+	}
+
+	public double[] getFlower1() {
+		return flower1;
+	}
+
+	public double[] getFlower2() {
+		return flower2;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public ArrayList<Cell> getNewPath() {
+		return newPath;
 	}
 }
