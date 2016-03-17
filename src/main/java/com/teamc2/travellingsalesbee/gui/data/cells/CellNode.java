@@ -50,7 +50,7 @@ public class CellNode extends Cell {
 					image = ImageIO.read(getClass().getResource("/assets/icons/House.png"));
 					break;
 				default:
-					image = ImageIO.read(getClass().getResource("/assets/icons/Flower.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/X.png"));
 					break;
 			}
 		} catch (IOException e) {

@@ -81,7 +81,7 @@ public class ComponentTabs extends JTabbedPane {
 				case 3:
 					type = AlgorithmType.TWOOPT;
 					text = "2-Opt Swap";
-					imgName = "Boat Selected.png";
+					imgName = "BoatSelected.png";
 					panelMap.getPanelOverlyingText().setText("TWO OPT SWAP\n"
 							+ "An initial path is created using nearest neighbour\n"
 							+ "For each swap run two nodes are swapped so that the order of which they are visited in the path is switched");

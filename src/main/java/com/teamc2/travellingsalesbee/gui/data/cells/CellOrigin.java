@@ -50,7 +50,7 @@ public class CellOrigin extends Cell {
 					image = ImageIO.read(getClass().getResource("/assets/icons/MailOffice.png"));
 					break;
 				default:
-					image = ImageIO.read(getClass().getResource("/assets/icons/Hive.png"));
+					image = ImageIO.read(getClass().getResource("/assets/icons/Anchor.png"));
 					break;
 			}
 		} catch (IOException e) {
