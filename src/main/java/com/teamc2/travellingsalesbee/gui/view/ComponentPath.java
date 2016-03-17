@@ -159,14 +159,11 @@ public class ComponentPath extends JComponent {
 			g2.draw(cellCircle);
 			cellCircle = new Ellipse2D.Double(tos.getFlower2()[0], tos.getFlower2()[1], 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
-			System.out.println((tos.getFlower2()[0] + " " + tos.getFlower2()[1]));
 
 			int x1, x2, y1, y2;
-			for (int i = 0; i < naiveSteps.size(); i++) {
-				NaiveStep step = naiveSteps.get(i);
+			for (NaiveStep step : naiveSteps) {
 				x1 = (int) step.getStart().x;
 				y1 = (int) step.getStart().y;
-//				g2.setStroke(new BasicStroke(6));
 				x2 = (int) step.getEnd().x;
 				y2 = (int) step.getEnd().y;
 				g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
