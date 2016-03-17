@@ -138,7 +138,8 @@ public class PanelSettings extends JPanel {
 	}
 
 	private void createPlayButton() {
-		btnPlay = new JButton("►");
+		btnPlay = new JButton();
+		setBtnIcon(btnPlay, "/assets/icons/playBtn.png");
 
 		timer = new Timer(150, arg0 -> {
 			setStepNum(stepNum + 1);
@@ -150,18 +151,40 @@ public class PanelSettings extends JPanel {
 		btnPlay.addActionListener(arg0 -> {
 			if (!playing) {
 				timer.start();
-				btnPlay.setText("||");
+				setBtnIcon(btnPlay, "/assets/icons/pauseBtn.png");
 				playing = true;
 			} else {
 				timer.stop();
-				btnPlay.setText("►");
+				setBtnIcon(btnPlay, "/assets/icons/playBtn.png");
 				playing = false;
 			}
 		});
 	}
 
+	/**
+	 * @param isPlay If true, then button will display a play image, otherwise a pause image
+     */
+	private void setBtnIcon(JButton btn, String iconURL) {
+
+		Image img = null;
+		btn.setBorderPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setFocusPainted(false);
+		btn.setOpaque(false);
+
+		try {
+			img = ImageIO.read(getClass().getResource(iconURL));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		btn.setIcon(new ImageIcon(img));
+
+	}
+
 	private void createPreviousButton() {
-		btnPrev = new JButton("<=");
+		btnPrev = new JButton();
+		setBtnIcon(btnPrev, "/assets/icons/leftArrow.png");
 		btnPrev.addActionListener(arg0 -> {
 			setStepNum(stepNum - 1);
 			Platform.runLater(() -> {
@@ -178,7 +201,8 @@ public class PanelSettings extends JPanel {
 	}
 
 	private void createNextButton() {
-		btnNext = new JButton("=>");
+		btnNext = new JButton();
+		setBtnIcon(btnNext, "/assets/icons/rightArrow.png");
 		btnNext.addActionListener(arg0 -> {
 			setStepNum(stepNum + 1);
 			Platform.runLater(() -> {
@@ -437,7 +461,8 @@ public class PanelSettings extends JPanel {
 		btnNext.setEnabled((stepNum != -1));
 		if (stepNum == -1) {
 			timer.stop();
-			btnPlay.setText("►");
+			btnPlay.setText("");
+			setBtnIcon(btnPlay, "/assets/icons/playBtn.png");
 			playing = false;
 		}
 	}
