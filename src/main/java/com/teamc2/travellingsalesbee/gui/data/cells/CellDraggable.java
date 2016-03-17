@@ -107,7 +107,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			}
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
-			droppedBtn.setText("HELLO");
 
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
@@ -117,7 +116,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			});
 
 			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
-			int y = (int) Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height;
+			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height) - height;
 			panelMap.cellFull(x,y);
 
 			// Add the cell to the map
