@@ -116,7 +116,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			});
 
 			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
-			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height) - height;
+			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height);
 			panelMap.cellFull(x,y);
 
 			// Add the cell to the map
@@ -127,12 +127,16 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			droppedBtn.onMap();
 			droppedBtn.setPrevs(x,y);
 			
-			// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
-			droppedBtn.setBounds(x, y, width, height);
-			panelMap.add(droppedBtn);
+			//Only add dropped button if its in panel map and below the overlying text area
+			if (y >= height){
+				// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
+				droppedBtn.setBounds(x, y, width, height);
+				panelMap.add(droppedBtn);
+				panelMap.setComponentZOrder(droppedBtn, 1);
+			}
+			
 			panelMap.remove(this);
 			panelMap.repaint();
-			panelMap.setComponentZOrder(droppedBtn, 1);
 		} catch (NullPointerException e) {
 			// Deletion for when the cell is dragged off the map panelMap
 			map.clearCell(getX(), getY());
