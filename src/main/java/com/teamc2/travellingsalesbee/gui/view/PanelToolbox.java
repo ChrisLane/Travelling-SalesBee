@@ -36,14 +36,16 @@ public class PanelToolbox extends JPanel {
 			TravellingSalesBee.mainMenu.show();
 		}));
 
-		JButton randomiseButton = new JButton("Randomise Map");
-		setBtnIcon(randomiseButton, "/assets/icons/leftArrow.png");
+		//Places nodes in random places on the map - Also sets the button image
+		JButton randomiseButton = new JButton();
+		setBtnIcon(randomiseButton, "/assets/icons/refresh.png");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
 			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
 		});
 
-		JButton clearButton = new JButton("Clear Map");
+		JButton clearButton = new JButton();
+		setBtnIcon(clearButton, "/assets/icons/clearBtn.png");
 		clearButton.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
