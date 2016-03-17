@@ -36,13 +36,13 @@ public class PanelSettings extends JPanel {
 
 	private Timer timer;
 	private boolean playing = false;
-	
+
 	// Number of runs for a given algorithm
-		//For BEE this is the number of experimental runs
-		//For ANT this is the number of pheremone runs
-		//For TWOOPT this is the number of swap runs
-	private int noOfRunsValue = 26; 
-	
+	//For BEE this is the number of experimental runs
+	//For ANT this is the number of pheremone runs
+	//For TWOOPT this is the number of swap runs
+	private int noOfRunsValue = 26;
+
 	private double animationSpeed = 10;
 	private int stepNum;
 	private AlgorithmType type;
@@ -163,9 +163,9 @@ public class PanelSettings extends JPanel {
 	}
 
 	/**
-	 * @param btn Button to add image icon to
+	 * @param btn     Button to add image icon to
 	 * @param iconURL Image URL
-     */
+	 */
 	private void setBtnIcon(JButton btn, String iconURL) {
 
 		Image img = null;
@@ -225,37 +225,34 @@ public class PanelSettings extends JPanel {
 
 	/**
 	 * Sets the text for the textbox related to the Bee
-	 * @param nn 
+	 *
+	 * @param nn
 	 */
 	public void setBeeText(NearestNeighbour nn) {
 		setNNText();
-		
-		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
-			if(stepNum - panelMap.getPathComponent().getNaiveSteps().size() == panelMap.getPathComponent().getExperimentalSteps().size()){
-				panelMap.getPanelOverlyingText().setText("Final path produced by bee in " + noOfRunsValue + " experimental runs");
-			}
-			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-				panelMap.getPanelOverlyingText().setText("The Bee travels a new path by switching the order it visits two flowers in the path");
-			}
-			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
-				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-2).getPath());
-				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath());
-				panelMap.getPanelOverlyingText().setText("Previous Best Distance: " + bestDistance + "\nNew Best Distance: " + newDistance + "\nThe new path travelled by the Bee has a lower cost than the bee's previous best, it now remembers this as it's current best path");
-				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath()));
-				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size()-1)).getPath()));
-				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-2).getPath()));
 
-			}
-			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
+		if (stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
+			if (stepNum - panelMap.getPathComponent().getNaiveSteps().size() == panelMap.getPathComponent().getExperimentalSteps().size()) {
+				panelMap.getPanelOverlyingText().setText("Final path produced by bee in " + noOfRunsValue + " experimental runs");
+			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
+				panelMap.getPanelOverlyingText().setText("The Bee travels a new path by switching the order it visits two flowers in the path");
+			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
+				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 2).getPath());
+				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getPath());
+				panelMap.getPanelOverlyingText().setText("Previous Best Distance: " + bestDistance + "\nNew Best Distance: " + newDistance + "\nThe new path travelled by the Bee has a lower cost than the bee's previous best, it now remembers this as it's current best path");
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getPath()));
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size() - 1)).getPath()));
+				System.out.println((int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 2).getPath()));
+
+			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 				panelMap.getPanelOverlyingText().setText("The best path the bee has found up to now");
-			}
-			else if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
+			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
 				ArrayList<ExperimentalStep> expSteps = panelMap.getPathComponent().getExperimentalSteps();
-				for (ExperimentalStep step : expSteps){
+				for (ExperimentalStep step : expSteps) {
 					System.out.println(nn.calculatePathCost(step.getPath()));
 				}
-				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())).getPath());
-				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum-(panelMap.getPathComponent().getNaiveSteps().size())-1).getPath());
+				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getPath());
+				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 1).getPath());
 				panelMap.getPanelOverlyingText().setText("Best Distance: " + bestDistance + "\nNew Distance: " + newDistance + "\nThe new path travelled by the Bee has a higher cost than the bee's previous best, it ignores this path");
 			}
 		}
@@ -263,11 +260,11 @@ public class PanelSettings extends JPanel {
 
 	/**
 	 * Sets the text for the textbox related to the Ant
-	 * 	//Text is set at each step
+	 * //Text is set at each step
 	 */
 	public void setAntText() {
 		ArrayList<AntStep> antSteps = panelMap.getPathComponent().getAntSteps();
-		if (stepNum < antSteps.size()){
+		if (stepNum < antSteps.size()) {
 			panelMap.getPanelOverlyingText().setText("Pheremone run " + stepNum + " complete\n"
 					+ "Opacity of edges have been adjusted to the new pheremone level of each edge\n"
 					+ "The more opaque and edge is, the more effcient the edge is");
@@ -281,13 +278,14 @@ public class PanelSettings extends JPanel {
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
-		if (stepNum == nearestNeighbourSteps.size()-1){
+		if (stepNum == nearestNeighbourSteps.size() - 1) {
 			panelMap.getPanelOverlyingText().setText("All nodes visited, now returning to start");
-		}if (stepNum == nearestNeighbourSteps.size()-2){
+		}
+		if (stepNum == nearestNeighbourSteps.size() - 2) {
 			panelMap.getPanelOverlyingText().setText("All nodes visited, finding start point");
-		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0){
+		} else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0) {
 			panelMap.getPanelOverlyingText().setText("LOOKING FOR NEAREST NODE");
-		}else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
+		} else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
 			panelMap.getPanelOverlyingText().setText("FOUND CLOSEST FLOWER");
 		}
 	}
@@ -298,7 +296,6 @@ public class PanelSettings extends JPanel {
 	public void setTOText() {
 
 	}
-
 
 
 	private class runActionListener implements ActionListener {
@@ -325,7 +322,7 @@ public class PanelSettings extends JPanel {
 			try {
 				setStepNum(0);
 				map.setCostMatrix();
-				TwoOptSwap tos = new TwoOptSwap(map);
+				TwoOptSwap tos = new TwoOptSwap(map, noOfRunsValue);
 				StepController visualise = new StepController();
 				tos.naiveRun();
 				ArrayList<NaiveStep> steps = visualise.getNaiveSteps(tos.getPath());
@@ -438,7 +435,7 @@ public class PanelSettings extends JPanel {
 					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
 					pathOfPaths.add(setOfPoints);
 				}
-				
+
 				panelMap.getPathComponent().setBeePath(bee.getPath());
 
 				/*----------------------------------------------*/
