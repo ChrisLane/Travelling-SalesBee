@@ -57,8 +57,15 @@ public class About extends Page {
 		setResizable(false);
 	}
 
-	private Text createTextBox() {
+	/**
+	 * Create a Text object with the About page text.
+	 *
+	 * @return The text box with loaded content.
+	 */
+	protected Text createTextBox() {
 		Text text = new Text();
+
+		// obtain the text content
 		String textContent;
 		try {
 			URL filePath = getClass().getClassLoader().getResource("pages/about.txt");
@@ -72,6 +79,7 @@ public class About extends Page {
 			textContent = "Failed to obtain text for the current page.\nApologies for the inconvenience.";
 		}
 
+		// set the text content and return
 		text.setText(textContent);
 
 		return text;
