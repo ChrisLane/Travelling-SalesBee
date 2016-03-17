@@ -29,10 +29,10 @@ public class ComponentTabs extends JTabbedPane {
 		UIManager.getDefaults().put("TabbedPane.selectHighlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", backgroundColor);
 
-		addTab(getHtmlForSelectedTitle("BEE", "SalesBeeSelected.png"), null);
-		addTab(getHtmlForTitle("ANT", "Ant.png"), null);
-		addTab(getHtmlForTitle("NN", "Mailvan.png"), null);
-		addTab(getHtmlForTitle("2-OPT", "Boat.png"), null);
+		addTab(getHtmlForSelectedTitle("Bee Inspired", "SalesBeeSelected.png"), null);
+		addTab(getHtmlForTitle("Ant Inspired", "Ant.png"), null);
+		addTab(getHtmlForTitle("Nearest Neighbour", "Mailvan.png"), null);
+		addTab(getHtmlForTitle("2-Opt Swap", "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
 		setUI(new BasicTabbedPaneUI());
@@ -58,21 +58,21 @@ public class ComponentTabs extends JTabbedPane {
 			switch (selected) {
 				case 0:
 					type = AlgorithmType.BEE;
-					text = "BEE";
+					text = "Bee Inspired";
 					imgName = "SalesBeeSelected.png";
 					panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
 							+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 					break;
 				case 1:
 					type = AlgorithmType.ANT;
-					text = "ANT";
+					text = "Ant Inspired";
 					imgName = "AntSelected.png";
 					panelMap.getPanelOverlyingText().setText("ANT ALGORITHM\n"
 							+ "The ants .................");
 					break;
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
-					text = "NN";
+					text = "Nearest Neighbour";
 					imgName = "MailvanSelected.png";
 					panelMap.getPanelOverlyingText().setText("NEAREST NEIGHBOUR ALGORITHM\n"
 							+ "At each house the mailvan chooses shortest edge from current position to an unvisited house\n"
@@ -80,8 +80,8 @@ public class ComponentTabs extends JTabbedPane {
 					break;
 				case 3:
 					type = AlgorithmType.TWOOPT;
-					text = "2-OPT";
-					imgName = "MailvanSelected.png";
+					text = "2-Opt Swap";
+					imgName = "Boat Selected.png";
 					panelMap.getPanelOverlyingText().setText("TWO OPT SWAP\n"
 							+ "An initial path is created using nearest neighbour\n"
 							+ "For each swap run two nodes are swapped so that the order of which they are visited in the path is switched");
@@ -108,12 +108,12 @@ public class ComponentTabs extends JTabbedPane {
 	 */
 	private String getHtmlForTitle(String text, String imgName) {
 		return "<html><img src='" + getClass().getResource("/assets/icons/" + imgName)
-				+ "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></html>";
+				+ "' height='50' width='50'/><br/><h3 color='#ffffff'>" + text + "</h3></html>";
 	}
 
 	private String getHtmlForSelectedTitle(String text, String imgName) {
 		return "<html><img src='" + getClass().getResource("/assets/icons/" + imgName)
-				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></html>";
+				+ "' height='50' width='50'/><br/><h3 color='lime'>" + text + "</h3></html>";
 	}
 
 	private void updateTabColours() {
