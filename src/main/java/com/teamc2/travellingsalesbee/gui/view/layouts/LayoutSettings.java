@@ -18,8 +18,7 @@ public class LayoutSettings extends GroupLayout {
 	 */
 	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
 						  JSlider experimentsSlider, JLabel lblAnimationSpeed, JLabel lblSpeed, JSlider speedSlider,
-						  JButton btnRun, JButton btnPrev, JButton btnPlay, JButton btnNext, 
-						  ComponentTextArea textArea) {
+						  JButton btnRun, JButton btnPrev, JButton btnPlay, JButton btnNext) {
 		super(host);
 
 		setHorizontalGroup(
@@ -54,7 +53,7 @@ public class LayoutSettings extends GroupLayout {
 												.addGap(18)
 												.addComponent(btnNext)
 										)
-										.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+										//.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 								.addContainerGap()
 						)
@@ -87,7 +86,7 @@ public class LayoutSettings extends GroupLayout {
 										.addComponent(btnRun)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+								//.addComponent(textArea, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 								.addGap(20)
 						)
 		);
