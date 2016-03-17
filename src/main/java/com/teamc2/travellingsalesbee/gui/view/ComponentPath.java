@@ -190,8 +190,8 @@ public class ComponentPath extends JComponent {
 								String Distance = Integer.toString((int) Math.round((step.getStart().distance(anAvailable)) * 100) / 100);
 								if (!(available.contains(step.getStart()))) {
 									printDistance(Distance, anAvailable, g2, step.getEnd() == anAvailable);
-								} else {
-										printDistance(Distance, anAvailable, g2, false);
+								} else if(anAvailable != step.getStart()) {
+									printDistance(Distance, anAvailable, g2, false);
 
 								}
 							}
