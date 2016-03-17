@@ -32,7 +32,7 @@ public class ComponentTabs extends JTabbedPane {
 		addTab(getHtmlForSelectedTitle("BEE", "SalesBeeSelected.png"), null);
 		addTab(getHtmlForTitle("ANT", "Ant.png"), null);
 		addTab(getHtmlForTitle("NN", "Mailvan.png"), null);
-		addTab(getHtmlForTitle("2-OPT", "Mailvan.png"), null);
+		addTab(getHtmlForTitle("2-OPT", "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
 		setUI(new BasicTabbedPaneUI());
