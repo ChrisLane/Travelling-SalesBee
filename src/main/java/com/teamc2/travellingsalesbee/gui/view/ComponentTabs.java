@@ -15,7 +15,7 @@ public class ComponentTabs extends JTabbedPane {
 		Color tabColor = new Color(68, 35, 35);
 
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
-		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(23, 60, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(30, 60, 0, 0));
 		UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.tabsOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.shadow", backgroundColor);
@@ -29,10 +29,10 @@ public class ComponentTabs extends JTabbedPane {
 		UIManager.getDefaults().put("TabbedPane.selectHighlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", backgroundColor);
 
-		addTab(getHtmlForSelectedTitle("Bee Inspired", "SalesBeeSelected.png"), null);
-		addTab(getHtmlForTitle("Ant Inspired", "Ant.png"), null);
-		addTab(getHtmlForTitle("Nearest Neighbour", "Mailvan.png"), null);
-		addTab(getHtmlForTitle("2-Opt Swap", "Boat.png"), null);
+		addTab(getHtmlForSelectedTitle("Bee", "SalesBeeSelected.png"), null);
+		addTab(getHtmlForTitle("Ant", "Ant.png"), null);
+		addTab(getHtmlForTitle("NN", "Mailvan.png"), null);
+		addTab(getHtmlForTitle("2-Opt", "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
 		setUI(new BasicTabbedPaneUI());
