@@ -166,7 +166,7 @@ public class PanelSettings extends JPanel {
 	 * @param btn     Button to add image icon to
 	 * @param iconURL Image URL
 	 */
-	private void setBtnIcon(JButton btn, String iconURL) {
+	public void setBtnIcon(JButton btn, String iconURL) {
 
 		Image img = null;
 		btn.setBorderPainted(false);
