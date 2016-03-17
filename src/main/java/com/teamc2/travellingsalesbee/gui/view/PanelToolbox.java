@@ -8,8 +8,10 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutToolbox;
 import javafx.application.Platform;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PanelToolbox extends JPanel {
@@ -35,6 +37,7 @@ public class PanelToolbox extends JPanel {
 		}));
 
 		JButton randomiseButton = new JButton("Randomise Map");
+		setBtnIcon(randomiseButton, "/assets/icons/leftArrow.png");
 		randomiseButton.addActionListener(arg0 -> {
 			randomise();
 			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
@@ -75,6 +78,29 @@ public class PanelToolbox extends JPanel {
 
 		nodeToolCell.setBounds(0, cellHeight * 4 + 10, 100, 100);
 		add(nodeToolCell);
+	}
+
+	/**
+	 * We'll use PanelSettings method later on, currently here to swap button images
+	 * @param btn     Button to add image icon to
+	 * @param iconURL Image URL
+	 */
+	public void setBtnIcon(JButton btn, String iconURL) {
+
+		Image img = null;
+		btn.setBorderPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setFocusPainted(false);
+		btn.setOpaque(false);
+
+		try {
+			img = ImageIO.read(getClass().getResource(iconURL));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		btn.setIcon(new ImageIcon(img));
+
 	}
 
 	/**
