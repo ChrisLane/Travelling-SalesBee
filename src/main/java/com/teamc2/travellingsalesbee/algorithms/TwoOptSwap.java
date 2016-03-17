@@ -86,6 +86,11 @@ public class TwoOptSwap extends NearestNeighbour {
 		return false;
 	}
 
+	/**
+	 * Check if the swap was successful, and if so, set it as the new path.
+	 *
+	 * @return Whether the swap was successful or not.
+	 */
 	public boolean swapSuccessful() {
 		// if the swap was beneficial, update and return true
 		double testCost = calculatePathCost(newPath);
@@ -127,18 +132,38 @@ public class TwoOptSwap extends NearestNeighbour {
 		this.stepNum = stepNum;
 	}
 
+	/**
+	 * Return the total number of experimental runs (swaps) to perform.
+	 *
+	 * @return Total runs.
+	 */
 	public int getRuns() {
 		return runs;
 	}
 
+	/**
+	 * Get the first flower being swapped.
+	 *
+	 * @return The flower's coordinates, with the X position in index 0, and the Y position in index 1.
+	 */
 	public double[] getFlower1() {
 		return flower1;
 	}
 
+	/**
+	 * Get the second flower being swapped.
+	 *
+	 * @return The flower's coordinates, with the X position in index 0, and the Y position in index 1.
+	 */
 	public double[] getFlower2() {
 		return flower2;
 	}
 
+	/**
+	 * Get the current path being tested.
+	 *
+	 * @return The current path being tested - this may be less optimal than the actual current path.
+	 */
 	public ArrayList<Cell> getNewPath() {
 		return newPath;
 	}
