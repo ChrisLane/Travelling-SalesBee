@@ -38,12 +38,12 @@ public class ComponentGrid extends JComponent {
 
 		// While the widthCount is less than the width of the users screen, draw vertical lines
 		for (int i = 0; i <= screenWidth; i += cellWidth) {
-			lines.add(new Line(i, 0, i, screenHeight));
+			lines.add(new Line(i, 50, i, screenHeight));
 		}
 
 		// While the heightCount is less than the height of the users screen, draw horizontal lines
 		for (int i = 0; i <= screenHeight; i += cellHeight) {
-			lines.add(new Line(0, i, screenWidth, i));
+			lines.add(new Line(0, i + 50, screenWidth, i + 50));
 		}
 	}
 

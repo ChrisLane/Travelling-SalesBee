@@ -132,7 +132,8 @@ public class PanelSettings extends JPanel {
 	}
 
 	private void createRunButton() {
-		btnRun = new JButton("RUN");
+		btnRun = new JButton();
+		setBtnIcon(btnRun, "/assets/icons/startBtn.png");
 		btnRun.addActionListener(new runActionListener());
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
 	}
@@ -141,7 +142,7 @@ public class PanelSettings extends JPanel {
 		btnPlay = new JButton();
 		setBtnIcon(btnPlay, "/assets/icons/playBtn.png");
 
-		timer = new Timer(150, arg0 -> {
+		timer = new Timer(1500, arg0 -> {
 			setStepNum(stepNum + 1);
 			setDistance();
 			panelMap.getPathComponent().repaint();
@@ -162,7 +163,8 @@ public class PanelSettings extends JPanel {
 	}
 
 	/**
-	 * @param isPlay If true, then button will display a play image, otherwise a pause image
+	 * @param btn Button to add image icon to
+	 * @param iconURL Image URL
      */
 	private void setBtnIcon(JButton btn, String iconURL) {
 

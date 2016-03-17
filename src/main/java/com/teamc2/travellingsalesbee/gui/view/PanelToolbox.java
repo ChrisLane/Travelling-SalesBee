@@ -96,7 +96,7 @@ public class PanelToolbox extends JPanel {
 		panelMap.clear();
 
 		int maxX = (panelMap.getWidth()) / cellWidth;
-		int maxY = (panelMap.getHeight()) / cellHeight;
+		int maxY = ((panelMap.getHeight()) / cellHeight) - 1;
 
 		int x = 0;
 		int y = 0;
@@ -106,7 +106,8 @@ public class PanelToolbox extends JPanel {
 		while(nodesPlaced < 12) {
 
 			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
-			y = ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight;
+			y = (ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight) + 50;
+
 			panelMap.cellFull(x,y);
 
 			if(nodesPlaced < 11) {
