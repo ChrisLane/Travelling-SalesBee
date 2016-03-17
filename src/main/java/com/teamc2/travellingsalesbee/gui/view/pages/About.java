@@ -1,7 +1,17 @@
 package com.teamc2.travellingsalesbee.gui.view.pages;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * A class for generating and viewing the about page.
@@ -30,6 +40,12 @@ public class About extends Page {
 		BorderPane border = new BorderPane();
 		border.setId("about");
 
+		// add the buttons to the pane
+		Text text = createTextBox();
+		border.setCenter(text);
+		BorderPane.setAlignment(text, Pos.TOP_CENTER);
+		BorderPane.setMargin(text, new Insets(150,10,0,10));
+
 		// create the scene
 		Scene scene = createScene(border);
 
@@ -39,5 +55,25 @@ public class About extends Page {
 		setMinHeight(height);
 		setMinWidth(width);
 		setResizable(false);
+	}
+
+	private Text createTextBox() {
+		Text text = new Text();
+		String textContent;
+		try {
+			URL filePath = getClass().getClassLoader().getResource("pages/about.txt");
+			if (filePath != null) {
+				byte[] byteContent = Files.readAllBytes(Paths.get(filePath.getFile()));
+				textContent = new String(byteContent);
+			} else {
+				throw new IOException();
+			}
+		} catch (IOException e) {
+			textContent = "Failed to obtain text for the current page.\nApologies for the inconvenience.";
+		}
+
+		text.setText(textContent);
+
+		return text;
 	}
 }

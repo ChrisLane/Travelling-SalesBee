@@ -8,6 +8,12 @@
     -fx-background-size: 100% 100%;
 }
 
+#about Text {
+    -fx-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
 .button {
     -fx-background-radius: 3px;
     -fx-background-color: linear-gradient(#f0ff35, #ffeb05),
