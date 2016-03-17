@@ -54,7 +54,7 @@ public class PanelOverlyingText extends JFXPanel {
 			setTextXandY(0, 13);
 			text.setTextAlignment(TextAlignment.CENTER);
 			setText("Initial text");
-
+			
 			//Set the stylesheet for the scene (make textPane transparent)
 			URL url = getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url.toExternalForm());
@@ -75,6 +75,12 @@ public class PanelOverlyingText extends JFXPanel {
 	public void setSize(int size) {
 		Platform.runLater(() -> {
 			text.setFont(new Font(size));
+		});
+	}
+	
+	public void setCenter(int size) {
+		Platform.runLater(() -> {
+			
 		});
 	}
 
