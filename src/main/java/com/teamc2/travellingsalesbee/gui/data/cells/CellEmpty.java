@@ -10,6 +10,7 @@ public class CellEmpty extends Cell {
 	 * Create a new empty cell
 	 */
 	public CellEmpty() {
+		//
 	}
 
 	/**

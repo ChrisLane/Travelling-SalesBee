@@ -12,6 +12,7 @@ public class CellOrigin extends Cell {
 	 * Create a new hive cell
 	 */
 	public CellOrigin() {
+		//
 	}
 
 	/**
