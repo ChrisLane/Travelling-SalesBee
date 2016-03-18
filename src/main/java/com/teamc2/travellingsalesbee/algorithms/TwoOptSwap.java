@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Model for Two-Opt Swap Algorithm
  *
  * @author Neil Farrington (npf489)
+ * @author Todd Waugh Ambridge (txw467)
  */
 public class TwoOptSwap extends NearestNeighbour {
 

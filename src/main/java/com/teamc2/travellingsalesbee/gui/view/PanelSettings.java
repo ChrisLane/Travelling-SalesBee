@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+/**
+ * @author: Melvyn Mathews (mxm499), Bradley Rowe (bmr455), Chris Lane (cml476), Todd Waugh Ambridge (txw467), Neil Farrington (npf489)
+ */
 public class PanelSettings extends JPanel {
 
 	public final static String name = "PanelSettings";
@@ -403,11 +406,18 @@ public class PanelSettings extends JPanel {
 				pathOfPaths.add(hive);
 
 				for (NaiveStep naiveStep : steps) {
-					ArrayList<Cell> singlePoint = new ArrayList<>();
+					ArrayList<Cell> singlePoint = new ArrayList<Cell>();
+					/*
+						if((stepNum - panelMap.getPathComponent().getNaiveSteps().size()) % 3 == 1) {
+							//singlePoint = swapped path
+						}
+					*/
+
 					singlePoint.add(naiveStep.getEnd());
 					pathOfPaths.add(singlePoint);
 				}
 
+				panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Boat.png");
 				panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 			} catch (NullPointerException e) {
 				btnPrev.setEnabled(false);
