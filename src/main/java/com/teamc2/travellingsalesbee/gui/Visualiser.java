@@ -3,6 +3,10 @@ package com.teamc2.travellingsalesbee.gui;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.view.*;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutGui;
+import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
+import com.teamc2.travellingsalesbee.gui.view.tabs.ComponentTabs;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
