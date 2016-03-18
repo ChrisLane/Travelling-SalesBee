@@ -4,9 +4,12 @@ import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.view.*;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutGui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
@@ -35,10 +38,22 @@ public class Visualiser extends JFrame {
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
 		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
+		
+		BufferedImage img = null;
+		System.out.println(getClass().getResource("/assets/icons/dragMe.png"));
+		try {
+			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		JLabel algorithmLabel = new JLabel(new ImageIcon(img));
+		algorithmLabel.setName("algorithmLabel");
+		
 		container.add(panelMap);
 		container.add(panelSettings);
 		container.add(panelToolbox);
 		container.add(componentTabs);
+		container.add(algorithmLabel);
 
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
 		container.setBackground(new Color(71, 35, 35));
