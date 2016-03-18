@@ -41,7 +41,7 @@ public class PanelSettings extends JPanel {
 	//For BEE this is the number of experimental runs
 	//For ANT this is the number of pheremone runs
 	//For TWOOPT this is the number of swap runs
-	private int noOfRunsValue = 26;
+	private int noOfRunsValue = 50;
 
 	private double animationSpeed = 10;
 	private int stepNum;
