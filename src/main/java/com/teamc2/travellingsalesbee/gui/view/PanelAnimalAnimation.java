@@ -89,7 +89,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 	private void moveFromAToB(Cell end, Rectangle animal, TranslateTransition transition) {
 		Platform.runLater(() -> {
 
-			if ((end.getX() - animal.getX()) < 0) {
+			if ((end.getX() - animal.getX()) <= 0) {
 				animal.setScaleX(-1);
 			} else {
 				animal.setScaleX(1);
@@ -174,8 +174,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 		}
 
 		//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
-		if (stepNum >= pathOfPaths.get(popStepNum).size()) {
+		if (stepNum >= pathOfPaths.get(popStepNum).size() - 1) {
 
+			System.out.println("Step is greater than pathOfPaths.get(popStepNum).size()");
 			stepNum = 0;
 
 			System.out.println("Set stepNum to 0: " + stepNum + " popSteNum++" + popStepNum);
@@ -186,8 +187,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 			if (singlePath && !stepThroughAllPaths) {
 				singlePath = false;
 				poPaths = true;
-				popStepNum++;
 			}
+
+			popStepNum++;
 		}
 
 		//If animating a single step at a time, ensure singlePath is set to true
@@ -268,5 +270,37 @@ public class PanelAnimalAnimation extends JFXPanel {
 	public void animatePath(boolean bool) {
 		poPaths = bool;
 		singlePath = !bool;
+	}
+
+	/**
+	 * @return Return step number int
+	 */
+	public int getPopStepNum() {
+		return popStepNum;
+	}
+
+	/**
+	 * @return Return step number int
+	 */
+	public int getStepNum() {
+		return stepNum;
+	}
+
+	/**
+	 * @return The single path boolean
+	 */
+	public boolean getSinglePathBool() {
+		return singlePath;
+	}
+
+	/**
+	 * @return The path of paths boolean value
+	 */
+	public boolean getPoPathsBool() {
+		return poPaths;
+	}
+
+	public ArrayList<ArrayList<Cell>> getPathOfPaths() {
+		return pathOfPaths;
 	}
 }
