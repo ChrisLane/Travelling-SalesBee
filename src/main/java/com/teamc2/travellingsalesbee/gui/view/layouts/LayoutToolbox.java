@@ -14,15 +14,12 @@ public class LayoutToolbox extends GroupLayout {
 	 * @param clearButton     Button to clear the map
 	 * @param imgLabel 
 	 */
-	public LayoutToolbox(Container host, JButton backButton, JButton randomiseButton, 
-			JButton clearButton, JLabel imgLabel) {
+	public LayoutToolbox(Container host, JButton backButton, JLabel imgLabel) {
 		super(host);
 
 		setHorizontalGroup(
 				createParallelGroup(Alignment.CENTER)
 						.addComponent(backButton)
-						.addComponent(randomiseButton)
-						.addComponent(clearButton)
 						.addComponent(imgLabel)
 		);
 		setVerticalGroup(
@@ -31,9 +28,7 @@ public class LayoutToolbox extends GroupLayout {
 								.addComponent(backButton)
 								.addGap(50)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(randomiseButton)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(clearButton)
 								.addGap(50)
 								.addComponent(imgLabel)
 								.addContainerGap(500, Short.MAX_VALUE))

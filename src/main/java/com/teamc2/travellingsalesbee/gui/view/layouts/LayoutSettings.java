@@ -18,7 +18,7 @@ public class LayoutSettings extends GroupLayout {
 	 */
 	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
 						  JSlider experimentsSlider, JLabel lblAnimationSpeed, JLabel lblSpeed, JSlider speedSlider,
-						  JButton btnRun, JButton btnPrev, JButton btnPlay, JButton btnNext) {
+						  JButton btnRandomise, JButton btnClear, JButton btnRun, JButton btnPrev, JButton btnPlay, JButton btnNext) {
 		super(host);
 
 		setHorizontalGroup(
@@ -46,6 +46,10 @@ public class LayoutSettings extends GroupLayout {
 								.addGroup(createParallelGroup(Alignment.TRAILING)
 										.addGroup(createSequentialGroup()
 												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+												.addComponent(btnRandomise)
+												.addGap(18)
+												.addComponent(btnClear)
+												.addGap(18)
 												.addComponent(btnRun)
 												.addGap(18)
 												.addComponent(btnPrev)
@@ -84,6 +88,8 @@ public class LayoutSettings extends GroupLayout {
 										.addComponent(btnPlay)
 										.addComponent(btnPrev)
 										.addComponent(btnRun)
+										.addComponent(btnClear)
+										.addComponent(btnRandomise)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addGap(30)

@@ -8,6 +8,8 @@ import com.teamc2.travellingsalesbee.gui.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutSettings;
 import com.teamc2.travellingsalesbee.visualisation.StepController;
 import javafx.application.Platform;
@@ -20,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class PanelSettings extends JPanel {
@@ -33,6 +36,11 @@ public class PanelSettings extends JPanel {
 	private JButton btnPlay;
 	private JButton btnNext;
 	private JButton btnRun;
+	private JButton btnRandomise;
+	private JButton btnClear;
+	
+	private final int cellWidth;
+	private final int cellHeight;
 
 	private Timer timer;
 	private boolean playing = false;
@@ -58,6 +66,9 @@ public class PanelSettings extends JPanel {
 	 * @param panelMap Map JPanel
 	 */
 	public PanelSettings(PanelMap panelMap) {
+		cellWidth = panelMap.getCellWidth();
+		cellHeight = panelMap.getCellHeight();
+		
 		this.panelMap = panelMap;
 		map = panelMap.getMap();
 
@@ -92,6 +103,8 @@ public class PanelSettings extends JPanel {
 	 * Add the settings buttons to the panel
 	 */
 	public void addButtons() {
+		createRandomiseButton();
+		createClearButton();
 		createRunButton();
 		createPlayButton();
 		createPreviousButton();
@@ -123,7 +136,7 @@ public class PanelSettings extends JPanel {
 
 		JEditorPane editorPane = new JEditorPane();
 		layoutSettings = new LayoutSettings(this, infoLabel, lblRunsOfType, lblNoOfRuns, noOfRunsSlider,
-				lblAnimationSpeed, lblSpeed, speedSlider, btnRun, btnPrev, btnPlay, btnNext);
+				lblAnimationSpeed, lblSpeed, speedSlider, btnRandomise, btnClear, btnRun, btnPrev, btnPlay, btnNext);
 		setLayout(layoutSettings);
 	}
 
@@ -196,6 +209,67 @@ public class PanelSettings extends JPanel {
 				e.printStackTrace();
 			}
 		});
+	}
+	
+	private void createClearButton() {
+		btnClear = new JButton();
+		setBtnIcon(btnClear, "/assets/icons/clearBtn.png");
+		btnClear.addActionListener(arg0 -> {
+			panelMap.clear();
+			panelMap.repaint();
+			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
+		});
+	}
+	
+	private void createRandomiseButton() {
+		btnRandomise = new JButton();
+		setBtnIcon(btnRandomise, "/assets/icons/refresh.png");
+		btnRandomise.addActionListener(arg0 -> {
+			randomise();
+			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
+		});
+	}
+	
+	public void randomise() {
+		
+		panelMap.clear();
+
+		int maxX = (panelMap.getWidth()) / cellWidth;
+		int maxY = ((panelMap.getHeight()) / cellHeight) - 1;
+
+		int x = 0;
+		int y = 0;
+		CellDraggable newCell = null;
+
+		int nodesPlaced = 0;
+		while(nodesPlaced < 12) {
+
+			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
+			y = (ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight) + 50;
+
+			panelMap.cellFull(x,y);
+
+			if(nodesPlaced < 11) {
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
+				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
+				panelMap.getMap().setCell(x,y,CellType.NODE);
+			} else {
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
+				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
+				panelMap.getMap().setCell(x,y,CellType.ORIGIN);
+			}
+
+			newCell.setBounds(x, y, cellWidth, cellHeight);
+			newCell.onMap();
+			newCell.setPrevs(x,y);
+			newCell.setEnabled(true);
+			panelMap.add(newCell);
+			panelMap.setComponentZOrder(newCell, 1);
+
+			nodesPlaced++;
+		}
+
+		panelMap.repaint();
 	}
 
 	private void createNextButton() {
