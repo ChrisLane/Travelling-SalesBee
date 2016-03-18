@@ -28,7 +28,7 @@ public class PanelSettings extends JPanel {
 	private final PanelMap panelMap;
 	private Map map;
 
-	private JLabel infoLabel;
+	private JLabel infoLabel = new JLabel();
 	private JButton btnPrev;
 	private JButton btnPlay;
 	private JButton btnNext;
@@ -39,7 +39,7 @@ public class PanelSettings extends JPanel {
 
 	// Number of runs for a given algorithm
 	//For BEE this is the number of experimental runs
-	//For ANT this is the number of pheremone runs
+	//For ANT this is the number of pheromone runs
 	//For TWOOPT this is the number of swap runs
 	private int noOfRunsValue = 26;
 
@@ -63,7 +63,6 @@ public class PanelSettings extends JPanel {
 
 		setName(name);
 		setBackground(Color.LIGHT_GRAY);
-		addSettingsInfo();
 		addButtons();
 		setStepNum(-1);
 	}
@@ -83,13 +82,6 @@ public class PanelSettings extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Add information on how to use the settings panel
-	 */
-	public void addSettingsInfo() {
-		infoLabel = new JLabel("");
 	}
 
 	/**
@@ -265,9 +257,9 @@ public class PanelSettings extends JPanel {
 	public void setAntText() {
 		ArrayList<AntStep> antSteps = panelMap.getPathComponent().getAntSteps();
 		if (stepNum < antSteps.size()) {
-			panelMap.getPanelOverlyingText().setText("Pheremone run " + stepNum + " complete\n"
-					+ "Opacity of edges have been adjusted to the new pheremone level of each edge\n"
-					+ "The more opaque and edge is, the more effcient the edge is");
+			panelMap.getPanelOverlyingText().setText("Pheromone run " + stepNum + " complete\n"
+					+ "Opacity of edges have been adjusted to the new pheromone level of each edge\n"
+					+ "The more opaque and edge is, the more efficient the edge is");
 			JButton test = new JButton("test");
 			test.setVisible(true);
 		}
@@ -296,7 +288,6 @@ public class PanelSettings extends JPanel {
 	public void setTOText() {
 
 	}
-
 
 	private class runActionListener implements ActionListener {
 		@Override

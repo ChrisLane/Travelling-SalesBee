@@ -11,6 +11,9 @@ import javafx.stage.Stage;
  * @author Neil Farrington (npf489)
  */
 public class TravellingSalesBee extends Application {
+	/**
+	 * The main menu stage.
+	 */
 	public static Page mainMenu;
 
 	/**
