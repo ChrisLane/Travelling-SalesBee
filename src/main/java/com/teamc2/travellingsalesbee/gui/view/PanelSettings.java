@@ -445,10 +445,12 @@ public class PanelSettings extends JPanel {
 				pathOfPaths.add(hive);
 
 				for (ExperimentalStep experimentalStep : experimentalSteps) {
-					ArrayList<Cell> setOfPoints = new ArrayList<>();
-					if (experimentalStep.getType() == SwapType.INSPECTED){
+					ArrayList<Cell> setOfPoints = new ArrayList<Cell>();
+
+					if (experimentalStep.getType() == SwapType.INSPECTED) {
 						setOfPoints = experimentalStep.getPath();
 					}
+
 					pathOfPaths.add(setOfPoints);
 				}
 
