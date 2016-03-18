@@ -101,9 +101,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 			transition.playFromStart();
 
 			transition.setOnFinished(AE -> {
-				System.out.println("STOPPED PLAYING");
+				//System.out.println("STOPPED PLAYING");
 				if (!singlePath) {
-					System.out.println("Calling animatePath");
+					//System.out.println("Calling animatePath");
 					stepNum++;
 					animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), stepNum, animal, transition);
 				}
@@ -133,8 +133,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 			System.out.println("Ran out of moves");
 		} else if (i >= path.size()) {
 			//Increment the global superI
-			popStepNum++;
-			System.out.println("popSteNum: " + popStepNum);
+			//popStepNum++;
+			//System.out.println("Incremented popStepNum, new value is: " + popStepNum);
 		} else {
 
 			//Get end cell
@@ -145,7 +145,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 				moveFromAToB(end, animal, transition);
 
-			} else if (superI < superPath.size() - 1) {
+			} else if (superI < superPath.size()) {
 				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 			}
 		}
@@ -165,6 +165,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 	public void incrStepNum() {
 		stepNum++;
 		System.out.println("Step num: " + stepNum);
+		System.out.println("PopStemNum: " + popStepNum);
+		System.out.println("Path size: " + pathOfPaths.get(popStepNum).size());
+		System.out.println("---------------------------");
 
 		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
@@ -175,21 +178,12 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 		//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
 		if (stepNum >= pathOfPaths.get(popStepNum).size() - 1) {
-
-			System.out.println("Step is greater than pathOfPaths.get(popStepNum).size()");
 			stepNum = 0;
-
-			System.out.println("Set stepNum to 0: " + stepNum + " popSteNum++" + popStepNum);
-			System.out.println("singlePath: " + singlePath);
-			System.out.println("stepThroughAllPaths: " + stepThroughAllPaths);
-			System.out.println("poPaths: " + poPaths);
 
 			if (singlePath && !stepThroughAllPaths) {
 				singlePath = false;
 				poPaths = true;
 			}
-
-			popStepNum++;
 		}
 
 		//If animating a single step at a time, ensure singlePath is set to true
@@ -200,7 +194,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 		//if animating an entire path at a time, set poPaths to true
 		if (poPaths) {
-			System.out.println("poPaths should be animating");
+			popStepNum++;
+
 			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
 		}
 	}
