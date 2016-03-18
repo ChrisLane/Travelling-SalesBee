@@ -342,7 +342,6 @@ public class ComponentPath extends JComponent {
 					y2 = (int) path.get(j).getY();
 					Cell cell1 = matrix.getCell(path.get(i).getX(), path.get(i).getY());
 					Cell cell2 = matrix.getCell(path.get(j).getX(), path.get(j).getY());
-					System.out.println(i + " -> " + j + " " + matrix.getPheromone(cell1, cell2));
 					Color lineColor = new Color(255, 255, 0, 0);
 					if (!(matrix.getPheromone(cell1, cell2) < threshold)) {
 						lineColor = new Color(255, 255, 0, (int) (Math.min(255,
