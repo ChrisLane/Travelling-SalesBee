@@ -26,8 +26,6 @@ public class Visualiser extends JFrame {
 			e.printStackTrace();
 		}
 
-		System.setProperty("sun.java2d.d3d", "true");
-
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(50, 25, 1200, 650);
 		setMinimumSize(new Dimension(800, 600));
