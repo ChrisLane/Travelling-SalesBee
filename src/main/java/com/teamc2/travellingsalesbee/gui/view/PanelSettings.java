@@ -208,6 +208,11 @@ public class PanelSettings extends JPanel {
 			});
 
 			try {
+				/*if (panelMap.getPanelAnimalAnimation().getPoPathsBool()) {
+					if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPanelAnimalAnimation().getPathOfPaths().get(0).size())).getType() == SwapType.INSPECTED) {
+
+					}
+				}*/
 				// if (stepNum < experimentalRuns) {
 				panelMap.getPanelAnimalAnimation().incrStepNum();
 				oldDistance = distance;
@@ -404,12 +409,12 @@ public class PanelSettings extends JPanel {
 			}
 
 
-			/*
 
-			Below is an example of how to pass through the url name and set the pathOfPaths
+
+			/*Below is an example of how to pass through the url name and set the pathOfPaths*/
 
 			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
-			panelMap.getPanelAnimalAnimation().setPathofPaths(antSteps);*/
+			panelMap.getPanelAnimalAnimation().setPathofPaths(setOfRuns);
 
 			StepController stepController = new StepController();
 			ArrayList<AntStep> antSteps = stepController.getAntSteps(setOfRuns, setOfMatrices, initialMatrix);
