@@ -456,6 +456,7 @@ public class PanelSettings extends JPanel {
 			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
 			ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
 			CostMatrix initialMatrix;
+			map.setCostMatrix();
 			initialMatrix = map.getCostMatrix().copy();
 			
 			int numberOfAnts = 4;
