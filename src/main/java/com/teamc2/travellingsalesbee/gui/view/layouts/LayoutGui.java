@@ -19,9 +19,13 @@ public class LayoutGui extends GroupLayout {
 		PanelSettings panelSettings = (PanelSettings) host.getComponentByName("PanelSettings");
 		PanelToolbox panelToolbox = (PanelToolbox) host.getComponentByName("PanelToolbox");
 		ComponentTabs componentTabs = (ComponentTabs) host.getComponentByName("ComponentTabs");
+		JLabel algorithmLabel = (JLabel) host.getComponentByName("algorithmLabel");
 
 		setHorizontalGroup(createSequentialGroup()
+				.addGroup(createParallelGroup()
+				.addComponent(algorithmLabel, 125, 125, PREFERRED_SIZE)
 				.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)
+				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
 						.addComponent(panelMap, 0, PREFERRED_SIZE, Short.MAX_VALUE)
@@ -31,7 +35,10 @@ public class LayoutGui extends GroupLayout {
 				.addComponent(panelToolbox, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
 		);
 		setVerticalGroup(createParallelGroup()
+				.addGroup(createSequentialGroup()
+				.addComponent(algorithmLabel, 100, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
 				.addComponent(componentTabs, 500, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
+				)
 				.addGroup(createSequentialGroup()
 						.addComponent(panelMap, 50, PREFERRED_SIZE, Short.MAX_VALUE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
