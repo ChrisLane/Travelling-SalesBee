@@ -10,7 +10,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Ant extends NearestNeighbour {
 
-	private final double nearProbability = 0.7;
 	private double heuristicCost;
 	private CostMatrix costMatrix;
 
@@ -62,19 +61,18 @@ public class Ant extends NearestNeighbour {
 	}
 
 	private Cell findNextFlower(ArrayList<CellNode> flowers, Cell currentCell) {
-		double averageCost = getAverageCost(flowers,currentCell);
-		ArrayList<CellNode> nearFlowers = nearFlowers(flowers,averageCost,currentCell);
-		
 		double averagePheromone = getAveragePheromone(flowers,currentCell);
-		ArrayList<CellNode> goodFlowers = goodFlowers(nearFlowers,averagePheromone,currentCell);
+		ArrayList<CellNode> goodFlowers = goodFlowers(flowers,averagePheromone,currentCell);
 		
 		if (goodFlowers.size() > 0) {
-			int r = ThreadLocalRandom.current().nextInt(0, goodFlowers.size());
-			return goodFlowers.get(r);
-		} else {
-			int r = ThreadLocalRandom.current().nextInt(0, nearFlowers.size());
-			return nearFlowers.get(r);
+			flowers = goodFlowers;
 		}
+		
+		double averageCost = getAverageCost(flowers,currentCell);
+		flowers = nearFlowers(flowers,averageCost,currentCell);
+		
+		int r = ThreadLocalRandom.current().nextInt(0, flowers.size());
+		return flowers.get(r);
 	}
 
 	private ArrayList<CellNode> goodFlowers(ArrayList<CellNode> flowers, double averagePheromone, Cell currentCell) {
@@ -127,5 +125,9 @@ public class Ant extends NearestNeighbour {
 			Cell cell2 = path.get(i + 1);
 			plantPheromone(cell1, cell2);
 		}
+	}
+	
+	public Map getMap() {
+		return map;
 	}
 }

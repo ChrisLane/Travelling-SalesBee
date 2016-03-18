@@ -332,7 +332,7 @@ public class ComponentPath extends JComponent {
 			ArrayList<Cell> path = step.getPath();
 
 			CostMatrix matrix = step.getCostMatrix();
-			double threshold = stepNum / 2;
+			double threshold = stepNum / 8;
 
 			for (int i = 0; i < path.size(); i++) {
 				x1 = (int) path.get(i).getX();
@@ -344,7 +344,7 @@ public class ComponentPath extends JComponent {
 					Cell cell2 = matrix.getCell(path.get(j).getX(), path.get(j).getY());
 					Color lineColor = new Color(255, 255, 0, 0);
 					if (!(matrix.getPheromone(cell1, cell2) < threshold)) {
-						lineColor = new Color(255, 255, 0, (int) (Math.min(255,
+						lineColor = new Color(255, 255, 0, (int) (Math.min(255,10+
 								((255 / matrix.getMaxPheromone()) * matrix.getPheromone(cell1, cell2)))));
 					}
 					g2.setPaint(lineColor);
