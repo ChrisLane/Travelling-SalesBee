@@ -79,7 +79,7 @@ public class PanelSettings extends JPanel {
 			BufferedImage img = ImageIO.read(getClass().getResource("/assets/backgrounds/BrownBack150.png"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
-			Dimension round = new Dimension(50, 50);
+			Dimension round = new Dimension(30, 30);
 			g2.fillRoundRect(0, 0, getWidth(), getHeight(), round.width, round.height);
 			g2.setStroke(new BasicStroke(2));
 		    g2.drawRoundRect(0, 0, getWidth(),getHeight(), round.width, round.height);
@@ -440,7 +440,10 @@ public class PanelSettings extends JPanel {
 				pathOfPaths.add(hive);
 
 				for (ExperimentalStep experimentalStep : experimentalSteps) {
-					ArrayList<Cell> setOfPoints = experimentalStep.getPath();
+					ArrayList<Cell> setOfPoints = new ArrayList<>();
+					if (experimentalStep.getType() == SwapType.INSPECTED){
+						setOfPoints = experimentalStep.getPath();
+					}
 					pathOfPaths.add(setOfPoints);
 				}
 

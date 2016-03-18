@@ -229,4 +229,15 @@ public class PanelMap extends JPanel {
 	public int getScreenHeight() {
 		return screenHeight;
 	}
+	
+	public void addDistanceText(String text){
+		for (Component c : getComponents()) {
+			if (c instanceof CellDraggable) {
+				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.NODE)) {
+					remove(c);
+					c.setEnabled(false);
+				}
+			}
+		}
+	}
 }
