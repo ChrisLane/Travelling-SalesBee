@@ -19,7 +19,6 @@ public class Ant extends NearestNeighbour {
 		costMatrix = map.getCostMatrix();
 		naiveRun();
 		setHeuristicCost(getCost());
-		System.out.println(heuristicCost);
 	}
 
 	public void pheromoneRun() {
