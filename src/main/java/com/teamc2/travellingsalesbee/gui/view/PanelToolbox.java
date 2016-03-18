@@ -11,6 +11,8 @@ import javafx.application.Platform;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -51,8 +53,18 @@ public class PanelToolbox extends JPanel {
 			panelMap.repaint();
 			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
 		});
+		
+		BufferedImage img = null;
+		System.out.println(getClass().getResource("/assets/icons/dragMe.png"));
+		try {
+			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		JLabel imgLabel = new JLabel(new ImageIcon(img));
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, clearButton);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, 
+				clearButton, imgLabel);
 		setLayout(layoutToolbox);
 
 		addTools();
@@ -75,10 +87,10 @@ public class PanelToolbox extends JPanel {
 
 
 		//Add buttons to the toolbox
-		originToolCell.setBounds(0, cellHeight * 3, 100, 100);
+		originToolCell.setBounds(0, 320, 100, 100);
 		add(originToolCell);
 
-		nodeToolCell.setBounds(0, cellHeight * 4 + 10, 100, 100);
+		nodeToolCell.setBounds(0, 380, 100, 100);
 		add(nodeToolCell);
 	}
 

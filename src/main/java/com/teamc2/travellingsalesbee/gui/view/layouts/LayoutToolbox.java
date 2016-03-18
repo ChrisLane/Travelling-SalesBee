@@ -2,6 +2,7 @@ package com.teamc2.travellingsalesbee.gui.view.layouts;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class LayoutToolbox extends GroupLayout {
 	/**
@@ -11,8 +12,10 @@ public class LayoutToolbox extends GroupLayout {
 	 * @param backButton      Back button for the toolbox
 	 * @param randomiseButton Button to randomise nodes on the map
 	 * @param clearButton     Button to clear the map
+	 * @param imgLabel 
 	 */
-	public LayoutToolbox(Container host, JButton backButton, JButton randomiseButton, JButton clearButton) {
+	public LayoutToolbox(Container host, JButton backButton, JButton randomiseButton, 
+			JButton clearButton, JLabel imgLabel) {
 		super(host);
 
 		setHorizontalGroup(
@@ -20,15 +23,19 @@ public class LayoutToolbox extends GroupLayout {
 						.addComponent(backButton)
 						.addComponent(randomiseButton)
 						.addComponent(clearButton)
+						.addComponent(imgLabel)
 		);
 		setVerticalGroup(
 				createParallelGroup()
 						.addGroup(createSequentialGroup()
 								.addComponent(backButton)
+								.addGap(50)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addComponent(randomiseButton)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(clearButton)
+								.addGap(50)
+								.addComponent(imgLabel)
 								.addContainerGap(500, Short.MAX_VALUE))
 		);
 	}
