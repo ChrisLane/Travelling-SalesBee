@@ -65,6 +65,7 @@ public class PanelSettings extends JPanel {
 		setBackground(Color.LIGHT_GRAY);
 		addButtons();
 		setStepNum(-1);
+		setOpaque(false);
 	}
 
 	/**
@@ -78,7 +79,10 @@ public class PanelSettings extends JPanel {
 			BufferedImage img = ImageIO.read(getClass().getResource("/assets/backgrounds/BrownBack150.png"));
 			TexturePaint paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
 			g2.setPaint(paint);
-			g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
+			Dimension round = new Dimension(50, 50);
+			g2.fillRoundRect(0, 0, getWidth(), getHeight(), round.width, round.height);
+			g2.setStroke(new BasicStroke(2));
+		    g2.drawRoundRect(0, 0, getWidth(),getHeight(), round.width, round.height);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
