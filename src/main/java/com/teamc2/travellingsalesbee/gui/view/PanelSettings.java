@@ -405,15 +405,21 @@ public class PanelSettings extends JPanel {
 				hive.add(steps.get(0).getStart());
 				pathOfPaths.add(hive);
 
+				//Do Two-Opt swap here as well as naive
+
 				for (NaiveStep naiveStep : steps) {
 					ArrayList<Cell> singlePoint = new ArrayList<Cell>();
-					/*
+					/* if the path is the 'inspected' path (YELLOW) then add that path to the Path of paths
 						if((stepNum - panelMap.getPathComponent().getNaiveSteps().size()) % 3 == 1) {
-							//singlePoint = swapped path
-						}
+							//singlePoint = inspected swapped path
+						} else {
+
 					*/
 
 					singlePoint.add(naiveStep.getEnd());
+
+					/* } */
+
 					pathOfPaths.add(singlePoint);
 				}
 
