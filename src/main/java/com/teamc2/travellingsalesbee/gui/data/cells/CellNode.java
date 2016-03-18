@@ -12,6 +12,7 @@ public class CellNode extends Cell {
 	 * Create a new flower cell
 	 */
 	public CellNode() {
+		//
 	}
 
 	/**
