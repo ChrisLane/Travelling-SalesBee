@@ -1,13 +1,9 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.map;
 
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;

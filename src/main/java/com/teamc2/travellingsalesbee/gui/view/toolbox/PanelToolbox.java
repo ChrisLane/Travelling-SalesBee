@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.toolbox;
 
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
@@ -6,15 +6,14 @@ import com.teamc2.travellingsalesbee.gui.Visualiser;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutToolbox;
+import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import javafx.application.Platform;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class PanelToolbox extends JPanel {
 	public final static String name = "PanelToolbox";

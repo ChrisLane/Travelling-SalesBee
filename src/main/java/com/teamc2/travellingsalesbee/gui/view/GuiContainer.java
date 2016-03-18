@@ -1,5 +1,10 @@
 package com.teamc2.travellingsalesbee.gui.view;
 
+import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
+import com.teamc2.travellingsalesbee.gui.view.tabs.ComponentTabs;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
+
 import javax.swing.*;
 import java.awt.*;
 

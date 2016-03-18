@@ -1,9 +1,10 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.map;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
+import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -229,5 +230,5 @@ public class PanelMap extends JPanel {
 	public int getScreenHeight() {
 		return screenHeight;
 	}
-	
+
 }

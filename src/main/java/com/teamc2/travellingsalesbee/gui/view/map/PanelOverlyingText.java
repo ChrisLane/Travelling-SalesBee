@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.map;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;

@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.map;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

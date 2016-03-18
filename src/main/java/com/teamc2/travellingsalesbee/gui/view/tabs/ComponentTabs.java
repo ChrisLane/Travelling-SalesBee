@@ -1,6 +1,9 @@
-package com.teamc2.travellingsalesbee.gui.view;
+package com.teamc2.travellingsalesbee.gui.view.tabs;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
+import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -93,7 +96,6 @@ public class ComponentTabs extends JTabbedPane {
 			}
 			setTitleAt(selected, getHtmlForSelectedTitle(text, imgName));
 			panelToolbox.setAlgorithmType(type);
-			panelSettings.setStepNum(-1);
 			panelSettings.setAlgorithmType(type);
 			panelMap.setAlgorithmType(type);
 			panelMap.getPathComponent().setAlgorithmType(type);
