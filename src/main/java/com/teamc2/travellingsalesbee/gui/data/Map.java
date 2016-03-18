@@ -129,4 +129,8 @@ public class Map extends JPanel {
 	public void setCostMatrix() {
 		costMatrix = new CostMatrix(this);
 	}
+	
+	public void setCostMatrix(CostMatrix costMatrix) {
+		this.costMatrix = costMatrix; 
+	}
 }

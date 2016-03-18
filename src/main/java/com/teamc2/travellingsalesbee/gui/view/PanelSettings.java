@@ -371,17 +371,36 @@ public class PanelSettings extends JPanel {
 
 		private void runAntAlgorithm() {
 			setStepNum(0);
+			ArrayList<Ant> ants = new ArrayList<>();
 			Ant ant = new Ant(map);
+			ants.add(ant);
 			ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
 			ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
 			CostMatrix initialMatrix;
 			initialMatrix = map.getCostMatrix().copy();
+			
+			int numberOfAnts = 4;
+			for(int i=1; i<numberOfAnts; i++) {
+				Map cloneMap = new Map();
+				cloneMap.setCostMatrix(initialMatrix.copy());
+				ant = new Ant(cloneMap);
+				ants.add(ant);
+			}
 
-			for (int i = 0; i < noOfRunsValue; i++) {
-				ant.pheromoneRun();
+			for (int j = 0; j < 50; j++) {
+				ants.get(0).pheromoneRun();
 				CostMatrix updatedMatrix = map.getCostMatrix().copy();
+				for (int i=1; i<numberOfAnts; i++) {
+					ant = ants.get(i);
+					ant.pheromoneRun();
+					CostMatrix nextUpdatedMatrix = ant.getMap().getCostMatrix().copy();
+					updatedMatrix.combine(nextUpdatedMatrix);
+				}
 				setOfMatrices.add(updatedMatrix);
-				setOfRuns.add(ant.getPath());
+				setOfRuns.add(ants.get(0).getPath());
+				for (int i=1; i<numberOfAnts; i++) {
+					ants.get(i).getMap().setCostMatrix(updatedMatrix.copy());
+				}
 			}
 
 

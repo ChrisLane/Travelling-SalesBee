@@ -122,5 +122,18 @@ public class CostMatrix implements Serializable {
 			return null;
 		}
 	}
+
+	public void combine(CostMatrix updatedCloneMatrix) {
+		ArrayList<CostEntry> cloneList = updatedCloneMatrix.getMatrix(); 
+		for (int i=0; i<costMatrix.size(); i++) {
+			CostEntry entry  = costMatrix.get(i);
+			CostEntry entry2 = cloneList.get(i);
+			entry.setPheromone((entry.getPheromone() + entry2.getPheromone())/2);
+		}
+	}
+
+	public ArrayList<CostEntry> getMatrix() {
+		return costMatrix;
+	}
 	
 }
