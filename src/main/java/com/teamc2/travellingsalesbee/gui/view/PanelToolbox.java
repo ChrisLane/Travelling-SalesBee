@@ -38,21 +38,7 @@ public class PanelToolbox extends JPanel {
 			TravellingSalesBee.mainMenu.show();
 		}));
 
-		//Places nodes in random places on the map - Also sets the button image
-		JButton randomiseButton = new JButton();
-		setBtnIcon(randomiseButton, "/assets/icons/refresh.png");
-		randomiseButton.addActionListener(arg0 -> {
-			randomise();
-			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
-		});
-
-		JButton clearButton = new JButton();
-		setBtnIcon(clearButton, "/assets/icons/clearBtn.png");
-		clearButton.addActionListener(arg0 -> {
-			panelMap.clear();
-			panelMap.repaint();
-			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
-		});
+		
 		
 		BufferedImage img = null;
 		System.out.println(getClass().getResource("/assets/icons/dragMe.png"));
@@ -63,8 +49,7 @@ public class PanelToolbox extends JPanel {
 		}
 		JLabel imgLabel = new JLabel(new ImageIcon(img));
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, randomiseButton, 
-				clearButton, imgLabel);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton,imgLabel);
 		setLayout(layoutToolbox);
 
 		addTools();
@@ -130,47 +115,6 @@ public class PanelToolbox extends JPanel {
 				((CellDraggable) c).setImage(((CellDraggable) c).getType());
 			}
 		}
-	}
-
-	public void randomise() {
-		panelMap.clear();
-
-		int maxX = (panelMap.getWidth()) / cellWidth;
-		int maxY = ((panelMap.getHeight()) / cellHeight) - 1;
-
-		int x = 0;
-		int y = 0;
-		CellDraggable newCell = null;
-
-		int nodesPlaced = 0;
-		while(nodesPlaced < 12) {
-
-			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
-			y = (ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight) + 50;
-
-			panelMap.cellFull(x,y);
-
-			if(nodesPlaced < 11) {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
-				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
-				panelMap.getMap().setCell(x,y,CellType.NODE);
-			} else {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
-				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
-				panelMap.getMap().setCell(x,y,CellType.ORIGIN);
-			}
-
-			newCell.setBounds(x, y, cellWidth, cellHeight);
-			newCell.onMap();
-			newCell.setPrevs(x,y);
-			newCell.setEnabled(true);
-			panelMap.add(newCell);
-			panelMap.setComponentZOrder(newCell, 1);
-
-			nodesPlaced++;
-		}
-
-		panelMap.repaint();
 	}
 
 }
