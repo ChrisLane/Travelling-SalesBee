@@ -1,8 +1,16 @@
 package com.teamc2.travellingsalesbee.gui.view.settings;
 
-import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
+import java.io.InputStream;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+
+import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 
 public class SettingsSliders {
 
@@ -22,14 +30,21 @@ public class SettingsSliders {
 
 		createRunCountSlider();
 		createSpeedSlider();
+		
 	}
 
 	public void createRunCountSlider() {
 		noOfRunsSlider = new JSlider();
 		noOfRunsSlider.setValue(panelSettings.getNoOfRunsValue());
 		noOfRunsSlider.setOpaque(false);
+		
 		lblRunsOfType = new JLabel("Experiment Runs: ");
+		lblRunsOfType.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblRunsOfType.setForeground(Color.WHITE);
+
 		lblNoOfRuns = new JLabel("" + panelSettings.getNoOfRunsValue());
+		lblNoOfRuns.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblNoOfRuns.setForeground(Color.WHITE);
 
 		noOfRunsSlider.addChangeListener(arg0 -> {
 			panelSettings.setNoOfRunsValue(noOfRunsSlider.getValue());
@@ -37,13 +52,21 @@ public class SettingsSliders {
 		});
 	}
 
+	
+
 	public void createSpeedSlider() {
 		speedSlider = new JSlider();
 		speedSlider.setMaximum(20);
 		speedSlider.setValue((int) animationSpeed);
 		speedSlider.setOpaque(false);
+		
 		lblAnimationSpeed = new JLabel("Animation Speed: ");
+		lblAnimationSpeed.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblAnimationSpeed.setForeground(Color.WHITE);
+		
 		lblSpeed = new JLabel("" + animationSpeed / 10);
+		lblSpeed.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblSpeed.setForeground(Color.WHITE);
 
 		speedSlider.addChangeListener(arg0 -> {
 			animationSpeed = speedSlider.getValue() / 10;

@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
@@ -44,20 +45,20 @@ public class Visualiser extends JFrame {
 		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
 		
 		BufferedImage img = null;
-		System.out.println(getClass().getResource("/assets/icons/dragMe.png"));
 		try {
-			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
+			img = ImageIO.read(getClass().getResource("/assets/icons/Algorithms.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		JLabel algorithmLabel = new JLabel(new ImageIcon(img));
 		algorithmLabel.setName("algorithmLabel");
 		
+		container.add(algorithmLabel);
 		container.add(panelMap);
 		container.add(panelSettings);
 		container.add(panelToolbox);
 		container.add(componentTabs);
-		container.add(algorithmLabel);
+		
 
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
 		container.setBackground(new Color(71, 35, 35));
@@ -66,6 +67,27 @@ public class Visualiser extends JFrame {
 
 		LayoutGui layoutGui = new LayoutGui(container);
 		container.setLayout(layoutGui);
+		
+		setFont();
+	}
+	
+	private void setFont() {
+		try {
+			InputStream amaticStreamBold = getClass().getResourceAsStream("/assets/fonts/Amatic-Bold.ttf");
+			InputStream amaticStreamRegular = getClass().getResourceAsStream("/assets/fonts/AmaticSC-Regular.ttf");
+
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamBold));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamRegular));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch(FontFormatException e)
+        {
+            e.printStackTrace();
+        }
+		
 	}
 
 	/**
