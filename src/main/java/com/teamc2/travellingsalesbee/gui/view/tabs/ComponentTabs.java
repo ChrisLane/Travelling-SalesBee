@@ -1,16 +1,25 @@
 package com.teamc2.travellingsalesbee.gui.view.tabs;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
+
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
-import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
-
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import java.awt.*;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
 
 public class ComponentTabs extends JTabbedPane {
 	public final static String name = "ComponentTabs";
+	private String bee = "BEE INSPIRED";
+	private String ant = "ANT INSPIRED";
+	private String nn = "NEAREST NEIGHBOUR";
+	private String tos = "TWO-OPT SWAP";
 
 	public ComponentTabs(PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
 		setName(name);
@@ -18,7 +27,7 @@ public class ComponentTabs extends JTabbedPane {
 		Color tabColor = new Color(68, 35, 35);
 
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
-		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(30, 0, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(5, 0, 0, 0));
 		UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.tabsOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.shadow", backgroundColor);
@@ -31,11 +40,16 @@ public class ComponentTabs extends JTabbedPane {
 		UIManager.getDefaults().put("TabbedPane.highlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.selectHighlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", backgroundColor);
+		
 
-		addTab(getHtmlForSelectedTitle("Bee", "SalesBeeSelected.png"), null);
-		addTab(getHtmlForTitle("Ant", "Ant.png"), null);
-		addTab(getHtmlForTitle("NN", "Mailvan.png"), null);
-		addTab(getHtmlForTitle("2-Opt", "Boat.png"), null);
+		Font amaticFont = new Font("Amatic-Bold", Font.PLAIN, 10);
+		amaticFont = amaticFont.deriveFont(10f);
+		UIManager.getDefaults().put("TabbedPane.font", new FontUIResource(amaticFont));
+
+		addTab(getHtmlForSelectedTitle(bee, "SalesBeeSelected.png"), null);
+		addTab(getHtmlForTitle(ant, "Ant.png"), null);
+		addTab(getHtmlForTitle(nn, "Mailvan.png"), null);
+		addTab(getHtmlForTitle(tos, "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
 		setUI(new BasicTabbedPaneUI());
@@ -61,21 +75,21 @@ public class ComponentTabs extends JTabbedPane {
 			switch (selected) {
 				case 0:
 					type = AlgorithmType.BEE;
-					text = "Bee";
+					text = bee;
 					imgName = "SalesBeeSelected.png";
 					panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
 							+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 					break;
 				case 1:
 					type = AlgorithmType.ANT;
-					text = "Ant";
+					text = ant;
 					imgName = "AntSelected.png";
 					panelMap.getPanelOverlyingText().setText("ANT ALGORITHM\n"
 							+ "The ants .................");
 					break;
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
-					text = "NN";
+					text = nn;
 					imgName = "MailvanSelected.png";
 					panelMap.getPanelOverlyingText().setText("NEAREST NEIGHBOUR ALGORITHM\n"
 							+ "At each house the mailvan chooses shortest edge from current position to an unvisited house\n"
@@ -83,7 +97,7 @@ public class ComponentTabs extends JTabbedPane {
 					break;
 				case 3:
 					type = AlgorithmType.TWOOPT;
-					text = "2-Opt";
+					text = tos;
 					imgName = "BoatSelected.png";
 					panelMap.getPanelOverlyingText().setText("TWO OPT SWAP\n"
 							+ "An initial path is created using nearest neighbour\n"
@@ -109,13 +123,13 @@ public class ComponentTabs extends JTabbedPane {
 	 * @return htmlString The html string to produce the tab
 	 */
 	private String getHtmlForTitle(String text, String imgName) {
-		return "<html><img src='" + getClass().getResource("/assets/icons/" + imgName)
-				+ "' height='50' width='50'/><br/><h3 color='#ffffff'>" + text + "</h3></html>";
+		return "<html><div align='center'><img src='" + getClass().getResource("/assets/icons/" + imgName)
+				+ "' height='50' width='50'/><br/><h2 color='#ffffff'>" + text + "</h2></div></html>";
 	}
 
 	private String getHtmlForSelectedTitle(String text, String imgName) {
-		return "<html><img src='" + getClass().getResource("/assets/icons/" + imgName)
-				+ "' height='50' width='50'/><br/><h3 color='lime'>" + text + "</h3></html>";
+		return "<html><div align='center'><img src='" + getClass().getResource("/assets/icons/" + imgName)
+				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></div></html>";
 	}
 
 	private void updateTabColours() {
