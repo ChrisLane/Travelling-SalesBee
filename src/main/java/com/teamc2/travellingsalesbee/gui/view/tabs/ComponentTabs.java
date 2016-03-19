@@ -18,7 +18,7 @@ public class ComponentTabs extends JTabbedPane {
 		Color tabColor = new Color(68, 35, 35);
 
 		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
-		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(30, 60, 0, 0));
+		UIManager.getDefaults().put("TabbedPane.tabAreaInsets", new Insets(30, 0, 0, 0));
 		UIManager.getDefaults().put("TabbedPane.contentOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.tabsOpaque", false);
 		UIManager.getDefaults().put("TabbedPane.shadow", backgroundColor);

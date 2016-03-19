@@ -39,7 +39,7 @@ public class LayoutGui extends GroupLayout {
 		);
 		setVerticalGroup(createParallelGroup()
 				.addGroup(createSequentialGroup()
-				.addComponent(algorithmLabel, 100, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
+				.addComponent(algorithmLabel, 50, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
 				.addComponent(componentTabs, 500, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
 				)
 				.addGroup(createSequentialGroup()
