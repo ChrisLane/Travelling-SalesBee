@@ -92,7 +92,6 @@ public class Visualiser extends JFrame {
         catch(FontFormatException e) {
             e.printStackTrace();
         }
-		
 	}
 
 	/**
