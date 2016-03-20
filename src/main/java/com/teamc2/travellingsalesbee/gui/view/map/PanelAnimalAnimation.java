@@ -65,7 +65,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 			scene.getStylesheets().add(url1.toExternalForm());
 			animalIcon = createRectangle();
 			animalIcon.setVisible(false);
-			transition = new TranslateTransition(Duration.seconds(1), animalIcon);
+			//double speed = 1.5 / (pathOfPaths.get(0).size());
+			transition = new TranslateTransition(Duration.seconds(0.6), animalIcon);
 			root.getChildren().add(animalIcon);
 			setScene(scene);
 		});
@@ -297,5 +298,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	public ArrayList<ArrayList<Cell>> getPathOfPaths() {
 		return pathOfPaths;
+	}
+
+	public void setDelay(double delay) {
+		transition.setDelay(Duration.seconds(delay));
 	}
 }

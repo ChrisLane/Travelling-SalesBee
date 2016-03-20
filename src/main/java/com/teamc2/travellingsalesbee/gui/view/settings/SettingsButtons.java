@@ -263,6 +263,9 @@ public class SettingsButtons {
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNum(stepNum);
+
+        setSpeed();
+
 		btnPrev.setEnabled((stepNum > 0));
 		btnPlay.setEnabled((stepNum != -1));
 		btnNext.setEnabled((stepNum != -1));
@@ -344,4 +347,39 @@ public class SettingsButtons {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int delay) {
+        timer.setDelay(delay);
+    }
+
+    public void setSpeed() {
+
+        if(panelMap.getPathComponent().getNaiveSteps().size() > 0) {
+
+            //Timer is 1500ms by default
+            //get size of path
+            //bee time is timer.delay / path.size
+            //set transition speed
+
+            double beeSpeed = (timer.getDelay()/1000) / panelMap.getPathComponent().getNaiveSteps().size();
+            panelMap.getPanelAnimalAnimation().setDelay(beeSpeed);
+
+            //For naive steps
+            if (stepNum % 2 == 0) {
+                setTimer(1500);
+            } else {
+                setTimer(50);
+            }
+
+            /*  To do:
+            *
+            *   Implement timings for Experimental
+            *
+            */
+        }
+    }
 }
