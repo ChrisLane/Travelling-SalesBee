@@ -43,16 +43,19 @@ public class Visualiser extends JFrame {
 		PanelSettings panelSettings = new PanelSettings(panelMap);
 		PanelToolbox panelToolbox = new PanelToolbox(panelMap, AlgorithmType.BEE);
 		ComponentTabs componentTabs = new ComponentTabs(panelMap, panelSettings, panelToolbox);
-		
+
+		//Loads in the image which says: "Algorithms"
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/Algorithms.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		JLabel algorithmLabel = new JLabel(new ImageIcon(img));
-		algorithmLabel.setName("algorithmLabel");
-		
+		algorithmLabel.setName("algorithmLabel"); //Set a name for the label so you can add it to the panel later on
+
+		//Add elements to the container
 		container.add(algorithmLabel);
 		container.add(panelMap);
 		container.add(panelSettings);
@@ -70,7 +73,10 @@ public class Visualiser extends JFrame {
 		
 		setFont();
 	}
-	
+
+	/**
+	 * Loads in the font: Amatic (Bold/Regular)
+	 */
 	private void setFont() {
 		try {
 			InputStream amaticStreamBold = getClass().getResourceAsStream("/assets/fonts/Amatic-Bold.ttf");
@@ -83,8 +89,7 @@ public class Visualiser extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        catch(FontFormatException e)
-        {
+        catch(FontFormatException e) {
             e.printStackTrace();
         }
 		
