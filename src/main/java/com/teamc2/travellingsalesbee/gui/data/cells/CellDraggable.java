@@ -25,6 +25,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	private boolean onMap = false;
 	private int prevX = 0;
 	private int prevY = 0;
+	private boolean fromMap;
 
 	/**
 	 * Create a new cell drag object
@@ -34,17 +35,18 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 * @param type     Type of the cell
 	 * @param panelMap The map panel
 	 */
-	public CellDraggable(int width, int height, CellType type, PanelMap panelMap, AlgorithmType algorithmType) {
+	public CellDraggable(int width, int height, CellType type, PanelMap panelMap, AlgorithmType algorithmType, boolean fromMap) {
 		super();
 		this.width = width;
 		this.height = height;
 		this.type = type;
 		this.panelMap = panelMap;
 		this.algorithmType = algorithmType;
+		this.fromMap = fromMap;
 		map = panelMap.getMap();
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
-				return new CellDraggable(width, height, type, panelMap, algorithmType);
+				return new CellDraggable(width, height, type, panelMap, algorithmType, true);
 			}
 		};
 
@@ -89,7 +91,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap, algorithmType), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap, algorithmType,true), this);
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			if (type.equals(CellType.ORIGIN)) {
 				panelMap.deleteOldHive();
 			}
-			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType);
+			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType,true);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 
 			droppedBtn.addChangeListener(evt -> {
@@ -138,11 +140,14 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			panelMap.remove(this);
 			panelMap.repaint();
 		} catch (NullPointerException e) {
-			// Deletion for when the cell is dragged off the map panelMap
-			map.clearCell(getX(), getY());
-			setEnabled(false);
-			panelMap.remove(this);
-			panelMap.repaint();
+			//Only delete and disable a draggable cell when its come from map and not from toolbox.
+			if(fromMap){
+				// Deletion for when the cell is dragged off the map panelMap
+				map.clearCell(getX(), getY());
+				setEnabled(false);
+				panelMap.remove(this);
+				panelMap.repaint();
+			}
 		}
 	}
 
