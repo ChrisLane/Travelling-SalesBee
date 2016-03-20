@@ -26,10 +26,9 @@ public class LayoutToolbox extends GroupLayout {
 				createParallelGroup()
 						.addGroup(createSequentialGroup()
 								.addComponent(backButton)
-								.addGap(50)
+								.addGap(30)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGap(50)
 								.addComponent(imgLabel)
 								.addContainerGap(500, Short.MAX_VALUE))
 		);
