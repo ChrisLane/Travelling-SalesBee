@@ -66,7 +66,6 @@ public class SettingsButtons {
 			panelMap.getPanelAnimalAnimation().incrStepNum();
 			setDistance();
 			panelMap.getPathComponent().repaint();
-			// panelMap.getPanelAnimalAnimation().incrStepNum();
 		});
 
 		btnPlay.addActionListener(arg0 -> {
@@ -263,12 +262,13 @@ public class SettingsButtons {
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNum(stepNum);
-
+		int maxStepNum = panelMap.getPathComponent().getMaxStepNum();
+		
         setSpeed();
 
 		btnPrev.setEnabled((stepNum > 0));
 		btnPlay.setEnabled((stepNum != -1));
-		btnNext.setEnabled((stepNum != -1));
+		btnNext.setEnabled(stepNum < maxStepNum);
 		if (stepNum == -1) {
 			timer.stop();
 			btnPlay.setText("");

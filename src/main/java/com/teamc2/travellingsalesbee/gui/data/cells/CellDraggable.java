@@ -142,6 +142,9 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		} catch (NullPointerException e) {
 			//Only delete and disable a draggable cell when its come from map and not from toolbox.
 			if(fromMap){
+				panelMap.clear();
+				panelMap.getPathComponent().setStepNum(-1);
+				panelMap.getPathComponent().repaint();
 				// Deletion for when the cell is dragged off the map panelMap
 				map.clearCell(getX(), getY());
 				setEnabled(false);
