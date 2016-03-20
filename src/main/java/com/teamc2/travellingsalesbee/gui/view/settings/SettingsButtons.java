@@ -128,6 +128,8 @@ public class SettingsButtons {
 		btnClear.addActionListener(arg0 -> {
 			panelMap.clear();
 			panelMap.repaint();
+			setStepNum(-1);
+			
 			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
 		});
 	}
