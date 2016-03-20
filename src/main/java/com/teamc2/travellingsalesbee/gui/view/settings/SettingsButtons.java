@@ -161,11 +161,11 @@ public class SettingsButtons {
 			panelMap.cellFull(x, y);
 
 			if (nodesPlaced < 11) {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType());
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType(),true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
 				panelMap.getMap().setCell(x, y, CellType.NODE);
 			} else {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getType());
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getType(),true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
 				panelMap.getMap().setCell(x, y, CellType.ORIGIN);
 			}
