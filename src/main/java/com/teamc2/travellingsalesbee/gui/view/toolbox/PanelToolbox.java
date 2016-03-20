@@ -63,8 +63,8 @@ public class PanelToolbox extends JPanel {
 	}
 
 	public void addTools() {
-		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type);
-		CellDraggable originToolCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type);
+		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type, false);
+		CellDraggable originToolCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type, false);
 
 		nodeToolCell.setIcon(new ImageIcon(nodeToolCell.getImage(CellType.NODE)));
 		originToolCell.setIcon(new ImageIcon(originToolCell.getImage(CellType.ORIGIN)));
