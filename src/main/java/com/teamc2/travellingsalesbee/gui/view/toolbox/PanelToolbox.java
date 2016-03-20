@@ -71,11 +71,23 @@ public class PanelToolbox extends JPanel {
 
 
 		//Add buttons to the toolbox
-		originToolCell.setBounds(0, 320, 100, 100);
+		originToolCell.setBounds(-20, 160, 100, 100);
 		add(originToolCell);
+		
+		JLabel lblOrigin = new JLabel("Origin");
+		lblOrigin.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblOrigin.setForeground(Color.WHITE);
+		lblOrigin.setBounds(65, 180, 100, 50);
+		add(lblOrigin);
 
-		nodeToolCell.setBounds(0, 380, 100, 100);
+		nodeToolCell.setBounds(-20, 215, 100, 100);
 		add(nodeToolCell);
+		
+		JLabel lblNode = new JLabel("Node");
+		lblNode.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblNode.setForeground(Color.WHITE);
+		lblNode.setBounds(65, 240, 100, 50);
+		add(lblNode);
 	}
 
 	/**
