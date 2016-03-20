@@ -63,6 +63,7 @@ public class SettingsButtons {
 
 		timer = new Timer(1500, arg0 -> {
 			setStepNum(stepNum + 1);
+			panelMap.getPanelAnimalAnimation().incrStepNum();
 			setDistance();
 			panelMap.getPathComponent().repaint();
 			// panelMap.getPanelAnimalAnimation().incrStepNum();
