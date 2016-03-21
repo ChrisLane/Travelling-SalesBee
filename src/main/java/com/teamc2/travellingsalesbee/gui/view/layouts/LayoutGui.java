@@ -1,6 +1,6 @@
 package com.teamc2.travellingsalesbee.gui.view.layouts;
 
-import com.teamc2.travellingsalesbee.gui.view.*;
+import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.view.tabs.ComponentTabs;
@@ -26,8 +26,8 @@ public class LayoutGui extends GroupLayout {
 
 		setHorizontalGroup(createSequentialGroup()
 				.addGroup(createParallelGroup()
-				.addComponent(algorithmLabel, 125, 125, PREFERRED_SIZE)
-				.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)
+						.addComponent(algorithmLabel, 125, 125, PREFERRED_SIZE)
+						.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)
 				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
@@ -39,8 +39,8 @@ public class LayoutGui extends GroupLayout {
 		);
 		setVerticalGroup(createParallelGroup()
 				.addGroup(createSequentialGroup()
-				.addComponent(algorithmLabel, 30, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
-				.addComponent(componentTabs, 500, PREFERRED_SIZE, (Short.MAX_VALUE/50)*50)
+						.addComponent(algorithmLabel, 30, PREFERRED_SIZE, (Short.MAX_VALUE / 50) * 50)
+						.addComponent(componentTabs, 500, PREFERRED_SIZE, (Short.MAX_VALUE / 50) * 50)
 				)
 				.addGroup(createSequentialGroup()
 						.addComponent(panelMap, 50, PREFERRED_SIZE, Short.MAX_VALUE)
