@@ -29,7 +29,7 @@ public class Ant extends NearestNeighbour {
 
 			// Loop over flowers missing from path
 			Cell currentCell;
-			Cell next = null;
+			CellNode next = null;
 
 			while (!flowers.isEmpty()) {
 				currentCell = newPath.get(newPath.size() - 1);
@@ -60,7 +60,7 @@ public class Ant extends NearestNeighbour {
 		}
 	}
 
-	private Cell findNextFlower(ArrayList<CellNode> flowers, Cell currentCell) {
+	private CellNode findNextFlower(ArrayList<CellNode> flowers, Cell currentCell) {
 		double averagePheromone = getAveragePheromone(flowers,currentCell);
 		ArrayList<CellNode> goodFlowers = goodFlowers(flowers,averagePheromone,currentCell);
 		
