@@ -77,9 +77,9 @@ public class PanelMap extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		Point2D center = new Point2D.Float(this.getWidth()/2, 0);
-		float radius = this.getWidth()/2;
-		Point2D focus = new Point2D.Float((this.getWidth()/2), 1000);
+		Point2D center = new Point2D.Float(getWidth()/2, 0);
+		float radius = getWidth()/2;
+		Point2D focus = new Point2D.Float((getWidth()/2), 1000);
 		float[] dist = {0.0f, 0.3f, 1.0f};
 		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
 		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
@@ -94,7 +94,7 @@ public class PanelMap extends JPanel {
 		//this.setBackground(new Color(71, 35, 35));
 
 		g2.setPaint(p);
-		g2.fill(new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 0, 0));
+		g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 0, 0));
 		g2.setPaint(Color.black);
 
 		//Allowing for the correct background to be printed
