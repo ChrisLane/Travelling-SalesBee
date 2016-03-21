@@ -39,15 +39,17 @@ public class LayoutGui extends GroupLayout {
 		);
 		setVerticalGroup(createParallelGroup()
 				.addGroup(createSequentialGroup()
-						.addComponent(algorithmLabel, 30, PREFERRED_SIZE, (Short.MAX_VALUE / 50) * 50)
-						.addComponent(componentTabs, 500, PREFERRED_SIZE, (Short.MAX_VALUE / 50) * 50)
+						.addGap(50)
+						.addComponent(algorithmLabel, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(componentTabs, DEFAULT_SIZE, DEFAULT_SIZE, DEFAULT_SIZE)
 				)
 				.addGroup(createSequentialGroup()
-						.addComponent(panelMap, 50, PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(panelMap, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addComponent(panelSettings, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
 				)
-				.addComponent(panelToolbox, DEFAULT_SIZE, PREFERRED_SIZE, Short.MAX_VALUE)
+				.addComponent(panelToolbox, DEFAULT_SIZE, PREFERRED_SIZE, DEFAULT_SIZE)
 		);
 	}
 }
