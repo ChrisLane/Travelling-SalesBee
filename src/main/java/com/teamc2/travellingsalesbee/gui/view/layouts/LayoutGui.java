@@ -26,8 +26,8 @@ public class LayoutGui extends GroupLayout {
 
 		setHorizontalGroup(createSequentialGroup()
 				.addGroup(createParallelGroup()
-						.addComponent(algorithmLabel, 125, 125, PREFERRED_SIZE)
-						.addComponent(componentTabs, 125, 125, PREFERRED_SIZE)
+						.addComponent(algorithmLabel, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
+						.addComponent(componentTabs, DEFAULT_SIZE, PREFERRED_SIZE, PREFERRED_SIZE)
 				)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(createParallelGroup()
