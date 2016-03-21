@@ -114,7 +114,11 @@ public class ComponentPath extends JComponent {
 			case NEARESTNEIGHBOUR:
 				return naiveSteps.size();
 			case TWOOPT:
-				return (naiveSteps.size() - 1);
+				int expRuns = 3;
+				if (tos != null) {
+					expRuns *= tos.getRuns();
+				}
+				return (naiveSteps.size() + expRuns - 1);
 		}
 		return 0;
 	}
