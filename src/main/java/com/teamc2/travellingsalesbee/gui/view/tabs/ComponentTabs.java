@@ -69,15 +69,16 @@ public class ComponentTabs extends JTabbedPane {
 					type = AlgorithmType.BEE;
 					text = bee;
 					imgName = "SalesBeeSelected.png";
-					panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
+					panelMap.getPanelOverlyingText().setText("BEE NATURE-INSPIRED ALGORITHM\n"
 							+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 					break;
 				case 1:
 					type = AlgorithmType.ANT;
 					text = ant;
 					imgName = "AntSelected.png";
-					panelMap.getPanelOverlyingText().setText("ANT ALGORITHM\n"
-							+ "The ants .................");
+					panelMap.getPanelOverlyingText().setText("ANT NATURE-INSPIRED ALGORITHM\n"
+							+ "The ants perform random tours around the map, planting pheromone on short paths for the next ants to follow"
+							+ "\nAs each generation of ants tour the map, bad paths evaporate as the best path emerges");
 					break;
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
