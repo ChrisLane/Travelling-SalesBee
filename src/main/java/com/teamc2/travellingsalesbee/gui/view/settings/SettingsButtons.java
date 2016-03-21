@@ -1,12 +1,11 @@
 package com.teamc2.travellingsalesbee.gui.view.settings;
 
 import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
-import com.teamc2.travellingsalesbee.gui.AntStep;
-import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
-import com.teamc2.travellingsalesbee.gui.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.SwapType;
+import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import javafx.application.Platform;

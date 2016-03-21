@@ -1,7 +1,10 @@
-package com.teamc2.travellingsalesbee.gui.data.cells;
+package com.teamc2.travellingsalesbee.gui.view.toolbox;
 
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package com.teamc2.travellingsalesbee.gui;
+package com.teamc2.travellingsalesbee.gui.data.steps;
 
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 

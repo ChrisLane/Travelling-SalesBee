@@ -17,12 +17,12 @@ import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
-import com.teamc2.travellingsalesbee.gui.AntStep;
-import com.teamc2.travellingsalesbee.gui.ExperimentalStep;
-import com.teamc2.travellingsalesbee.gui.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.SwapType;
+import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.ExperimentalStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.visualisation.StepController;
+import com.teamc2.travellingsalesbee.gui.data.steps.StepController;
 
 public class ComponentPath extends JComponent {
 
