@@ -114,13 +114,13 @@ public class RunActionListener implements ActionListener {
 
 	private void runAntAlgorithm() {
 		settingsButtons.setStepNum(0);
+		map.setCostMatrix();
 		ArrayList<Ant> ants = new ArrayList<>();
 		Ant ant = new Ant(map);
 		ants.add(ant);
 		ArrayList<ArrayList<Cell>> setOfRuns = new ArrayList<>();
 		ArrayList<CostMatrix> setOfMatrices = new ArrayList<>();
 		CostMatrix initialMatrix;
-		map.setCostMatrix();
 		initialMatrix = map.getCostMatrix().copy();
 
 		int numberOfAnts = 4;
