@@ -106,4 +106,8 @@ public class PanelOverlyingText extends JFXPanel {
 			}
 		});
 	}
+
+	public Text getTextObject() {
+		return text;
+	}
 }

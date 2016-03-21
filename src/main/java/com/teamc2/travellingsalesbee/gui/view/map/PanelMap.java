@@ -1,10 +1,13 @@
 package com.teamc2.travellingsalesbee.gui.view.map;
 
+import com.sun.javafx.tk.FontLoader;
+import com.sun.javafx.tk.Toolkit;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
+import javafx.scene.text.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,8 +27,6 @@ public class PanelMap extends JPanel {
 	private PanelOverlyingText panelOverlyingText;
 	private Map map;
 	private AlgorithmType type;
-	private int screenWidth;
-	private int screenHeight;
 
 	/**
 	 * Create the map panel
@@ -41,9 +42,9 @@ public class PanelMap extends JPanel {
 		setName(name);
 
 		// Create the map we're visualising
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		screenWidth = screenSize.width;
-		screenHeight = screenSize.height;
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
 		map = new Map();
 
 
@@ -59,7 +60,7 @@ public class PanelMap extends JPanel {
 		panelAnimation.setBounds(getX(), getY(), screenWidth, screenHeight);
 		add(panelAnimation); //Add to panel map
 
-		panelOverlyingText = new PanelOverlyingText(screenWidth, screenHeight);
+		panelOverlyingText = new PanelOverlyingText();
 		panelOverlyingText.setBounds(getX(), getY(), screenWidth, screenHeight);
 		add(panelOverlyingText);
 
@@ -84,11 +85,11 @@ public class PanelMap extends JPanel {
 		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
 		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
 
-		// Set the location of the panelOverlyingText text. We take into account the tab and toolbox panel widths.
-		GuiContainer guiContainer = (GuiContainer) getRootPane();
-		int tabsWidth = guiContainer.getComponentTabs().getWidth();
-		int toolboxWidth = guiContainer.getPanelToolbox().getWidth();
-		panelOverlyingText.setTextXandY((getWidth() / 2) - tabsWidth - toolboxWidth, 13);
+		// Set the location of the panelOverlyingText text. X pos - half the width of the text
+		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		Text text = panelOverlyingText.getTextObject();
+		float textWidth = fontLoader.computeStringWidth(text.getText(), text.getFont());
+		panelOverlyingText.setTextXandY((int) ((getWidth() / 2) - (textWidth / 2)), 13);
 
 		//GradientPaint redtowhite = new GradientPaint(0, 50, new Color(71, 35, 35), 0, 0, new Color(134, 93, 93));
 		//this.setBackground(new Color(71, 35, 35));
