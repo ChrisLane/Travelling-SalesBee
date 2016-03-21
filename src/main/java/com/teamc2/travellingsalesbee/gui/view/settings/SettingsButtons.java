@@ -129,8 +129,8 @@ public class SettingsButtons {
 			panelMap.clear();
 			panelMap.repaint();
 			setStepNum(-1);
-			
-			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Cleared!");
+			panelMap.getPanelOverlyingText().setText("\nMap Cleared!\n");
+
 		});
 	}
 
@@ -139,7 +139,7 @@ public class SettingsButtons {
 		setBtnIcon(btnRandomise, "/assets/icons/refresh.png");
 		btnRandomise.addActionListener(arg0 -> {
 			randomise();
-			//((GuiContainer)getRootPane()).getComponentTextArea().addText("<p>Map Randomised!");
+			panelMap.getPanelOverlyingText().setText("\nMap Randomised!\n");
 		});
 	}
 
@@ -268,7 +268,7 @@ public class SettingsButtons {
 
 		btnPrev.setEnabled((stepNum > 0));
 		btnPlay.setEnabled((stepNum != -1));
-		btnNext.setEnabled(stepNum < maxStepNum);
+		btnNext.setEnabled((stepNum == 0) || ((stepNum != -1) && (stepNum < maxStepNum)));
 		if (stepNum == -1) {
 			timer.stop();
 			btnPlay.setText("");
