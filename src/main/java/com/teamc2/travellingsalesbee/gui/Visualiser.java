@@ -35,6 +35,7 @@ public class Visualiser extends JFrame {
 		setBounds(50, 25, 1200, 650);
 		setMinimumSize(new Dimension(800, 600));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		addFont();
 
 		int width = 50;
 		int height = 50;
@@ -74,13 +75,12 @@ public class Visualiser extends JFrame {
 		LayoutGui layoutGui = new LayoutGui(container);
 		container.setLayout(layoutGui);
 
-		setFont();
 	}
 
 	/**
 	 * Loads in the font: Amatic (Bold/Regular)
 	 */
-	private void setFont() {
+	private void addFont() {
 		try {
 			InputStream amaticStreamBold = getClass().getResourceAsStream("/assets/fonts/Amatic-Bold.ttf");
 			InputStream amaticStreamRegular = getClass().getResourceAsStream("/assets/fonts/AmaticSC-Regular.ttf");
@@ -88,7 +88,6 @@ public class Visualiser extends JFrame {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamBold));
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamRegular));
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
