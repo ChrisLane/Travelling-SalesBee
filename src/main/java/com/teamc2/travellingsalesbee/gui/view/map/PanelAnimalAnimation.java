@@ -158,27 +158,32 @@ public class PanelAnimalAnimation extends JFXPanel {
 			setVisible(true);
 		}
 
-		//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
-		if (stepNum >= pathOfPaths.get(popStepNum).size() - 1) {
-			stepNum = 0;
+		try {
+			//When our stepNum is greater than the size of the path we're animating, set it to 0 and increment popStepNum
+			if (stepNum >= pathOfPaths.get(popStepNum).size() - 1) {
+				stepNum = 0;
 
-			if (singlePath && !stepThroughAllPaths) {
-				singlePath = false;
-				poPaths = true;
+				if (singlePath && !stepThroughAllPaths) {
+					singlePath = false;
+					poPaths = true;
+				}
 			}
-		}
 
-		//If animating a single step at a time, ensure singlePath is set to true
-		if (singlePath) {
-			Cell end = pathOfPaths.get(popStepNum).get(stepNum);
-			moveFromAToB(end, animalIcon, transition);
-		}
+			//If animating a single step at a time, ensure singlePath is set to true
+			if (singlePath) {
+				Cell end = pathOfPaths.get(popStepNum).get(stepNum);
+				moveFromAToB(end, animalIcon, transition);
+			}
 
-		//if animating an entire path at a time, set poPaths to true
-		if (poPaths) {
-			popStepNum++;
+			//if animating an entire path at a time, set poPaths to true
+			if (poPaths) {
+				popStepNum++;
 
-			animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
+				animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), 0, animalIcon, transition);
+			}
+
+		} catch (IndexOutOfBoundsException e) {
+			//
 		}
 	}
 
