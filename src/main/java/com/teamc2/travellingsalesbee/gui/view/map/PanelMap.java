@@ -85,10 +85,22 @@ public class PanelMap extends JPanel {
 		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
 		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
 
-		// Set the location of the panelOverlyingText text. X pos - half the width of the text
+		// Find the longest line in the overlying text
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
-		Text text = panelOverlyingText.getTextObject();
-		float textWidth = fontLoader.computeStringWidth(text.getText(), text.getFont());
+		Text textObj = panelOverlyingText.getTextObject();
+		String[] textLines = textObj.getText().split("\n");
+		int longestStringLength = 0;
+		String longestString = "";
+
+		for (String line : textLines) {
+			if (line.length() > longestStringLength) {
+				longestStringLength = line.length();
+				longestString = line;
+			}
+		}
+
+		// Set the overlying text location based on map width and text length
+		float textWidth = fontLoader.computeStringWidth(longestString, textObj.getFont());
 		panelOverlyingText.setTextXandY((int) ((getWidth() / 2) - (textWidth / 2)), 13);
 
 		//GradientPaint redtowhite = new GradientPaint(0, 50, new Color(71, 35, 35), 0, 0, new Color(134, 93, 93));
