@@ -206,9 +206,9 @@ public class ComponentPath extends JComponent {
 								g2.drawLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
 								String Distance = Integer.toString((int) Math.round((step.getStart().distance(anAvailable)) * 100) / 100);
 								if (!(available.contains(step.getStart()))) {
-									printDistance(Distance, anAvailable, g2, step.getEnd() == anAvailable);
+									printDistance(Distance, anAvailable, step.getEnd() == anAvailable);
 								} else if(anAvailable != step.getStart()) {
-									printDistance(Distance, anAvailable, g2, false);
+									printDistance(Distance, anAvailable, false);
 
 								}
 							}
@@ -369,7 +369,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	//Code to print the distance boxes on top of flowers
-	private void printDistance(String text, Cell end, Graphics2D g2, Boolean isChosenCell) {
+	private void printDistance(String text, Cell end, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		Color translucentBg = new Color(1,1,1, 0.5f);
 		distance.setBackground(translucentBg);
