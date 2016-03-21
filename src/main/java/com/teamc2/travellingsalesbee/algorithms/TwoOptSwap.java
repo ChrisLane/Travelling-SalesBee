@@ -108,17 +108,19 @@ public class TwoOptSwap extends NearestNeighbour {
 	 */
 	protected void previousSwap() {
 		// get the last swap
-		int[] swap = swapLog.get(swapLog.size() - 1);
-		swapLog.remove(swapLog.size() - 1);
+		if (swapLog.size() != 0) {
+			int[] swap = swapLog.get(swapLog.size() - 1);
+			swapLog.remove(swapLog.size() - 1);
 
-		// perform the swap reversal and recalculate
-		Cell node1 = path.get(swap[1]);
-		Cell node2 = path.get(swap[0]);
-		path.set(swap[0], node1);
-		path.set(swap[1], node2);
+			// perform the swap reversal and recalculate
+			Cell node1 = path.get(swap[1]);
+			Cell node2 = path.get(swap[0]);
+			path.set(swap[0], node1);
+			path.set(swap[1], node2);
 
-		setPath(path, calculatePathCost(path));
-		newPath = path;
+			setPath(path, calculatePathCost(path));
+			newPath = path;
+		}
 	}
 
 	/**
