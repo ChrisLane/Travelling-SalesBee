@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * @author: Melvyn Mathews (mxm499), Bradley Rowe (bmr455), Chris Lane (cml476), Todd Waugh Ambridge (txw467), Neil Farrington (npf489)
+ * @author Melvyn Mathews (mxm499), Bradley Rowe (bmr455), Chris Lane (cml476), Todd Waugh Ambridge (txw467), Neil Farrington (npf489)
  */
 public class PanelSettings extends JPanel {
 
