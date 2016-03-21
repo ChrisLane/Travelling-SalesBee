@@ -1,5 +1,8 @@
 package com.teamc2.travellingsalesbee.gui.view.pages;
 
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+
 /**
  * A class for generating and viewing the FAQ page.
  *
@@ -23,6 +26,17 @@ public class Faq extends Page {
 	 * {@inheritDoc}
 	 */
 	public void bootstrap() {
-		// TODO: implement
+		// create the border pane
+		BorderPane border = new BorderPane();
+		border.setId("faq");
+
+		// create the scene
+		Scene scene = createScene(border);
+
+		// stage-ify!
+		setScene(scene);
+		setMinHeight(height);
+		setMinWidth(width);
+		setResizable(false);
 	}
 }
