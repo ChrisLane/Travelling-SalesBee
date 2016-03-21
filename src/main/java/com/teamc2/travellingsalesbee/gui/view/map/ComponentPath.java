@@ -138,7 +138,7 @@ public class ComponentPath extends JComponent {
 			paintNearestNeighbourPath(g2);
 		} else if (stepNum >= naiveSteps.size() && tos.getRuns() > (stepNum - naiveSteps.size()) / 3.0) {
 			if ((stepNum - naiveSteps.size()) % 3 == 0) {
-				lineColor = Color.blue;
+				lineColor = Color.white;
 				tos.swap(stepNum);
 				naiveSteps = (new StepController()).getNaiveSteps(tos.getPath());
 			} else if ((stepNum - naiveSteps.size()) % 3 == 1) {
