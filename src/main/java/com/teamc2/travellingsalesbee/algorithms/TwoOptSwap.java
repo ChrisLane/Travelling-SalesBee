@@ -52,7 +52,7 @@ public class TwoOptSwap extends NearestNeighbour {
 	/**
 	 * Run the next swap.
 	 */
-	protected boolean nextSwap() {
+	protected void nextSwap() {
 		if (path.size() >= 2) {
 			// create a new test path
 			newPath = new ArrayList<>();
@@ -83,8 +83,6 @@ public class TwoOptSwap extends NearestNeighbour {
 				tmpPos2--;
 			}
 		}
-
-		return false;
 	}
 
 	/**
