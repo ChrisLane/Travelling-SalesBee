@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class Map extends JPanel {
 
 	private ArrayList<Cell> cells; //Will store our ElementCells
-	private int speed; //Speed of bees
 	private CellOrigin hive;
 	private CostMatrix costMatrix;
 
@@ -23,15 +22,6 @@ public class Map extends JPanel {
 	}
 
 	//GET METHODS
-
-	/**
-	 * Return all cells in the map
-	 *
-	 * @return 2D array of cells in the map
-	 */
-	public ArrayList<Cell> getCells() {
-		return cells;
-	}
 
 	/**
 	 * Return all flowers in the map
@@ -99,15 +89,6 @@ public class Map extends JPanel {
 	 */
 	public void clearCell(int x, int y) {
 		setCell(x, y, CellType.EMPTY);
-	}
-
-	/**
-	 * Set the speed of the map's visualisation
-	 *
-	 * @param speed Speed of the visualisation
-	 */
-	public void setSpeed(int speed) {
-		this.speed = speed;
 	}
 
 	/**
