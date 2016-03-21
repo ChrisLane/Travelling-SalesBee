@@ -9,15 +9,16 @@ public class LayoutToolbox extends GroupLayout {
 	 *
 	 * @param host       Container for the layout to be applied to
 	 * @param backButton Back button for the toolbox
-	 * @param imgLabel   Labelling image
+	 * @param imgDrag   Labelling image
 	 */
-	public LayoutToolbox(Container host, JButton backButton, JLabel imgLabel) {
+	public LayoutToolbox(Container host, JButton backButton, JLabel imgDrag, JLabel imgKey) {
 		super(host);
 
 		setHorizontalGroup(
 				createParallelGroup(Alignment.CENTER)
 						.addComponent(backButton)
-						.addComponent(imgLabel)
+						.addComponent(imgDrag)
+						.addComponent(imgKey)
 		);
 		setVerticalGroup(
 				createParallelGroup()
@@ -26,7 +27,9 @@ public class LayoutToolbox extends GroupLayout {
 								.addGap(30)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(imgLabel)
+								.addComponent(imgDrag)
+								.addGap(250)
+								.addComponent(imgKey)
 								.addContainerGap(500, Short.MAX_VALUE))
 		);
 	}
