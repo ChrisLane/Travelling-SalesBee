@@ -27,35 +27,35 @@ public class NearestNeighbour {
 	 * Run a naive path find.
 	 * <p>
 	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
-	 * the nearest non-visited neighbour until every flower has been visited, following
+	 * the nearest non-visited neighbour until every node has been visited, following
 	 * that it then returns to the hive
 	 */
 	public void naiveRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<CellNode> flowers = map.getFlowers();
+			ArrayList<CellNode> nodes = map.getNodes();
 
 			newPath.add(hive);
 
-			// Loop over flowers missing from path
+			// Loop over nodes missing from path
 			Cell currentCell;
 			CellNode closest;
 
-			while (!flowers.isEmpty()) {
+			while (!nodes.isEmpty()) {
 				double bestDistance = Double.MAX_VALUE;
 				closest = null;
 
-				// Find the closest flower to the previous
-				for (CellNode flower : flowers) {
+				// Find the closest node to the previous
+				for (CellNode node : nodes) {
 					currentCell = newPath.get(newPath.size() - 1);
-					double distance = map.getCostMatrix().getCost(currentCell, flower);
+					double distance = map.getCostMatrix().getCost(currentCell, node);
 					if (distance < bestDistance) {
-						closest = flower;
+						closest = node;
 						bestDistance = distance;
 					}
 				}
-				//Remove the flower that is closest from the set
-				flowers.remove(closest);
+				//Remove the node that is closest from the set
+				nodes.remove(closest);
 				newPath.add(closest);
 			}
 

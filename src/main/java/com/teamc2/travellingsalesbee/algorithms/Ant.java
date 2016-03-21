@@ -23,27 +23,27 @@ public class Ant extends NearestNeighbour {
 	public void pheromoneRun() {
 		if (!(hive == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
-			ArrayList<CellNode> flowers = map.getFlowers();
+			ArrayList<CellNode> nodes = map.getNodes();
 
 			newPath.add(hive);
 
-			// Loop over flowers missing from path
+			// Loop over nodes missing from path
 			Cell currentCell;
 			CellNode next = null;
 
-			while (!flowers.isEmpty()) {
+			while (!nodes.isEmpty()) {
 				currentCell = newPath.get(newPath.size() - 1);
 
-				// Find the next flower to go to
-				if (flowers.size() > 1) {
-					next = findNextFlower(flowers, currentCell);
+				// Find the next node to go to
+				if (nodes.size() > 1) {
+					next = findNextNode(nodes, currentCell);
 				} else {
-					next = flowers.get(0);
+					next = nodes.get(0);
 				}
 				
-				//Remove the next flower from the set
+				//Remove the next node from the set
 				//Release some pheromone
-				flowers.remove(next);
+				nodes.remove(next);
 				newPath.add(next);
 				plantPheromone(currentCell, next);
 			}
@@ -60,42 +60,42 @@ public class Ant extends NearestNeighbour {
 		}
 	}
 
-	private CellNode findNextFlower(ArrayList<CellNode> flowers, Cell currentCell) {
-		double averagePheromone = getAveragePheromone(flowers,currentCell);
-		ArrayList<CellNode> goodFlowers = goodFlowers(flowers,averagePheromone,currentCell);
+	private CellNode findNextNode(ArrayList<CellNode> nodes, Cell currentCell) {
+		double averagePheromone = getAveragePheromone(nodes,currentCell);
+		ArrayList<CellNode> goodNodes = goodNodes(nodes,averagePheromone,currentCell);
 		
-		if (goodFlowers.size() > 0) {
-			flowers = goodFlowers;
+		if (goodNodes.size() > 0) {
+			nodes = goodNodes;
 		}
 		
-		double averageCost = getAverageCost(flowers,currentCell);
-		flowers = nearFlowers(flowers,averageCost,currentCell);
+		double averageCost = getAverageCost(nodes,currentCell);
+		nodes = nearNodes(nodes,averageCost,currentCell);
 		
-		int r = ThreadLocalRandom.current().nextInt(0, flowers.size());
-		return flowers.get(r);
+		int r = ThreadLocalRandom.current().nextInt(0, nodes.size());
+		return nodes.get(r);
 	}
 
-	private ArrayList<CellNode> goodFlowers(ArrayList<CellNode> flowers, double averagePheromone, Cell currentCell) {
-		ArrayList<CellNode> goodFlowers = new ArrayList<>();
-		for (CellNode n : flowers) {
+	private ArrayList<CellNode> goodNodes(ArrayList<CellNode> nodes, double averagePheromone, Cell currentCell) {
+		ArrayList<CellNode> goodNodes = new ArrayList<>();
+		for (CellNode n : nodes) {
 			if (costMatrix.getPheromone(currentCell,n) >= averagePheromone) {
-				goodFlowers.add(n);
+				goodNodes.add(n);
 			}
 		}
-		return goodFlowers;
+		return goodNodes;
 	}
 	
-	private double getAveragePheromone(ArrayList<CellNode> flowers, Cell currentCell) {
+	private double getAveragePheromone(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalPheromone = 0;
-		for (CellNode n : flowers) {
+		for (CellNode n : nodes) {
 			totalPheromone += costMatrix.getPheromone(currentCell,n);
 		}
-		return totalPheromone/flowers.size();
+		return totalPheromone/nodes.size();
 	}
 
-	private ArrayList<CellNode> nearFlowers(ArrayList<CellNode> flowers, double averageCost, Cell currentCell) {
+	private ArrayList<CellNode> nearNodes(ArrayList<CellNode> nodes, double averageCost, Cell currentCell) {
 		ArrayList<CellNode> nearFlowers = new ArrayList<>();
-		for (CellNode n : flowers) {
+		for (CellNode n : nodes) {
 			if (costMatrix.getCost(currentCell,n) <= averageCost) {
 				nearFlowers.add(n);
 			}
@@ -103,12 +103,12 @@ public class Ant extends NearestNeighbour {
 		return nearFlowers;
 	}
 
-	private double getAverageCost(ArrayList<CellNode> flowers, Cell currentCell) {
+	private double getAverageCost(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalCost = 0;
-		for (CellNode n : flowers) {
+		for (CellNode n : nodes) {
 			totalCost += costMatrix.getCost(currentCell,n);
 		}
-		return totalCost/flowers.size();
+		return totalCost/nodes.size();
 	}
 
 	private void setHeuristicCost(double cost) {

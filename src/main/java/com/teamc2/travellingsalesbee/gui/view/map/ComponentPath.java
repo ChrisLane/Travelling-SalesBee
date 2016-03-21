@@ -168,9 +168,9 @@ public class ComponentPath extends JComponent {
 			g2.setPaint(lineColor);
 			g2.setStroke(new BasicStroke(5));
 
-			Shape cellCircle = new Ellipse2D.Double(tos.getFlower1()[0], tos.getFlower1()[1], 2.0 * 25, 2.0 * 25);
+			Shape cellCircle = new Ellipse2D.Double(tos.getNode1()[0], tos.getNode1()[1], 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
-			cellCircle = new Ellipse2D.Double(tos.getFlower2()[0], tos.getFlower2()[1], 2.0 * 25, 2.0 * 25);
+			cellCircle = new Ellipse2D.Double(tos.getNode2()[0], tos.getNode2()[1], 2.0 * 25, 2.0 * 25);
 			g2.draw(cellCircle);
 
 			int x1, x2, y1, y2;
@@ -368,7 +368,7 @@ public class ComponentPath extends JComponent {
 		}
 	}
 
-	//Code to print the distance boxes on top of flowers
+	//Code to print the distance boxes on top of nodes
 	private void printDistance(String text, Cell end, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
 		Color translucentBg = new Color(1,1,1, 0.5f);
