@@ -99,7 +99,9 @@ public class SettingsButtons {
 			e.printStackTrace();
 		}
 
-		btn.setIcon(new ImageIcon(img));
+		if (img != null) {
+			btn.setIcon(new ImageIcon(img));
+		}
 
 	}
 
