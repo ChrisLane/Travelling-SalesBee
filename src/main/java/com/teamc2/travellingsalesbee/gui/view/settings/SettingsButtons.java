@@ -356,10 +356,22 @@ public class SettingsButtons {
 	}
 
 	public void setSpeed() {
-		if(stepNum > panelMap.getPathComponent().getNaiveSteps().size()) {
-			//bee speed * naive.size
 
-			double delaySpeed = panelMap.getPanelAnimalAnimation().getDelay().toMillis() * panelMap.getPathComponent().getNaiveSteps().size();
+		System.out.println("Step Num: " + stepNum);
+		System.out.println("panelMap.getPathComponent().getNaiveSteps().size(): " + panelMap.getPathComponent().getNaiveSteps().size());
+
+		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
+
+			double delaySpeed = 600;
+
+			try {
+				if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
+					System.out.println(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType());
+					delaySpeed = 600 * (panelMap.getPathComponent().getNaiveSteps().size());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			setTimer((int) delaySpeed);
 
@@ -372,14 +384,9 @@ public class SettingsButtons {
 			if (stepNum % 2 == 0) {
 				setTimer(1500);
 			} else {
-				setTimer(50);
+				setTimer(500);
 			}
-
-            /*  To do:
-			*
-            *   Implement timings for Experimental
-            *
-            */
 		}
 	}
+
 }
