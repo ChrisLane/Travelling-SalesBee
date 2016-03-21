@@ -71,7 +71,7 @@ public class RunActionListener implements ActionListener {
 			//Do Two-Opt swap here as well as naive
 
 			for (NaiveStep naiveStep : steps) {
-				ArrayList<Cell> singlePoint = new ArrayList<Cell>();
+				ArrayList<Cell> singlePoint = new ArrayList<>();
 					/* if the path is the 'inspected' path (YELLOW) then add that path to the Path of paths
 						if((stepNum - panelMap.getPathComponent().getNaiveSteps().size()) % 3 == 1) {
 							//singlePoint = inspected swapped path
@@ -199,7 +199,7 @@ public class RunActionListener implements ActionListener {
 			pathOfPaths.add(hive);
 
 			for (ExperimentalStep experimentalStep : experimentalSteps) {
-				ArrayList<Cell> setOfPoints = new ArrayList<Cell>();
+				ArrayList<Cell> setOfPoints = new ArrayList<>();
 
 				if (experimentalStep.getType() == SwapType.INSPECTED) {
 					setOfPoints = experimentalStep.getPath();
