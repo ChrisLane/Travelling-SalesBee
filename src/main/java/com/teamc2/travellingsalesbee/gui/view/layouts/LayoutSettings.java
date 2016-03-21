@@ -15,8 +15,8 @@ public class LayoutSettings extends GroupLayout {
 	 * @param speedSlider       @throws IllegalArgumentException if host is {@code null}
 	 */
 	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
-						  JSlider experimentsSlider, JLabel lblAnimationSpeed, JLabel lblSpeed, JSlider speedSlider,
-						  JButton btnRandomise, JButton btnClear, JButton btnRun, JButton btnPrev, JButton btnPlay, JButton btnNext) {
+						  JSlider experimentsSlider, JButton btnRandomise, JButton btnClear, JButton btnRun, 
+						  JButton btnPrev, JButton btnPlay, JButton btnNext) {
 		super(host);
 
 		setHorizontalGroup(
@@ -32,13 +32,6 @@ public class LayoutSettings extends GroupLayout {
 												.addComponent(lblNoOfRuns)
 										)
 										.addComponent(experimentsSlider)
-										.addGap(10)
-										.addGroup(createSequentialGroup()
-												.addComponent(lblAnimationSpeed)
-												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-												.addComponent(lblSpeed)
-										)
-										.addComponent(speedSlider)
 								)
 								.addGap(10)
 								.addGroup(createParallelGroup(Alignment.TRAILING)
@@ -72,11 +65,6 @@ public class LayoutSettings extends GroupLayout {
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(experimentsSlider)
-								.addGroup(createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblAnimationSpeed)
-										.addComponent(lblSpeed)
-								)
-								.addComponent(speedSlider)
 								.addContainerGap()
 						)
 						.addGroup(createSequentialGroup()

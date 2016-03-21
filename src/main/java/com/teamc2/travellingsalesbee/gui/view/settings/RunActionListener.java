@@ -121,7 +121,7 @@ public class RunActionListener implements ActionListener {
 		CostMatrix initialMatrix;
 		initialMatrix = map.getCostMatrix().copy();
 
-		int numberOfAnts = 4;
+		int numberOfAnts = panelSettings.getNoOfRunsValue()/20;
 		for (int i = 1; i < numberOfAnts; i++) {
 			Map cloneMap = new Map();
 			cloneMap.setCostMatrix(initialMatrix.copy());
