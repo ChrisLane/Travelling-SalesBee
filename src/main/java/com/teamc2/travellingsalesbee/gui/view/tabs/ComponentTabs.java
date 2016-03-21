@@ -42,7 +42,7 @@ public class ComponentTabs extends JTabbedPane {
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", backgroundColor);
 		
 
-		Font amaticFont = new Font("Amatic-Bold", Font.PLAIN, 10);
+		Font amaticFont = new Font("Amatic Bold", Font.PLAIN, 10);
 		amaticFont = amaticFont.deriveFont(10f);
 		UIManager.getDefaults().put("TabbedPane.font", new FontUIResource(amaticFont));
 

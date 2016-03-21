@@ -76,7 +76,7 @@ public class PanelToolbox extends JPanel {
 		add(originToolCell);
 		
 		JLabel lblOrigin = new JLabel("Origin");
-		lblOrigin.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblOrigin.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblOrigin.setForeground(Color.WHITE);
 		lblOrigin.setBounds(65, 180, 100, 50);
 		add(lblOrigin);
@@ -85,7 +85,7 @@ public class PanelToolbox extends JPanel {
 		add(nodeToolCell);
 		
 		JLabel lblNode = new JLabel("Node");
-		lblNode.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblNode.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblNode.setForeground(Color.WHITE);
 		lblNode.setBounds(65, 240, 100, 50);
 		add(lblNode);
