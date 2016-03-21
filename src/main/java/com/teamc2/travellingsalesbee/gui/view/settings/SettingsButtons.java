@@ -289,7 +289,8 @@ public class SettingsButtons {
 			if (stepNum - panelMap.getPathComponent().getNaiveSteps().size() == panelMap.getPathComponent().getExperimentalSteps().size()) {
 				panelMap.getPanelOverlyingText().setText("\nFinal path produced by bee in " + panelSettings.getNoOfRunsValue() + " experimental runs");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-				panelMap.getPanelOverlyingText().setText("Experimental Run " + (1+(stepNum-(panelMap.getPathComponent().getNaiveSteps().size()))/3) + "\nThe Bee travels a new path by switching the order it visits two flowers in the path");
+				panelMap.getPanelOverlyingText().setText("Experimental Run " + (1+(stepNum-(panelMap.getPathComponent().getNaiveSteps().size()))/3)
+						+ "\nThe Bee travels a new path by switching the order it visits two flowers in the path");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
 				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 2).getPath());
 				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getPath());
@@ -322,15 +323,16 @@ public class SettingsButtons {
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
-		if (stepNum == nearestNeighbourSteps.size() - 1) {
+		if (stepNum == nearestNeighbourSteps.size()) {
+			panelMap.getPanelOverlyingText().setText("\nFinal path produced by Nearest Neighbour");
+		} else if (stepNum == nearestNeighbourSteps.size() - 1) {
 			panelMap.getPanelOverlyingText().setText("\nAll nodes visited, now returning to start");
-		}
-		if (stepNum == nearestNeighbourSteps.size() - 2) {
+		} else if (stepNum == nearestNeighbourSteps.size() - 2) {
 			panelMap.getPanelOverlyingText().setText("\nAll nodes visited, finding start point");
 		} else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 == 0) {
 			panelMap.getPanelOverlyingText().setText("\nLooking for nearest node...");
 		} else if (stepNum < nearestNeighbourSteps.size() && stepNum % 2 != 0) {
-			panelMap.getPanelOverlyingText().setText("Found nearest node!");
+			panelMap.getPanelOverlyingText().setText("\nFound nearest node!");
 		}
 	}
 
