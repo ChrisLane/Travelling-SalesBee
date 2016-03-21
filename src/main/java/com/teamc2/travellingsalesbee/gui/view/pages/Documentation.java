@@ -1,5 +1,11 @@
 package com.teamc2.travellingsalesbee.gui.view.pages;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
+
 /**
  * A class for generating and viewing the documentation page.
  *
@@ -23,6 +29,17 @@ public class Documentation extends Page {
 	 * {@inheritDoc}
 	 */
 	public void bootstrap() {
-		// TODO: implement
+		// create the border pane
+		BorderPane border = new BorderPane();
+		border.setId("documentation");
+
+		// create the scene
+		Scene scene = createScene(border);
+
+		// stage-ify!
+		setScene(scene);
+		setMinHeight(height);
+		setMinWidth(width);
+		setResizable(false);
 	}
 }

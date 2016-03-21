@@ -49,7 +49,6 @@ public class About extends Page {
 
 		// stage-ify!
 		setScene(scene);
-		setTitle("Travelling SalesBee");
 		setMinHeight(height);
 		setMinWidth(width);
 		setResizable(false);
