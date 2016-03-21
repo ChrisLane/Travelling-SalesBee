@@ -280,7 +280,7 @@ public class SettingsButtons {
 	/**
 	 * Sets the text for the textbox related to the Bee
 	 *
-	 * @param nn
+	 * @param nn Nearest neighbor
 	 */
 	public void setBeeText(NearestNeighbour nn) {
 		setNNText();

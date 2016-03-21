@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * @author: Melvyn Mathews (mxm499)
+ * @author Melvyn Mathews (mxm499)
  */
 public class PanelAnimalAnimation extends JFXPanel {
 

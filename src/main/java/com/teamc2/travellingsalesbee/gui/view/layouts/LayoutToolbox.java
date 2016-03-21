@@ -9,9 +9,7 @@ public class LayoutToolbox extends GroupLayout {
 	 *
 	 * @param host            Container for the layout to be applied to
 	 * @param backButton      Back button for the toolbox
-	 * @param randomiseButton Button to randomise nodes on the map
-	 * @param clearButton     Button to clear the map
-	 * @param imgLabel 
+	 * @param imgLabel 		  Labelling image
 	 */
 	public LayoutToolbox(Container host, JButton backButton, JLabel imgLabel) {
 		super(host);
