@@ -359,7 +359,7 @@ public class ComponentPath extends JComponent {
 
 	//Code to print the distance boxes on top of nodes
 	private void printDistance(String text, Cell end, Boolean isChosenCell) {
-		JLabel distance = new JLabel(text, SwingConstants.CENTER);
+		JLabel distance = new JLabel(text + "cm", SwingConstants.CENTER);
 		Color translucentBg = new Color(1, 1, 1, 0.5f);
 		distance.setBackground(translucentBg);
 		distance.setOpaque(true);
@@ -381,6 +381,10 @@ public class ComponentPath extends JComponent {
 
 	public void setTosObject(TwoOptSwap tos) {
 		this.tos = tos;
+	}
+	
+	public int getStepNumber(){
+		return this.stepNum;
 	}
 
 }
