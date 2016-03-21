@@ -2,7 +2,7 @@ package com.teamc2.travellingsalesbee.gui.view.map;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
 

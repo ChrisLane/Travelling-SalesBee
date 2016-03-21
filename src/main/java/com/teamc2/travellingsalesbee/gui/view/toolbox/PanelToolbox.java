@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.gui.view.toolbox;
 import com.teamc2.travellingsalesbee.TravellingSalesBee;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.Visualiser;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutToolbox;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
