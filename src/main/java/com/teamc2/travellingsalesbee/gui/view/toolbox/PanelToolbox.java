@@ -40,7 +40,6 @@ public class PanelToolbox extends JPanel {
 		
 		
 		BufferedImage img = null;
-		System.out.println(getClass().getResource("/assets/icons/dragMe.png"));
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
 		} catch (IOException e) {
