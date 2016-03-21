@@ -16,8 +16,8 @@ public class TwoOptSwap extends NearestNeighbour {
 
 	private int stepNum;
 	private int runs;
-	private int flowerPos1, flowerPos2;
-	private double[] flower1, flower2;
+	private int nodePos1, nodePos2;
+	private double[] node1, node2;
 	private ArrayList<int[]> swapLog = new ArrayList<>();
 	private ArrayList<Cell> newPath = new ArrayList<>();
 
@@ -58,26 +58,26 @@ public class TwoOptSwap extends NearestNeighbour {
 			newPath = new ArrayList<>();
 			newPath.addAll(path);
 
-			flowerPos1 = 0;
-			flowerPos2 = 0;
-			// choose two random flowers
-			while (flowerPos1 >= flowerPos2) {
-				flowerPos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
-				flowerPos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
+			nodePos1 = 0;
+			nodePos2 = 0;
+			// choose two random nodes
+			while (nodePos1 >= nodePos2) {
+				nodePos1 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
+				nodePos2 = ThreadLocalRandom.current().nextInt(1, newPath.size() - 2);
 			}
 
-			flower1 = new double[]{path.get(flowerPos1).getX(), path.get(flowerPos1).getY()};
-			flower2 = new double[]{path.get(flowerPos2).getX(), path.get(flowerPos2).getY()};
+			node1 = new double[]{path.get(nodePos1).getX(), path.get(nodePos1).getY()};
+			node2 = new double[]{path.get(nodePos2).getX(), path.get(nodePos2).getY()};
 
-			// swap the flowers
-			int tmpPos1 = flowerPos1;
-			int tmpPos2 = flowerPos2;
+			// swap the nodes
+			int tmpPos1 = nodePos1;
+			int tmpPos2 = nodePos2;
 			while (tmpPos1 < tmpPos2) {
-				Cell flower1 = newPath.get(tmpPos1);
-				Cell flower2 = newPath.get(tmpPos2);
+				Cell node1 = newPath.get(tmpPos1);
+				Cell node2 = newPath.get(tmpPos2);
 
-				newPath.set(tmpPos1, flower2);
-				newPath.set(tmpPos2, flower1);
+				newPath.set(tmpPos1, node2);
+				newPath.set(tmpPos2, node1);
 
 				tmpPos1++;
 				tmpPos2--;
@@ -95,7 +95,7 @@ public class TwoOptSwap extends NearestNeighbour {
 		double testCost = calculatePathCost(newPath);
 		if (testCost < cost) {
 			setPath(newPath, testCost);
-			int[] swap = new int[]{flowerPos1, flowerPos2};
+			int[] swap = new int[]{nodePos1, nodePos2};
 			swapLog.add(swap);
 
 			return true;
@@ -113,10 +113,10 @@ public class TwoOptSwap extends NearestNeighbour {
 		swapLog.remove(swapLog.size() - 1);
 
 		// perform the swap reversal and recalculate
-		Cell flower1 = path.get(swap[1]);
-		Cell flower2 = path.get(swap[0]);
-		path.set(swap[0], flower1);
-		path.set(swap[1], flower2);
+		Cell node1 = path.get(swap[1]);
+		Cell node2 = path.get(swap[0]);
+		path.set(swap[0], node1);
+		path.set(swap[1], node2);
 
 		setPath(path, calculatePathCost(path));
 		newPath = path;
@@ -141,21 +141,21 @@ public class TwoOptSwap extends NearestNeighbour {
 	}
 
 	/**
-	 * Get the first flower being swapped.
+	 * Get the first node being swapped.
 	 *
-	 * @return The flower's coordinates, with the X position in index 0, and the Y position in index 1.
+	 * @return The node's coordinates, with the X position in index 0, and the Y position in index 1.
 	 */
-	public double[] getFlower1() {
-		return flower1;
+	public double[] getNode1() {
+		return node1;
 	}
 
 	/**
-	 * Get the second flower being swapped.
+	 * Get the second node being swapped.
 	 *
-	 * @return The flower's coordinates, with the X position in index 0, and the Y position in index 1.
+	 * @return The node's coordinates, with the X position in index 0, and the Y position in index 1.
 	 */
-	public double[] getFlower2() {
-		return flower2;
+	public double[] getNode2() {
+		return node2;
 	}
 
 	/**

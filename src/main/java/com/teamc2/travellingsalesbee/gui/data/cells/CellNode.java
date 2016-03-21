@@ -9,14 +9,14 @@ import java.io.IOException;
 public class CellNode extends Cell {
 
 	/**
-	 * Create a new flower cell
+	 * Create a new node cell
 	 */
 	public CellNode() {
 		//
 	}
 
 	/**
-	 * Create a new flower cell
+	 * Create a new node cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell

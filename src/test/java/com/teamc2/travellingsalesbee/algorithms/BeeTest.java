@@ -26,7 +26,7 @@ public class BeeTest {
 
 	@DataProvider(name = "paths")
 	public Object[][] path() {
-		ArrayList<CellNode> flowers = map.getFlowers();
+		ArrayList<CellNode> flowers = map.getNodes();
 		CellNode flower1 = flowers.get(0);
 		CellNode flower2 = flowers.get(1);
 		CellNode flower3 = flowers.get(2);
@@ -88,7 +88,7 @@ public class BeeTest {
 		path.sort(new CellComparator());
 
 		// Sort the flowers
-		ArrayList<CellNode> flowers = map.getFlowers();
+		ArrayList<CellNode> flowers = map.getNodes();
 		flowers.sort(new CellComparator());
 
 		Assert.assertEquals(path.equals(flowers), true);

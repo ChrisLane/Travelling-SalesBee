@@ -24,11 +24,11 @@ public class Map extends JPanel {
 	//GET METHODS
 
 	/**
-	 * Return all flowers in the map
+	 * Return all nodes in the map
 	 *
-	 * @return ArrayList of flowers in the map
+	 * @return ArrayList of nodes in the map
 	 */
-	public ArrayList<CellNode> getFlowers() {
+	public ArrayList<CellNode> getNodes() {
 		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).map(c -> (CellNode) c).collect(Collectors.toCollection(ArrayList::new));
 	}
 
