@@ -99,9 +99,8 @@ public class TwoOptSwap extends NearestNeighbour {
 			swapLog.add(swap);
 
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
