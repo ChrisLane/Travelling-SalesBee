@@ -52,6 +52,7 @@ public class ComponentTabs extends JTabbedPane {
 		addTab(getHtmlForTitle(tos, "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
+		setTabLayoutPolicy(SCROLL_TAB_LAYOUT);
 		setUI(new BasicTabbedPaneUI());
 		setBackgroundAt(0, tabColor);
 
