@@ -1,12 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.view.settings;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class SettingsSliders {
 
@@ -26,14 +23,14 @@ public class SettingsSliders {
 
 		createRunCountSlider();
 		createSpeedSlider();
-		
+
 	}
 
 	public void createRunCountSlider() {
 		noOfRunsSlider = new JSlider();
 		noOfRunsSlider.setValue(panelSettings.getNoOfRunsValue());
 		noOfRunsSlider.setOpaque(false);
-		
+
 		lblRunsOfType = new JLabel("Experiment Runs: ");
 		lblRunsOfType.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblRunsOfType.setForeground(Color.WHITE);
@@ -48,18 +45,17 @@ public class SettingsSliders {
 		});
 	}
 
-	
 
 	public void createSpeedSlider() {
 		speedSlider = new JSlider();
 		speedSlider.setMaximum(20);
 		speedSlider.setValue((int) animationSpeed);
 		speedSlider.setOpaque(false);
-		
+
 		lblAnimationSpeed = new JLabel("Animation Speed: ");
 		lblAnimationSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblAnimationSpeed.setForeground(Color.WHITE);
-		
+
 		lblSpeed = new JLabel("" + animationSpeed / 10);
 		lblSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblSpeed.setForeground(Color.WHITE);

@@ -47,7 +47,7 @@ public class PanelOverlyingText extends JFXPanel {
 			setDropShadow(true);
 			text.setTextAlignment(TextAlignment.CENTER);
 			setText("Initial text");
-			
+
 			//Set the stylesheet for the scene (make textPane transparent)
 			URL url = getClass().getResource("/assets/stylesheets/visualiser.css");
 			scene.getStylesheets().add(url.toExternalForm());
@@ -58,22 +58,23 @@ public class PanelOverlyingText extends JFXPanel {
 	}
 
 	public void setTextBold(boolean bool) {
-		if(bool) {
+		if (bool) {
 			text.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
 		} else {
 			text.setFont(Font.font("Verdana", FontWeight.NORMAL, 12));
 		}
 
 	}
+
 	public void setSize(int size) {
 		Platform.runLater(() -> {
 			text.setFont(new Font(size));
 		});
 	}
-	
+
 	public void setCenter(int size) {
 		Platform.runLater(() -> {
-			
+
 		});
 	}
 
@@ -98,7 +99,7 @@ public class PanelOverlyingText extends JFXPanel {
 
 	public void setDropShadow(boolean bool) {
 		Platform.runLater(() -> {
-			if(bool) {
+			if (bool) {
 				DropShadow ds = new DropShadow();
 				ds.setOffsetY(3.0f);
 				ds.setColor(Color.color(1.0f, 1.0f, 1.0f));

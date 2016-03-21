@@ -4,10 +4,9 @@ import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
-import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
-import javafx.scene.text.*;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
+import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,8 +52,8 @@ public class PanelMap extends JPanel {
 
 		componentPath = new ComponentPath(AlgorithmType.BEE);
 		add(componentPath);
-		
-		
+
+
 		//Initialise and set bounds
 		panelAnimation = new PanelAnimalAnimation(screenWidth, screenHeight);
 		panelAnimation.setBounds(getX(), getY(), screenWidth, screenHeight);
@@ -64,10 +63,10 @@ public class PanelMap extends JPanel {
 		panelOverlyingText.setBounds(getX(), getY(), screenWidth, screenHeight);
 		add(panelOverlyingText);
 
-		setComponentZOrder(panelOverlyingText,2);
+		setComponentZOrder(panelOverlyingText, 2);
 		setComponentZOrder(panelAnimation, 1);
 		setLayout(null);
-		
+
 	}
 
 	/**
@@ -78,9 +77,9 @@ public class PanelMap extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		Point2D center = new Point2D.Float(getWidth()/2, 0);
-		float radius = getWidth()/2;
-		Point2D focus = new Point2D.Float((getWidth()/2), 1000);
+		Point2D center = new Point2D.Float(getWidth() / 2, 0);
+		float radius = getWidth() / 2;
+		Point2D focus = new Point2D.Float((getWidth() / 2), 1000);
 		float[] dist = {0.0f, 0.3f, 1.0f};
 		Color[] colors = {new Color(71, 35, 35), Color.WHITE, new Color(71, 35, 35)};
 		RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, MultipleGradientPaint.CycleMethod.REFLECT);
@@ -118,18 +117,18 @@ public class PanelMap extends JPanel {
 			TexturePaint paint;
 
 			switch (type) {
-			case BEE:
-				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Grass.jpg"));
-				break;
-			case ANT:
-				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Dirt.jpg"));
-				break;
-			case NEARESTNEIGHBOUR:
-				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
-				break;
-			case TWOOPT:
-				img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
-				break;
+				case BEE:
+					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Grass.jpg"));
+					break;
+				case ANT:
+					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Dirt.jpg"));
+					break;
+				case NEARESTNEIGHBOUR:
+					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+					break;
+				case TWOOPT:
+					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+					break;
 			}
 
 			paint = new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
@@ -166,10 +165,20 @@ public class PanelMap extends JPanel {
 		return panelAnimation;
 	}
 
-	public PanelOverlyingText getPanelOverlyingText() { return panelOverlyingText; }
+	public PanelOverlyingText getPanelOverlyingText() {
+		return panelOverlyingText;
+	}
 
 	public Map getMap() {
 		return map;
+	}
+
+	public PanelAnimalAnimation getAnimation() {
+		return panelAnimation;
+	}
+
+	public AlgorithmType getAlgorithmType() {
+		return type;
 	}
 
 	/**
@@ -185,14 +194,6 @@ public class PanelMap extends JPanel {
 				((CellDraggable) c).setImage(((CellDraggable) c).getType());
 			}
 		}
-	}
-
-	public PanelAnimalAnimation getAnimation() {
-		return panelAnimation;
-	}
-
-	public AlgorithmType getAlgorithmType(){
-		return type;
 	}
 
 	public void cellFull(int x, int y) {
@@ -231,7 +232,7 @@ public class PanelMap extends JPanel {
 				int y = c.getY();
 				remove(c);
 				c.setEnabled(false);
-				map.setCell(x,y,CellType.EMPTY);
+				map.setCell(x, y, CellType.EMPTY);
 			}
 		}
 	}

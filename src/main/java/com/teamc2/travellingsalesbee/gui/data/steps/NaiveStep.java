@@ -43,7 +43,7 @@ public class NaiveStep {
 	public Cell getEnd() {
 		return end;
 	}
-	
+
 	public String getText() {
 		return text;
 	}

@@ -7,9 +7,9 @@ public class LayoutToolbox extends GroupLayout {
 	/**
 	 * Creates a layout for the toolbox container
 	 *
-	 * @param host            Container for the layout to be applied to
-	 * @param backButton      Back button for the toolbox
-	 * @param imgLabel 		  Labelling image
+	 * @param host       Container for the layout to be applied to
+	 * @param backButton Back button for the toolbox
+	 * @param imgLabel   Labelling image
 	 */
 	public LayoutToolbox(Container host, JButton backButton, JLabel imgLabel) {
 		super(host);

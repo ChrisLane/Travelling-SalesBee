@@ -42,7 +42,7 @@ public class About extends Page {
 		Text text = createTextBox();
 		border.setCenter(text);
 		BorderPane.setAlignment(text, Pos.TOP_CENTER);
-		BorderPane.setMargin(text, new Insets(150,10,0,10));
+		BorderPane.setMargin(text, new Insets(150, 10, 0, 10));
 
 		// create the scene
 		Scene scene = createScene(border);

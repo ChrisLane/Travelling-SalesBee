@@ -24,7 +24,7 @@ public class CellNode extends Cell {
 	public CellNode(double x, double y) {
 		super(x, y);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

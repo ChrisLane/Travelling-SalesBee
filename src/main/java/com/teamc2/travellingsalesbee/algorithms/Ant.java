@@ -40,20 +40,20 @@ public class Ant extends NearestNeighbour {
 				} else {
 					next = nodes.get(0);
 				}
-				
+
 				//Remove the next node from the set
 				//Release some pheromone
 				nodes.remove(next);
 				newPath.add(next);
 				plantPheromone(currentCell, next);
 			}
-			
+
 			newPath.add(origin);
 			plantPheromone(next, origin);
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
-			
+
 			if (cost <= heuristicCost) {
 				plantAllPheromone(path);
 			}
@@ -61,16 +61,16 @@ public class Ant extends NearestNeighbour {
 	}
 
 	private CellNode findNextNode(ArrayList<CellNode> nodes, Cell currentCell) {
-		double averagePheromone = getAveragePheromone(nodes,currentCell);
-		ArrayList<CellNode> goodNodes = goodNodes(nodes,averagePheromone,currentCell);
-		
+		double averagePheromone = getAveragePheromone(nodes, currentCell);
+		ArrayList<CellNode> goodNodes = goodNodes(nodes, averagePheromone, currentCell);
+
 		if (goodNodes.size() > 0) {
 			nodes = goodNodes;
 		}
-		
-		double averageCost = getAverageCost(nodes,currentCell);
-		nodes = nearNodes(nodes,averageCost,currentCell);
-		
+
+		double averageCost = getAverageCost(nodes, currentCell);
+		nodes = nearNodes(nodes, averageCost, currentCell);
+
 		int r = ThreadLocalRandom.current().nextInt(0, nodes.size());
 		return nodes.get(r);
 	}
@@ -78,25 +78,25 @@ public class Ant extends NearestNeighbour {
 	private ArrayList<CellNode> goodNodes(ArrayList<CellNode> nodes, double averagePheromone, Cell currentCell) {
 		ArrayList<CellNode> goodNodes = new ArrayList<>();
 		for (CellNode n : nodes) {
-			if (costMatrix.getPheromone(currentCell,n) >= averagePheromone) {
+			if (costMatrix.getPheromone(currentCell, n) >= averagePheromone) {
 				goodNodes.add(n);
 			}
 		}
 		return goodNodes;
 	}
-	
+
 	private double getAveragePheromone(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalPheromone = 0;
 		for (CellNode n : nodes) {
-			totalPheromone += costMatrix.getPheromone(currentCell,n);
+			totalPheromone += costMatrix.getPheromone(currentCell, n);
 		}
-		return totalPheromone/nodes.size();
+		return totalPheromone / nodes.size();
 	}
 
 	private ArrayList<CellNode> nearNodes(ArrayList<CellNode> nodes, double averageCost, Cell currentCell) {
 		ArrayList<CellNode> nearFlowers = new ArrayList<>();
 		for (CellNode n : nodes) {
-			if (costMatrix.getCost(currentCell,n) <= averageCost) {
+			if (costMatrix.getCost(currentCell, n) <= averageCost) {
 				nearFlowers.add(n);
 			}
 		}
@@ -106,9 +106,9 @@ public class Ant extends NearestNeighbour {
 	private double getAverageCost(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalCost = 0;
 		for (CellNode n : nodes) {
-			totalCost += costMatrix.getCost(currentCell,n);
+			totalCost += costMatrix.getCost(currentCell, n);
 		}
-		return totalCost/nodes.size();
+		return totalCost / nodes.size();
 	}
 
 	private void setHeuristicCost(double cost) {
@@ -126,7 +126,7 @@ public class Ant extends NearestNeighbour {
 			plantPheromone(cell1, cell2);
 		}
 	}
-	
+
 	public Map getMap() {
 		return map;
 	}
