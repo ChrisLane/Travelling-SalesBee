@@ -152,9 +152,9 @@ public class SettingsButtons {
 		int maxX = (panelMap.getWidth()) / cellWidth;
 		int maxY = ((panelMap.getHeight()) / cellHeight) - 1;
 
-		int x = 0;
-		int y = 0;
-		CellDraggable newCell = null;
+		int x;
+		int y;
+		CellDraggable newCell;
 
 		int nodesPlaced = 0;
 		while (nodesPlaced < 12) {
@@ -258,7 +258,6 @@ public class SettingsButtons {
 				setTOText();
 				break;
 		}
-		distance = distance;
 	}
 
 	public void setStepNum(int stepNum) {
@@ -299,7 +298,6 @@ public class SettingsButtons {
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 				panelMap.getPanelOverlyingText().setText("\nThe best path the bee has found up to now");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.REJECTED) {
-				ArrayList<ExperimentalStep> expSteps = panelMap.getPathComponent().getExperimentalSteps();
 				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getPath());
 				int newDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 1).getPath());
 				panelMap.getPanelOverlyingText().setText("Best Distance: " + bestDistance + "\nNew Distance: " + newDistance + "\nThe new path travelled by the Bee has a higher cost than the bee's previous best, it ignores this path");
