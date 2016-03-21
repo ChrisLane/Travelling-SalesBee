@@ -102,9 +102,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 			transition.playFromStart();
 
 			transition.setOnFinished(AE -> {
-				//System.out.println("STOPPED PLAYING");
 				if (!singlePath) {
-					//System.out.println("Calling animatePath");
 					stepNum++;
 					animatePath(pathOfPaths, popStepNum, pathOfPaths.get(popStepNum), stepNum, animal, transition);
 				}
@@ -114,7 +112,6 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	public void setUrl(String url) {
 		this.url = url;
-		System.out.println(url);
 		Image image = new Image(url);
 		Platform.runLater(() -> animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true)));
 	}
@@ -128,28 +125,18 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 * @param transition The transition object that handles the animation itself
 	 */
 	private void animatePath(ArrayList<ArrayList<Cell>> superPath, final int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
+		//Get end cell
+		if (i < path.size()) {
 
-		//If there are no more paths, do nothing
-		if (superI >= superPath.size()) {
-			System.out.println("Ran out of moves");
-		} else if (i >= path.size()) {
-			//Increment the global superI
-			//popStepNum++;
-			//System.out.println("Incremented popStepNum, new value is: " + popStepNum);
-		} else {
+			//Get the next point to move to
+			Cell end = path.get(i);
 
-			//Get end cell
-			if (i < path.size()) {
+			moveFromAToB(end, animal, transition);
 
-				//Get the next point to move to
-				Cell end = path.get(i);
-
-				moveFromAToB(end, animal, transition);
-
-			} else if (superI < superPath.size()) {
-				animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
-			}
+		} else if (superI < superPath.size()) {
+			animatePath(superPath, (superI + 1), superPath.get(superI + 1), 0, animal, transition);
 		}
+
 	}
 
 	public void setSpeed(double speed) {
@@ -165,10 +152,6 @@ public class PanelAnimalAnimation extends JFXPanel {
 	 */
 	public void incrStepNum() {
 		stepNum++;
-		System.out.println("Step num: " + stepNum);
-		System.out.println("PopStemNum: " + popStepNum);
-		System.out.println("Path size: " + pathOfPaths.get(popStepNum).size());
-		System.out.println("---------------------------");
 
 		//Un/Show bee based on a positive stepNum
 		if (stepNum < 0) {
