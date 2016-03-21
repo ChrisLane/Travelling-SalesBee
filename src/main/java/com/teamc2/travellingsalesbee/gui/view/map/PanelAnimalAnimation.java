@@ -286,4 +286,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 	public void setDelay(double delay) {
 		transition.setDelay(Duration.seconds(delay));
 	}
+
+	public Duration getDelay() {
+		return transition.getDelay();
+	}
 }
