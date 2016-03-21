@@ -42,7 +42,6 @@ public class PanelToolbox extends JPanel {
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
 			if (img != null) imgDrag = new JLabel(new ImageIcon(img));
-			System.out.println(getClass().getResource("/assets/icons/Key.png"));
 			img = ImageIO.read(getClass().getResource("/assets/icons/Key.png"));
 			if (img != null) imgKey = new JLabel(new ImageIcon(img));
 		} catch (IOException e) {
