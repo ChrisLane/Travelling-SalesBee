@@ -367,9 +367,10 @@ public class SettingsButtons {
 			try {
 
 				if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
-					System.out.println(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 1).getType());
+
 					delaySpeed = 600 * (panelMap.getPathComponent().getNaiveSteps().size());
 					System.out.println("delaySpeed: " + delaySpeed);
+
 				}
 
 			} catch (Exception e) {
