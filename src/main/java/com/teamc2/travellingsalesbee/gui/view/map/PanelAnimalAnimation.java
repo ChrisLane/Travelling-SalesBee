@@ -19,8 +19,6 @@ import java.util.ArrayList;
  */
 public class PanelAnimalAnimation extends JFXPanel {
 
-	private String url; //The URL string for the image
-
 	private int width; //Width of the panel
 	private int height; //height of the panel
 	private int stepNum = 0; //Step number for the path
@@ -111,7 +109,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		String url1 = url;
 		Image image = new Image(url);
 		Platform.runLater(() -> animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true)));
 	}
