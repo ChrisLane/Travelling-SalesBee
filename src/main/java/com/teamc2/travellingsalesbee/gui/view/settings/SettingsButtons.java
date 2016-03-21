@@ -355,23 +355,27 @@ public class SettingsButtons {
 		timer.setDelay(delay);
 	}
 
+	/**
+	 * Sets the speed of the incrementing of the animation dependant on the size of the path and whether the program is currently visualising the inspected path or not
+	 */
 	public void setSpeed() {
-
-		System.out.println("Step Num: " + stepNum);
-		System.out.println("panelMap.getPathComponent().getNaiveSteps().size(): " + panelMap.getPathComponent().getNaiveSteps().size());
 
 		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
 
 			double delaySpeed = 600;
 
 			try {
-				if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-					System.out.println(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType());
+
+				if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
+					System.out.println(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 1).getType());
 					delaySpeed = 600 * (panelMap.getPathComponent().getNaiveSteps().size());
+					System.out.println("delaySpeed: " + delaySpeed);
 				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 
 			setTimer((int) delaySpeed);
 
