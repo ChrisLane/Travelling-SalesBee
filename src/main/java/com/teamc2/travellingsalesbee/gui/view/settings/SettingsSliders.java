@@ -7,10 +7,7 @@ import java.awt.*;
 
 public class SettingsSliders {
 
-	private final PanelMap panelMap;
 	private final PanelSettings panelSettings;
-	private double animationSpeed = 10;
-	private JSlider speedSlider;
 	private JSlider noOfRunsSlider;
 	private JLabel lblRunsOfType;
 	private JLabel lblNoOfRuns;
@@ -18,12 +15,9 @@ public class SettingsSliders {
 	private JLabel lblSpeed;
 
 	public SettingsSliders(PanelSettings panelSettings, PanelMap panelMap) {
-		this.panelMap = panelMap;
 		this.panelSettings = panelSettings;
 
 		createRunCountSlider();
-		createSpeedSlider();
-
 	}
 
 	public void createRunCountSlider() {
@@ -45,46 +39,35 @@ public class SettingsSliders {
 		});
 	}
 
-
-	public void createSpeedSlider() {
-		speedSlider = new JSlider();
-		speedSlider.setMaximum(20);
-		speedSlider.setValue((int) animationSpeed);
-		speedSlider.setOpaque(false);
-
-		lblAnimationSpeed = new JLabel("Animation Speed: ");
-		lblAnimationSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
-		lblAnimationSpeed.setForeground(Color.WHITE);
-
-		lblSpeed = new JLabel("" + animationSpeed / 10);
-		lblSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
-		lblSpeed.setForeground(Color.WHITE);
-
-		speedSlider.addChangeListener(arg0 -> {
-			animationSpeed = speedSlider.getValue() / 10;
-			panelMap.getAnimation().setSpeed(animationSpeed);
-			lblSpeed.setText(("" + animationSpeed));
-		});
-	}
-
 	public void updateSliderDetails() {
 		switch (panelSettings.getType()) {
 			case BEE:
+				noOfRunsSlider.setVisible(true);
+				noOfRunsSlider.setMinimum(0);
+				noOfRunsSlider.setMaximum(100);
+				noOfRunsSlider.setValue(26);
 				lblRunsOfType.setText("Experimental Runs:");
 				break;
 			case ANT:
-				lblRunsOfType.setText("Pheromone Runs:");
+				noOfRunsSlider.setVisible(true);
+				noOfRunsSlider.setMinimum(1);
+				noOfRunsSlider.setMaximum(4);
+				noOfRunsSlider.setValue(4);
+				lblRunsOfType.setText("No. of Ants:");
 				break;
 			case NEARESTNEIGHBOUR:
+				noOfRunsSlider.setVisible(false);
+				lblRunsOfType.setText("");
+				lblNoOfRuns.setText("");
 				break;
 			case TWOOPT:
+				noOfRunsSlider.setVisible(true);
+				noOfRunsSlider.setMinimum(0);
+				noOfRunsSlider.setMaximum(100);
+				noOfRunsSlider.setValue(50);
 				lblRunsOfType.setText("Swap Runs:");
 				break;
 		}
-	}
-
-	public JSlider getSpeedSlider() {
-		return speedSlider;
 	}
 
 	public JSlider getNoOfRunsSlider() {

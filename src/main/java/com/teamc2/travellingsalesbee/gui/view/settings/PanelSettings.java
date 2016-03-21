@@ -71,7 +71,6 @@ public class PanelSettings extends JPanel {
 	 */
 	public void setLayout() {
 		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, settingsSliders.getLblRunsOfType(), settingsSliders.getLblNoOfRuns(), settingsSliders.getNoOfRunsSlider(),
-				settingsSliders.getLblAnimationSpeed(), settingsSliders.getLblSpeed(), settingsSliders.getSpeedSlider(),
 				settingsButtons.getBtnRandomise(), settingsButtons.getBtnClear(),
 				settingsButtons.getBtnRun(), settingsButtons.getBtnPrev(), settingsButtons.getBtnPlay(), settingsButtons.getBtnNext());
 		setLayout(layoutSettings);
