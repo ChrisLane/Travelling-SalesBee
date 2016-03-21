@@ -86,10 +86,7 @@ public class Visualiser extends JFrame {
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamBold));
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamRegular));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch(FontFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 	}
