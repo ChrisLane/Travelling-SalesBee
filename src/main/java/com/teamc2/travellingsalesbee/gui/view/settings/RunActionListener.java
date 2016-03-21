@@ -30,22 +30,24 @@ public class RunActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		switch (panelSettings.getType()) {
-			case BEE:
-				runBeeAlgorithm();
-				settingsButtons.setDistance();
-				break;
-			case ANT:
-				runAntAlgorithm();
-				break;
-			case NEARESTNEIGHBOUR:
-				runNearestNeighbourAlgorithm();
-				break;
-			case TWOOPT:
-				runTwoOptAlgorithm();
-				break;
+		if (map.getNodes().size() > 0) {
+			switch (panelSettings.getType()) {
+				case BEE:
+					runBeeAlgorithm();
+					settingsButtons.setDistance();
+					break;
+				case ANT:
+					runAntAlgorithm();
+					break;
+				case NEARESTNEIGHBOUR:
+					runNearestNeighbourAlgorithm();
+					break;
+				case TWOOPT:
+					runTwoOptAlgorithm();
+					break;
+			}
+			panelMap.getPathComponent().setStepNum(0);
 		}
-		panelMap.getPathComponent().setStepNum(0);
 	}
 
 	private void runTwoOptAlgorithm() {
