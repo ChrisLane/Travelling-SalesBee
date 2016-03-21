@@ -83,7 +83,11 @@ public class Menu extends Page {
 		});
 
 		Button faqButton = createButton("FAQ");
-		faqButton.setOnAction(event -> System.out.println("<new window - faq>"));
+		faqButton.setOnAction(event -> {
+			Faq page = new Faq("Frequently Asked Questions", height, (int) Math.floor(width*1.5));
+			page.bootstrap();
+			page.show();
+		});
 
 		Button aboutButton = createButton("About");
 		aboutButton.setOnAction(event -> {
