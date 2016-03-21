@@ -356,13 +356,14 @@ public class SettingsButtons {
 	}
 
 	public void setSpeed() {
+		if(stepNum > panelMap.getPathComponent().getNaiveSteps().size()) {
+			//bee speed * naive.size
 
-		if (panelMap.getPathComponent().getNaiveSteps().size() > 0) {
+			double delaySpeed = panelMap.getPanelAnimalAnimation().getDelay().toMillis() * panelMap.getPathComponent().getNaiveSteps().size();
 
-			//Timer is 1500ms by default
-			//get size of path
-			//bee time is timer.delay / path.size
-			//set transition speed
+			setTimer((int) delaySpeed);
+
+		} else if (panelMap.getPathComponent().getNaiveSteps().size() > 0) {
 
 			double beeSpeed = (timer.getDelay() / 1000) / panelMap.getPathComponent().getNaiveSteps().size();
 			panelMap.getPanelAnimalAnimation().setDelay(beeSpeed);
