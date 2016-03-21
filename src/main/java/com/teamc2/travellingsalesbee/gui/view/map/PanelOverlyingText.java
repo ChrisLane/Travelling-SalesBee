@@ -14,21 +14,13 @@ import javafx.scene.text.TextAlignment;
 import java.net.URL;
 
 public class PanelOverlyingText extends JFXPanel {
-
-	private int width, height;
 	private Text text;
-	
 	private Pane root;
 	private Scene scene;
 
 	/**
-	 * @param width Width of the panel
-	 * @param height Height of the panel
 	 */
-	public PanelOverlyingText(int width, int height) {
-		this.width = width;
-		this.height = height;
-
+	public PanelOverlyingText() {
 		initScene();
 	}
 
@@ -42,7 +34,7 @@ public class PanelOverlyingText extends JFXPanel {
 			root.setId("textPane");
 
 			// Initialising the scene
-			scene = new Scene(root, width, height);
+			scene = new Scene(root);
 			scene.setFill(javafx.scene.paint.Color.rgb(0, 0, 0, 0)); //Set it to transparent
 
 			// Initialising the text, settings its font and initial text and giving it a drop shadow
