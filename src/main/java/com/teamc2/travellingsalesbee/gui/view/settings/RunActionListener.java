@@ -54,37 +54,53 @@ public class RunActionListener implements ActionListener {
 
 	private void runTwoOptAlgorithm() {
 		try {
+//			settingsButtons.setStepNum(0);
+//			map.setCostMatrix();
+//			TwoOptSwap tos = new TwoOptSwap(map, panelSettings.getNoOfRunsValue());
+//			StepController visualise = new StepController();
+//			tos.naiveRun();
+//			ArrayList<NaiveStep> steps = visualise.getNaiveSteps(tos.getPath());
+//			panelMap.getPathComponent().setTosObject(tos);
+//			panelMap.getPathComponent().setNaiveSteps(steps);
+//
+//			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
+//			ArrayList<Cell> origin = new ArrayList<>();
+//			origin.add(steps.get(0).getStart());
+//			pathOfPaths.add(origin);
+//
+//			//Do Two-Opt swap here as well as naive
+//
+//			for (NaiveStep naiveStep : steps) {
+//				ArrayList<Cell> singlePoint = new ArrayList<>();
+//					/* if the path is the 'inspected' path (YELLOW) then add that path to the Path of paths
+//						if((stepNum - panelMap.getPathComponent().getNaiveSteps().size()) % 3 == 1) {
+//							//singlePoint = inspected swapped path
+//						} else {
+//
+//					*/
+//
+//				singlePoint.add(naiveStep.getEnd());
+//
+//					/* } */
+//
+//				pathOfPaths.add(singlePoint);
+//			}
+
 			settingsButtons.setStepNum(0);
+			map = panelMap.getMap();
 			map.setCostMatrix();
 			TwoOptSwap tos = new TwoOptSwap(map, panelSettings.getNoOfRunsValue());
 			StepController visualise = new StepController();
 			tos.naiveRun();
-			ArrayList<NaiveStep> steps = visualise.getNaiveSteps(tos.getPath());
-			panelMap.getPathComponent().setTosObject(tos);
-			panelMap.getPathComponent().setNaiveSteps(steps);
+			ArrayList<NaiveStep> naiveSteps = visualise.getNaiveSteps(tos.getPath());
+			panelMap.getPathComponent().setNaiveSteps(naiveSteps);
 
 			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
 			ArrayList<Cell> origin = new ArrayList<>();
-			origin.add(steps.get(0).getStart());
+			origin.add(naiveSteps.get(0).getStart());
+
+			origin.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
 			pathOfPaths.add(origin);
-
-			//Do Two-Opt swap here as well as naive
-
-			for (NaiveStep naiveStep : steps) {
-				ArrayList<Cell> singlePoint = new ArrayList<>();
-					/* if the path is the 'inspected' path (YELLOW) then add that path to the Path of paths
-						if((stepNum - panelMap.getPathComponent().getNaiveSteps().size()) % 3 == 1) {
-							//singlePoint = inspected swapped path
-						} else {
-
-					*/
-
-				singlePoint.add(naiveStep.getEnd());
-
-					/* } */
-
-				pathOfPaths.add(singlePoint);
-			}
 
 			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Boat.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
