@@ -40,7 +40,7 @@ public class SettingsButtons {
 	public SettingsButtons(PanelSettings panelSettings, PanelMap panelMap) {
 		this.panelSettings = panelSettings;
 		this.panelMap = panelMap;
-		this.map = panelMap.getMap();
+		map = panelMap.getMap();
 
 		createRandomiseButton();
 		createClearButton();

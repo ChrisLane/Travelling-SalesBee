@@ -99,7 +99,7 @@ public class ComponentPath extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-		if (this.stepNum != -1) {
+		if (stepNum != -1) {
 			switch (type) {
 				case BEE:
 					paintBeePath(g2);
@@ -120,13 +120,13 @@ public class ComponentPath extends JComponent {
 	public int getMaxStepNum(){
 		switch (type) {
 			case BEE:
-				return ((this.naiveSteps.size() + this.experimentalSteps.size()));
+				return ((naiveSteps.size() + experimentalSteps.size()));
 			case ANT:
-				return (this.antSteps.size()-1);
+				return (antSteps.size()-1);
 			case NEARESTNEIGHBOUR:
-				return (this.naiveSteps.size()-1);
+				return (naiveSteps.size()-1);
 			case TWOOPT:
-				return (this.naiveSteps.size()-1);
+				return (naiveSteps.size()-1);
 		}
 		return 0;
 	}
