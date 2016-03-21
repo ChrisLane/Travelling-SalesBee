@@ -362,7 +362,7 @@ public class SettingsButtons {
 
 		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
 
-			double delaySpeed = 600;
+			double delaySpeed = 1200;
 
 			try {
 
