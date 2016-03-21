@@ -38,7 +38,7 @@ public class About extends Page {
 		BorderPane border = new BorderPane();
 		border.setId("about");
 
-		// add the buttons to the pane
+		// add the text to the pane
 		Text text = createTextBox();
 		border.setCenter(text);
 		BorderPane.setAlignment(text, Pos.TOP_CENTER);
