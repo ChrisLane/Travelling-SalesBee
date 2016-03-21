@@ -35,11 +35,11 @@ public class SettingsSliders {
 		noOfRunsSlider.setOpaque(false);
 		
 		lblRunsOfType = new JLabel("Experiment Runs: ");
-		lblRunsOfType.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblRunsOfType.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblRunsOfType.setForeground(Color.WHITE);
 
 		lblNoOfRuns = new JLabel("" + panelSettings.getNoOfRunsValue());
-		lblNoOfRuns.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblNoOfRuns.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblNoOfRuns.setForeground(Color.WHITE);
 
 		noOfRunsSlider.addChangeListener(arg0 -> {
@@ -57,11 +57,11 @@ public class SettingsSliders {
 		speedSlider.setOpaque(false);
 		
 		lblAnimationSpeed = new JLabel("Animation Speed: ");
-		lblAnimationSpeed.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblAnimationSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblAnimationSpeed.setForeground(Color.WHITE);
 		
 		lblSpeed = new JLabel("" + animationSpeed / 10);
-		lblSpeed.setFont(new Font("Amatic-Bold", Font.PLAIN, 25));
+		lblSpeed.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblSpeed.setForeground(Color.WHITE);
 
 		speedSlider.addChangeListener(arg0 -> {
