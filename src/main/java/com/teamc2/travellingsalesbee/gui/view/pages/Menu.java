@@ -76,7 +76,11 @@ public class Menu extends Page {
 		});
 
 		Button docButton = createButton("Documentation");
-		docButton.setOnAction(event -> System.out.println("<new window - documentation>"));
+		docButton.setOnAction(event -> {
+			Documentation page = new Documentation("Documentation", height, (int) Math.floor(width*1.5));
+			page.bootstrap();
+			page.show();
+		});
 
 		Button faqButton = createButton("FAQ");
 		faqButton.setOnAction(event -> System.out.println("<new window - faq>"));
