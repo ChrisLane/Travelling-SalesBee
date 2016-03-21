@@ -45,7 +45,10 @@ public class PanelToolbox extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		JLabel imgLabel = new JLabel(new ImageIcon(img));
+		JLabel imgLabel = null;
+		if (img != null) {
+			imgLabel = new JLabel(new ImageIcon(img));
+		}
 
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton,imgLabel);
 		setLayout(layoutToolbox);

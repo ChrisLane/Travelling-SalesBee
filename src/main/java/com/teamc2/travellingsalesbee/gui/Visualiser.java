@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui;
 
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
-import com.teamc2.travellingsalesbee.gui.view.*;
+import com.teamc2.travellingsalesbee.gui.view.GuiContainer;
 import com.teamc2.travellingsalesbee.gui.view.layouts.LayoutGui;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
@@ -52,8 +52,11 @@ public class Visualiser extends JFrame {
 			e.printStackTrace();
 		}
 
-		JLabel algorithmLabel = new JLabel(new ImageIcon(img));
-		algorithmLabel.setName("algorithmLabel"); //Set a name for the label so you can add it to the panel later on
+		JLabel algorithmLabel = null;
+		if (img != null) {
+			algorithmLabel = new JLabel(new ImageIcon(img));
+			algorithmLabel.setName("algorithmLabel"); //Set a name for the label so you can add it to the panel later on
+		}
 
 		//Add elements to the container
 		container.add(algorithmLabel);
@@ -61,7 +64,7 @@ public class Visualiser extends JFrame {
 		container.add(panelSettings);
 		container.add(panelToolbox);
 		container.add(componentTabs);
-		
+
 
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
 		container.setBackground(new Color(71, 35, 35));
@@ -70,7 +73,7 @@ public class Visualiser extends JFrame {
 
 		LayoutGui layoutGui = new LayoutGui(container);
 		container.setLayout(layoutGui);
-		
+
 		setFont();
 	}
 
@@ -83,12 +86,12 @@ public class Visualiser extends JFrame {
 			InputStream amaticStreamRegular = getClass().getResourceAsStream("/assets/fonts/AmaticSC-Regular.ttf");
 
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamBold));
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamRegular));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamBold));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, amaticStreamRegular));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
