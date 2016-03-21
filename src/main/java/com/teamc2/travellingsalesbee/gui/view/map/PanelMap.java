@@ -127,7 +127,7 @@ public class PanelMap extends JPanel {
 					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
 					break;
 				case TWOOPT:
-					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Parchment.jpg"));
+					img = ImageIO.read(getClass().getResource("/assets/backgrounds/Sea.jpg"));
 					break;
 			}
 
