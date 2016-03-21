@@ -278,7 +278,7 @@ public class SettingsButtons {
 	}
 
 	/**
-	 * Sets the text for the textbox related to the Bee
+	 * Sets the text for the text box related to the Bee
 	 *
 	 * @param nn Nearest neighbor
 	 */
@@ -306,7 +306,7 @@ public class SettingsButtons {
 	}
 
 	/**
-	 * Sets the text for the textbox related to the Ant
+	 * Sets the text for the text box related to the Ant
 	 * //Text is set at each step
 	 */
 	public void setAntText() {
@@ -321,7 +321,7 @@ public class SettingsButtons {
 	}
 
 	/**
-	 * Sets the text for the textbox related to the NN or for the naive Section of BEE algorithm
+	 * Sets the text for the text box related to the NN or for the naive Section of BEE algorithm
 	 */
 	public void setNNText() {
 		ArrayList<NaiveStep> nearestNeighbourSteps = panelMap.getPathComponent().getNaiveSteps();
@@ -338,7 +338,7 @@ public class SettingsButtons {
 	}
 
 	/**
-	 * Sets the text for the textbox related to the Two-Opt
+	 * Sets the text for the text box related to the Two-Opt
 	 */
 	public void setTOText() {
 

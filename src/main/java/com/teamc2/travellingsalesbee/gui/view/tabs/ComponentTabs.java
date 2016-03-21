@@ -48,7 +48,7 @@ public class ComponentTabs extends JTabbedPane {
 
 		addTab(getHtmlForSelectedTitle(bee, "SalesBeeSelected.png"), null);
 		addTab(getHtmlForTitle(ant, "Ant.png"), null);
-		addTab(getHtmlForTitle(nn, "Mailvan.png"), null);
+		addTab(getHtmlForTitle(nn, "MailVan.png"), null);
 		addTab(getHtmlForTitle(tos, "Boat.png"), null);
 
 		setTabPlacement(JTabbedPane.LEFT);
@@ -90,10 +90,10 @@ public class ComponentTabs extends JTabbedPane {
 				case 2:
 					type = AlgorithmType.NEARESTNEIGHBOUR;
 					text = nn;
-					imgName = "MailvanSelected.png";
+					imgName = "MailVanSelected.png";
 					panelMap.getPanelOverlyingText().setText("NEAREST NEIGHBOUR ALGORITHM\n"
-							+ "At each house the mailvan chooses shortest edge from current position to an unvisited house\n"
-							+ "until there are no unvisted houses so the edge to starting mail office is chosen");
+							+ "At each house the mail van chooses shortest edge from current position to an unvisited house\n"
+							+ "until there are no unvisited houses so the edge to starting mail office is chosen");
 					break;
 				case 3:
 					type = AlgorithmType.TWOOPT;

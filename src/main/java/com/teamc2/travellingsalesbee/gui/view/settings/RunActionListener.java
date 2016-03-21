@@ -115,7 +115,7 @@ public class RunActionListener implements ActionListener {
 
 				/*----------------------------------------------*/
 			// panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
-			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Mailvan.png");
+			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/MailVan.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 		} catch (NullPointerException e) {
 				/*----------------------------------------------*/
