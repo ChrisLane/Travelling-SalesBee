@@ -91,29 +91,6 @@ public class PanelToolbox extends JPanel {
 	}
 
 	/**
-	 * We'll use PanelSettings method later on, currently here to swap button images
-	 * @param btn     Button to add image icon to
-	 * @param iconURL Image URL
-	 */
-	public void setBtnIcon(JButton btn, String iconURL) {
-
-		Image img = null;
-		btn.setBorderPainted(false);
-		btn.setContentAreaFilled(false);
-		btn.setFocusPainted(false);
-		btn.setOpaque(false);
-
-		try {
-			img = ImageIO.read(getClass().getResource(iconURL));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		btn.setIcon(new ImageIcon(img));
-
-	}
-
-	/**
 	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox
 	 *             draggable cells
 	 */
