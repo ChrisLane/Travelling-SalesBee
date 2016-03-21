@@ -1,7 +1,5 @@
 package com.teamc2.travellingsalesbee.gui.view.layouts;
 
-import com.teamc2.travellingsalesbee.gui.view.ComponentTextArea;
-
 import javax.swing.*;
 import java.awt.*;
 

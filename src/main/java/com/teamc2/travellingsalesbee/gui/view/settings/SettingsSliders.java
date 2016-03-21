@@ -2,10 +2,6 @@ package com.teamc2.travellingsalesbee.gui.view.settings;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.JLabel;
 import javax.swing.JSlider;

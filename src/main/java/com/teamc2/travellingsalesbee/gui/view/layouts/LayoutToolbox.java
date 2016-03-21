@@ -2,7 +2,6 @@ package com.teamc2.travellingsalesbee.gui.view.layouts;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class LayoutToolbox extends GroupLayout {
 	/**
