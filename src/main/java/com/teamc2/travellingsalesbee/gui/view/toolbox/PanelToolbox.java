@@ -36,19 +36,22 @@ public class PanelToolbox extends JPanel {
 			TravellingSalesBee.mainMenu.show();
 		}));
 
-
+		JLabel imgDrag = null;
+		JLabel imgKey = null;
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
+			if (img != null) imgDrag = new JLabel(new ImageIcon(img));
+			System.out.println(getClass().getResource("/assets/icons/Key.png"));
+			img = ImageIO.read(getClass().getResource("/assets/icons/Key.png"));
+			if (img != null) imgKey = new JLabel(new ImageIcon(img));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		JLabel imgLabel = null;
-		if (img != null) {
-			imgLabel = new JLabel(new ImageIcon(img));
-		}
+		
+		
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, imgLabel);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, imgDrag, imgKey);
 		setLayout(layoutToolbox);
 
 		addTools();
