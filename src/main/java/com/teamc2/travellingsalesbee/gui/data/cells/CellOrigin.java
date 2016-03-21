@@ -9,14 +9,14 @@ import java.io.IOException;
 public class CellOrigin extends Cell {
 
 	/**
-	 * Create a new hive cell
+	 * Create a new origin cell
 	 */
 	public CellOrigin() {
 		//
 	}
 
 	/**
-	 * Create a new hive cell
+	 * Create a new origin cell
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell

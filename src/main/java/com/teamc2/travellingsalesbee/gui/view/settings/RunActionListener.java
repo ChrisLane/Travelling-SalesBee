@@ -64,9 +64,9 @@ public class RunActionListener implements ActionListener {
 			panelMap.getPathComponent().setNaiveSteps(steps);
 
 			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
-			ArrayList<Cell> hive = new ArrayList<>();
-			hive.add(steps.get(0).getStart());
-			pathOfPaths.add(hive);
+			ArrayList<Cell> origin = new ArrayList<>();
+			origin.add(steps.get(0).getStart());
+			pathOfPaths.add(origin);
 
 			//Do Two-Opt swap here as well as naive
 
@@ -107,11 +107,11 @@ public class RunActionListener implements ActionListener {
 			panelMap.getPathComponent().setNaiveSteps(naiveSteps);
 
 			ArrayList<ArrayList<Cell>> pathOfPaths = new ArrayList<>();
-			ArrayList<Cell> hive = new ArrayList<>();
-			hive.add(naiveSteps.get(0).getStart());
+			ArrayList<Cell> origin = new ArrayList<>();
+			origin.add(naiveSteps.get(0).getStart());
 
-			hive.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
-			pathOfPaths.add(hive);
+			origin.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
+			pathOfPaths.add(origin);
 
 				/*----------------------------------------------*/
 			// panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());

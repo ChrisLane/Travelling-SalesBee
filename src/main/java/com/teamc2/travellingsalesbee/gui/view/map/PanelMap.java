@@ -196,9 +196,9 @@ public class PanelMap extends JPanel {
 	}
 
 	/**
-	 * Set the hive for the panelMap
+	 * Set the origin for the panelMap
 	 */
-	public void deleteOldHive() {
+	public void deleteOldOrigin() {
 		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				if (c.isEnabled() && ((CellDraggable) c).getType().equals(CellType.ORIGIN)) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class NearestNeighbour {
 
 	protected final Map map;
-	protected final Cell hive;
+	protected final Cell origin;
 	protected ArrayList<Cell> path = new ArrayList<>();
 	protected double cost = Double.MAX_VALUE;
 
@@ -20,7 +20,7 @@ public class NearestNeighbour {
 	 */
 	public NearestNeighbour(Map map) {
 		this.map = map;
-		hive = map.getHive();
+		origin = map.getOrigin();
 	}
 
 	/**
@@ -28,14 +28,14 @@ public class NearestNeighbour {
 	 * <p>
 	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
 	 * the nearest non-visited neighbour until every node has been visited, following
-	 * that it then returns to the hive
+	 * that it then returns to the origin
 	 */
 	public void naiveRun() {
-		if (!(hive == null)) {
+		if (!(origin == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellNode> nodes = map.getNodes();
 
-			newPath.add(hive);
+			newPath.add(origin);
 
 			// Loop over nodes missing from path
 			Cell currentCell;
@@ -59,7 +59,7 @@ public class NearestNeighbour {
 				newPath.add(closest);
 			}
 
-			newPath.add(hive);
+			newPath.add(origin);
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);

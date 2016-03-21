@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Map extends JPanel {
 
 	private ArrayList<Cell> cells; //Will store our ElementCells
-	private CellOrigin hive;
+	private CellOrigin origin;
 	private CostMatrix costMatrix;
 
 	/**
@@ -71,9 +71,9 @@ public class Map extends JPanel {
 			cells.add(new CellEmpty(x,y));
 			break;
 		case ORIGIN:
-			CellOrigin hive = new CellOrigin(x,y);
-			cells.add(hive);
-			this.hive = hive;
+			CellOrigin origin = new CellOrigin(x,y);
+			cells.add(origin);
+			this.origin = origin;
 			break;
 		case NODE:
 			cells.add(new CellNode(x,y));
@@ -99,12 +99,12 @@ public class Map extends JPanel {
 	}
 
 	/**
-	 * Return the hive for the map
+	 * Return the origin for the map
 	 *
-	 * @return Map's hive cell
+	 * @return Map's origin cell
 	 */
-	public CellOrigin getHive() {
-		return hive;
+	public CellOrigin getOrigin() {
+		return origin;
 	}
 
 	public void setCostMatrix() {

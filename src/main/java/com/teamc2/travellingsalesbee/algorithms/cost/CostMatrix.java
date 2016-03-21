@@ -15,7 +15,7 @@ public class CostMatrix implements Serializable {
 	public CostMatrix(Map map) {
 		costMatrix = new ArrayList<>();
 		cells1 = new ArrayList<>();
-		cells1.add(map.getHive());
+		cells1.add(map.getOrigin());
 		cells1.addAll(map.getNodes());
 		cells2 = cells1;
 		putAll();

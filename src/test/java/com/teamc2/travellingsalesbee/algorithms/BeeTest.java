@@ -30,7 +30,7 @@ public class BeeTest {
 		CellNode flower1 = flowers.get(0);
 		CellNode flower2 = flowers.get(1);
 		CellNode flower3 = flowers.get(2);
-		CellOrigin hive = map.getHive();
+		CellOrigin hive = map.getOrigin();
 
 		double path1Cost = 14.32455532033676;
 		ArrayList<Cell> path1 = new ArrayList<>();
@@ -72,18 +72,18 @@ public class BeeTest {
 	 */
 	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost", "testCalculatePathCost"})
 	public void testNaiveRun() throws Exception {
-		// TODO: Change this to include the hive
+		// TODO: Change this to include the origin
 		// Set the path to empty
 		bee.setPath(new ArrayList<>(), 0);
 
 		// Generate a new path
 		bee.naiveRun();
 
-		// Sort the path and remove hive
+		// Sort the path and remove origin
 		ArrayList<Cell> path = bee.getPath();
-		// Remove start (hive)
+		// Remove start (origin)
 		path.remove(0);
-		// Remove finish (hive)
+		// Remove finish (origin)
 		path.remove(path.size() - 1);
 		path.sort(new CellComparator());
 

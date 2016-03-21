@@ -21,11 +21,11 @@ public class Ant extends NearestNeighbour {
 	}
 
 	public void pheromoneRun() {
-		if (!(hive == null)) {
+		if (!(origin == null)) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellNode> nodes = map.getNodes();
 
-			newPath.add(hive);
+			newPath.add(origin);
 
 			// Loop over nodes missing from path
 			Cell currentCell;
@@ -48,8 +48,8 @@ public class Ant extends NearestNeighbour {
 				plantPheromone(currentCell, next);
 			}
 			
-			newPath.add(hive);
-			plantPheromone(next, hive);
+			newPath.add(origin);
+			plantPheromone(next, origin);
 
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);

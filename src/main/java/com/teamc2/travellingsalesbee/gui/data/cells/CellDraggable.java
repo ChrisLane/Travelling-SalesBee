@@ -105,7 +105,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			//setCursor(defaultCursor);
 			if (type.equals(CellType.ORIGIN)) {
-				panelMap.deleteOldHive();
+				panelMap.deleteOldOrigin();
 			}
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType,true);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
