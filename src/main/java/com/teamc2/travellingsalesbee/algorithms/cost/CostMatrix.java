@@ -75,7 +75,7 @@ public class CostMatrix implements Serializable {
 		}
 		return maxPheromone;
 	}
-	
+
 	public double getMeanPheromone() {
 		double totalPheromone = 0;
 		int i = 0;
@@ -83,7 +83,7 @@ public class CostMatrix implements Serializable {
 			i++;
 			totalPheromone += entry.getPheromone();
 		}
-		return totalPheromone/i;
+		return totalPheromone / i;
 	}
 
 	public CostEntry getEntry(Cell cell1, Cell cell2) {
@@ -94,7 +94,7 @@ public class CostMatrix implements Serializable {
 		}
 		return null;
 	}
-	
+
 	public Cell getCell(double x, double y) {
 		for (Cell c : cells1) {
 			if (c.x == x && c.y == y) {
@@ -124,16 +124,16 @@ public class CostMatrix implements Serializable {
 	}
 
 	public void combine(CostMatrix updatedCloneMatrix) {
-		ArrayList<CostEntry> cloneList = updatedCloneMatrix.getMatrix(); 
-		for (int i=0; i<costMatrix.size(); i++) {
-			CostEntry entry  = costMatrix.get(i);
+		ArrayList<CostEntry> cloneList = updatedCloneMatrix.getMatrix();
+		for (int i = 0; i < costMatrix.size(); i++) {
+			CostEntry entry = costMatrix.get(i);
 			CostEntry entry2 = cloneList.get(i);
-			entry.setPheromone((entry.getPheromone() + entry2.getPheromone())/2);
+			entry.setPheromone((entry.getPheromone() + entry2.getPheromone()) / 2);
 		}
 	}
 
 	public ArrayList<CostEntry> getMatrix() {
 		return costMatrix;
 	}
-	
+
 }

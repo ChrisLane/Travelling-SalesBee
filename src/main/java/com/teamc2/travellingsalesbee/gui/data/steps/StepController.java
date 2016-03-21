@@ -1,10 +1,10 @@
 package com.teamc2.travellingsalesbee.gui.data.steps;
 
-import java.util.ArrayList;
-
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+
+import java.util.ArrayList;
 
 public class StepController {
 
@@ -20,8 +20,8 @@ public class StepController {
 
 			String text = "";
 			text += "Node " + i + " chosen because it has the smallest distance of " + start.distance(end) + "m";
-			
-			
+
+
 			for (int j = i; j < naiveRun.size() - 1; j++) {
 				if (j != (i)) {
 					ResultingNaiveComparisons.add(naiveRun.get(j));
@@ -29,7 +29,7 @@ public class StepController {
 				text += "Node " + j + " not chosen because it has the smallest distance of " + start.distance(end) + "m";
 				naiveComparisons.add(naiveRun.get(j));
 			}
-			
+
 			NaiveStep step = new NaiveStep(start, naiveComparisons, end, text);
 			NaiveStep ResultingStep = new NaiveStep(start, ResultingNaiveComparisons, end, text);
 			listOfSteps.add(step);
@@ -68,12 +68,12 @@ public class StepController {
 
 	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns, ArrayList<CostMatrix> setOfMatrices, CostMatrix initialMatrix) {
 		ArrayList<AntStep> antSteps = new ArrayList<>();
-		
+
 		//Add an initial step so route can be printed with equal pheromones
-		AntStep initialStep = new AntStep(setOfRuns.get(0),initialMatrix);
+		AntStep initialStep = new AntStep(setOfRuns.get(0), initialMatrix);
 		antSteps.add(initialStep);
-		
-		for (int i=0;i<setOfRuns.size();i++){
+
+		for (int i = 0; i < setOfRuns.size(); i++) {
 			AntStep step = new AntStep(setOfRuns.get(i), setOfMatrices.get(i));
 			antSteps.add(step);
 		}

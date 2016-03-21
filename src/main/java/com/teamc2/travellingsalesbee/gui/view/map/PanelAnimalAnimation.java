@@ -234,8 +234,8 @@ public class PanelAnimalAnimation extends JFXPanel {
 
 	/**
 	 * @param path Path of type: ArrayList<ArrayList<Cell>>
-	 * 			   Gets the first position from the first path in the list and sets the bee to that position
-	 * 			   If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 *             Gets the first position from the first path in the list and sets the bee to that position
+	 *             If the path needs to be stepped through the entire path, set the singlePath boolean to true
 	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		pathOfPaths = path;

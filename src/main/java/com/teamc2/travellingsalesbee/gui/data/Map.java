@@ -57,6 +57,10 @@ public class Map extends JPanel {
 
 	//SET METHODS
 
+	public void setCostMatrix(CostMatrix costMatrix) {
+		this.costMatrix = costMatrix;
+	}
+
 	/**
 	 * Set the type of a cell at position (x, y)
 	 *
@@ -65,19 +69,19 @@ public class Map extends JPanel {
 	 * @param type Type of cell
 	 */
 	public void setCell(int x, int y, CellType type) {
-		cells.remove(getCell(x,y));
+		cells.remove(getCell(x, y));
 		switch (type) {
-		case EMPTY:
-			cells.add(new CellEmpty(x,y));
-			break;
-		case ORIGIN:
-			CellOrigin origin = new CellOrigin(x,y);
-			cells.add(origin);
-			this.origin = origin;
-			break;
-		case NODE:
-			cells.add(new CellNode(x,y));
-			break;
+			case EMPTY:
+				cells.add(new CellEmpty(x, y));
+				break;
+			case ORIGIN:
+				CellOrigin origin = new CellOrigin(x, y);
+				cells.add(origin);
+				this.origin = origin;
+				break;
+			case NODE:
+				cells.add(new CellNode(x, y));
+				break;
 		}
 	}
 
@@ -109,9 +113,5 @@ public class Map extends JPanel {
 
 	public void setCostMatrix() {
 		costMatrix = new CostMatrix(this);
-	}
-	
-	public void setCostMatrix(CostMatrix costMatrix) {
-		this.costMatrix = costMatrix; 
 	}
 }

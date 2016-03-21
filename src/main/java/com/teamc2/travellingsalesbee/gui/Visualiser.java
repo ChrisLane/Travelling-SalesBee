@@ -78,6 +78,18 @@ public class Visualiser extends JFrame {
 	}
 
 	/**
+	 * Launch the application.
+	 *
+	 * @param args The runtime arguments for the application.
+	 */
+	public static void main(String[] args) {
+		Visualiser frame = new Visualiser();
+		Visualiser.mainVisualiser = frame;
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+
+	/**
 	 * Loads in the font: Amatic (Bold/Regular)
 	 */
 	private void addFont() {
@@ -91,17 +103,5 @@ public class Visualiser extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Launch the application.
-	 *
-	 * @param args The runtime arguments for the application.
-	 */
-	public static void main(String[] args) {
-		Visualiser frame = new Visualiser();
-		Visualiser.mainVisualiser = frame;
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setVisible(true);
 	}
 }

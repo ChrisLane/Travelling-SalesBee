@@ -1,7 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view.toolbox;
 
-import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
+import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
@@ -94,7 +94,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	 */
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dGEvent) {
-		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap, algorithmType,true), this);
+		source.startDrag(dGEvent, DragSource.DefaultMoveDrop, new CellDraggable(width, height, type, panelMap, algorithmType, true), this);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			if (type.equals(CellType.ORIGIN)) {
 				panelMap.deleteOldOrigin();
 			}
-			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType,true);
+			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType, true);
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
 
 			droppedBtn.addChangeListener(evt -> {
@@ -122,7 +122,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 
 			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
 			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height);
-			panelMap.cellFull(x,y);
+			panelMap.cellFull(x, y);
 
 			// Add the cell to the map
 			map.setCell(x, y, type);
@@ -130,21 +130,21 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			// Remove the previous location of the cell (if there is one) from the map
 			if (onMap) map.clearCell(prevX, prevY);
 			droppedBtn.onMap();
-			droppedBtn.setPrevs(x,y);
-			
+			droppedBtn.setPrevs(x, y);
+
 			//Only add dropped button if its in panel map and below the overlying text area
-			if (y >= height){
+			if (y >= height) {
 				// Create a button instance at x, y position of the mouse relative to the panelMap with the width and height set above
 				droppedBtn.setBounds(x, y, width, height);
 				panelMap.add(droppedBtn);
 				panelMap.setComponentZOrder(droppedBtn, 1);
 			}
-			
+
 			panelMap.remove(this);
 			panelMap.repaint();
 		} catch (NullPointerException e) {
 			//Only delete and disable a draggable cell when its come from map and not from toolbox.
-			if(fromMap){
+			if (fromMap) {
 				panelMap.clear();
 				panelMap.getPathComponent().setStepNum(-1);
 				panelMap.getPathComponent().repaint();

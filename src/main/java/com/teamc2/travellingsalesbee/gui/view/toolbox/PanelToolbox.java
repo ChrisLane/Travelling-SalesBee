@@ -36,8 +36,7 @@ public class PanelToolbox extends JPanel {
 			TravellingSalesBee.mainMenu.show();
 		}));
 
-		
-		
+
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
@@ -49,7 +48,7 @@ public class PanelToolbox extends JPanel {
 			imgLabel = new JLabel(new ImageIcon(img));
 		}
 
-		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton,imgLabel);
+		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, imgLabel);
 		setLayout(layoutToolbox);
 
 		addTools();
@@ -74,7 +73,7 @@ public class PanelToolbox extends JPanel {
 		//Add buttons to the toolbox
 		originToolCell.setBounds(-20, 160, 100, 100);
 		add(originToolCell);
-		
+
 		JLabel lblOrigin = new JLabel("Origin");
 		lblOrigin.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblOrigin.setForeground(Color.WHITE);
@@ -83,7 +82,7 @@ public class PanelToolbox extends JPanel {
 
 		nodeToolCell.setBounds(-20, 215, 100, 100);
 		add(nodeToolCell);
-		
+
 		JLabel lblNode = new JLabel("Node");
 		lblNode.setFont(new Font("Amatic Bold", Font.PLAIN, 25));
 		lblNode.setForeground(Color.WHITE);

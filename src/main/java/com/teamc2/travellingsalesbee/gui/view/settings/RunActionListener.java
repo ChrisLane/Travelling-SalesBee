@@ -5,14 +5,10 @@ import com.teamc2.travellingsalesbee.algorithms.Bee;
 import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
-import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.ExperimentalStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
+import com.teamc2.travellingsalesbee.gui.data.steps.*;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
-import com.teamc2.travellingsalesbee.gui.data.steps.StepController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

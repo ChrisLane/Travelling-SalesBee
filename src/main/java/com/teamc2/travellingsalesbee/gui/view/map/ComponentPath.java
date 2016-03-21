@@ -1,28 +1,17 @@
 package com.teamc2.travellingsalesbee.gui.view.map;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Toolkit;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.algorithms.TwoOptSwap;
 import com.teamc2.travellingsalesbee.algorithms.cost.Comparison;
 import com.teamc2.travellingsalesbee.algorithms.cost.CostMatrix;
-import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.ExperimentalStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
-import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
-import com.teamc2.travellingsalesbee.gui.data.steps.StepController;
+import com.teamc2.travellingsalesbee.gui.data.steps.*;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 public class ComponentPath extends JComponent {
 
@@ -43,13 +32,17 @@ public class ComponentPath extends JComponent {
 		this.type = type;
 	}
 
+	public ArrayList<AntStep> getAntSteps() {
+		return antSteps;
+	}
+
 	public void setAntSteps(ArrayList<AntStep> antSteps) {
 		this.antSteps = antSteps;
 		repaint();
 	}
 
-	public ArrayList<AntStep> getAntSteps() {
-		return antSteps;
+	public ArrayList<NaiveStep> getNaiveSteps() {
+		return naiveSteps;
 	}
 
 	//Naive visualisation
@@ -58,17 +51,13 @@ public class ComponentPath extends JComponent {
 		repaint();
 	}
 
-	public ArrayList<NaiveStep> getNaiveSteps() {
-		return naiveSteps;
+	public ArrayList<ExperimentalStep> getExperimentalSteps() {
+		return experimentalSteps;
 	}
 
 	public void setExperimentalSteps(ArrayList<ExperimentalStep> experimentalSteps) {
 		this.experimentalSteps = experimentalSteps;
 		repaint();
-	}
-
-	public ArrayList<ExperimentalStep> getExperimentalSteps() {
-		return experimentalSteps;
 	}
 
 	public void setStepNum(int stepNum) {
@@ -115,17 +104,17 @@ public class ComponentPath extends JComponent {
 			}
 		}
 	}
-	
-	public int getMaxStepNum(){
+
+	public int getMaxStepNum() {
 		switch (type) {
 			case BEE:
 				return ((naiveSteps.size() + experimentalSteps.size()));
 			case ANT:
-				return (antSteps.size()-1);
+				return (antSteps.size() - 1);
 			case NEARESTNEIGHBOUR:
-				return (naiveSteps.size()-1);
+				return (naiveSteps.size() - 1);
 			case TWOOPT:
-				return (naiveSteps.size()-1);
+				return (naiveSteps.size() - 1);
 		}
 		return 0;
 	}
@@ -207,7 +196,7 @@ public class ComponentPath extends JComponent {
 								String Distance = Integer.toString((int) Math.round((step.getStart().distance(anAvailable)) * 100) / 100);
 								if (!(available.contains(step.getStart()))) {
 									printDistance(Distance, anAvailable, step.getEnd() == anAvailable);
-								} else if(anAvailable != step.getStart()) {
+								} else if (anAvailable != step.getStart()) {
 									printDistance(Distance, anAvailable, false);
 
 								}
@@ -357,7 +346,7 @@ public class ComponentPath extends JComponent {
 					Cell cell2 = matrix.getCell(path.get(j).getX(), path.get(j).getY());
 					Color lineColor = new Color(255, 255, 0, 0);
 					if (!(matrix.getPheromone(cell1, cell2) < threshold)) {
-						lineColor = new Color(255, 255, 0, (int) (Math.min(255,10+
+						lineColor = new Color(255, 255, 0, (int) (Math.min(255, 10 +
 								((255 / matrix.getMaxPheromone()) * matrix.getPheromone(cell1, cell2)))));
 					}
 					g2.setPaint(lineColor);
@@ -371,7 +360,7 @@ public class ComponentPath extends JComponent {
 	//Code to print the distance boxes on top of nodes
 	private void printDistance(String text, Cell end, Boolean isChosenCell) {
 		JLabel distance = new JLabel(text, SwingConstants.CENTER);
-		Color translucentBg = new Color(1,1,1, 0.5f);
+		Color translucentBg = new Color(1, 1, 1, 0.5f);
 		distance.setBackground(translucentBg);
 		distance.setOpaque(true);
 		LineBorder border = new LineBorder(translucentBg, 2, true);

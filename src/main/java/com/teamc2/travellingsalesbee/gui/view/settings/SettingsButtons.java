@@ -1,13 +1,13 @@
 package com.teamc2.travellingsalesbee.gui.view.settings;
 
 import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
+import com.teamc2.travellingsalesbee.gui.data.Map;
+import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
 import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
-import com.teamc2.travellingsalesbee.gui.data.Map;
-import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
-import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
+import com.teamc2.travellingsalesbee.gui.view.toolbox.CellDraggable;
 import javafx.application.Platform;
 
 import javax.imageio.ImageIO;
@@ -164,11 +164,11 @@ public class SettingsButtons {
 			panelMap.cellFull(x, y);
 
 			if (nodesPlaced < 11) {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType(),true);
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType(), true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
 				panelMap.getMap().setCell(x, y, CellType.NODE);
 			} else {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getType(),true);
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getType(), true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
 				panelMap.getMap().setCell(x, y, CellType.ORIGIN);
 			}
@@ -263,8 +263,8 @@ public class SettingsButtons {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNum(stepNum);
 		int maxStepNum = panelMap.getPathComponent().getMaxStepNum();
-		
-        setSpeed();
+
+		setSpeed();
 
 		btnPrev.setEnabled((stepNum > 0));
 		btnPlay.setEnabled((stepNum != -1));
@@ -347,38 +347,38 @@ public class SettingsButtons {
 		this.distance = distance;
 	}
 
-    public Timer getTimer() {
-        return timer;
-    }
+	public Timer getTimer() {
+		return timer;
+	}
 
-    public void setTimer(int delay) {
-        timer.setDelay(delay);
-    }
+	public void setTimer(int delay) {
+		timer.setDelay(delay);
+	}
 
-    public void setSpeed() {
+	public void setSpeed() {
 
-        if(panelMap.getPathComponent().getNaiveSteps().size() > 0) {
+		if (panelMap.getPathComponent().getNaiveSteps().size() > 0) {
 
-            //Timer is 1500ms by default
-            //get size of path
-            //bee time is timer.delay / path.size
-            //set transition speed
+			//Timer is 1500ms by default
+			//get size of path
+			//bee time is timer.delay / path.size
+			//set transition speed
 
-            double beeSpeed = (timer.getDelay()/1000) / panelMap.getPathComponent().getNaiveSteps().size();
-            panelMap.getPanelAnimalAnimation().setDelay(beeSpeed);
+			double beeSpeed = (timer.getDelay() / 1000) / panelMap.getPathComponent().getNaiveSteps().size();
+			panelMap.getPanelAnimalAnimation().setDelay(beeSpeed);
 
-            //For naive steps
-            if (stepNum % 2 == 0) {
-                setTimer(1500);
-            } else {
-                setTimer(50);
-            }
+			//For naive steps
+			if (stepNum % 2 == 0) {
+				setTimer(1500);
+			} else {
+				setTimer(50);
+			}
 
             /*  To do:
-            *
+			*
             *   Implement timings for Experimental
             *
             */
-        }
-    }
+		}
+	}
 }

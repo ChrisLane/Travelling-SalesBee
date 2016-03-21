@@ -1,18 +1,13 @@
 package com.teamc2.travellingsalesbee.gui.view.tabs;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
-
-import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
-
 import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
 import com.teamc2.travellingsalesbee.gui.view.settings.PanelSettings;
 import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
+
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import java.awt.*;
 
 public class ComponentTabs extends JTabbedPane {
 	public final static String name = "ComponentTabs";
@@ -55,7 +50,7 @@ public class ComponentTabs extends JTabbedPane {
 		panelMap.setAlgorithmType(AlgorithmType.BEE);
 		panelToolbox.setAlgorithmType(AlgorithmType.BEE);
 		panelSettings.setAlgorithmType(AlgorithmType.BEE);
-		
+
 		panelMap.getPanelOverlyingText().setText("BEE ALGORITHM\n"
 				+ "The bee first conducts nearest neighbour on flowers and then looks to improve this route by switching two nodes in it's best route");
 
