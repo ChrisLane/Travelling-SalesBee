@@ -112,7 +112,7 @@ public class ComponentPath extends JComponent {
 			case ANT:
 				return (antSteps.size() - 1);
 			case NEARESTNEIGHBOUR:
-				return (naiveSteps.size() - 1);
+				return naiveSteps.size();
 			case TWOOPT:
 				return (naiveSteps.size() - 1);
 		}
@@ -174,7 +174,7 @@ public class ComponentPath extends JComponent {
 	}
 
 	private void paintNearestNeighbourPath(Graphics2D g2) {
-		if (naiveSteps.size() > 0 && stepNum < naiveSteps.size()) {
+		if (naiveSteps.size() > 0 && stepNum <= naiveSteps.size()) {
 			int x1, x2, y1, y2;
 
 			for (int i = 0; i < stepNum + 1; i++) {
