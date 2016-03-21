@@ -40,11 +40,7 @@ public class ComponentTabs extends JTabbedPane {
 		UIManager.getDefaults().put("TabbedPane.highlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.selectHighlight", backgroundColor);
 		UIManager.getDefaults().put("TabbedPane.borderHightlightColor", backgroundColor);
-		
-
-		Font amaticFont = new Font("Amatic Bold", Font.PLAIN, 10);
-		amaticFont = amaticFont.deriveFont(10f);
-		UIManager.getDefaults().put("TabbedPane.font", new FontUIResource(amaticFont));
+		UIManager.getDefaults().put("TabbedPane.font", new Font("Amatic Bold", Font.PLAIN, 25));
 
 		addTab(getHtmlForSelectedTitle(bee, "SalesBeeSelected.png"), null);
 		addTab(getHtmlForTitle(ant, "Ant.png"), null);
