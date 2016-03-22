@@ -388,7 +388,7 @@ public class ComponentPath extends JComponent {
 	}
 	
 	public int getStepNumber(){
-		return this.stepNum;
+		return stepNum;
 	}
 
 }
