@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -67,7 +68,8 @@ public class About extends Page {
 		try {
 			URL filePath = getClass().getClassLoader().getResource("assets/text/about.txt");
 			if (filePath != null) {
-				byte[] byteContent = Files.readAllBytes(Paths.get(filePath.getFile()));
+				File file = new File(filePath.getFile());
+				byte[] byteContent = Files.readAllBytes(Paths.get(file.getCanonicalPath()));
 				textContent = new String(byteContent);
 			} else {
 				throw new IOException();
