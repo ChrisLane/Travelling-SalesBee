@@ -1,10 +1,7 @@
 package com.teamc2.travellingsalesbee.gui.view.pages;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 
 /**
  * A class for generating and viewing the documentation page.
