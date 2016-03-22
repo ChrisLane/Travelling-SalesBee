@@ -73,7 +73,7 @@ public class Faq extends Page {
 		// obtain the text content
 		String textContent;
 		try {
-			URL filePath = getClass().getClassLoader().getResource("pages/faq.txt");
+			URL filePath = getClass().getClassLoader().getResource("assets/text/faq.txt");
 			if (filePath != null) {
 				byte[] byteContent = Files.readAllBytes(Paths.get(filePath.getFile()));
 				textContent = new String(byteContent);
