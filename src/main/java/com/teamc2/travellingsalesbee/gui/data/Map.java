@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * 
+ * The map containing nodes and a cost matrix
+ *
  * @author Chris Lane (cml476)
  * @author Todd Waugh Ambridge (txw467)
- *
  */
 public class Map extends JPanel {
 
@@ -27,12 +27,10 @@ public class Map extends JPanel {
 		setMap();
 	}
 
-	//GET METHODS
-
 	/**
-	 * Return all nodes in the map
+	 * Get all nodes in the map
 	 *
-	 * @return ArrayList of nodes in the map
+	 * @return All nodes in the map
 	 */
 	public ArrayList<CellNode> getNodes() {
 		return cells.stream().filter(c -> c.getType().equals(CellType.NODE)).map(c -> (CellNode) c).collect(Collectors.toCollection(ArrayList::new));
@@ -43,7 +41,7 @@ public class Map extends JPanel {
 	 *
 	 * @param x X position of cell
 	 * @param y Y position of cell
-	 * @return Cell at (x, y)
+	 * @return Cell at position (x, y)
 	 */
 	public Cell getCell(int x, int y) {
 		for (Cell c : cells) {
@@ -54,6 +52,11 @@ public class Map extends JPanel {
 		return null;
 	}
 
+	/**
+	 * Get the cost matrix
+	 *
+	 * @return The cost matrix
+	 */
 	public CostMatrix getCostMatrix() {
 		if (costMatrix == null) {
 			setCostMatrix();
@@ -61,8 +64,11 @@ public class Map extends JPanel {
 		return costMatrix;
 	}
 
-	//SET METHODS
-
+	/**
+	 * Set the cost matrix
+	 *
+	 * @param costMatrix Set the cost matrix
+	 */
 	public void setCostMatrix(CostMatrix costMatrix) {
 		this.costMatrix = costMatrix;
 	}
@@ -102,14 +108,14 @@ public class Map extends JPanel {
 	}
 
 	/**
-	 * Fill the map will empty cells
+	 * Set the map to empty
 	 */
 	public void setMap() {
 		cells = new ArrayList<>();
 	}
 
 	/**
-	 * Return the origin for the map
+	 * Return the origin cell
 	 *
 	 * @return Map's origin cell
 	 */
@@ -117,6 +123,9 @@ public class Map extends JPanel {
 		return origin;
 	}
 
+	/**
+	 * Set a new cost matrix
+	 */
 	public void setCostMatrix() {
 		costMatrix = new CostMatrix(this);
 	}
