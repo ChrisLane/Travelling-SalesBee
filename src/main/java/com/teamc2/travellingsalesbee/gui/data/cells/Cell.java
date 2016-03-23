@@ -5,6 +5,11 @@ import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/**
+ * A generic cell of no type
+ *
+ * @author Christopher Lane (cml476)
+ */
 public abstract class Cell extends Point2D.Double {
 
 	/**

@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 /**
  * Comparator for cells. Find out the sorting order of cells based on (X, Y) pos
+ *
+ * @author Christopher Lane (cml476)
  */
 public class CellComparator implements Comparator<Cell> {
 
