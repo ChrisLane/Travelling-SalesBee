@@ -7,6 +7,12 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Bee inspired algorithm
+ *
+ * @author Christopher Lane (cml476)
+ * @author Todd Waugh Ambridge (txw467)
+ */
 public class Bee extends NearestNeighbour {
 
 	private int experiments;
@@ -69,14 +75,29 @@ public class Bee extends NearestNeighbour {
 		}
 	}
 
+	/**
+	 * Get all paths tested in experimental runs
+	 *
+	 * @return All paths tested in experimental runs
+	 */
 	public ArrayList<ArrayList<Cell>> getIntermediaryPaths() {
 		return intermediaryPaths;
 	}
 
+	/**
+	 * Get all cell comparisons used in experimental runs
+	 *
+	 * @return All cell comparisons used in experimental runs
+	 */
 	public ArrayList<Comparison<Cell, Cell>> getCellComparisons() {
 		return comparedCells;
 	}
 
+	/**
+	 * Get all costs for the paths tested in experimental runs
+	 *
+	 * @return All costs for the paths tested in experimental runs
+	 */
 	public ArrayList<Double> getIntermediaryPathCosts() {
 		return intermediaryPathCosts;
 	}
