@@ -1,33 +1,6 @@
-Q: What's the question?
-A: An answer.
+Q: What is the Travelling Salesman Problem?
 
-Q: What's the question?
-A: An answer.
+A: Originally formulated in 1930, the travelling salesman problem is one of the oldest and most studied optimization problems in the world. The idea of the problem is to find the shortest route to visit every node in a given graph, and as you can imagine this is significantly important in areas such as logistics, microchip manufacture and warehouse planning. Unfortunately however, the problem is currently intractable -- meaning that there is no general solution currently found for any graph of n nodes.
 
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
-
-Q: What's the question?
-A: An answer.
+However, in a manner of speaking, honey-bees have already solved it. Bees have found their own way of heuristically solving the travelling salesman problem when pollinating flowers. This interesting phenomenon has motivated us to try and model this behaviour with various nature-inspired algorithms, and has allowed us to turn our product into something that can effectively visualise any given Travelling Salesman problem
 
