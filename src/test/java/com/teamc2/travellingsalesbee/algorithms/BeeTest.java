@@ -9,10 +9,16 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
+/**
+ * A test class for the bee algorithm
+ */
 public class BeeTest {
 	private Bee bee;
 	private Map map;
 
+	/**
+	 * Setup data for the tests
+	 */
 	@BeforeClass
 	public void initialise() {
 		map = new Map();
@@ -24,6 +30,11 @@ public class BeeTest {
 		bee = new Bee(map, 20);
 	}
 
+	/**
+	 * Paths and costs to be used in tests
+	 *
+	 * @return Array of paths and their costs to be used in tests
+	 */
 	@DataProvider(name = "paths")
 	public Object[][] path() {
 		ArrayList<CellNode> flowers = map.getNodes();
@@ -68,7 +79,7 @@ public class BeeTest {
 	}
 
 	/**
-	 * Test that each flower is contained in the path generated
+	 * Test that every node is contained in the path generated
 	 */
 	@Test(dependsOnMethods = {"testSetPath", "testSetPathCost", "testCalculatePathCost"})
 	public void testNaiveRun() throws Exception {
@@ -94,30 +105,48 @@ public class BeeTest {
 		Assert.assertEquals(path.equals(flowers), true);
 	}
 
-	@Test(dataProvider = "paths", dependsOnMethods = "testSetPathCost")
-	public void testGetPathCost(ArrayList<Cell> path, double cost) throws Exception {
-		bee.setPath(path, cost);
-		Assert.assertEquals(bee.getCost(), cost);
-	}
-
+	/**
+	 * Test that costs are being calculated correctly
+	 *
+	 * @param path Input paths
+	 * @param cost Costs to be matched
+	 */
 	@Test(dataProvider = "paths")
 	public void testCalculatePathCost(ArrayList<Cell> path, double cost) throws Exception {
 		Assert.assertEquals(bee.calculatePathCost(path), cost);
 	}
 
-	@Test(dataProvider = "paths", dependsOnMethods = {"testSetPath", "testSetPathCost", "testGetPathCost"})
+	/**
+	 * Test that experimental doesn't return a path of larger cost
+	 *
+	 * @param path Initial path
+	 * @param cost Initial cost
+	 */
+	@Test(dataProvider = "paths", dependsOnMethods = {"testSetPath", "testSetPathCost"})
 	public void testExperimentalRuns(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		bee.experimentalRun();
 		Assert.assertTrue(bee.getCost() <= cost);
 	}
 
+	/**
+	 * Test that the stored path is the same as the path we set
+	 *
+	 * @param path Path to set
+	 * @param cost Path cost to set
+	 */
 	@Test(dataProvider = "paths")
 	public void testSetPath(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
 		Assert.assertEquals(bee.getPath(), path);
 	}
 
+	/**
+	 * Test that the stored path cost is the same as the cost we set
+	 *
+	 * @param path Path to set
+	 * @param cost Path cost to set
+	 */
 	@Test(dataProvider = "paths")
 	public void testSetPathCost(ArrayList<Cell> path, double cost) throws Exception {
 		bee.setPath(path, cost);
