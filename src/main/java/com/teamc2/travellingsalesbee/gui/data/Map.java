@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * The map containing nodes and a cost matrix
  *
- * @author Chris Lane (cml476)
+ * @author Christopher Lane (cml476)
  * @author Todd Waugh Ambridge (txw467)
  */
 public class Map extends JPanel {
