@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * A class to contain all buttons for the settings panel
+ */
 public class SettingsButtons {
 	private final PanelSettings panelSettings;
 	private final Map map;
@@ -36,6 +39,12 @@ public class SettingsButtons {
 	private Timer timer;
 	private PanelMap panelMap;
 
+	/**
+	 * Construct a new settings buttons object
+	 *
+	 * @param panelSettings The settings panel
+	 * @param panelMap      The map panel
+	 */
 	public SettingsButtons(PanelSettings panelSettings, PanelMap panelMap) {
 		this.panelSettings = panelSettings;
 		this.panelMap = panelMap;
@@ -49,6 +58,9 @@ public class SettingsButtons {
 		createNextButton();
 	}
 
+	/**
+	 * Create a 'run' button
+	 */
 	private void createRunButton() {
 		btnRun = new JButton();
 		setBtnIcon(btnRun, "/assets/icons/startBtn.png");
@@ -56,6 +68,9 @@ public class SettingsButtons {
 		btnRun.setFont(new Font("Tahoma", Font.PLAIN, 17));
 	}
 
+	/**
+	 * Create a 'play' button
+	 */
 	private void createPlayButton() {
 		btnPlay = new JButton();
 		setBtnIcon(btnPlay, "/assets/icons/playBtn.png");
@@ -81,6 +96,8 @@ public class SettingsButtons {
 	}
 
 	/**
+	 * Set the icon for a button
+	 *
 	 * @param btn     Button to add image icon to
 	 * @param iconURL Image URL
 	 */
@@ -104,6 +121,9 @@ public class SettingsButtons {
 
 	}
 
+	/**
+	 * Create a 'previous' button
+	 */
 	private void createPreviousButton() {
 		btnPrev = new JButton();
 		setBtnIcon(btnPrev, "/assets/icons/leftArrow.png");
@@ -122,6 +142,9 @@ public class SettingsButtons {
 		});
 	}
 
+	/**
+	 * Create a 'clear' button
+	 */
 	private void createClearButton() {
 		btnClear = new JButton();
 		setBtnIcon(btnClear, "/assets/icons/clearBtn.png");
@@ -134,6 +157,9 @@ public class SettingsButtons {
 		});
 	}
 
+	/**
+	 * Create a 'randomise' button
+	 */
 	private void createRandomiseButton() {
 		btnRandomise = new JButton();
 		setBtnIcon(btnRandomise, "/assets/icons/refresh.png");
@@ -143,6 +169,9 @@ public class SettingsButtons {
 		});
 	}
 
+	/**
+	 * Randomise nodes on the map
+	 */
 	public void randomise() {
 		int cellWidth = panelMap.getCellWidth();
 		int cellHeight = panelMap.getCellHeight();
@@ -164,11 +193,11 @@ public class SettingsButtons {
 			panelMap.clearFullCell(x, y);
 
 			if (nodesPlaced < 11) {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType(), true);
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getAlgorithmType(), true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.NODE)));
 				panelMap.getMap().setCell(x, y, CellType.NODE);
 			} else {
-				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getType(), true);
+				newCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, panelSettings.getAlgorithmType(), true);
 				newCell.setIcon(new ImageIcon(newCell.getImage(CellType.ORIGIN)));
 				panelMap.getMap().setCell(x, y, CellType.ORIGIN);
 			}
@@ -186,6 +215,9 @@ public class SettingsButtons {
 		panelMap.repaint();
 	}
 
+	/**
+	 * Create a 'next' button
+	 */
 	private void createNextButton() {
 		btnNext = new JButton();
 		setBtnIcon(btnNext, "/assets/icons/rightArrow.png");
@@ -197,7 +229,7 @@ public class SettingsButtons {
 
 			try {
 				/*if (panelMap.getPanelAnimalAnimation().getPoPathsBool()) {
-					if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPanelAnimalAnimation().getPathOfPaths().get(0).size())).getType() == SwapType.INSPECTED) {
+					if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPanelAnimalAnimation().getPathOfPaths().get(0).size())).getAlgorithmType() == SwapType.INSPECTED) {
 
 					}
 				}*/
@@ -212,34 +244,67 @@ public class SettingsButtons {
 		});
 	}
 
+	/**
+	 * Get the 'previous' button
+	 *
+	 * @return The 'previous button'
+	 */
 	public JButton getBtnPrev() {
 		return btnPrev;
 	}
 
+	/**
+	 * Get the 'play' button
+	 *
+	 * @return The 'play' button
+	 */
 	public JButton getBtnPlay() {
 		return btnPlay;
 	}
 
+	/**
+	 * Get the 'next' button
+	 *
+	 * @return The 'next' button
+	 */
 	public JButton getBtnNext() {
 		return btnNext;
 	}
 
+	/**
+	 * Get the 'run' button
+	 *
+	 * @return The 'run' button
+	 */
 	public JButton getBtnRun() {
 		return btnRun;
 	}
 
+	/**
+	 * Get the 'randomise' button
+	 *
+	 * @return The 'randomise' button
+	 */
 	public JButton getBtnRandomise() {
 		return btnRandomise;
 	}
 
+	/**
+	 * Get the 'clear' button
+	 *
+	 * @return The 'clear' button
+	 */
 	public JButton getBtnClear() {
 		return btnClear;
 	}
 
+	/**
+	 * Set the distance for the algorithm text
+	 */
 	public void setDistance() {
 		double distance = 0;
 		NearestNeighbour nn = new NearestNeighbour(map);
-		switch (panelSettings.getType()) {
+		switch (panelSettings.getAlgorithmType()) {
 			case BEE:
 				if (stepNum < panelMap.getPathComponent().getNaiveSteps().size()) {
 					NaiveStep step = panelMap.getPathComponent().getNaiveSteps().get(stepNum);
@@ -259,6 +324,11 @@ public class SettingsButtons {
 		}
 	}
 
+	/**
+	 * Set the current step number
+	 *
+	 * @param stepNum The current step number
+	 */
 	public void setStepNum(int stepNum) {
 		this.stepNum = stepNum;
 		panelMap.getPathComponent().setStepNum(stepNum);
@@ -289,7 +359,7 @@ public class SettingsButtons {
 			if (stepNum - panelMap.getPathComponent().getNaiveSteps().size() == panelMap.getPathComponent().getExperimentalSteps().size()) {
 				panelMap.getPanelOverlyingText().setText("\nFinal path produced by bee in " + panelSettings.getNoOfRunsValue() + " experimental runs");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.INSPECTED) {
-				panelMap.getPanelOverlyingText().setText("Experimental Run " + (1+(stepNum-(panelMap.getPathComponent().getNaiveSteps().size()))/3)
+				panelMap.getPanelOverlyingText().setText("Experimental Run " + (1 + (stepNum - (panelMap.getPathComponent().getNaiveSteps().size())) / 3)
 						+ "\nThe Bee travels a new path by switching the order it visits two flowers in the path");
 			} else if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.ACCEPTED) {
 				int bestDistance = (int) nn.calculatePathCost(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size()) - 2).getPath());
@@ -343,14 +413,29 @@ public class SettingsButtons {
 
 	}
 
+	/**
+	 * Set the distance
+	 *
+	 * @param distance Distance to be set
+	 */
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
 
+	/**
+	 * Get the timer
+	 *
+	 * @return The timer
+	 */
 	public Timer getTimer() {
 		return timer;
 	}
 
+	/**
+	 * Set the timer delay
+	 *
+	 * @param delay Timer delay
+	 */
 	public void setTimer(int delay) {
 		timer.setDelay(delay);
 	}
@@ -360,13 +445,13 @@ public class SettingsButtons {
 	 */
 	public void setSpeed() {
 
-		if(stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
+		if (stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
 
 			double delaySpeed = 1200;
 
 			try {
 
-				if(panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
+				if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
 
 					delaySpeed = 600 * (panelMap.getPathComponent().getNaiveSteps().size());
 					System.out.println("delaySpeed: " + delaySpeed);
