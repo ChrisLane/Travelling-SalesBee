@@ -10,6 +10,7 @@ import java.io.IOException;
  * A class for node cells
  *
  * @author Christopher Lane (cml476)
+ * @author Todd Waugh Ambridge (txw467)
  */
 public class CellNode extends Cell {
 
