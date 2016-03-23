@@ -3,13 +3,18 @@ package com.teamc2.travellingsalesbee.gui.view.layouts;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A GroupLayout for the toolbox
+ */
 public class LayoutToolbox extends GroupLayout {
+
 	/**
-	 * Creates a layout for the toolbox container
+	 * Construct a layout for the toolbox
 	 *
-	 * @param host       Container for the layout to be applied to
-	 * @param backButton Back button for the toolbox
-	 * @param imgDrag   Labelling image
+	 * @param host       Container for the child elements
+	 * @param backButton The back button
+	 * @param imgDrag    Drag tool explanation image
+	 * @param imgKey     Line colour explanation image
 	 */
 	public LayoutToolbox(Container host, JButton backButton, JLabel imgDrag, JLabel imgKey) {
 		super(host);
