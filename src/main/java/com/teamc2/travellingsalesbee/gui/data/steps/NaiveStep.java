@@ -3,11 +3,11 @@ package com.teamc2.travellingsalesbee.gui.data.steps;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 import java.util.ArrayList;
+
 /**
  * A class to represent a single step of the nearest neighbour algorithm (also known as naive run for bee)
- * 
- * @author Bradley Rowe (bmr455)
  *
+ * @author Bradley Rowe (bmr455)
  */
 public class NaiveStep {
 
@@ -17,9 +17,11 @@ public class NaiveStep {
 	private String text;
 
 	/**
-	 * @param start The start node of a step
+	 * Construct a naive step
+	 *
+	 * @param start     The start node of a step
 	 * @param available The non chosen nodes from a given start point
-	 * @param end The end node of a step
+	 * @param end       The end node of a step
 	 */
 	public NaiveStep(Cell start, ArrayList<Cell> available, Cell end, String text) {
 		this.start = start;
@@ -29,29 +31,36 @@ public class NaiveStep {
 	}
 
 	/**
-	 * @return start The start cell of a step
+	 * Get the start cell of the step
+	 *
+	 * @return start The start cell of the step
 	 */
 	public Cell getStart() {
 		return start;
 	}
 
 	/**
-	 * @return available The available other (non chosen) nodes to move to from the start node in the step
+	 * Get the available (non chosen) nodes to move to from the start node
+	 *
+	 * @return available The available other (non chosen) nodes to move to from the start node
 	 */
 	public ArrayList<Cell> getAvailable() {
 		return available;
 	}
 
 	/**
-	 * @return end The end cell of a step
+	 * Get the end cell of the step
+	 *
+	 * @return end The end cell of the step
 	 */
 	public Cell getEnd() {
 		return end;
 	}
 
 	/**
-	 * 
-	 * @return text The text to display for a given step
+	 * Get the text to display for the step
+	 *
+	 * @return text The text to display for the given step
 	 */
 	public String getText() {
 		return text;

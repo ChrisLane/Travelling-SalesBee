@@ -6,9 +6,19 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 
 import java.util.ArrayList;
 
+/**
+ * A class for accessing different types of steps
+ *
+ * @author Bradley Rowe (bmr455)
+ */
 public class StepController {
 
-
+	/**
+	 * Get the steps to create a naive path
+	 *
+	 * @param naiveRun The naive path
+	 * @return Steps in creating the naive path
+	 */
 	public ArrayList<NaiveStep> getNaiveSteps(ArrayList<Cell> naiveRun) {
 		ArrayList<NaiveStep> listOfSteps = new ArrayList<>();
 
@@ -38,6 +48,14 @@ public class StepController {
 		return listOfSteps;
 	}
 
+	/**
+	 * Get the steps in doing the experimental runs
+	 *
+	 * @param comparedCells         Cells compared in the experimental runs
+	 * @param intermediaryPaths     Tested paths in the experimental runs
+	 * @param intermediaryPathCosts The test path costs in the experimental runs
+	 * @return Steps in doing the experimental runs
+	 */
 	public ArrayList<ExperimentalStep> getExperimentalSteps(ArrayList<Comparison<Cell, Cell>> comparedCells, ArrayList<ArrayList<Cell>> intermediaryPaths, ArrayList<Double> intermediaryPathCosts) {
 		ArrayList<ExperimentalStep> experimentalSteps = new ArrayList<>();
 
@@ -57,15 +75,30 @@ public class StepController {
 		return experimentalSteps;
 	}
 
-	private SwapType getType(ArrayList<Cell> path1, ArrayList<Cell> path2) {
-		for (int i = 0; i < path1.size(); i++) {
-			if (path1.get(i) != path2.get(i)) {
+	/**
+	 * Get whether the swap was accepted or rejected
+	 *
+	 * @param previousPath The path before the swap
+	 * @param resultPath   The resulting path after the swap
+	 * @return Whether the swap was accepted or rejected
+	 */
+	private SwapType getType(ArrayList<Cell> previousPath, ArrayList<Cell> resultPath) {
+		for (int i = 0; i < previousPath.size(); i++) {
+			if (previousPath.get(i) != resultPath.get(i)) {
 				return SwapType.ACCEPTED;
 			}
 		}
 		return SwapType.REJECTED;
 	}
 
+	/**
+	 * Get the steps in running the ant algorithm
+	 *
+	 * @param setOfRuns     Best paths throughout the algorithm
+	 * @param setOfMatrices Cost matrices for each run
+	 * @param initialMatrix Initial cost matrix
+	 * @return Steps in the ant algorithm runs
+	 */
 	public ArrayList<AntStep> getAntSteps(ArrayList<ArrayList<Cell>> setOfRuns, ArrayList<CostMatrix> setOfMatrices, CostMatrix initialMatrix) {
 		ArrayList<AntStep> antSteps = new ArrayList<>();
 

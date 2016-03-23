@@ -1,8 +1,9 @@
 package com.teamc2.travellingsalesbee.gui.data.steps;
+
 /**
- * 
- * @author Bradley Rowe (bmr455)
+ * Types of swap
  *
+ * @author Bradley Rowe (bmr455)
  */
 public enum SwapType {
 	BEST, //Fed into an experimental path which is the best path up to now.
