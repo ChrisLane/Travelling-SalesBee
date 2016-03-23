@@ -203,7 +203,7 @@ public class SettingsButtons {
 			}
 
 			newCell.setBounds(x, y, cellWidth, cellHeight);
-			newCell.onMap();
+			newCell.setOnMap();
 			newCell.setPrevs(x, y);
 			newCell.setEnabled(true);
 			panelMap.add(newCell);
