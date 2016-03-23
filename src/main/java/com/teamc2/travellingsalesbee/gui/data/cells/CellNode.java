@@ -6,6 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * A class for node cells
+ */
 public class CellNode extends Cell {
 
 	/**
@@ -18,8 +21,8 @@ public class CellNode extends Cell {
 	/**
 	 * Create a new node cell
 	 *
-	 * @param x X position of cell
-	 * @param y Y position of cell
+	 * @param x X position of the cell
+	 * @param y Y position of the cell
 	 */
 	public CellNode(double x, double y) {
 		super(x, y);

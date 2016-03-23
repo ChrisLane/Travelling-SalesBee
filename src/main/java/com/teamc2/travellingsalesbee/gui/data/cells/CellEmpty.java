@@ -4,6 +4,9 @@ import com.teamc2.travellingsalesbee.algorithms.AlgorithmType;
 
 import java.awt.*;
 
+/**
+ * A class for cells of no type
+ */
 public class CellEmpty extends Cell {
 
 	/**
@@ -16,8 +19,8 @@ public class CellEmpty extends Cell {
 	/**
 	 * Create a new empty cell
 	 *
-	 * @param x X position of cell
-	 * @param y Y position of cell
+	 * @param x X position of the cell
+	 * @param y Y position of the cell
 	 */
 	public CellEmpty(double x, double y) {
 		super(x, y);
