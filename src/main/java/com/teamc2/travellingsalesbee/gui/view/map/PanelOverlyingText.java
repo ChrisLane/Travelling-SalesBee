@@ -15,6 +15,8 @@ import java.net.URL;
 
 /**
  * A class to contain overlying text control and display
+ *
+ * @author Melvyn Mathews (mxm499)
  */
 public class PanelOverlyingText extends JFXPanel {
 	private Text text;
