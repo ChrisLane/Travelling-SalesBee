@@ -5,11 +5,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * 
- * Class to create a single grid line to display on the map
- * extends JComponent so it can be added to the grid map as a child component
- * 
- * @author: Chris Lane (cml476)
+ * A class for the grid placed on top of the map area
+ *
+ * @author Christopher Lane (cml476)
  */
 public class ComponentGrid extends JComponent {
 
@@ -22,7 +20,7 @@ public class ComponentGrid extends JComponent {
 
 
 	/**
-	 * Create a new lined grid
+	 * Create a new grid
 	 */
 	public ComponentGrid(int cellWidth, int cellHeight) {
 		this.cellWidth = cellWidth;
@@ -50,7 +48,7 @@ public class ComponentGrid extends JComponent {
 	}
 
 	/**
-	 * Draw the line
+	 * Draw the lines
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
@@ -69,6 +67,9 @@ public class ComponentGrid extends JComponent {
 		}
 	}
 
+	/**
+	 * A class for creating lines
+	 */
 	private static class Line {
 		int x1;
 		int y1;
@@ -76,7 +77,7 @@ public class ComponentGrid extends JComponent {
 		int y2;
 
 		/**
-		 * Create a new line
+		 * Create a new line from (x1, y1) to (x2, y2)
 		 *
 		 * @param x1 x1 position
 		 * @param y1 y1 position

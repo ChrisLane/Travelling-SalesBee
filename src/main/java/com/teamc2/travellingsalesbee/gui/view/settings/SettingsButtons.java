@@ -161,7 +161,7 @@ public class SettingsButtons {
 			x = ThreadLocalRandom.current().nextInt(0, maxX) * cellWidth;
 			y = (ThreadLocalRandom.current().nextInt(0, maxY) * cellHeight) + 50;
 
-			panelMap.cellFull(x, y);
+			panelMap.clearFullCell(x, y);
 
 			if (nodesPlaced < 11) {
 				newCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, panelSettings.getType(), true);

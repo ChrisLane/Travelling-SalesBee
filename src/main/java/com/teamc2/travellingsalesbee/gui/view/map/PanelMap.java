@@ -16,6 +16,12 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * A class for the visualisation of map elements
+ *
+ * @author Christopher Lane (cml476)
+ * @author Melvyn Mathews (mxm499)
+ */
 public class PanelMap extends JPanel {
 
 	public final static String name = "PanelMap";
@@ -157,26 +163,47 @@ public class PanelMap extends JPanel {
 		return cellWidth;
 	}
 
+	/**
+	 * Get the path component
+	 *
+	 * @return The path component
+	 */
 	public ComponentPath getPathComponent() {
 		return componentPath;
 	}
 
+	/**
+	 * Get the animal animation panel
+	 *
+	 * @return The animal animation panel
+	 */
 	public PanelAnimalAnimation getPanelAnimalAnimation() {
 		return panelAnimation;
 	}
 
+	/**
+	 * Get the overlying text panel
+	 *
+	 * @return The overlying text panel
+	 */
 	public PanelOverlyingText getPanelOverlyingText() {
 		return panelOverlyingText;
 	}
 
+	/**
+	 * Get the map data object
+	 *
+	 * @return The map for the panel
+	 */
 	public Map getMap() {
 		return map;
 	}
 
-	public PanelAnimalAnimation getAnimation() {
-		return panelAnimation;
-	}
-
+	/**
+	 * Get the algorithm type
+	 *
+	 * @return The algorithm type
+	 */
 	public AlgorithmType getAlgorithmType() {
 		return type;
 	}
@@ -196,8 +223,13 @@ public class PanelMap extends JPanel {
 		}
 	}
 
-	public void cellFull(int x, int y) {
-
+	/**
+	 * Clear a cell at a given position if it is full
+	 *
+	 * @param x X position of the cell
+	 * @param y Y position of the cell
+	 */
+	public void clearFullCell(int x, int y) {
 		for (Component c : getComponents()) {
 			if (c instanceof CellDraggable) {
 				if (c.isEnabled() && c.getBounds().x == x && c.getBounds().y == y) {
@@ -210,7 +242,7 @@ public class PanelMap extends JPanel {
 	}
 
 	/**
-	 * Set the origin for the panelMap
+	 * Delete the origin draggable cell
 	 */
 	public void deleteOldOrigin() {
 		for (Component c : getComponents()) {
@@ -223,6 +255,9 @@ public class PanelMap extends JPanel {
 		}
 	}
 
+	/**
+	 * Clear the map
+	 */
 	public void clear() {
 		getPathComponent().setStepNum(-1);
 		//getPanelAnimalAnimation().setStepNum(-1);

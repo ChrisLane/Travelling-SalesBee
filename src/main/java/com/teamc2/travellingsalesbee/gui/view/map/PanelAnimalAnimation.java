@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Given a path and an image URL, animate the path
+ *
  * @author Melvyn Mathews (mxm499)
  */
 public class PanelAnimalAnimation extends JFXPanel {
@@ -54,6 +55,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 		initScene();
 	}
 
+	/**
+	 * Initialise the scene
+	 */
 	private void initScene() {
 		Platform.runLater(() -> {
 			root = new Pane();
@@ -109,26 +113,33 @@ public class PanelAnimalAnimation extends JFXPanel {
 		});
 	}
 
-	public void setUrl(String url) {
+	/**
+	 * Set the animal icon
+	 *
+	 * @param url Location of the icon
+	 */
+	public void setAnimalIcon(String url) {
 		String url1 = url;
 		Image image = new Image(url);
 		Platform.runLater(() -> animalIcon.setFill(new ImagePattern(image, 0, 0, 1, 1, true)));
 	}
 
 	/**
+	 * Animate an icon moving from the current position to a given node
+	 *
 	 * @param superPath  Path of all paths ArrayList<ArrayList<Cell>>
 	 * @param superI     superPath position (gets the current path we're working with)
 	 * @param path       Current path to animate
-	 * @param i          Path position
+	 * @param pathPos    Path position
 	 * @param animal     The 'animal' to move
 	 * @param transition The transition object that handles the animation itself
 	 */
-	private void animatePath(ArrayList<ArrayList<Cell>> superPath, final int superI, ArrayList<Cell> path, int i, Rectangle animal, TranslateTransition transition) {
+	private void animatePath(ArrayList<ArrayList<Cell>> superPath, final int superI, ArrayList<Cell> path, int pathPos, Rectangle animal, TranslateTransition transition) {
 		//Get end cell
-		if (i < path.size()) {
+		if (pathPos < path.size()) {
 
 			//Get the next point to move to
-			Cell end = path.get(i);
+			Cell end = path.get(pathPos);
 
 			moveFromAToB(end, animal, transition);
 
@@ -137,9 +148,9 @@ public class PanelAnimalAnimation extends JFXPanel {
 		}
 
 	}
-	
+
 	/**
-	 * Increment Step Number
+	 * Increment step number
 	 * If stepNum goes out of bounds of the current path, then stepNum is set to 0 and popStemNum is incremented
 	 */
 	public void incrStepNum() {
@@ -182,7 +193,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 	}
 
 	/**
-	 * Decrement Step Number
+	 * Decrement step number
 	 */
 	public void decrStepNum() {
 		stepNum--;
@@ -213,9 +224,11 @@ public class PanelAnimalAnimation extends JFXPanel {
 	}
 
 	/**
-	 * @param path Path of type: ArrayList<ArrayList<Cell>>
-	 *             Gets the first position from the first path in the list and sets the bee to that position
-	 *             If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 * Set the Path of paths
+	 * Gets the first position from the first path in the list and sets the bee to that position
+	 * If the path needs to be stepped through the entire path, set the singlePath boolean to true
+	 *
+	 * @param path List of paths
 	 */
 	public void setPathofPaths(ArrayList<ArrayList<Cell>> path) {
 		pathOfPaths = path;
@@ -276,14 +289,29 @@ public class PanelAnimalAnimation extends JFXPanel {
 		return poPaths;
 	}
 
+	/**
+	 * Get the path of paths
+	 *
+	 * @return The path of paths
+	 */
 	public ArrayList<ArrayList<Cell>> getPathOfPaths() {
 		return pathOfPaths;
 	}
 
+	/**
+	 * Set the animation delay
+	 *
+	 * @param delay Delay in seconds for the animation
+	 */
 	public void setDelay(double delay) {
 		transition.setDelay(Duration.seconds(delay));
 	}
 
+	/**
+	 * Get the delay on the animation
+	 *
+	 * @return The delay on the animation
+	 */
 	public Duration getDelay() {
 		return transition.getDelay();
 	}

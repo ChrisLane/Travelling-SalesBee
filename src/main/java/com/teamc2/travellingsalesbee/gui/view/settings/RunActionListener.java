@@ -69,7 +69,7 @@ public class RunActionListener implements ActionListener {
 			origin.addAll(naiveSteps.stream().map(NaiveStep::getEnd).collect(Collectors.toList()));
 			pathOfPaths.add(origin);
 
-			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Boat.png");
+			panelMap.getPanelAnimalAnimation().setAnimalIcon("/assets/icons/Boat.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 		} catch (NullPointerException e) {
 			settingsButtons.getBtnPrev().setEnabled(false);
@@ -98,7 +98,7 @@ public class RunActionListener implements ActionListener {
 
 				/*----------------------------------------------*/
 			// panelMap.getPanelAnimalAnimation().setPath(nearestNeighbour.getPath());
-			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/MailVan.png");
+			panelMap.getPanelAnimalAnimation().setAnimalIcon("/assets/icons/MailVan.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 		} catch (NullPointerException e) {
 				/*----------------------------------------------*/
@@ -150,7 +150,7 @@ public class RunActionListener implements ActionListener {
 
 			/*Below is an example of how to pass through the url name and set the pathOfPaths*/
 
-		panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/Ant.png");
+		panelMap.getPanelAnimalAnimation().setAnimalIcon("/assets/icons/Ant.png");
 		panelMap.getPanelAnimalAnimation().setPathofPaths(setOfRuns);
 
 		StepController stepController = new StepController();
@@ -191,11 +191,11 @@ public class RunActionListener implements ActionListener {
 				pathOfPaths.add(setOfPoints);
 			}
 
-			panelMap.getPathComponent().setBeePath(bee.getPath());
+			panelMap.getPathComponent().setPath(bee.getPath());
 
 				/*----------------------------------------------*/
 			// panelMap.getPanelAnimalAnimation().setPath(bee.getPath());
-			panelMap.getPanelAnimalAnimation().setUrl("/assets/icons/SalesBee.png");
+			panelMap.getPanelAnimalAnimation().setAnimalIcon("/assets/icons/SalesBee.png");
 			panelMap.getPanelAnimalAnimation().setPathofPaths(pathOfPaths);
 		} catch (NullPointerException e) {
 				/*----------------------------------------------*/

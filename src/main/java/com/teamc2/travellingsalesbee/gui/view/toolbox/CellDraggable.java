@@ -149,7 +149,7 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height);
 			
 			//Check if a cell already exists in the given position if so, delete the previous button
-			panelMap.cellFull(x, y);
+			panelMap.clearFullCell(x, y);
 
 			// Add the cell to the map
 			map.setCell(x, y, type);

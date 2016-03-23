@@ -13,12 +13,16 @@ import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
 
+/**
+ * A class to contain overlying text control and display
+ */
 public class PanelOverlyingText extends JFXPanel {
 	private Text text;
 	private Pane root;
 	private Scene scene;
 
 	/**
+	 * Construct the overlying text
 	 */
 	public PanelOverlyingText() {
 		initScene();
@@ -57,8 +61,13 @@ public class PanelOverlyingText extends JFXPanel {
 		});
 	}
 
-	public void setTextBold(boolean bool) {
-		if (bool) {
+	/**
+	 * Set the text style to bold
+	 *
+	 * @param setBold Should the font be bold?
+	 */
+	public void setTextBold(boolean setBold) {
+		if (setBold) {
 			text.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
 		} else {
 			text.setFont(Font.font("Verdana", FontWeight.NORMAL, 12));
@@ -66,24 +75,49 @@ public class PanelOverlyingText extends JFXPanel {
 
 	}
 
+	/**
+	 * Set the size of the font
+	 *
+	 * @param size Size of the font
+	 */
 	public void setSize(int size) {
 		Platform.runLater(() -> {
 			text.setFont(new Font(size));
 		});
 	}
 
-	public void setCenter(int size) {
+	/**
+	 * Set the text to be centered
+	 *
+	 * @param centered Set the text to centered
+	 */
+	public void setCenter(boolean centered) {
 		Platform.runLater(() -> {
-
+			if (centered) {
+				text.setTextAlignment(TextAlignment.CENTER);
+			} else {
+				text.setTextAlignment(TextAlignment.LEFT);
+			}
 		});
 	}
 
+	/**
+	 * Set the text
+	 *
+	 * @param str Text to set
+	 */
 	public void setText(String str) {
 		Platform.runLater(() -> {
 			text.setText(str);
 		});
 	}
 
+	/**
+	 * Set the text location to (X, Y)
+	 *
+	 * @param x X location of text
+	 * @param y Y location of text
+	 */
 	public void setTextXandY(int x, int y) {
 		Platform.runLater(() -> {
 			text.setX(x);
@@ -91,12 +125,22 @@ public class PanelOverlyingText extends JFXPanel {
 		});
 	}
 
+	/**
+	 * Set the text color
+	 *
+	 * @param color Text color
+	 */
 	public void setTextColor(Color color) {
 		Platform.runLater(() -> {
 			text.setFill(color);
 		});
 	}
 
+	/**
+	 * Set whether the text has a shadow
+	 *
+	 * @param bool If the text has a shadow or not
+	 */
 	public void setDropShadow(boolean bool) {
 		Platform.runLater(() -> {
 			if (bool) {
@@ -108,6 +152,11 @@ public class PanelOverlyingText extends JFXPanel {
 		});
 	}
 
+	/**
+	 * Get the text object
+	 *
+	 * @return The text object
+	 */
 	public Text getTextObject() {
 		return text;
 	}
