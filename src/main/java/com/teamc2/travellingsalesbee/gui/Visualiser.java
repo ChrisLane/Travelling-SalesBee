@@ -16,11 +16,17 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Algorithm Visualiser
+ *
+ * @author Christopher Lane (cml476)
+ * @author Melvyn Mathews (mxm499)
+ */
 public class Visualiser extends JFrame {
 	public static Visualiser mainVisualiser;
 
 	/**
-	 * Create the frame.
+	 * Construct the algorithm visualiser window
 	 */
 	private Visualiser() {
 
@@ -90,7 +96,7 @@ public class Visualiser extends JFrame {
 	}
 
 	/**
-	 * Loads in the font: Amatic (Bold/Regular)
+	 * Loads the font: Amatic (Bold/Regular)
 	 */
 	private void addFont() {
 		try {
