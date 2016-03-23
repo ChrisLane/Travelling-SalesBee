@@ -2,6 +2,9 @@ package com.teamc2.travellingsalesbee.gui.data.cells;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for cells. Find out the sorting order of cells based on (X, Y) pos
+ */
 public class CellComparator implements Comparator<Cell> {
 
 	/**

@@ -6,6 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * A class for origin cells
+ */
 public class CellOrigin extends Cell {
 
 	/**
@@ -18,8 +21,8 @@ public class CellOrigin extends Cell {
 	/**
 	 * Create a new origin cell
 	 *
-	 * @param x X position of cell
-	 * @param y Y position of cell
+	 * @param x X position of the cell
+	 * @param y Y position of the cell
 	 */
 	public CellOrigin(double x, double y) {
 		super(x, y);
