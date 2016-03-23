@@ -5,22 +5,22 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellOrigin;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
 
 /**
  * A class to contain all data providers
+ *
+ * @author Christopher Lane (cml476)
  */
 public class Data {
 	private static Map map;
 
 	/**
-	 * Setup data for the tests
+	 * Setup data for the data providers
 	 */
-	@BeforeClass
-	public void initialise() {
+	public Data() {
 		map = new Map();
 		map.setCell(0, 0, CellType.ORIGIN);
 		map.setCell(0, 2, CellType.NODE); // flower 1
