@@ -17,6 +17,8 @@ import java.util.ArrayList;
  * A class for the drawing of paths
  *
  * @author Bradley Rowe (bmr455)
+ * @author Neil Farrington (npf489)
+ * @author Todd Waugh Ambridge (txw467)
  */
 public class ComponentPath extends JComponent {
 
