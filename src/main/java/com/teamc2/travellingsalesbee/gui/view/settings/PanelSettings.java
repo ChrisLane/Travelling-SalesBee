@@ -17,8 +17,6 @@ public class PanelSettings extends JPanel {
 
 	public final static String name = "PanelSettings";
 
-	private JLabel infoLabel = new JLabel();
-
 	// Number of runs for a given algorithm
 	//For BEE this is the number of experimental runs
 	//For ANT this is the number of pheromone runs
@@ -70,9 +68,7 @@ public class PanelSettings extends JPanel {
 	 * Sets the layout for the settings panel
 	 */
 	public void setLayout() {
-		LayoutSettings layoutSettings = new LayoutSettings(this, infoLabel, settingsSliders.getLblRunsOfType(), settingsSliders.getLblNoOfRuns(), settingsSliders.getNoOfRunsSlider(),
-				settingsButtons.getBtnRandomise(), settingsButtons.getBtnClear(),
-				settingsButtons.getBtnRun(), settingsButtons.getBtnPrev(), settingsButtons.getBtnPlay(), settingsButtons.getBtnNext());
+		LayoutSettings layoutSettings = new LayoutSettings(this, settingsSliders, settingsButtons);
 		setLayout(layoutSettings);
 	}
 
