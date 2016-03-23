@@ -7,6 +7,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * 
+ * @author Chris Lane (cml476)
+ * @author Todd Waugh Ambridge (txw467)
+ *
+ */
 public class Map extends JPanel {
 
 	private ArrayList<Cell> cells; //Will store our ElementCells

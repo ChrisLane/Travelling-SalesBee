@@ -10,6 +10,8 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 
 /**
+ * A class to initiate the tab component which allows users to flick between different visualisations
+ * Extends JTabbed Pane so it can be added to the main Layout GuiContainer for visualiser
  * 
  * @author Bradley Rowe (bmr455)
  * @author Chris Lane (cml476)
