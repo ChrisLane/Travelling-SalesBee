@@ -3,7 +3,6 @@ package com.teamc2.travellingsalesbee.algorithms;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -29,7 +28,7 @@ public class BeeTest {
 	}
 
 	/**
-	 * Test that experimental doesn't return a path of larger cost
+	 * Test that experimental run doesn't return a path of larger cost
 	 *
 	 * @param path Initial path
 	 * @param cost Initial cost
