@@ -11,7 +11,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * @author Melvyn Mathews (mxm499), Bradley Rowe (bmr455), Chris Lane (cml476), Todd Waugh Ambridge (txw467), Neil Farrington (npf489)
+ * A class to contain settings controls for the settings panel
+ *
+ * @author Bradley Rowe (bmr455)
+ * @author Melvyn Mathews (mxm499)
  */
 public class PanelSettings extends JPanel {
 
@@ -23,14 +26,14 @@ public class PanelSettings extends JPanel {
 	//For TWOOPT this is the number of swap runs
 	private int noOfRunsValue = 26;
 
-	private AlgorithmType type;
+	private AlgorithmType algorithmType;
 	private SettingsButtons settingsButtons;
 	private SettingsSliders settingsSliders;
 
 	/**
 	 * Create a settings panel
 	 *
-	 * @param panelMap Map JPanel
+	 * @param panelMap The PanelMap
 	 */
 	public PanelSettings(PanelMap panelMap) {
 
@@ -72,20 +75,40 @@ public class PanelSettings extends JPanel {
 		setLayout(layoutSettings);
 	}
 
+	/**
+	 * Set the algorithm type
+	 *
+	 * @param type The algorithm type
+	 */
 	public void setAlgorithmType(AlgorithmType type) {
-		this.type = type;
+		this.algorithmType = type;
 		settingsButtons.setStepNum(-1);
 		settingsSliders.updateSliderDetails();
 	}
 
-	public AlgorithmType getType() {
-		return type;
+	/**
+	 * Get the algorithm type
+	 *
+	 * @return The algorithm type
+	 */
+	public AlgorithmType getAlgorithmType() {
+		return algorithmType;
 	}
 
+	/**
+	 * Get the number of runs
+	 *
+	 * @return The number of runs
+	 */
 	public int getNoOfRunsValue() {
 		return noOfRunsValue;
 	}
 
+	/**
+	 * Set the number of runs
+	 *
+	 * @param noOfRunsValue The number of values
+	 */
 	public void setNoOfRunsValue(int noOfRunsValue) {
 		this.noOfRunsValue = noOfRunsValue;
 	}
