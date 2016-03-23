@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/*
+/**
  * 	Class to create a single grid line to display on the map
  * 	
  * 	extends JComponent so it can be added to the grid map as a child component

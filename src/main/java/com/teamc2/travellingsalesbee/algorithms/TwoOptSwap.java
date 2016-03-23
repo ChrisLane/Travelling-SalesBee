@@ -24,7 +24,7 @@ public class TwoOptSwap extends NearestNeighbour {
 	/**
 	 * Construct the algorithm.
 	 *
-	 * @param map Map object for storing cells.
+	 * @param map The Map object for storing cells.
 	 */
 	public TwoOptSwap(Map map, int runs) {
 		super(map);

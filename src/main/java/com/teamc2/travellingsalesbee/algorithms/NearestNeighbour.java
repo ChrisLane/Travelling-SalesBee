@@ -6,6 +6,11 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Todd Waugh Ambridge (txw467)
+ *
+ */
 public class NearestNeighbour {
 
 	protected final Map map;
@@ -16,7 +21,7 @@ public class NearestNeighbour {
 	/**
 	 * Constructor
 	 *
-	 * @param map Map object for storing cells
+	 * @param map The Map object for storing cells
 	 */
 	public NearestNeighbour(Map map) {
 		this.map = map;
@@ -24,11 +29,10 @@ public class NearestNeighbour {
 	}
 
 	/**
-	 * Run a naive path find.
+	 * A method to run a naive path i.e. greedy best first search.
 	 * <p>
-	 * A greedy like algorithm, the bee initially carries out a naive run where it visits
-	 * the nearest non-visited neighbour until every node has been visited, following
-	 * that it then returns to the origin
+	 * A greedy like algorithm, initially visits the nearest non-visited neighbour 
+	 * until every node has been visited, following that it then returns to the origin
 	 */
 	public void naiveRun() {
 		if (!(origin == null)) {
@@ -106,10 +110,9 @@ public class NearestNeighbour {
 	/**
 	 * Return the current path
 	 *
-	 * @return path. The Current path.
+	 * @return path The Current path
 	 */
 	public ArrayList<Cell> getPath() {
 		return path;
 	}
-
 }

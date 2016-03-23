@@ -136,14 +136,7 @@ public class PanelAnimalAnimation extends JFXPanel {
 		}
 
 	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-
-		//THIS MAKES THE ANIMATION DISGUSTING, LET'S DO SOMETHING DIFFERENT PLZ
-		//transition.setRate(speed);
-	}
-
+	
 	/**
 	 * Increment Step Number
 	 * If stepNum goes out of bounds of the current path, then stepNum is set to 0 and popStemNum is incremented
