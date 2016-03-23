@@ -15,8 +15,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
+ * A class to instantiate the graphical user interface toolbox and it's content
+ * 
  * Initially created by Melvyn Mathews with the use of WindowBuilder, Chris Lane refined it
- * @author: Chris Lane, Melvyn Mathews (mxm499)
+ * @author Chris Lane
+ * @author Melvyn Mathews (mxm499)
  */
 public class PanelToolbox extends JPanel {
 	public final static String name = "PanelToolbox";
@@ -25,6 +28,11 @@ public class PanelToolbox extends JPanel {
 	private final int cellHeight;
 	private AlgorithmType type;
 
+	/**
+	 * Constructs an object of PanelToolbox
+	 * @param panelMap The PanelMap object to be referred to
+	 * @param type The type of algorithm currently selected from the tabs
+	 */
 	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
 		this.type = type;
@@ -43,6 +51,7 @@ public class PanelToolbox extends JPanel {
 		JLabel imgDrag = null;
 		JLabel imgKey = null;
 		BufferedImage img = null;
+		
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
 			if (img != null) imgDrag = new JLabel(new ImageIcon(img));
@@ -52,8 +61,6 @@ public class PanelToolbox extends JPanel {
 			e.printStackTrace();
 		}
 		
-		
-
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, imgDrag, imgKey);
 		setLayout(layoutToolbox);
 
@@ -68,13 +75,15 @@ public class PanelToolbox extends JPanel {
 		g2.fill(new Rectangle(0, 0, getWidth(), getHeight()));
 	}
 
+	/**
+	 * Method to add the draggable buttons to the toolbox and set their bounds
+	 */
 	public void addTools() {
 		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type, false);
 		CellDraggable originToolCell = new CellDraggable(cellWidth, cellHeight, CellType.ORIGIN, panelMap, type, false);
 
 		nodeToolCell.setIcon(new ImageIcon(nodeToolCell.getImage(CellType.NODE)));
 		originToolCell.setIcon(new ImageIcon(originToolCell.getImage(CellType.ORIGIN)));
-
 
 		//Add buttons to the toolbox
 		originToolCell.setBounds(-20, 160, 100, 100);
