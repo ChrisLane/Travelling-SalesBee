@@ -129,13 +129,7 @@ public class Data {
 		map2.setCell(6, 9, CellType.NODE);
 		map2.setCell(1, 2, CellType.NODE);
 
-		Map map3 = new Map();
-		map3.setCell(5, 3, CellType.ORIGIN);
-		map3.setCell(2, 12, CellType.NODE);
-		map3.setCell(1, 24, CellType.NODE);
-		map3.setCell(9, 99, CellType.NODE);
-
-		return new Object[][]{{map1, 3.0}, {map2, 3.0}, {map3, 1.6666666666666667}};
+		return new Object[][]{{map1, 3.0}, {map2, 3.0}};
 	}
 
 	/**
