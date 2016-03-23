@@ -1,23 +1,40 @@
 package com.teamc2.travellingsalesbee.gui.view.layouts;
 
+import com.teamc2.travellingsalesbee.gui.view.settings.SettingsButtons;
+import com.teamc2.travellingsalesbee.gui.view.settings.SettingsSliders;
+
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A GroupLayout for the settings panel
+ *
+ * @author Christopher Lane (cml476)
+ * @author Melvyn Mathews (mxm499)
+ */
 public class LayoutSettings extends GroupLayout {
 
 	/**
-	 * Creates a {@code GroupLayout} for the specified {@code Container}.
+	 * Construct a layout for the settings panel
 	 *
-	 * @param host              the {@code Container} the {@code GroupLayout} is
-	 *                          the {@code LayoutManager} for
-	 * @param lblAnimationSpeed
-	 * @param lblSpeed
-	 * @param speedSlider       @throws IllegalArgumentException if host is {@code null}
+	 * @param host            Container of child elements
+	 * @param settingsSliders Sliders for settings panel
+	 * @param settingsButtons Buttons for settings panel
 	 */
-	public LayoutSettings(Container host, JLabel infoLabel, JLabel lblExperimentRuns, JLabel lblNoOfRuns,
-						  JSlider experimentsSlider, JButton btnRandomise, JButton btnClear, JButton btnRun, 
-						  JButton btnPrev, JButton btnPlay, JButton btnNext) {
+	public LayoutSettings(Container host, SettingsSliders settingsSliders, SettingsButtons settingsButtons) {
 		super(host);
+
+		JLabel runsOfType = settingsSliders.getLblRunsOfType();
+		JLabel runAmount = settingsSliders.getLblNoOfRuns();
+
+		JSlider runAmountSlider = settingsSliders.getNoOfRunsSlider();
+
+		JButton randomise = settingsButtons.getBtnRandomise();
+		JButton clear = settingsButtons.getBtnClear();
+		JButton run = settingsButtons.getBtnRun();
+		JButton back = settingsButtons.getBtnPrev();
+		JButton play = settingsButtons.getBtnPlay();
+		JButton forward = settingsButtons.getBtnNext();
 
 		setHorizontalGroup(
 				createParallelGroup(Alignment.LEADING)
@@ -25,29 +42,28 @@ public class LayoutSettings extends GroupLayout {
 								.addContainerGap()
 								.addGap(60)
 								.addGroup(createParallelGroup(Alignment.LEADING)
-										.addComponent(infoLabel)
 										.addGroup(createSequentialGroup()
-												.addComponent(lblExperimentRuns)
+												.addComponent(runsOfType)
 												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-												.addComponent(lblNoOfRuns)
+												.addComponent(runAmount)
 										)
-										.addComponent(experimentsSlider)
+										.addComponent(runAmountSlider)
 								)
 								.addGap(10)
 								.addGroup(createParallelGroup(Alignment.TRAILING)
 										.addGroup(createSequentialGroup()
 												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-												.addComponent(btnRandomise)
+												.addComponent(randomise)
 												.addGap(18)
-												.addComponent(btnClear)
+												.addComponent(clear)
 												.addGap(18)
-												.addComponent(btnRun)
+												.addComponent(run)
 												.addGap(18)
-												.addComponent(btnPrev)
+												.addComponent(back)
 												.addGap(18)
-												.addComponent(btnPlay)
+												.addComponent(play)
 												.addGap(18)
-												.addComponent(btnNext)
+												.addComponent(forward)
 										)
 								)
 								.addContainerGap()
@@ -57,25 +73,24 @@ public class LayoutSettings extends GroupLayout {
 				createParallelGroup(Alignment.LEADING)
 						.addGroup(createSequentialGroup()
 								.addContainerGap()
-								.addComponent(infoLabel)
 								.addGap(15)
 								.addGroup(createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblExperimentRuns)
-										.addComponent(lblNoOfRuns)
+										.addComponent(runsOfType)
+										.addComponent(runAmount)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(experimentsSlider)
+								.addComponent(runAmountSlider)
 								.addContainerGap()
 						)
 						.addGroup(createSequentialGroup()
 								.addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnNext)
-										.addComponent(btnPlay)
-										.addComponent(btnPrev)
-										.addComponent(btnRun)
-										.addComponent(btnClear)
-										.addComponent(btnRandomise)
+										.addComponent(forward)
+										.addComponent(play)
+										.addComponent(back)
+										.addComponent(run)
+										.addComponent(clear)
+										.addComponent(randomise)
 								)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addGap(30)
