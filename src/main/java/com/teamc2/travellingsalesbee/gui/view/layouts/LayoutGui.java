@@ -9,15 +9,18 @@ import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
 import javax.swing.*;
 
 /**
- * Created by Chris Lane after refactoring
- * @author: Chris Lane
+ * Group layout for the GUI
+ *
+ * @author Bradley Rowe (bmr455)
+ * @author Christopher Lane (cml476)
+ * @author Melvyn Mathews (mxm499)
  */
 public class LayoutGui extends GroupLayout {
 
 	/**
-	 * Create a layout for the GUI JPanel
+	 * Construct a layout for the GUI
 	 *
-	 * @param host The container
+	 * @param host The container for child elements
 	 */
 	public LayoutGui(GuiContainer host) {
 		super(host);
