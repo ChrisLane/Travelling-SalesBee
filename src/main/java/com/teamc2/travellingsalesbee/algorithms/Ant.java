@@ -168,7 +168,7 @@ public class Ant extends NearestNeighbour {
 	 *
 	 * @param cost Cost to set the heuristic cost to
 	 */
-	private void setHeuristicCost(double cost) {
+	public void setHeuristicCost(double cost) {
 		heuristicCost = cost;
 	}
 
@@ -202,5 +202,14 @@ public class Ant extends NearestNeighbour {
 	 */
 	public Map getMap() {
 		return map;
+	}
+
+	/**
+	 * Get the heuristic cost
+	 *
+	 * @return The heuristic cost
+	 */
+	public double getHeuristicCost() {
+		return heuristicCost;
 	}
 }

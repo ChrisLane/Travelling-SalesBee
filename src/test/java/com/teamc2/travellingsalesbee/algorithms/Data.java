@@ -137,4 +137,37 @@ public class Data {
 
 		return new Object[][]{{map1, 3.0}, {map2, 3.0}, {map3, 1.6666666666666667}};
 	}
+
+	/**
+	 * Costs to set and be checked against
+	 *
+	 * @return An array of costs to set and be checked against
+	 */
+	@DataProvider(name = "cost")
+	public static Object[][] cost() {
+		return new Object[][]{{1.0, 1.0}, {2.5, 2.5}, {3.999, 3.999}};
+	}
+
+	@DataProvider(name = "map")
+	public static Object[][] map() {
+		Map map1 = new Map();
+		map1.setCell(0, 0, CellType.ORIGIN);
+		map1.setCell(0, 2, CellType.NODE);
+		map1.setCell(0, 6, CellType.NODE);
+		map1.setCell(2, 6, CellType.NODE);
+
+		Map map2 = new Map();
+		map2.setCell(2, 4, CellType.ORIGIN);
+		map2.setCell(6, 9, CellType.NODE);
+		map2.setCell(1, 2, CellType.NODE);
+		map2.setCell(9, 9, CellType.NODE);
+
+		Map map3 = new Map();
+		map3.setCell(5, 3, CellType.ORIGIN);
+		map3.setCell(2, 12, CellType.NODE);
+		map3.setCell(1, 24, CellType.NODE);
+		map3.setCell(9, 99, CellType.NODE);
+
+		return new Object[][]{{map1, map1}, {map2, map2}, {map3, map3}};
+	}
 }
