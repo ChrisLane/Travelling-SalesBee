@@ -14,6 +14,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Initially created by Melvyn Mathews with the use of WindowBuilder, Chris Lane refined it
+ * @author: Chris Lane, Melvyn Mathews (mxm499)
+ */
 public class PanelToolbox extends JPanel {
 	public final static String name = "PanelToolbox";
 	private final PanelMap panelMap;
