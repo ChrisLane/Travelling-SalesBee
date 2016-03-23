@@ -4,6 +4,7 @@ import com.teamc2.travellingsalesbee.algorithms.NearestNeighbour;
 import com.teamc2.travellingsalesbee.gui.data.Map;
 import com.teamc2.travellingsalesbee.gui.data.cells.CellType;
 import com.teamc2.travellingsalesbee.gui.data.steps.AntStep;
+import com.teamc2.travellingsalesbee.gui.data.steps.ExperimentalStep;
 import com.teamc2.travellingsalesbee.gui.data.steps.NaiveStep;
 import com.teamc2.travellingsalesbee.gui.data.steps.SwapType;
 import com.teamc2.travellingsalesbee.gui.view.map.PanelMap;
@@ -444,16 +445,16 @@ public class SettingsButtons {
 	 * Sets the speed of the incrementing of the animation dependant on the size of the path and whether the program is currently visualising the inspected path or not
 	 */
 	public void setSpeed() {
-
-		if (stepNum >= panelMap.getPathComponent().getNaiveSteps().size()) {
+		int naiveSteps = panelMap.getPathComponent().getNaiveSteps().size();
+		ArrayList<ExperimentalStep> experimentalSteps = panelMap.getPathComponent().getExperimentalSteps();
+		if (stepNum >= naiveSteps) {
 
 			double delaySpeed = 1200;
 
 			try {
+				if (experimentalSteps.get(stepNum - naiveSteps).getType() == SwapType.BEST) {
 
-				if (panelMap.getPathComponent().getExperimentalSteps().get(stepNum - (panelMap.getPathComponent().getNaiveSteps().size())).getType() == SwapType.BEST) {
-
-					delaySpeed = 600 * (panelMap.getPathComponent().getNaiveSteps().size());
+					delaySpeed = 600 * naiveSteps;
 					System.out.println("delaySpeed: " + delaySpeed);
 
 				}
@@ -465,9 +466,9 @@ public class SettingsButtons {
 
 			setTimer((int) delaySpeed);
 
-		} else if (panelMap.getPathComponent().getNaiveSteps().size() > 0) {
+		} else if (naiveSteps > 0) {
 
-			double beeSpeed = (timer.getDelay() / 1000) / panelMap.getPathComponent().getNaiveSteps().size();
+			double beeSpeed = (timer.getDelay() / 1000) / naiveSteps;
 			panelMap.getPanelAnimalAnimation().setDelay(beeSpeed);
 
 			//For naive steps
