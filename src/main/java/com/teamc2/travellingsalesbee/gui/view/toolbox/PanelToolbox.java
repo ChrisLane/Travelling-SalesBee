@@ -15,10 +15,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * A class to instantiate the graphical user interface toolbox and it's content
- * 
- * Initially created by Melvyn Mathews with the use of WindowBuilder, Chris Lane refined it
- * @author Chris Lane
+ * A container for elements to be dragged on to the map
+ *
+ * @author Christopher Lane (cml476)
  * @author Melvyn Mathews (mxm499)
  */
 public class PanelToolbox extends JPanel {
@@ -29,9 +28,10 @@ public class PanelToolbox extends JPanel {
 	private AlgorithmType type;
 
 	/**
-	 * Constructs an object of PanelToolbox
-	 * @param panelMap The PanelMap object to be referred to
-	 * @param type The type of algorithm currently selected from the tabs
+	 * Construct a toolbox
+	 *
+	 * @param panelMap The map panel
+	 * @param type     The algorithm type
 	 */
 	public PanelToolbox(PanelMap panelMap, AlgorithmType type) {
 		this.panelMap = panelMap;
@@ -51,7 +51,6 @@ public class PanelToolbox extends JPanel {
 		JLabel imgDrag = null;
 		JLabel imgKey = null;
 		BufferedImage img = null;
-		
 		try {
 			img = ImageIO.read(getClass().getResource("/assets/icons/dragMe.png"));
 			if (img != null) imgDrag = new JLabel(new ImageIcon(img));
@@ -60,13 +59,16 @@ public class PanelToolbox extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		LayoutToolbox layoutToolbox = new LayoutToolbox(this, backButton, imgDrag, imgKey);
 		setLayout(layoutToolbox);
 
 		addTools();
 	}
 
+	/**
+	 * Paint the toolbox and its elements
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -76,7 +78,7 @@ public class PanelToolbox extends JPanel {
 	}
 
 	/**
-	 * Method to add the draggable buttons to the toolbox and set their bounds
+	 * Add the toolbox tools to the toolbox
 	 */
 	public void addTools() {
 		CellDraggable nodeToolCell = new CellDraggable(cellWidth, cellHeight, CellType.NODE, panelMap, type, false);
@@ -106,6 +108,8 @@ public class PanelToolbox extends JPanel {
 	}
 
 	/**
+	 * Set the algorithm type
+	 *
 	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox draggable cells
 	 */
 	public void setAlgorithmType(AlgorithmType type) {
@@ -118,5 +122,4 @@ public class PanelToolbox extends JPanel {
 			}
 		}
 	}
-
 }
