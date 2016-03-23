@@ -24,7 +24,7 @@ public class AntTest {
 	 * @param actualAverage The expected average cost for the map
 	 */
 	@Test(dataProvider = "averageCost", dataProviderClass = Data.class)
-	public void getAverageCost(Map map, double actualAverage) {
+	public void getAverageCost(Map map, double actualAverage) throws Exception {
 		Ant ant = new Ant(map);
 		ArrayList<CellNode> nodes = map.getNodes();
 		CellOrigin origin = map.getOrigin();
@@ -40,7 +40,7 @@ public class AntTest {
 	 * @param actualAverage The expected average pheromone level for the map
 	 */
 	@Test(dataProvider = "averagePheromone", dataProviderClass = Data.class)
-	public void getAveragePheromone(Map map, double actualAverage) {
+	public void getAveragePheromone(Map map, double actualAverage) throws Exception {
 		Ant ant = new Ant(map);
 		ArrayList<CellNode> nodes = map.getNodes();
 		CellOrigin origin = map.getOrigin();
@@ -57,7 +57,7 @@ public class AntTest {
 	 * @param expectedCost The expected output cost
 	 */
 	@Test(dataProvider = "cost", dataProviderClass = Data.class)
-	public void setHeuristicCost(double cost, double expectedCost) {
+	public void setHeuristicCost(double cost, double expectedCost) throws Exception {
 		Map map = new Map();
 		map.setCell(0, 0, CellType.ORIGIN);
 		map.setCell(0, 2, CellType.NODE);
@@ -75,7 +75,7 @@ public class AntTest {
 	 * @param expectedMap The map to be checked against
 	 */
 	@Test(dataProvider = "map", dataProviderClass = Data.class)
-	public void getMap(Map map, Map expectedMap) {
+	public void getMap(Map map, Map expectedMap) throws Exception {
 		Ant ant = new Ant(map);
 		Assert.assertEquals(ant.getMap(), expectedMap);
 	}
