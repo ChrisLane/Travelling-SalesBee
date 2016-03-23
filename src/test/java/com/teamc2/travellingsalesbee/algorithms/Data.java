@@ -38,7 +38,7 @@ public class Data {
 	}
 
 	/**
-	 * Paths and costs to be used in tests
+	 * Paths and their costs
 	 *
 	 * @return Array of paths and their costs to be used in tests
 	 */
@@ -85,6 +85,11 @@ public class Data {
 		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}, {path4, path4Cost}};
 	}
 
+	/**
+	 * Maps and their average costs from the origin to all other nodes
+	 *
+	 * @return Maps and their average costs from the origin to all other nodes
+	 */
 	@DataProvider(name = "averageCost")
 	public static Object[][] averageCost() {
 		Map map1 = new Map();
@@ -108,6 +113,11 @@ public class Data {
 		return new Object[][]{{map1, 4.774851773445587}, {map2, 5.747172493991755}, {map3, 42.315896167550534}};
 	}
 
+	/**
+	 * Maps and their average pheromones after one pheromoneRun
+	 *
+	 * @return Maps and their average pheromones after one pheromoneRun
+	 */
 	@DataProvider(name = "averagePheromone")
 	public static Object[][] averagePheromone() {
 		Map map1 = new Map();
@@ -125,6 +135,6 @@ public class Data {
 		map3.setCell(1, 24, CellType.NODE);
 		map3.setCell(9, 99, CellType.NODE);
 
-		return new Object[][]{{map1, 3}, {map2, 10}, {map3, 10}};
+		return new Object[][]{{map1, 3.0}, {map2, 3.0}, {map3, 1.6666666666666667}};
 	}
 }
