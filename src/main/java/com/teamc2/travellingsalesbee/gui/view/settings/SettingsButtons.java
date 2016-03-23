@@ -459,8 +459,7 @@ public class SettingsButtons {
 
 				}
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			}
 
 
