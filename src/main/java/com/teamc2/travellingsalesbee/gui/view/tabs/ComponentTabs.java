@@ -12,21 +12,27 @@ import java.awt.*;
 /**
  * A class to initiate the tab component which allows users to flick between different visualisations
  * Extends JTabbed Pane so it can be added to the main Layout GuiContainer for visualiser
- * 
- * @author Bradley Rowe (bmr455)
- * @author Chris Lane (cml476)
  *
+ * @author Bradley Rowe (bmr455)
+ * @author Christopher Lane (cml476)
  */
 public class ComponentTabs extends JTabbedPane {
 	//Named so it can be referred to in GuiContainer
 	public final static String name = "ComponentTabs";
-	
+
 	//Strings to use for generating tab content
 	private String bee = "BEE INSPIRED";
 	private String ant = "ANT INSPIRED";
 	private String nn = "NEAREST NEIGHBOUR";
 	private String tos = "TWO-OPT SWAP";
 
+	/**
+	 * Construct the algorithm tab pane
+	 *
+	 * @param panelMap      The map panel
+	 * @param panelSettings The settings panel
+	 * @param panelToolbox  The toolbox panel
+	 */
 	public ComponentTabs(PanelMap panelMap, PanelSettings panelSettings, PanelToolbox panelToolbox) {
 		setName(name);
 		Color backgroundColor = new Color(71, 35, 35);
@@ -126,7 +132,9 @@ public class ComponentTabs extends JTabbedPane {
 	}
 
 	/**
-	 * @param text The text to present on the tab
+	 * Get the HTML for a tab item title
+	 *
+	 * @param text    The text to present on the tab
 	 * @param imgName The image to make as a tab icon
 	 * @return htmlString The html string to produce the unselected tab
 	 */
@@ -136,7 +144,9 @@ public class ComponentTabs extends JTabbedPane {
 	}
 
 	/**
-	 * @param text The text to present on the tab
+	 * Get the HTML for a selected tab item title
+	 *
+	 * @param text    The text to present on the tab
 	 * @param imgName The image to make as a tab icon
 	 * @return htmlString The html string to produce the selected tab
 	 */
@@ -144,7 +154,7 @@ public class ComponentTabs extends JTabbedPane {
 		return "<html><div align='center'><img src='" + getClass().getResource("/assets/icons/" + imgName)
 				+ "' height='50' width='50'/><br/><h2 color='lime'>" + text + "</h2></div></html>";
 	}
-	
+
 	/**
 	 * A method to remove the highlighting of a tab
 	 * Called when a new tab is selected so the old one must be de-selected
