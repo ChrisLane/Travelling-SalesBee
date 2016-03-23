@@ -85,10 +85,46 @@ public class Data {
 		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}, {path4, path4Cost}};
 	}
 
-	@DataProvider(name = "maps")
-	public static Object[][] maps() {
+	@DataProvider(name = "averageCost")
+	public static Object[][] averageCost() {
 		Map map1 = new Map();
+		map1.setCell(0, 0, CellType.ORIGIN);
+		map1.setCell(0, 2, CellType.NODE);
+		map1.setCell(0, 6, CellType.NODE);
+		map1.setCell(2, 6, CellType.NODE);
 
-		return null;
+		Map map2 = new Map();
+		map2.setCell(2, 4, CellType.ORIGIN);
+		map2.setCell(6, 9, CellType.NODE);
+		map2.setCell(1, 2, CellType.NODE);
+		map2.setCell(9, 9, CellType.NODE);
+
+		Map map3 = new Map();
+		map3.setCell(5, 3, CellType.ORIGIN);
+		map3.setCell(2, 12, CellType.NODE);
+		map3.setCell(1, 24, CellType.NODE);
+		map3.setCell(9, 99, CellType.NODE);
+
+		return new Object[][]{{map1, 4.774851773445587}, {map2, 5.747172493991755}, {map3, 42.315896167550534}};
+	}
+
+	@DataProvider(name = "averagePheromone")
+	public static Object[][] averagePheromone() {
+		Map map1 = new Map();
+		map1.setCell(0, 0, CellType.ORIGIN);
+		map1.setCell(0, 2, CellType.NODE);
+
+		Map map2 = new Map();
+		map2.setCell(2, 4, CellType.ORIGIN);
+		map2.setCell(6, 9, CellType.NODE);
+		map2.setCell(1, 2, CellType.NODE);
+
+		Map map3 = new Map();
+		map3.setCell(5, 3, CellType.ORIGIN);
+		map3.setCell(2, 12, CellType.NODE);
+		map3.setCell(1, 24, CellType.NODE);
+		map3.setCell(9, 99, CellType.NODE);
+
+		return new Object[][]{{map1, 3}, {map2, 10}, {map3, 10}};
 	}
 }
