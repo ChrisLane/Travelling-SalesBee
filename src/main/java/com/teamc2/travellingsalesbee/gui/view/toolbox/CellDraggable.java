@@ -17,6 +17,8 @@ import java.io.IOException;
 
 /**
  * A class to instantiate a drag and droppable cell used within the toolbox and panelmap
+ * Extends JButton so it is clickable
+ * Implements Transferable, DragSourceListener, DragGestureListener so it is draggable
  * 
  * @author Melvyn Mathews (mxm499)
  * @author Bradley Rowe (bmr455)

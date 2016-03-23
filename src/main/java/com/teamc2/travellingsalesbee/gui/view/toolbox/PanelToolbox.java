@@ -93,8 +93,7 @@ public class PanelToolbox extends JPanel {
 	}
 
 	/**
-	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox
-	 *             draggable cells
+	 * @param type The type of algorithm being viewed to adjust the icons of the toolbox draggable cells
 	 */
 	public void setAlgorithmType(AlgorithmType type) {
 		this.type = type;
