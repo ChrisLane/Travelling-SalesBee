@@ -130,7 +130,8 @@ public class Ant extends NearestNeighbour {
 	}
 
 	/**
-	 * Get all nodes that are less than or equal to the average distance from the current cell to given nodes
+	 * Get all nodes that are less than or equal to the average distance from the
+	 * current cell to given nodes
 	 *
 	 * @param nodes       Nodes to check the distance to
 	 * @param averageCost Average cost to nodes
