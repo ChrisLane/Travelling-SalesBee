@@ -34,7 +34,7 @@ public class Ant extends NearestNeighbour {
 	 * Update the pheromones in the path
 	 */
 	public void pheromoneRun() {
-		if (!(origin == null)) {
+		if (origin != null) {
 			ArrayList<Cell> newPath = new ArrayList<>();
 			ArrayList<CellNode> nodes = map.getNodes();
 
@@ -67,7 +67,7 @@ public class Ant extends NearestNeighbour {
 			double cost = calculatePathCost(newPath);
 			setPath(newPath, cost);
 
-			if (cost <= heuristicCost) {
+			if ((cost <= heuristicCost) && (path.size() > 3)) {
 				plantAllPheromone(path);
 			}
 		}
@@ -121,7 +121,7 @@ public class Ant extends NearestNeighbour {
 	 * @param currentCell Cell to check pheromone levels from
 	 * @return The average pheromone level from the current node to all others
 	 */
-	private double getAveragePheromone(ArrayList<CellNode> nodes, Cell currentCell) {
+	public double getAveragePheromone(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalPheromone = 0;
 		for (CellNode n : nodes) {
 			totalPheromone += costMatrix.getPheromone(currentCell, n);
@@ -155,7 +155,7 @@ public class Ant extends NearestNeighbour {
 	 * @param currentCell Cell to check the distance from
 	 * @return The average cost from a given cell to a list of other nodes
 	 */
-	private double getAverageCost(ArrayList<CellNode> nodes, Cell currentCell) {
+	public double getAverageCost(ArrayList<CellNode> nodes, Cell currentCell) {
 		double totalCost = 0;
 		for (CellNode n : nodes) {
 			totalCost += costMatrix.getCost(currentCell, n);
