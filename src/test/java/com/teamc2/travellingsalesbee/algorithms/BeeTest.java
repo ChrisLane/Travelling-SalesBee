@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 /**
  * A test class for the bee algorithm
+ *
+ * @author Christopher Lane (cml476)
  */
 public class BeeTest {
 	private Bee bee;
