@@ -8,6 +8,10 @@ import com.teamc2.travellingsalesbee.gui.view.toolbox.PanelToolbox;
 
 import javax.swing.*;
 
+/**
+ * Created by Chris Lane after refactoring
+ * @author: Chris Lane
+ */
 public class LayoutGui extends GroupLayout {
 
 	/**
