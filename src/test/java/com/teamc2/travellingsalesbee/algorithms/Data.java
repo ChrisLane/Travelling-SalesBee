@@ -10,6 +10,9 @@ import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
 
+/**
+ * A class to contain all data providers
+ */
 public class Data {
 	private static Map map;
 
@@ -25,6 +28,11 @@ public class Data {
 		map.setCell(2, 6, CellType.NODE); // flower 3
 	}
 
+	/**
+	 * Get the map containing nodes for the data providers
+	 *
+	 * @return The data provider's map
+	 */
 	public Map getMap() {
 		return map;
 	}
