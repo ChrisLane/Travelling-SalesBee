@@ -5,6 +5,7 @@ import com.teamc2.travellingsalesbee.gui.data.cells.Cell;
 import java.util.ArrayList;
 /**
  * A class to represent a single step of the nearest neighbour algorithm (also known as naive run for bee)
+ * 
  * @author Bradley Rowe (bmr455)
  *
  */

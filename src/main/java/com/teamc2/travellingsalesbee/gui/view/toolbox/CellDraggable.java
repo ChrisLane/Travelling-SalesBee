@@ -15,6 +15,13 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
 import java.io.IOException;
 
+/**
+ * A class to instantiate a drag and droppable cell used within the toolbox and panelmap
+ * 
+ * @author Melvyn Mathews (mxm499)
+ * @author Bradley Rowe (bmr455)
+ *
+ */
 public class CellDraggable extends JButton implements Transferable, DragSourceListener, DragGestureListener {
 
 	private final DragSource source;
@@ -46,12 +53,17 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		this.panelMap = panelMap;
 		this.algorithmType = algorithmType;
 		this.fromMap = fromMap;
+		
+		//Get the map so bounary new dropped cells can be added to the back-end map
 		map = panelMap.getMap();
+		
 		transHandler = new TransferHandler() {
 			public Transferable createTransferable(JComponent c) {
 				return new CellDraggable(width, height, type, panelMap, algorithmType, true);
 			}
 		};
+		
+		setTransferHandler(transHandler);
 
 		// Aesthetic code to style buttons correctly.
 		setFocusPainted(false);
@@ -59,8 +71,8 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 
-		setTransferHandler(transHandler);
-
+		
+		//Drag event code
 		source = new DragSource();
 		source.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY, this);
 	}
@@ -98,36 +110,49 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 	}
 
 	/**
-	 * Method to place a draggable cell in the map
+	 * Method to drop a draggable cell in the map
 	 *
 	 * @param arg0 Drag event initiated by the user dragging a CellDraggable button.
 	 */
 	@Override
 	public void dragDropEnd(DragSourceDropEvent arg0) {
+		/**
+		 * Try to place a cell in map but if a null pointer exception i.e. position doesn't exist
+		 * in the back end map then catch this
+		 */
 		try {
-			//Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-			//setCursor(defaultCursor);
+		
 			if (type.equals(CellType.ORIGIN)) {
 				panelMap.deleteOldOrigin();
 			}
+			
+			//Create the dropped Button
 			CellDraggable droppedBtn = new CellDraggable(width, height, type, panelMap, algorithmType, true);
+			//Set the image of the dropped button paying close attention to the CellType of Origin or Node
 			droppedBtn.setIcon(new ImageIcon(getImage(type)));
-
+			
+			/**
+			 * Add a listener to change the cursor image to what is being dragged
+			 * so it indeed looks like it is being dragged
+			 */
 			droppedBtn.addChangeListener(evt -> {
 				if (getModel().isPressed()) {
 					ImageIcon img = new ImageIcon(getImage(type));
 					setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0, 0), "c"));
 				}
 			});
-
+			
+			//Round by width and height to lock dropped buttons to conform with the grid
 			int x = (int) Math.round((panelMap.getMousePosition().getX() - (width / 2)) / width) * width;
 			int y = (int) (Math.round((panelMap.getMousePosition().getY() - (height / 2)) / height) * height);
+			
+			//Check if a cell already exists in the given position if so, delete the previous button
 			panelMap.cellFull(x, y);
 
 			// Add the cell to the map
 			map.setCell(x, y, type);
 
-			// Remove the previous location of the cell (if there is one) from the map
+			// Remove the previous location of the cell (if cell was dragged from one position on panel map to another) from the map
 			if (onMap) map.clearCell(prevX, prevY);
 			droppedBtn.onMap();
 			droppedBtn.setPrevs(x, y);
@@ -157,6 +182,11 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		}
 	}
 
+	/**
+	 * 
+	 * @param x Previous X Coord
+	 * @param y Previous Y Coord
+	 */
 	public void setPrevs(int x, int y) {
 		prevX = x;
 		prevY = y;
@@ -168,8 +198,6 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 
 	@Override
 	public void dragEnter(DragSourceDragEvent arg0) {
-		//ImageIcon img = new ImageIcon(getImage(type));
-		//setCursor(Toolkit.getDefaultToolkit().createCustomCursor(img.getImage(), new Point(0,0), "c"));
 	}
 
 	@Override
@@ -217,11 +245,19 @@ public class CellDraggable extends JButton implements Transferable, DragSourceLi
 		return type;
 	}
 
+	/**
+	 * Sets the image for a CellDraggable
+	 * @param type The given CellType enum
+	 */
 	public void setImage(CellType type) {
 		setIcon(new ImageIcon(getImage(type)));
 	}
 
-	public void setAlgorithmType(AlgorithmType type) {
-		algorithmType = type;
+	/**
+	 * Sets the algorithm type for a CellDragable
+	 * @param type The given algorithm type enum 
+	 */
+	public void setAlgorithmType(AlgorithmType algorithmType) {
+		this.algorithmType = algorithmType;
 	}
 }
