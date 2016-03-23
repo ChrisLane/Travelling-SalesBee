@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
+ * Given a path and an image URL, animate the path
  * @author Melvyn Mathews (mxm499)
  */
 public class PanelAnimalAnimation extends JFXPanel {
