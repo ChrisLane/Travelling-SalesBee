@@ -6,6 +6,8 @@ import java.awt.*;
 
 /**
  * A class for cells of no type
+ *
+ * @author Christopher Lane (cml476)
  */
 public class CellEmpty extends Cell {
 

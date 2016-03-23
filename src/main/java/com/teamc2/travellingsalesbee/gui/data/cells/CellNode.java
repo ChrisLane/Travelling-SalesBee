@@ -8,6 +8,8 @@ import java.io.IOException;
 
 /**
  * A class for node cells
+ *
+ * @author Christopher Lane (cml476)
  */
 public class CellNode extends Cell {
 
