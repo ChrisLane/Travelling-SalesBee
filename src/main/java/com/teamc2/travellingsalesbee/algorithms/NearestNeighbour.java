@@ -7,9 +7,10 @@ import com.teamc2.travellingsalesbee.gui.data.cells.CellNode;
 import java.util.ArrayList;
 
 /**
- * 
- * @author Todd Waugh Ambridge (txw467)
+ * Nearest Neighbor Algorithm
  *
+ * @author Christopher Lane (cml476)
+ * @author Todd Waugh Ambridge (txw467)
  */
 public class NearestNeighbour {
 
@@ -19,7 +20,7 @@ public class NearestNeighbour {
 	protected double cost = Double.MAX_VALUE;
 
 	/**
-	 * Constructor
+	 * Instantiate a nearest neighbor algorithm
 	 *
 	 * @param map The Map object for storing cells
 	 */
@@ -31,7 +32,7 @@ public class NearestNeighbour {
 	/**
 	 * A method to run a naive path i.e. greedy best first search.
 	 * <p>
-	 * A greedy like algorithm, initially visits the nearest non-visited neighbour 
+	 * A greedy like algorithm, initially visits the nearest non-visited neighbour
 	 * until every node has been visited, following that it then returns to the origin
 	 */
 	public void naiveRun() {
