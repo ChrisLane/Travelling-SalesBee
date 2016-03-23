@@ -84,4 +84,11 @@ public class Data {
 
 		return new Object[][]{{path1, path1Cost}, {path2, path2Cost}, {path3, path3Cost}, {path4, path4Cost}};
 	}
+
+	@DataProvider(name = "maps")
+	public static Object[][] maps() {
+		Map map1 = new Map();
+
+		return null;
+	}
 }
