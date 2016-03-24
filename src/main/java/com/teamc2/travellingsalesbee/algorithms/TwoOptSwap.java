@@ -133,6 +133,14 @@ public class TwoOptSwap extends NearestNeighbour {
 	}
 
 	/**
+	 * Get the step number
+	 * @return The step number
+	 */
+	public int getStepNum() {
+		return stepNum;
+	}
+
+	/**
 	 * Return the total number of experimental runs (swaps) to perform.
 	 *
 	 * @return Total runs.
