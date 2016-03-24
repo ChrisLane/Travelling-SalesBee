@@ -1,0 +1,7 @@
+This project has been built using the Apache Maven build manager. To compile this project, you must use the 'mvn' command whilst in the 'final' directory:
+
+> cd final
+> mvn package
+> java -jar target/travelingsalesbee-1.0-SNAPSHOT.jar
+
+A copy of the pre-prepared JAR file travelingsalesbee-1.0-SNAPSHOT.jar has been included in the final directory of the SVN repository, in case the 'mvn' command is unavailable to you.
