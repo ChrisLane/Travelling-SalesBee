@@ -164,4 +164,26 @@ public class Data {
 
 		return new Object[][]{{map1, map1}, {map2, map2}, {map3, map3}};
 	}
+
+	@DataProvider(name = "runs")
+	public static Object[][] runs() {
+		Map map = new Map();
+		map.setCell(0, 0, CellType.ORIGIN);
+		map.setCell(0, 2, CellType.NODE);
+		map.setCell(0, 6, CellType.NODE);
+		map.setCell(2, 6, CellType.NODE);
+
+		return new Object[][]{{map, 22}, {map, 234}, {map, 2}};
+	}
+
+	@DataProvider(name = "stepNumber")
+	public static Object[][] stepNumber() {
+		Map map = new Map();
+		map.setCell(0, 0, CellType.ORIGIN);
+		map.setCell(0, 2, CellType.NODE);
+		map.setCell(0, 6, CellType.NODE);
+		map.setCell(2, 6, CellType.NODE);
+
+		return new Object[][]{{map, 10}, {map, 21}, {map, 2}};
+	}
 }
