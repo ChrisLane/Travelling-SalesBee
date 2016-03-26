@@ -7,11 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 
 /**
  * A class for generating and viewing the FAQ page.
@@ -41,14 +37,14 @@ public class Faq extends Page {
 		border.setId("faq");
 
 		ScrollPane scroll = new ScrollPane();
-		scroll.setMaxWidth(width/2.5);
-		scroll.setMaxHeight(height/2.5);
+		scroll.setMaxWidth(width / 2.5);
+		scroll.setMaxHeight(height / 2.5);
 		scroll.setId("scroll");
 		border.setCenter(scroll);
 
 		// add the text to the pane
 		Text text = createTextBox();
-		text.setWrappingWidth(width/2.6);
+		text.setWrappingWidth(width / 2.6);
 		scroll.setContent(text);
 		BorderPane.setAlignment(text, Pos.TOP_CENTER);
 		BorderPane.setMargin(text, new Insets(150, 10, 0, 10));
@@ -70,25 +66,11 @@ public class Faq extends Page {
 	 */
 	protected Text createTextBox() {
 		Text text = new Text();
+		InputStream is = getClass().getClassLoader().getResourceAsStream("assets/text/faq.txt");
 
-		// obtain the text content
-		String textContent;
-		try {
-			URL filePath = getClass().getClassLoader().getResource("assets/text/faq.txt");
-			if (filePath != null) {
-				File file = new File(filePath.getFile());
-				byte[] byteContent = Files.readAllBytes(Paths.get(file.getCanonicalPath()));
-				textContent = new String(byteContent);
-			} else {
-				throw new IOException();
-			}
-		} catch (IOException e) {
-			textContent = "Failed to obtain text for the current page.\nApologies for the inconvenience.";
+		try (java.util.Scanner s = new java.util.Scanner(is)) {
+			text.setText(s.useDelimiter("\\A").hasNext() ? s.next() : "");
+			return text;
 		}
-
-		// set the text content and return
-		text.setText(textContent);
-
-		return text;
 	}
 }
