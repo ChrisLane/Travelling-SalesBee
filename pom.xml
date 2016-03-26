@@ -44,38 +44,12 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
+                    <finalName>Travelling SalesBee</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.teamc2.travellingsalesbee.TravellingSalesBee</mainClass>
                         </manifest>
                     </archive>
-                </configuration>
-            </plugin>
-
-            <!-- Jar Obfuscation -->
-            <plugin>
-                <groupId>com.github.wvengen</groupId>
-                <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.0.11</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>proguard</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <obfuscate>true</obfuscate>
-                    <outjar>Travelling SalesBee.jar</outjar>
-                    <options>
-                        <option>-allowaccessmodification</option>
-                        <option>-keep public class * extends javafx.application.Application { *; }</option>
-                    </options>
-                    <libs>
-                        <lib>${java.home}/lib/rt.jar</lib>
-                        <lib>${java.home}/lib/ext/jfxrt.jar</lib>
-                    </libs>
                 </configuration>
             </plugin>
         </plugins>
